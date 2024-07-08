@@ -12,13 +12,14 @@ CASES = ["nominative", "genitive", "dative", "accusative", "instrumental", "prep
          "vocative", "locative", "terminative", "translative"]
 PLURALS = ["one", 'few', 'many', 'other']
 REFERENCE_LANGUAGE = 'en'
-LANGUAGES = {'root', 'en', 'hu', 'ru', 'nl', 'es', 'fr', 'hr', 'pt', 'zh'}
+LANGUAGES = {'root', 'en', 'hu', 'ru', 'nl', 'es', 'fr', 'hr', 'pt', 'zh', 'id', 'tr', 'de', 'jp', 'be', 'uk', 'pl'}
 LANGUAGES_EXCLUDED = {'ml'}
 CLDR_VERSION = "45.0"
 CLDR_PATH = f'/Users/egorleonenko/Downloads/cldr-common-{CLDR_VERSION}'
 BASE_PATH = f'{CLDR_PATH}/common/main/'
 UNITS_PATH = f'{CLDR_PATH}/common/supplemental/units.xml'
 PLURALS_PATH = f'{CLDR_PATH}/common/supplemental/plurals.xml'
+METADATA_PATH = f'{CLDR_PATH}/common/supplemental/supplementalMetadata.xml'
 TARGET_PATH = '../src/commonMain/kotlin/info/leonenko/i18n'
 PACKAGE = "info.leonenko.i18n"
 
@@ -435,7 +436,7 @@ def language_list(cldr, lang_name, open, base=None):
             t = pattern.attrib.get('type', 'standard-long')
             if t == 'unit':
                 t = 'unit-long'
-            parts = {}
+            parts = {'start': '{0}, {1}', 'middle': '{0}, {1}'}  # TODO take default values from root
             for part in pattern.findall('listPatternPart'):
                 pt = part.attrib['type']
                 if pt == '2':
@@ -592,6 +593,10 @@ def main():
 
     with open(UNITS_PATH, 'r') as f:
         d = ET.fromstring(f.read())
+
+    with open(METADATA_PATH, 'r') as f:
+        metadata = ET.fromstring(f.read())
+
     units_info, constants = cldr_units2(d, all_units, compound_units)
 
     # pprint(units_info, width=100)
@@ -628,15 +633,43 @@ def main():
                 completed_languages.append(lang)
 
     with open(os.path.join(TARGET_PATH, 'languages', f'Supported.kt'), 'w') as f:
-        sys.stdout = f
-        print(f"package {PACKAGE}.languages")
-        print(f'import {PACKAGE}.Language')
+        print(f"package {PACKAGE}.languages", file=f)
+        print(f'import {PACKAGE}.Language', file=f)
         print("""val Language.Companion.supported  : Map<String, Language>
-  get() = supportedLanguages""")
-        print("private val supportedLanguages = mapOf(")
+  get() = supportedLanguages""", file=f)
+        print("private val supportedLanguages = mapOf(", file=f)
         for code, name in completed_languages:
-            print(f"  \"{code}\" to Language.{safe(name)}, ")
-        print(")")
+            print(f"  \"{code}\" to Language.{safe(name)}, ", file=f)
+        print(")", file=f)
+
+    aliases = metadata.find('metadata').find('alias')
+    language_aliases = aliases.findall('languageAlias')
+    script_aliases = aliases.findall('scriptAlias')
+    territory_aliases = aliases.findall('territoryAlias')
+
+    with open(os.path.join(TARGET_PATH, 'languages', f'Aliases.kt'), 'w') as f:
+        print(f"package {PACKAGE}.languages", file=f)
+        print(f'import {PACKAGE}.Language', file=f)
+        print("""val Language.Companion.languageAliases  : Map<String, String>
+  get() = allLanguageAliases""", file=f)
+        print("private val allLanguageAliases = mapOf(", file=f)
+        for alias in language_aliases:
+            print(f"  \"{alias.attrib['type']}\" to \"{alias.attrib['replacement']}\", ", file=f)
+        print(")", file=f)
+
+        print("""val Language.Companion.scriptAliases  : Map<String, String>
+  get() = scriptAliases""", file=f)
+        print("private val allScriptAliases = mapOf(", file=f)
+        for alias in script_aliases:
+            print(f"  \"{alias.attrib['type']}\" to \"{alias.attrib['replacement']}\", ", file=f)
+        print(")", file=f)
+
+        print("""val Language.Companion.territoryAliases  : Map<String, String>
+  get() = allTerritoryAliases""", file=f)
+        print("private val allTerritoryAliases = mapOf(", file=f)
+        for alias in territory_aliases:
+            print(f"  \"{alias.attrib['type']}\" to \"{alias.attrib['replacement']}\", ", file=f)
+        print(")", file=f)
 
     sys.stdout = orig_stdout
 

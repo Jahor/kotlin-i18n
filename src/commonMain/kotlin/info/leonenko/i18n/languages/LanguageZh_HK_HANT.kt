@@ -1,30 +1,17 @@
 package info.leonenko.i18n.languages
 
-import info.leonenko.i18n.Language
-import info.leonenko.i18n.PluralFormChooser
-import info.leonenko.i18n.EllipsisFormatter
-import info.leonenko.i18n.PatternedListFormatter
-import info.leonenko.i18n.ListFormatter
-import info.leonenko.i18n.MultiLengthPatternedListFormatter
-import info.leonenko.i18n.MultiLengthGenderedPattern
-import info.leonenko.i18n.NumberSymbols
-import info.leonenko.i18n.GenderedPattern
-import info.leonenko.i18n.PluralPattern
-import info.leonenko.i18n.Plurals
-import info.leonenko.i18n.Gender
-import info.leonenko.i18n.Cases
-import info.leonenko.i18n.RBNF
+import info.leonenko.i18n.*
 
-val Language.Companion.zhHANT_HK
-    get() = languageZhHANT_HK
-private val languageZhHANT_HK = LanguageZhHANT_HK()
+val Language.Companion.zh_HK_HANT
+    get() = languageZh_HK_HANT
+private val languageZh_HK_HANT = LanguageZh_HK_HANT()
 
-class LanguageZhHANT_HK internal constructor() : LanguageZhHANT() {
-    override val code: String = "zh-Hant_HK"
+class LanguageZh_HK_HANT internal constructor() : LanguageZh_HANT() {
+    override val code: String = "zh_HK_#Hant"
     override val script: String = "Hant"
     override val territory: String = "HK"
 
-    class EllipsisLanguage internal constructor() : LanguageZhHANT.EllipsisLanguage() {
+    class EllipsisLanguage internal constructor() : LanguageZh_HANT.EllipsisLanguage() {
         override val formatter: EllipsisFormatter = EllipsisFormatter(
             final = "{0}⋯",
             initial = "⋯{0}",
@@ -40,13 +27,16 @@ class LanguageZhHANT_HK internal constructor() : LanguageZhHANT() {
     override val ellipsis: EllipsisLanguage
         get() = EllipsisLanguage()
 
-    class ListLanguage internal constructor(ellipsis: EllipsisLanguage) : LanguageZhHANT.ListLanguage(ellipsis) {
+    class ListLanguage internal constructor(ellipsis: EllipsisLanguage) : LanguageZh_HANT.ListLanguage(ellipsis) {
+        override val formatter: ListFormatter = MultiLengthPatternedListFormatter(
+            long = PatternedListFormatter(start = "{0}, {1}", middle = "{0}, {1}", end = "{0}及{1}", two = "{0}及{1}", ellipsis = ellipsis.wordFormatter),
+        )
     }
 
     override val list: ListLanguage
         get() = ListLanguage(ellipsis)
 
-    class MeasurementUnitLanguage internal constructor() : LanguageZhHANT.MeasurementUnitLanguage() {
+    class MeasurementUnitLanguage internal constructor() : LanguageZh_HANT.MeasurementUnitLanguage() {
         override val accelerationGForce
             get() = MultiLengthGenderedPattern(
                 short = GenderedPattern(
@@ -1252,7 +1242,7 @@ class LanguageZhHANT_HK internal constructor() : LanguageZhHANT() {
     override val measurementUnits: MeasurementUnitLanguage
         get() = MeasurementUnitLanguage()
 
-    class NumberLanguage internal constructor() : LanguageZhHANT.NumberLanguage() {
+    class NumberLanguage internal constructor() : LanguageZh_HANT.NumberLanguage() {
     }
 
     override val numbers: NumberLanguage

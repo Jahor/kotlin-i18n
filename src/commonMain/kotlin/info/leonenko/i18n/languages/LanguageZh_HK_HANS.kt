@@ -1,42 +1,29 @@
 package info.leonenko.i18n.languages
 
-import info.leonenko.i18n.Language
-import info.leonenko.i18n.PluralFormChooser
-import info.leonenko.i18n.EllipsisFormatter
-import info.leonenko.i18n.PatternedListFormatter
-import info.leonenko.i18n.ListFormatter
-import info.leonenko.i18n.MultiLengthPatternedListFormatter
-import info.leonenko.i18n.MultiLengthGenderedPattern
-import info.leonenko.i18n.NumberSymbols
-import info.leonenko.i18n.GenderedPattern
-import info.leonenko.i18n.PluralPattern
-import info.leonenko.i18n.Plurals
-import info.leonenko.i18n.Gender
-import info.leonenko.i18n.Cases
-import info.leonenko.i18n.RBNF
+import info.leonenko.i18n.*
 
-val Language.Companion.zhHANS_SG
-    get() = languageZhHANS_SG
-private val languageZhHANS_SG = LanguageZhHANS_SG()
+val Language.Companion.zh_HK_HANS
+    get() = languageZh_HK_HANS
+private val languageZh_HK_HANS = LanguageZh_HK_HANS()
 
-class LanguageZhHANS_SG internal constructor() : LanguageZhHANS() {
-    override val code: String = "zh-Hans_SG"
+class LanguageZh_HK_HANS internal constructor() : LanguageZh_HANS() {
+    override val code: String = "zh_HK_#Hans"
     override val script: String = "Hans"
-    override val territory: String = "SG"
+    override val territory: String = "HK"
 
-    class EllipsisLanguage internal constructor() : LanguageZhHANS.EllipsisLanguage() {
+    class EllipsisLanguage internal constructor() : LanguageZh_HANS.EllipsisLanguage() {
     }
 
     override val ellipsis: EllipsisLanguage
         get() = EllipsisLanguage()
 
-    class ListLanguage internal constructor(ellipsis: EllipsisLanguage) : LanguageZhHANS.ListLanguage(ellipsis) {
+    class ListLanguage internal constructor(ellipsis: EllipsisLanguage) : LanguageZh_HANS.ListLanguage(ellipsis) {
     }
 
     override val list: ListLanguage
         get() = ListLanguage(ellipsis)
 
-    class MeasurementUnitLanguage internal constructor() : LanguageZhHANS.MeasurementUnitLanguage() {
+    class MeasurementUnitLanguage internal constructor() : LanguageZh_HANS.MeasurementUnitLanguage() {
         override val accelerationGForce
             get() = MultiLengthGenderedPattern(
                 short = GenderedPattern(
@@ -189,7 +176,7 @@ class LanguageZhHANS_SG internal constructor() : LanguageZhHANS() {
     override val measurementUnits: MeasurementUnitLanguage
         get() = MeasurementUnitLanguage()
 
-    class NumberLanguage internal constructor() : LanguageZhHANS.NumberLanguage() {
+    class NumberLanguage internal constructor() : LanguageZh_HANS.NumberLanguage() {
     }
 
     override val numbers: NumberLanguage

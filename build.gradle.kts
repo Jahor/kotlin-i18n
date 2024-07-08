@@ -4,9 +4,6 @@ buildscript {
         google()
         mavenCentral()
     }
-    dependencies {
-//        classpath("dev.icerock.moko:kswift-gradle-plugin:0.7.0")
-    }
 }
 
 plugins {
@@ -14,12 +11,11 @@ plugins {
     id("com.android.library") version "8.2.2"
     id("maven-publish")
     kotlin("plugin.serialization") version "2.0.0"
-//    id("dev.icerock.moko.kswift") version "0.7.0"
     id("co.touchlab.skie") version "0.8.1"
 }
 
 group = "info.leonenko"
-version = "1.0.18"
+version = "1.0.21"
 
 val frameworkName = "i18n"
 
@@ -31,9 +27,7 @@ repositories {
 kotlin {
     jvmToolchain(8)
     androidTarget()
-    jvm() /*{
-        jvmToolchain(8)
-    }*/
+    jvm()
 
     listOf(
         iosX64(),

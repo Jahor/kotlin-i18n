@@ -3,6 +3,10 @@ package info.leonenko.i18n.helpers
 import info.leonenko.i18n.Case
 import info.leonenko.i18n.FormatLength
 import info.leonenko.i18n.Language
+import info.leonenko.i18n.languages.languageAliases
+import info.leonenko.i18n.languages.scriptAliases
+import info.leonenko.i18n.languages.supported
+import info.leonenko.i18n.languages.territoryAliases
 import info.leonenko.i18n.units.angle.Angle
 import info.leonenko.i18n.units.duration.*
 import info.leonenko.i18n.units.length.*
@@ -193,3 +197,58 @@ operator fun Length.div(speed: Speed): Duration {
 fun cos(angle: Angle): Double = cos(angle.toRadian().value)
 fun sin(angle: Angle): Double = sin(angle.toRadian().value)
 fun tan(angle: Angle): Double = tan(angle.toRadian().value)
+
+private fun Language.Companion.byCodeParts(code: String, parts: List<String>): Language? {
+    val language = parts[0]
+    val country = parts[1]
+    val possibleCodes = mutableListOf<String>()
+
+    Language.languageAliases[language]?.let { possibleCodes.add(it + "_" + country) }
+    Language.territoryAliases[country]?.let { possibleCodes.add(language + "_" + it) }
+    Language.languageAliases[language]?.let { la -> Language.territoryAliases[country]?.let { possibleCodes.add(la + "_" + it) } }
+
+    if (parts.size > 2) {
+        val script = parts[2].substring(1)
+        Language.scriptAliases[script]?.let { sa -> possibleCodes.addAll(possibleCodes.map { it + (if (it.contains("_")) "_" else "") + "#${sa}" }) }
+    }
+    for (p in possibleCodes) {
+        println("$code Trying $p")
+        val l = Language.supported[p]
+        if (l != null) {
+            return l
+        }
+    }
+    possibleCodes.add(code)
+    possibleCodes.add(language)
+    for (p in possibleCodes) {
+        println("$code Trying $p*")
+        for ((s, l) in Language.supported) {
+            if (s.startsWith(p)) {
+                return l
+            }
+        }
+    }
+    return null
+}
+
+fun Language.Companion.byCode(code: String): Language {
+    val simple = Language.supported[code] ?: Language.languageAliases[code]?.let { Language.supported[it] }
+    if (simple != null) {
+        return simple
+    }
+    if (code.contains("_")) {
+        val parts = code.split("_")
+        val lang = Language.byCodeParts(code, parts)
+        if (lang != null) {
+            return lang
+        }
+    } else if (code.contains("-")) {
+        val parts = code.split("-")
+        val lang = Language.byCodeParts(code.replace("-", "_"), parts)
+        if (lang != null) {
+            return lang
+        }
+    }
+
+    throw IllegalArgumentException("Unknown or unsupported language code $code")
+}

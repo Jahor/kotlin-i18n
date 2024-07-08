@@ -1,26 +1,13 @@
 package info.leonenko.i18n.languages
 
 import info.leonenko.i18n.Language
-import info.leonenko.i18n.PluralFormChooser
-import info.leonenko.i18n.EllipsisFormatter
-import info.leonenko.i18n.PatternedListFormatter
-import info.leonenko.i18n.ListFormatter
-import info.leonenko.i18n.MultiLengthPatternedListFormatter
-import info.leonenko.i18n.MultiLengthGenderedPattern
-import info.leonenko.i18n.NumberSymbols
-import info.leonenko.i18n.GenderedPattern
-import info.leonenko.i18n.PluralPattern
-import info.leonenko.i18n.Plurals
-import info.leonenko.i18n.Gender
-import info.leonenko.i18n.Cases
-import info.leonenko.i18n.RBNF
 
-val Language.Companion.zhHANS
-    get() = languageZhHANS
-private val languageZhHANS = LanguageZhHANS()
+val Language.Companion.zh_HANS
+    get() = languageZh_HANS
+private val languageZh_HANS = LanguageZh_HANS()
 
-open class LanguageZhHANS internal constructor() : LanguageZh() {
-    override val code: String = "zh-Hans"
+open class LanguageZh_HANS internal constructor() : LanguageZh() {
+    override val code: String = "zh#Hans"
     override val script: String = "Hans"
     override val territory: String? = null
 

@@ -1,24 +1,9 @@
 package info.leonenko.i18n.languages
-
 import info.leonenko.i18n.Language
-import info.leonenko.i18n.PluralFormChooser
-import info.leonenko.i18n.EllipsisFormatter
-import info.leonenko.i18n.PatternedListFormatter
-import info.leonenko.i18n.ListFormatter
-import info.leonenko.i18n.MultiLengthPatternedListFormatter
-import info.leonenko.i18n.MultiLengthGenderedPattern
-import info.leonenko.i18n.NumberSymbols
-import info.leonenko.i18n.GenderedPattern
-import info.leonenko.i18n.PluralPattern
-import info.leonenko.i18n.Plurals
-import info.leonenko.i18n.Gender
-import info.leonenko.i18n.Cases
-import info.leonenko.i18n.RBNF
 
 val Language.Companion.fr_PF
     get() = languageFr_PF
 private val languageFr_PF = LanguageFr_PF()
-
 class LanguageFr_PF internal constructor() : LanguageFr() {
     override val code: String = "fr_PF"
     override val script: String? = null

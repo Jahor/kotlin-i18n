@@ -1,25 +1,10 @@
 package info.leonenko.i18n.languages
-
-import info.leonenko.i18n.Language
-import info.leonenko.i18n.PluralFormChooser
-import info.leonenko.i18n.EllipsisFormatter
-import info.leonenko.i18n.PatternedListFormatter
-import info.leonenko.i18n.ListFormatter
-import info.leonenko.i18n.MultiLengthPatternedListFormatter
-import info.leonenko.i18n.MultiLengthGenderedPattern
-import info.leonenko.i18n.NumberSymbols
-import info.leonenko.i18n.GenderedPattern
-import info.leonenko.i18n.PluralPattern
-import info.leonenko.i18n.Plurals
-import info.leonenko.i18n.Gender
-import info.leonenko.i18n.Cases
-import info.leonenko.i18n.RBNF
+import info.leonenko.i18n.*
 import info.leonenko.i18n.rbnf.RBNFRu
 
 val Language.Companion.ru
     get() = languageRu
 private val languageRu = LanguageRu()
-
 open class LanguageRu internal constructor() : Language {
     override val code: String = "ru"
     override val language: String = "ru"
@@ -42,10 +27,12 @@ open class LanguageRu internal constructor() : Language {
         get() = EllipsisLanguage()
 
     open class ListLanguage internal constructor(val ellipsis: EllipsisLanguage) : info.leonenko.i18n.ListLanguage {
-        override val formatter: ListFormatter
-            get() = TODO("ListFormatter is not yet implemented for ru")
-        override val orFormatter: ListFormatter
-            get() = TODO("Or ListFormatter is not yet implemented for ru")
+        override val formatter: ListFormatter = MultiLengthPatternedListFormatter(
+            long = PatternedListFormatter(start = "{0}, {1}", middle = "{0}, {1}", end = "{0} и {1}", two = "{0} и {1}", ellipsis = ellipsis.wordFormatter),
+            narrow = PatternedListFormatter(start = "{0}, {1}", middle = "{0}, {1}", end = "{0}, {1}", two = "{0}, {1}", ellipsis = ellipsis.wordFormatter),
+        )
+        override val orFormatter: ListFormatter =
+            MultiLengthPatternedListFormatter(long = PatternedListFormatter(start = "{0}, {1}", middle = "{0}, {1}", end = "{0} или {1}", two = "{0} или {1}", ellipsis = ellipsis.wordFormatter))
         override val unitFormatter: ListFormatter = MultiLengthPatternedListFormatter(
             short = PatternedListFormatter(start = "{0} {1}", middle = "{0} {1}", end = "{0} {1}", two = "{0} {1}", ellipsis = ellipsis.wordFormatter),
         )

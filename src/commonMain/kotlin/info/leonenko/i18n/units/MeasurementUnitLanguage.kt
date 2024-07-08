@@ -1,7 +1,5 @@
 package info.leonenko.i18n.units
-
 import info.leonenko.i18n.MultiLengthGenderedPattern
-
 interface MeasurementUnitLanguage {
     val accelerationGForce: MultiLengthGenderedPattern
     val accelerationMeterPerSquareSecond: MultiLengthGenderedPattern

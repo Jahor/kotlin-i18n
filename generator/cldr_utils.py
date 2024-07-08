@@ -10,16 +10,18 @@ def language_identifier(identity):
     lang = identity.find('language').attrib['type']
     lang_code = lang
     lang_name = lang_code.lower()
-    script = identity.find('script')
-    if script is not None:
-        script = script.attrib['type']
-        lang_code += "-" + script
-        lang_name += script.upper()
     territory = identity.find('territory')
     if territory is not None:
         territory = territory.attrib['type']
         lang_code += "_" + territory
         lang_name += "_" + territory.upper()
+    script = identity.find('script')
+    if script is not None:
+        script = script.attrib['type']
+        if territory is not None:
+            lang_code += "_"
+        lang_code += "#" + script
+        lang_name += "_" + script.upper()
     return lang, script, territory, lang_code, lang_name
 
 

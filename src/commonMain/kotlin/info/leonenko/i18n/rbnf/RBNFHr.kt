@@ -1,19 +1,8 @@
 package info.leonenko.i18n.rbnf
 
-import kotlin.math.roundToLong
-import info.leonenko.i18n.DecimalNumberFormatter
-import info.leonenko.i18n.Language
-import info.leonenko.i18n.RBNF
-import info.leonenko.i18n.NumberFormatter
-import info.leonenko.i18n.Case
-import info.leonenko.i18n.Gender
+import info.leonenko.i18n.*
 import info.leonenko.i18n.languages.hr
-import info.leonenko.i18n.formatFractionalPartByDigit
-import info.leonenko.i18n.bestDenominatorOrNull
-import info.leonenko.i18n.leadingFractionalZeroesCount
-import info.leonenko.i18n.Plurals
-import info.leonenko.i18n.until
-import info.leonenko.i18n.contains
+import kotlin.math.roundToLong
 
 
 open class RBNFHr(val language: Language = Language.hr) : RBNF {
@@ -3292,16 +3281,16 @@ open class RBNFHr(val language: Language = Language.hr) : RBNF {
         get() = spelloutRules.spelloutOrdinalNeuter
     open val spelloutOrdinalFeminine: NumberFormatter
         get() = spelloutRules.spelloutOrdinalFeminine
-    override val spelloutCardinal: NumberFormatter
-        get() = TODO("spelloutCardinal is not available for hr")
     override val spelloutOrdinal: NumberFormatter
         get() = TODO("spelloutOrdinal is not available for hr")
+    override val spelloutCardinal: NumberFormatter
+        get() = TODO("spelloutCardinal is not available for hr")
 
     fun spelloutCardinalFor(gender: Gender): NumberFormatter {
         return when (gender) {
-            Gender.Feminine -> spelloutCardinalFeminine
             Gender.Neuter -> spelloutCardinalNeuter
             Gender.Masculine -> spelloutCardinalMasculine
+            Gender.Feminine -> spelloutCardinalFeminine
             else -> TODO("hr does not support $gender gender")
         }
 
@@ -3309,9 +3298,9 @@ open class RBNFHr(val language: Language = Language.hr) : RBNF {
 
     fun spelloutOrdinalFor(gender: Gender): NumberFormatter {
         return when (gender) {
-            Gender.Feminine -> spelloutOrdinalFeminine
             Gender.Neuter -> spelloutOrdinalNeuter
             Gender.Masculine -> spelloutOrdinalMasculine
+            Gender.Feminine -> spelloutOrdinalFeminine
             else -> TODO("hr does not support $gender gender")
         }
 

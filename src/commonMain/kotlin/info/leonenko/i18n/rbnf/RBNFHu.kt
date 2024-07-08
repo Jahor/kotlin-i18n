@@ -1,19 +1,8 @@
 package info.leonenko.i18n.rbnf
 
-import kotlin.math.roundToLong
-import info.leonenko.i18n.DecimalNumberFormatter
-import info.leonenko.i18n.Language
-import info.leonenko.i18n.RBNF
-import info.leonenko.i18n.NumberFormatter
-import info.leonenko.i18n.Case
-import info.leonenko.i18n.Gender
+import info.leonenko.i18n.*
 import info.leonenko.i18n.languages.hu
-import info.leonenko.i18n.formatFractionalPartByDigit
-import info.leonenko.i18n.bestDenominatorOrNull
-import info.leonenko.i18n.leadingFractionalZeroesCount
-import info.leonenko.i18n.Plurals
-import info.leonenko.i18n.until
-import info.leonenko.i18n.contains
+import kotlin.math.roundToLong
 
 
 open class RBNFHu(val language: Language = Language.hu) : RBNF {
@@ -781,7 +770,7 @@ open class RBNFHu(val language: Language = Language.hu) : RBNF {
                     in 2001L..999999L -> if ((value).toLong() % 1000 == 0L) {
                         spelloutCardinalInitial.format((value).toLong() / 1000) + "­ezr" + format(value % 1000)
                     } else
-                        spelloutCardinalInitial.format((value).toLong() / 1000) + "­ezer­" + format(value % 1000)
+                    spelloutCardinalInitial.format((value).toLong() / 1000) + "­ezer­" + format(value % 1000)
 
                     in 1000000L..999999999L -> spelloutCardinalInitial.format((value).toLong() / 1000000) + "­milliom­" + spelloutOrdinalOdik.format(value % 1000000)
                     else -> {
@@ -830,7 +819,7 @@ open class RBNFHu(val language: Language = Language.hu) : RBNF {
                     in 2001L..999999L -> if ((value) % 1000 == 0L) {
                         spelloutCardinalInitial.format((value) / 1000) + "­ezr" + format(value % 1000)
                     } else
-                        spelloutCardinalInitial.format((value) / 1000) + "­ezer­" + format(value % 1000)
+                    spelloutCardinalInitial.format((value) / 1000) + "­ezer­" + format(value % 1000)
 
                     in 1000000L..999999999L -> spelloutCardinalInitial.format((value) / 1000000) + "­milliom­" + spelloutOrdinalOdik.format(value % 1000000)
                     else -> {
@@ -1029,7 +1018,7 @@ open class RBNFHu(val language: Language = Language.hu) : RBNF {
                     in 1001L..999999L -> if ((value).toLong() % 1000 == 0L) {
                         spelloutCardinalVerbose.format((value).toLong() / 1000) + "­ezr" + format(value % 1000)
                     } else
-                        spelloutCardinalVerbose.format((value).toLong() / 1000) + "­ezer­" + format(value % 1000)
+                    spelloutCardinalVerbose.format((value).toLong() / 1000) + "­ezer­" + format(value % 1000)
 
                     in 1000000L..999999999L -> spelloutCardinalVerbose.format((value).toLong() / 1000000) + "­milliom­" + spelloutOrdinalVerboseOdik.format(value % 1000000)
                     else -> {
@@ -1055,7 +1044,7 @@ open class RBNFHu(val language: Language = Language.hu) : RBNF {
                     in 1001L..999999L -> if ((value) % 1000 == 0L) {
                         spelloutCardinalVerbose.format((value) / 1000) + "­ezr" + format(value % 1000)
                     } else
-                        spelloutCardinalVerbose.format((value) / 1000) + "­ezer­" + format(value % 1000)
+                    spelloutCardinalVerbose.format((value) / 1000) + "­ezer­" + format(value % 1000)
 
                     in 1000000L..999999999L -> spelloutCardinalVerbose.format((value) / 1000000) + "­milliom­" + spelloutOrdinalVerboseOdik.format(value % 1000000)
                     else -> {

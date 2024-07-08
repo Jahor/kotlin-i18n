@@ -1,19 +1,8 @@
 package info.leonenko.i18n.rbnf
 
-import kotlin.math.roundToLong
-import info.leonenko.i18n.DecimalNumberFormatter
-import info.leonenko.i18n.Language
-import info.leonenko.i18n.RBNF
-import info.leonenko.i18n.NumberFormatter
-import info.leonenko.i18n.Case
-import info.leonenko.i18n.Gender
+import info.leonenko.i18n.*
 import info.leonenko.i18n.languages.root
-import info.leonenko.i18n.formatFractionalPartByDigit
-import info.leonenko.i18n.bestDenominatorOrNull
-import info.leonenko.i18n.leadingFractionalZeroesCount
-import info.leonenko.i18n.Plurals
-import info.leonenko.i18n.until
-import info.leonenko.i18n.contains
+import kotlin.math.roundToLong
 
 
 open class RBNFRoot(val language: Language = Language.root) : RBNF {
@@ -1751,19 +1740,19 @@ open class RBNFRoot(val language: Language = Language.root) : RBNF {
                     in 1001L..1999L -> if ((value) % 1000 == 0L) {
                         "אלף"
                     } else
-                        hebrewThousands.format((value) / 1000) + (if ((value) % 1000 == 0L) "" else format(value % 1000))
+                    hebrewThousands.format((value) / 1000) + (if ((value) % 1000 == 0L) "" else format(value % 1000))
 
                     2000L -> "אלפיים"
                     in 2001L..2999L -> if ((value) % 1000 == 0L) {
                         "אלפיים"
                     } else
-                        hebrewThousands.format((value) / 1000) + (if ((value) % 1000 == 0L) "" else format(value % 1000))
+                    hebrewThousands.format((value) / 1000) + (if ((value) % 1000 == 0L) "" else format(value % 1000))
 
                     3000L -> format((value) / 1000) + " אלפים"
                     in 3001L..999999L -> if ((value) % 1000 == 0L) {
                         format((value) / 1000) + " אלפים"
                     } else
-                        hebrewThousands.format((value) / 1000) + (if ((value) % 1000 == 0L) "" else format(value % 1000))
+                    hebrewThousands.format((value) / 1000) + (if ((value) % 1000 == 0L) "" else format(value % 1000))
 
                     1000000L -> "אלף אלפים"
                     else -> {

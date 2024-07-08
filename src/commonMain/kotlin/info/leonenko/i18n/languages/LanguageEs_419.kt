@@ -1,25 +1,10 @@
 package info.leonenko.i18n.languages
-
-import info.leonenko.i18n.Language
-import info.leonenko.i18n.PluralFormChooser
-import info.leonenko.i18n.EllipsisFormatter
-import info.leonenko.i18n.PatternedListFormatter
-import info.leonenko.i18n.ListFormatter
-import info.leonenko.i18n.MultiLengthPatternedListFormatter
-import info.leonenko.i18n.MultiLengthGenderedPattern
-import info.leonenko.i18n.NumberSymbols
-import info.leonenko.i18n.GenderedPattern
-import info.leonenko.i18n.PluralPattern
-import info.leonenko.i18n.Plurals
-import info.leonenko.i18n.Gender
-import info.leonenko.i18n.Cases
-import info.leonenko.i18n.RBNF
+import info.leonenko.i18n.*
 import info.leonenko.i18n.rbnf.RBNFEs_419
 
 val Language.Companion.es_419
     get() = languageEs_419
 private val languageEs_419 = LanguageEs_419()
-
 class LanguageEs_419 internal constructor() : LanguageEs() {
     override val code: String = "es_419"
     override val script: String? = null

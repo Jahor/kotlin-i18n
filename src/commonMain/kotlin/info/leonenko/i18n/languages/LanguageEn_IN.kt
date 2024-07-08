@@ -1,25 +1,10 @@
 package info.leonenko.i18n.languages
-
-import info.leonenko.i18n.Language
-import info.leonenko.i18n.PluralFormChooser
-import info.leonenko.i18n.EllipsisFormatter
-import info.leonenko.i18n.PatternedListFormatter
-import info.leonenko.i18n.ListFormatter
-import info.leonenko.i18n.MultiLengthPatternedListFormatter
-import info.leonenko.i18n.MultiLengthGenderedPattern
-import info.leonenko.i18n.NumberSymbols
-import info.leonenko.i18n.GenderedPattern
-import info.leonenko.i18n.PluralPattern
-import info.leonenko.i18n.Plurals
-import info.leonenko.i18n.Gender
-import info.leonenko.i18n.Cases
-import info.leonenko.i18n.RBNF
+import info.leonenko.i18n.*
 import info.leonenko.i18n.rbnf.RBNFEn_in
 
 val Language.Companion.en_IN
     get() = languageEn_IN
 private val languageEn_IN = LanguageEn_IN()
-
 class LanguageEn_IN internal constructor() : LanguageEn() {
     override val code: String = "en_IN"
     override val script: String? = null
@@ -34,6 +19,9 @@ class LanguageEn_IN internal constructor() : LanguageEn() {
         get() = EllipsisLanguage()
 
     class ListLanguage internal constructor(ellipsis: EllipsisLanguage) : LanguageEn.ListLanguage(ellipsis) {
+        override val formatter: ListFormatter = MultiLengthPatternedListFormatter(
+            narrow = PatternedListFormatter(start = "{0}, {1}", middle = "{0}, {1}", end = "{0}, and {1}", ellipsis = ellipsis.wordFormatter),
+        )
     }
 
     override val list: ListLanguage

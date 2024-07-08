@@ -1,19 +1,8 @@
 package info.leonenko.i18n.rbnf
 
-import kotlin.math.roundToLong
-import info.leonenko.i18n.DecimalNumberFormatter
-import info.leonenko.i18n.Language
-import info.leonenko.i18n.RBNF
-import info.leonenko.i18n.NumberFormatter
-import info.leonenko.i18n.Case
-import info.leonenko.i18n.Gender
+import info.leonenko.i18n.*
 import info.leonenko.i18n.languages.es
-import info.leonenko.i18n.formatFractionalPartByDigit
-import info.leonenko.i18n.bestDenominatorOrNull
-import info.leonenko.i18n.leadingFractionalZeroesCount
-import info.leonenko.i18n.Plurals
-import info.leonenko.i18n.until
-import info.leonenko.i18n.contains
+import kotlin.math.roundToLong
 
 
 open class RBNFEs(val language: Language = Language.es) : RBNF {
@@ -3899,15 +3888,15 @@ open class RBNFEs(val language: Language = Language.es) : RBNF {
         get() = ordinalRules.digitsOrdinalFemininePlural
     open val digitsOrdinal: NumberFormatter
         get() = ordinalRules.digitsOrdinal
-    override val spelloutCardinal: NumberFormatter
-        get() = TODO("spelloutCardinal is not available for es")
     override val spelloutOrdinal: NumberFormatter
         get() = TODO("spelloutOrdinal is not available for es")
+    override val spelloutCardinal: NumberFormatter
+        get() = TODO("spelloutCardinal is not available for es")
 
     fun spelloutCardinalFor(gender: Gender): NumberFormatter {
         return when (gender) {
-            Gender.Feminine -> spelloutCardinalFeminine
             Gender.Masculine -> spelloutCardinalMasculine
+            Gender.Feminine -> spelloutCardinalFeminine
             else -> TODO("es does not support $gender gender")
         }
 
@@ -3915,8 +3904,8 @@ open class RBNFEs(val language: Language = Language.es) : RBNF {
 
     fun spelloutOrdinalFor(gender: Gender): NumberFormatter {
         return when (gender) {
-            Gender.Feminine -> spelloutOrdinalFeminine
             Gender.Masculine -> spelloutOrdinalMasculine
+            Gender.Feminine -> spelloutOrdinalFeminine
             else -> TODO("es does not support $gender gender")
         }
 
@@ -3924,8 +3913,8 @@ open class RBNFEs(val language: Language = Language.es) : RBNF {
 
     fun digitsOrdinalFor(gender: Gender): NumberFormatter {
         return when (gender) {
-            Gender.Feminine -> digitsOrdinalFeminine
             Gender.Masculine -> digitsOrdinalMasculine
+            Gender.Feminine -> digitsOrdinalFeminine
             else -> TODO("es does not support $gender gender")
         }
 

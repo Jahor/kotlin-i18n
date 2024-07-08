@@ -1,25 +1,10 @@
 package info.leonenko.i18n.units.consumption
-
-import kotlin.math.truncate
-import kotlin.math.round
-import kotlin.math.ceil
-import kotlin.math.floor
-import kotlin.math.abs
-import kotlinx.serialization.ExperimentalSerializationApi
-import kotlinx.serialization.KSerializer
-import kotlinx.serialization.Serializable
-import kotlinx.serialization.SerializationException
-import kotlinx.serialization.builtins.MapSerializer
-import kotlinx.serialization.builtins.serializer
-import kotlinx.serialization.descriptors.SerialDescriptor
-import kotlinx.serialization.encoding.Decoder
-import kotlinx.serialization.encoding.Encoder
-import info.leonenko.i18n.units.MeasurementUnit
-import info.leonenko.i18n.units.MeasurementUnitValue
 import info.leonenko.i18n.units.MeasurementUnitLanguage
-import info.leonenko.i18n.units.toMeasurementUnitValue
+import info.leonenko.i18n.units.MeasurementUnitValue
 import info.leonenko.i18n.units.area.Area
 import info.leonenko.i18n.units.area.SquareMeter
+import info.leonenko.i18n.units.toMeasurementUnitValue
+import kotlin.math.*
 
 fun Area.toMilePerGallonImperial(): MilePerGallonImperial {
     return MilePerGallonImperial((toSquareMeter().value - 0) / ((0.00454609) / (1609.344)))

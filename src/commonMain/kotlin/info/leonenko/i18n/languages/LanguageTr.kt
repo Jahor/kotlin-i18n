@@ -1,43 +1,39 @@
 package info.leonenko.i18n.languages
 
-import info.leonenko.i18n.Language
-import info.leonenko.i18n.PluralFormChooser
-import info.leonenko.i18n.EllipsisFormatter
-import info.leonenko.i18n.PatternedListFormatter
-import info.leonenko.i18n.ListFormatter
-import info.leonenko.i18n.MultiLengthPatternedListFormatter
-import info.leonenko.i18n.MultiLengthGenderedPattern
-import info.leonenko.i18n.NumberSymbols
-import info.leonenko.i18n.GenderedPattern
-import info.leonenko.i18n.PluralPattern
-import info.leonenko.i18n.Plurals
-import info.leonenko.i18n.Gender
-import info.leonenko.i18n.Cases
-import info.leonenko.i18n.RBNF
+import info.leonenko.i18n.*
+import info.leonenko.i18n.rbnf.RBNFTr
 
-val Language.Companion.zhHANT
-    get() = languageZhHANT
-private val languageZhHANT = LanguageZhHANT()
+val Language.Companion.tr
+    get() = languageTr
+private val languageTr = LanguageTr()
 
-open class LanguageZhHANT internal constructor() : LanguageZh() {
-    override val code: String = "zh-Hant"
-    override val script: String = "Hant"
+open class LanguageTr internal constructor() : Language {
+    override val code: String = "tr"
+    override val language: String = "tr"
+    override val script: String? = null
     override val territory: String? = null
+    override val rbnf: RBNFTr
+        get() = RBNFTr(this)
+    override val pluralFormChooser = PluralFormChooser.Expression(
+        one = { (n == 1.0) },
+    )
 
-    open class EllipsisLanguage internal constructor() : LanguageZh.EllipsisLanguage() {
+    open class EllipsisLanguage internal constructor() : info.leonenko.i18n.EllipsisLanguage {
+        override val formatter = EllipsisFormatter.Default
+        override val wordFormatter = EllipsisFormatter.WordDefault
     }
 
     override val ellipsis: EllipsisLanguage
         get() = EllipsisLanguage()
 
-    open class ListLanguage internal constructor(ellipsis: EllipsisLanguage) : LanguageZh.ListLanguage(ellipsis) {
+    open class ListLanguage internal constructor(val ellipsis: EllipsisLanguage) : info.leonenko.i18n.ListLanguage {
         override val formatter: ListFormatter = MultiLengthPatternedListFormatter(
-            long = PatternedListFormatter(start = "{0}、{1}", middle = "{0}、{1}", end = "{0}和{1}", two = "{0}和{1}", ellipsis = ellipsis.wordFormatter),
+            long = PatternedListFormatter(start = "{0}, {1}", middle = "{0}, {1}", end = "{0} ve {1}", two = "{0} ve {1}", ellipsis = ellipsis.wordFormatter),
+            narrow = PatternedListFormatter(start = "{0}, {1}", middle = "{0}, {1}", end = "{0}, {1}", two = "{0}, {1}", ellipsis = ellipsis.wordFormatter),
         )
         override val orFormatter: ListFormatter =
-            MultiLengthPatternedListFormatter(long = PatternedListFormatter(start = "{0}、{1}", middle = "{0}、{1}", end = "{0}或{1}", two = "{0}或{1}", ellipsis = ellipsis.wordFormatter))
+            MultiLengthPatternedListFormatter(long = PatternedListFormatter(start = "{0}, {1}", middle = "{0}, {1}", end = "{0} veya {1}", two = "{0} veya {1}", ellipsis = ellipsis.wordFormatter))
         override val unitFormatter: ListFormatter = MultiLengthPatternedListFormatter(
-            narrow = PatternedListFormatter(start = "{0}{1}", middle = "{0}{1}", end = "{0}{1}", two = "{0}{1}", ellipsis = ellipsis.wordFormatter),
             short = PatternedListFormatter(start = "{0} {1}", middle = "{0} {1}", end = "{0} {1}", two = "{0} {1}", ellipsis = ellipsis.wordFormatter),
         )
     }
@@ -45,14 +41,15 @@ open class LanguageZhHANT internal constructor() : LanguageZh() {
     override val list: ListLanguage
         get() = ListLanguage(ellipsis)
 
-    open class MeasurementUnitLanguage internal constructor() : LanguageZh.MeasurementUnitLanguage() {
+    open class MeasurementUnitLanguage internal constructor() : info.leonenko.i18n.units.MeasurementUnitLanguage {
         override val accelerationGForce
             get() = MultiLengthGenderedPattern(
-                short = GenderedPattern(
+                long = GenderedPattern(
                     cases = Cases(
                         nominative = PluralPattern(
                             Plurals(
-                                other = "{0} G 力",
+                                one = "{0} g kuvveti",
+                                other = "{0} g kuvveti",
                             )
                         ),
                     )
@@ -61,6 +58,7 @@ open class LanguageZhHANT internal constructor() : LanguageZh() {
                     cases = Cases(
                         nominative = PluralPattern(
                             Plurals(
+                                one = "{0}G",
                                 other = "{0}G",
                             )
                         ),
@@ -73,7 +71,8 @@ open class LanguageZhHANT internal constructor() : LanguageZh() {
                     cases = Cases(
                         nominative = PluralPattern(
                             Plurals(
-                                other = "每平方秒 {0} 公尺",
+                                one = "{0} metre/saniye²",
+                                other = "{0} metre/saniye²",
                             )
                         ),
                     )
@@ -82,16 +81,8 @@ open class LanguageZhHANT internal constructor() : LanguageZh() {
                     cases = Cases(
                         nominative = PluralPattern(
                             Plurals(
-                                other = "{0} 公尺/平方秒",
-                            )
-                        ),
-                    )
-                ),
-                narrow = GenderedPattern(
-                    cases = Cases(
-                        nominative = PluralPattern(
-                            Plurals(
-                                other = "{0}公尺/平方秒",
+                                one = "{0} m/sn²",
+                                other = "{0} m/sn²",
                             )
                         ),
                     )
@@ -99,20 +90,22 @@ open class LanguageZhHANT internal constructor() : LanguageZh() {
             )
         override val angleRevolution
             get() = MultiLengthGenderedPattern(
-                short = GenderedPattern(
+                long = GenderedPattern(
                     cases = Cases(
                         nominative = PluralPattern(
                             Plurals(
-                                other = "{0} 圈",
+                                one = "{0} devir",
+                                other = "{0} devir",
                             )
                         ),
                     )
                 ),
-                narrow = GenderedPattern(
+                short = GenderedPattern(
                     cases = Cases(
                         nominative = PluralPattern(
                             Plurals(
-                                other = "{0}圈",
+                                one = "{0} dev",
+                                other = "{0} dev",
                             )
                         ),
                     )
@@ -120,20 +113,12 @@ open class LanguageZhHANT internal constructor() : LanguageZh() {
             )
         override val angleRadian
             get() = MultiLengthGenderedPattern(
-                short = GenderedPattern(
+                long = GenderedPattern(
                     cases = Cases(
                         nominative = PluralPattern(
                             Plurals(
-                                other = "{0} 弧度",
-                            )
-                        ),
-                    )
-                ),
-                narrow = GenderedPattern(
-                    cases = Cases(
-                        nominative = PluralPattern(
-                            Plurals(
-                                other = "{0}弧度",
+                                one = "{0} radyan",
+                                other = "{0} radyan",
                             )
                         ),
                     )
@@ -141,20 +126,12 @@ open class LanguageZhHANT internal constructor() : LanguageZh() {
             )
         override val angleDegree
             get() = MultiLengthGenderedPattern(
-                short = GenderedPattern(
+                long = GenderedPattern(
                     cases = Cases(
                         nominative = PluralPattern(
                             Plurals(
-                                other = "{0} 度",
-                            )
-                        ),
-                    )
-                ),
-                narrow = GenderedPattern(
-                    cases = Cases(
-                        nominative = PluralPattern(
-                            Plurals(
-                                other = "{0}°",
+                                one = "{0} derece",
+                                other = "{0} derece",
                             )
                         ),
                     )
@@ -162,20 +139,22 @@ open class LanguageZhHANT internal constructor() : LanguageZh() {
             )
         override val angleArcMinute
             get() = MultiLengthGenderedPattern(
-                short = GenderedPattern(
+                long = GenderedPattern(
                     cases = Cases(
                         nominative = PluralPattern(
                             Plurals(
-                                other = "{0} 角分",
+                                one = "{0} açısal dakika",
+                                other = "{0} açısal dakika",
                             )
                         ),
                     )
                 ),
-                narrow = GenderedPattern(
+                short = GenderedPattern(
                     cases = Cases(
                         nominative = PluralPattern(
                             Plurals(
-                                other = "{0}角分",
+                                one = "{0} açısal dk.",
+                                other = "{0} açısal dk.",
                             )
                         ),
                     )
@@ -183,20 +162,22 @@ open class LanguageZhHANT internal constructor() : LanguageZh() {
             )
         override val angleArcSecond
             get() = MultiLengthGenderedPattern(
-                short = GenderedPattern(
+                long = GenderedPattern(
                     cases = Cases(
                         nominative = PluralPattern(
                             Plurals(
-                                other = "{0} 角秒",
+                                one = "{0} açısal saniye",
+                                other = "{0} açısal saniye",
                             )
                         ),
                     )
                 ),
-                narrow = GenderedPattern(
+                short = GenderedPattern(
                     cases = Cases(
                         nominative = PluralPattern(
                             Plurals(
-                                other = "{0}角秒",
+                                one = "{0} açısal sn.",
+                                other = "{0} açısal sn.",
                             )
                         ),
                     )
@@ -204,20 +185,12 @@ open class LanguageZhHANT internal constructor() : LanguageZh() {
             )
         override val areaSquareKilometer
             get() = MultiLengthGenderedPattern(
-                short = GenderedPattern(
+                long = GenderedPattern(
                     cases = Cases(
                         nominative = PluralPattern(
                             Plurals(
-                                other = "{0} 平方公里",
-                            )
-                        ),
-                    )
-                ),
-                narrow = GenderedPattern(
-                    cases = Cases(
-                        nominative = PluralPattern(
-                            Plurals(
-                                other = "{0}km²",
+                                one = "{0} kilometrekare",
+                                other = "{0} kilometrekare",
                             )
                         ),
                     )
@@ -225,20 +198,12 @@ open class LanguageZhHANT internal constructor() : LanguageZh() {
             )
         override val areaHectare
             get() = MultiLengthGenderedPattern(
-                short = GenderedPattern(
+                long = GenderedPattern(
                     cases = Cases(
                         nominative = PluralPattern(
                             Plurals(
-                                other = "{0} 公頃",
-                            )
-                        ),
-                    )
-                ),
-                narrow = GenderedPattern(
-                    cases = Cases(
-                        nominative = PluralPattern(
-                            Plurals(
-                                other = "{0}公頃",
+                                one = "{0} hektar",
+                                other = "{0} hektar",
                             )
                         ),
                     )
@@ -246,20 +211,12 @@ open class LanguageZhHANT internal constructor() : LanguageZh() {
             )
         override val areaSquareMeter
             get() = MultiLengthGenderedPattern(
-                short = GenderedPattern(
+                long = GenderedPattern(
                     cases = Cases(
                         nominative = PluralPattern(
                             Plurals(
-                                other = "{0} 平方公尺",
-                            )
-                        ),
-                    )
-                ),
-                narrow = GenderedPattern(
-                    cases = Cases(
-                        nominative = PluralPattern(
-                            Plurals(
-                                other = "{0}m²",
+                                one = "{0} metrekare",
+                                other = "{0} metrekare",
                             )
                         ),
                     )
@@ -267,20 +224,12 @@ open class LanguageZhHANT internal constructor() : LanguageZh() {
             )
         override val areaSquareCentimeter
             get() = MultiLengthGenderedPattern(
-                short = GenderedPattern(
+                long = GenderedPattern(
                     cases = Cases(
                         nominative = PluralPattern(
                             Plurals(
-                                other = "{0} 平方公分",
-                            )
-                        ),
-                    )
-                ),
-                narrow = GenderedPattern(
-                    cases = Cases(
-                        nominative = PluralPattern(
-                            Plurals(
-                                other = "{0}cm²",
+                                one = "{0} santimetrekare",
+                                other = "{0} santimetrekare",
                             )
                         ),
                     )
@@ -288,20 +237,12 @@ open class LanguageZhHANT internal constructor() : LanguageZh() {
             )
         override val areaSquareMile
             get() = MultiLengthGenderedPattern(
-                short = GenderedPattern(
+                long = GenderedPattern(
                     cases = Cases(
                         nominative = PluralPattern(
                             Plurals(
-                                other = "{0} 平方英里",
-                            )
-                        ),
-                    )
-                ),
-                narrow = GenderedPattern(
-                    cases = Cases(
-                        nominative = PluralPattern(
-                            Plurals(
-                                other = "{0}平方英里",
+                                one = "{0} mil kare",
+                                other = "{0} mil kare",
                             )
                         ),
                     )
@@ -309,20 +250,12 @@ open class LanguageZhHANT internal constructor() : LanguageZh() {
             )
         override val areaAcre
             get() = MultiLengthGenderedPattern(
-                short = GenderedPattern(
+                long = GenderedPattern(
                     cases = Cases(
                         nominative = PluralPattern(
                             Plurals(
-                                other = "{0} 英畝",
-                            )
-                        ),
-                    )
-                ),
-                narrow = GenderedPattern(
-                    cases = Cases(
-                        nominative = PluralPattern(
-                            Plurals(
-                                other = "{0}英畝",
+                                one = "{0} akre",
+                                other = "{0} akre",
                             )
                         ),
                     )
@@ -330,20 +263,12 @@ open class LanguageZhHANT internal constructor() : LanguageZh() {
             )
         override val areaSquareYard
             get() = MultiLengthGenderedPattern(
-                short = GenderedPattern(
+                long = GenderedPattern(
                     cases = Cases(
                         nominative = PluralPattern(
                             Plurals(
-                                other = "{0} 平方碼",
-                            )
-                        ),
-                    )
-                ),
-                narrow = GenderedPattern(
-                    cases = Cases(
-                        nominative = PluralPattern(
-                            Plurals(
-                                other = "{0}yd²",
+                                one = "{0} yarda kare",
+                                other = "{0} yarda kare",
                             )
                         ),
                     )
@@ -351,20 +276,12 @@ open class LanguageZhHANT internal constructor() : LanguageZh() {
             )
         override val areaSquareFoot
             get() = MultiLengthGenderedPattern(
-                short = GenderedPattern(
+                long = GenderedPattern(
                     cases = Cases(
                         nominative = PluralPattern(
                             Plurals(
-                                other = "{0} 平方英尺",
-                            )
-                        ),
-                    )
-                ),
-                narrow = GenderedPattern(
-                    cases = Cases(
-                        nominative = PluralPattern(
-                            Plurals(
-                                other = "{0}平方英尺",
+                                one = "{0} fit kare",
+                                other = "{0} fit kare",
                             )
                         ),
                     )
@@ -372,62 +289,27 @@ open class LanguageZhHANT internal constructor() : LanguageZh() {
             )
         override val areaSquareInch
             get() = MultiLengthGenderedPattern(
-                short = GenderedPattern(
+                long = GenderedPattern(
                     cases = Cases(
                         nominative = PluralPattern(
                             Plurals(
-                                other = "{0} 平方英寸",
-                            )
-                        ),
-                    )
-                ),
-                narrow = GenderedPattern(
-                    cases = Cases(
-                        nominative = PluralPattern(
-                            Plurals(
-                                other = "{0}in²",
+                                one = "{0} inç kare",
+                                other = "{0} inç kare",
                             )
                         ),
                     )
                 ),
             )
-        override val areaDunam
-            get() = MultiLengthGenderedPattern(
-                short = GenderedPattern(
-                    cases = Cases(
-                        nominative = PluralPattern(
-                            Plurals(
-                                other = "{0} 杜納畝",
-                            )
-                        ),
-                    )
-                ),
-                narrow = GenderedPattern(
-                    cases = Cases(
-                        nominative = PluralPattern(
-                            Plurals(
-                                other = "{0}杜納畝",
-                            )
-                        ),
-                    )
-                ),
-            )
+        override val areaDunam: MultiLengthGenderedPattern
+            get() = TODO("Dunam formatter is not implemented yet for tr")
         override val concentrationKarat
             get() = MultiLengthGenderedPattern(
                 short = GenderedPattern(
                     cases = Cases(
                         nominative = PluralPattern(
                             Plurals(
-                                other = "{0} 克拉",
-                            )
-                        ),
-                    )
-                ),
-                narrow = GenderedPattern(
-                    cases = Cases(
-                        nominative = PluralPattern(
-                            Plurals(
-                                other = "{0}克拉",
+                                one = "{0} ayar",
+                                other = "{0} ayar",
                             )
                         ),
                     )
@@ -435,32 +317,96 @@ open class LanguageZhHANT internal constructor() : LanguageZh() {
             )
         override val concentrationPermillion
             get() = MultiLengthGenderedPattern(
-                short = GenderedPattern(
+                long = GenderedPattern(
                     cases = Cases(
                         nominative = PluralPattern(
                             Plurals(
-                                other = "{0} 百萬分率",
-                            )
-                        ),
-                    )
-                ),
-                narrow = GenderedPattern(
-                    cases = Cases(
-                        nominative = PluralPattern(
-                            Plurals(
-                                other = "{0}百萬分率",
+                                one = "{0} parça/milyon",
+                                other = "{0} parça/milyon",
                             )
                         ),
                     )
                 ),
             )
+        override val concentrationPercent
+            get() = MultiLengthGenderedPattern(
+                long = GenderedPattern(
+                    cases = Cases(
+                        nominative = PluralPattern(
+                            Plurals(
+                                one = "yüzde {0}",
+                                other = "yüzde {0}",
+                            )
+                        ),
+                    )
+                ),
+                short = GenderedPattern(
+                    cases = Cases(
+                        nominative = PluralPattern(
+                            Plurals(
+                                one = "%{0}",
+                                other = "%{0}",
+                            )
+                        ),
+                    )
+                ),
+            )
+        override val concentrationPermille
+            get() = MultiLengthGenderedPattern(
+                long = GenderedPattern(
+                    cases = Cases(
+                        nominative = PluralPattern(
+                            Plurals(
+                                one = "binde {0}",
+                                other = "binde {0}",
+                            )
+                        ),
+                    )
+                ),
+                short = GenderedPattern(
+                    cases = Cases(
+                        nominative = PluralPattern(
+                            Plurals(
+                                one = "‰{0}",
+                                other = "‰{0}",
+                            )
+                        ),
+                    )
+                ),
+            )
+        override val concentrationPermyriad
+            get() = MultiLengthGenderedPattern(
+                long = GenderedPattern(
+                    cases = Cases(
+                        nominative = PluralPattern(
+                            Plurals(
+                                one = "onbinde {0}",
+                                other = "onbinde {0}",
+                            )
+                        ),
+                    )
+                ),
+                short = GenderedPattern(
+                    cases = Cases(
+                        nominative = PluralPattern(
+                            Plurals(
+                                one = "‱{0}",
+                                other = "‱{0}",
+                            )
+                        ),
+                    )
+                ),
+            )
+        override val concentrationAPortion: MultiLengthGenderedPattern
+            get() = TODO("APortion formatter is not implemented yet for tr")
         override val concentrationMilligramOfglucosePerDeciliter
             get() = MultiLengthGenderedPattern(
                 long = GenderedPattern(
                     cases = Cases(
                         nominative = PluralPattern(
                             Plurals(
-                                other = "每分升 {0} 毫克",
+                                one = "{0} miligram/desilitre",
+                                other = "{0} miligram/desilitre",
                             )
                         ),
                     )
@@ -469,7 +415,8 @@ open class LanguageZhHANT internal constructor() : LanguageZh() {
                     cases = Cases(
                         nominative = PluralPattern(
                             Plurals(
-                                other = "{0} 毫克/分升",
+                                one = "{0} mg/dl",
+                                other = "{0} mg/dl",
                             )
                         ),
                     )
@@ -478,7 +425,8 @@ open class LanguageZhHANT internal constructor() : LanguageZh() {
                     cases = Cases(
                         nominative = PluralPattern(
                             Plurals(
-                                other = "{0}毫克/分升",
+                                one = "{0} mg/dL",
+                                other = "{0} mg/dL",
                             )
                         ),
                     )
@@ -490,7 +438,8 @@ open class LanguageZhHANT internal constructor() : LanguageZh() {
                     cases = Cases(
                         nominative = PluralPattern(
                             Plurals(
-                                other = "每公升 {0} 毫莫耳",
+                                one = "{0} milimol/litre",
+                                other = "{0} milimol/litre",
                             )
                         ),
                     )
@@ -499,7 +448,8 @@ open class LanguageZhHANT internal constructor() : LanguageZh() {
                     cases = Cases(
                         nominative = PluralPattern(
                             Plurals(
-                                other = "{0} 毫莫耳/公升",
+                                one = "{0} mmol/l",
+                                other = "{0} mmol/l",
                             )
                         ),
                     )
@@ -508,61 +458,38 @@ open class LanguageZhHANT internal constructor() : LanguageZh() {
                     cases = Cases(
                         nominative = PluralPattern(
                             Plurals(
-                                other = "{0}毫莫耳/公升",
+                                one = "{0} mmol/L",
+                                other = "{0} mmol/L",
                             )
                         ),
                     )
                 ),
             )
+        override val concentrationItemPerCubicMeter: MultiLengthGenderedPattern
+            get() = TODO("ItemPerCubicMeter formatter is not implemented yet for tr")
         override val concentrationItem
             get() = MultiLengthGenderedPattern(
                 short = GenderedPattern(
                     cases = Cases(
                         nominative = PluralPattern(
                             Plurals(
-                                other = "{0} 個項目",
-                            )
-                        ),
-                    )
-                ),
-                narrow = GenderedPattern(
-                    cases = Cases(
-                        nominative = PluralPattern(
-                            Plurals(
-                                other = "{0}個項目",
+                                one = "{0} öğe",
+                                other = "{0} öğe",
                             )
                         ),
                     )
                 ),
             )
-        override val concentrationMole
-            get() = MultiLengthGenderedPattern(
-                short = GenderedPattern(
-                    cases = Cases(
-                        nominative = PluralPattern(
-                            Plurals(
-                                other = "{0} 莫耳",
-                            )
-                        ),
-                    )
-                ),
-                narrow = GenderedPattern(
-                    cases = Cases(
-                        nominative = PluralPattern(
-                            Plurals(
-                                other = "{0}莫耳",
-                            )
-                        ),
-                    )
-                ),
-            )
+        override val concentrationMole: MultiLengthGenderedPattern
+            get() = TODO("Mole formatter is not implemented yet for tr")
         override val consumptionLiterPerKilometer
             get() = MultiLengthGenderedPattern(
                 long = GenderedPattern(
                     cases = Cases(
                         nominative = PluralPattern(
                             Plurals(
-                                other = "每公里 {0} 公升",
+                                one = "{0} litre/kilometre",
+                                other = "{0} litre/kilometre",
                             )
                         ),
                     )
@@ -571,16 +498,8 @@ open class LanguageZhHANT internal constructor() : LanguageZh() {
                     cases = Cases(
                         nominative = PluralPattern(
                             Plurals(
-                                other = "{0} 升/公里",
-                            )
-                        ),
-                    )
-                ),
-                narrow = GenderedPattern(
-                    cases = Cases(
-                        nominative = PluralPattern(
-                            Plurals(
-                                other = "{0}升/公里",
+                                one = "{0} l/km",
+                                other = "{0} l/km",
                             )
                         ),
                     )
@@ -592,7 +511,8 @@ open class LanguageZhHANT internal constructor() : LanguageZh() {
                     cases = Cases(
                         nominative = PluralPattern(
                             Plurals(
-                                other = "每 100 公里 {0} 公升",
+                                one = "{0} litre/100 kilometre",
+                                other = "{0} litre/100 kilometre",
                             )
                         ),
                     )
@@ -601,7 +521,8 @@ open class LanguageZhHANT internal constructor() : LanguageZh() {
                     cases = Cases(
                         nominative = PluralPattern(
                             Plurals(
-                                other = "{0} 升/100 公里",
+                                one = "{0} l/100 km",
+                                other = "{0} l/100 km",
                             )
                         ),
                     )
@@ -610,7 +531,8 @@ open class LanguageZhHANT internal constructor() : LanguageZh() {
                     cases = Cases(
                         nominative = PluralPattern(
                             Plurals(
-                                other = "{0}升/100公里",
+                                one = "{0} l/100km",
+                                other = "{0} l/100km",
                             )
                         ),
                     )
@@ -622,7 +544,8 @@ open class LanguageZhHANT internal constructor() : LanguageZh() {
                     cases = Cases(
                         nominative = PluralPattern(
                             Plurals(
-                                other = "每加侖 {0} 英里",
+                                one = "{0} mil/galon",
+                                other = "{0} mil/galon",
                             )
                         ),
                     )
@@ -631,16 +554,8 @@ open class LanguageZhHANT internal constructor() : LanguageZh() {
                     cases = Cases(
                         nominative = PluralPattern(
                             Plurals(
-                                other = "{0} 英里/加侖",
-                            )
-                        ),
-                    )
-                ),
-                narrow = GenderedPattern(
-                    cases = Cases(
-                        nominative = PluralPattern(
-                            Plurals(
-                                other = "{0}英里/加侖",
+                                one = "{0} mpg",
+                                other = "{0} mpg",
                             )
                         ),
                     )
@@ -652,7 +567,8 @@ open class LanguageZhHANT internal constructor() : LanguageZh() {
                     cases = Cases(
                         nominative = PluralPattern(
                             Plurals(
-                                other = "每英制加侖 {0} 英里",
+                                one = "{0} mil/İng. galonu",
+                                other = "{0} mil/İng. galonu",
                             )
                         ),
                     )
@@ -661,16 +577,8 @@ open class LanguageZhHANT internal constructor() : LanguageZh() {
                     cases = Cases(
                         nominative = PluralPattern(
                             Plurals(
-                                other = "{0} 英里/英制加侖",
-                            )
-                        ),
-                    )
-                ),
-                narrow = GenderedPattern(
-                    cases = Cases(
-                        nominative = PluralPattern(
-                            Plurals(
-                                other = "{0}英里/英制加侖",
+                                one = "{0} mil/İng. gal",
+                                other = "{0} mil/İng. gal",
                             )
                         ),
                     )
@@ -678,11 +586,12 @@ open class LanguageZhHANT internal constructor() : LanguageZh() {
             )
         override val digitalPetabyte
             get() = MultiLengthGenderedPattern(
-                narrow = GenderedPattern(
+                long = GenderedPattern(
                     cases = Cases(
                         nominative = PluralPattern(
                             Plurals(
-                                other = "{0}PB",
+                                one = "{0} petabayt",
+                                other = "{0} petabayt",
                             )
                         ),
                     )
@@ -690,11 +599,12 @@ open class LanguageZhHANT internal constructor() : LanguageZh() {
             )
         override val digitalTerabyte
             get() = MultiLengthGenderedPattern(
-                narrow = GenderedPattern(
+                long = GenderedPattern(
                     cases = Cases(
                         nominative = PluralPattern(
                             Plurals(
-                                other = "{0}TB",
+                                one = "{0} terabayt",
+                                other = "{0} terabayt",
                             )
                         ),
                     )
@@ -702,11 +612,12 @@ open class LanguageZhHANT internal constructor() : LanguageZh() {
             )
         override val digitalTerabit
             get() = MultiLengthGenderedPattern(
-                narrow = GenderedPattern(
+                long = GenderedPattern(
                     cases = Cases(
                         nominative = PluralPattern(
                             Plurals(
-                                other = "{0}Tb",
+                                one = "{0} terabit",
+                                other = "{0} terabit",
                             )
                         ),
                     )
@@ -714,11 +625,12 @@ open class LanguageZhHANT internal constructor() : LanguageZh() {
             )
         override val digitalGigabyte
             get() = MultiLengthGenderedPattern(
-                narrow = GenderedPattern(
+                long = GenderedPattern(
                     cases = Cases(
                         nominative = PluralPattern(
                             Plurals(
-                                other = "{0}GB",
+                                one = "{0} gigabayt",
+                                other = "{0} gigabayt",
                             )
                         ),
                     )
@@ -726,11 +638,12 @@ open class LanguageZhHANT internal constructor() : LanguageZh() {
             )
         override val digitalGigabit
             get() = MultiLengthGenderedPattern(
-                narrow = GenderedPattern(
+                long = GenderedPattern(
                     cases = Cases(
                         nominative = PluralPattern(
                             Plurals(
-                                other = "{0}Gb",
+                                one = "{0} gigabit",
+                                other = "{0} gigabit",
                             )
                         ),
                     )
@@ -738,11 +651,12 @@ open class LanguageZhHANT internal constructor() : LanguageZh() {
             )
         override val digitalMegabyte
             get() = MultiLengthGenderedPattern(
-                narrow = GenderedPattern(
+                long = GenderedPattern(
                     cases = Cases(
                         nominative = PluralPattern(
                             Plurals(
-                                other = "{0}MB",
+                                one = "{0} megabayt",
+                                other = "{0} megabayt",
                             )
                         ),
                     )
@@ -750,11 +664,12 @@ open class LanguageZhHANT internal constructor() : LanguageZh() {
             )
         override val digitalMegabit
             get() = MultiLengthGenderedPattern(
-                narrow = GenderedPattern(
+                long = GenderedPattern(
                     cases = Cases(
                         nominative = PluralPattern(
                             Plurals(
-                                other = "{0}Mb",
+                                one = "{0} megabit",
+                                other = "{0} megabit",
                             )
                         ),
                     )
@@ -762,11 +677,12 @@ open class LanguageZhHANT internal constructor() : LanguageZh() {
             )
         override val digitalKilobyte
             get() = MultiLengthGenderedPattern(
-                narrow = GenderedPattern(
+                long = GenderedPattern(
                     cases = Cases(
                         nominative = PluralPattern(
                             Plurals(
-                                other = "{0}kB",
+                                one = "{0} kilobayt",
+                                other = "{0} kilobayt",
                             )
                         ),
                     )
@@ -774,11 +690,12 @@ open class LanguageZhHANT internal constructor() : LanguageZh() {
             )
         override val digitalKilobit
             get() = MultiLengthGenderedPattern(
-                narrow = GenderedPattern(
+                long = GenderedPattern(
                     cases = Cases(
                         nominative = PluralPattern(
                             Plurals(
-                                other = "{0}kb",
+                                one = "{0} kilobit",
+                                other = "{0} kilobit",
                             )
                         ),
                     )
@@ -786,35 +703,27 @@ open class LanguageZhHANT internal constructor() : LanguageZh() {
             )
         override val digitalByte
             get() = MultiLengthGenderedPattern(
-                narrow = GenderedPattern(
+                short = GenderedPattern(
                     cases = Cases(
                         nominative = PluralPattern(
                             Plurals(
-                                other = "{0}byte",
+                                one = "{0} bayt",
+                                other = "{0} bayt",
                             )
                         ),
                     )
                 ),
             )
-        override val digitalBit
-            get() = MultiLengthGenderedPattern(
-                narrow = GenderedPattern(
-                    cases = Cases(
-                        nominative = PluralPattern(
-                            Plurals(
-                                other = "{0}bit",
-                            )
-                        ),
-                    )
-                ),
-            )
+        override val digitalBit: MultiLengthGenderedPattern
+            get() = TODO("Bit formatter is not implemented yet for tr")
         override val durationCentury
             get() = MultiLengthGenderedPattern(
                 long = GenderedPattern(
                     cases = Cases(
                         nominative = PluralPattern(
                             Plurals(
-                                other = "{0} 個世紀",
+                                one = "{0} yüzyıl",
+                                other = "{0} yüzyıl",
                             )
                         ),
                     )
@@ -823,7 +732,8 @@ open class LanguageZhHANT internal constructor() : LanguageZh() {
                     cases = Cases(
                         nominative = PluralPattern(
                             Plurals(
-                                other = "{0} 世紀",
+                                one = "{0} yy",
+                                other = "{0} yy",
                             )
                         ),
                     )
@@ -835,7 +745,8 @@ open class LanguageZhHANT internal constructor() : LanguageZh() {
                     cases = Cases(
                         nominative = PluralPattern(
                             Plurals(
-                                other = "{0}0 年",
+                                one = "{0} on yıl",
+                                other = "{0} on yıl",
                             )
                         ),
                     )
@@ -847,7 +758,18 @@ open class LanguageZhHANT internal constructor() : LanguageZh() {
                     cases = Cases(
                         nominative = PluralPattern(
                             Plurals(
-                                other = "{0} 年",
+                                one = "{0} yıl",
+                                other = "{0} yıl",
+                            )
+                        ),
+                    )
+                ),
+                narrow = GenderedPattern(
+                    cases = Cases(
+                        nominative = PluralPattern(
+                            Plurals(
+                                one = "{0}y",
+                                other = "{0}y",
                             )
                         ),
                     )
@@ -855,11 +777,22 @@ open class LanguageZhHANT internal constructor() : LanguageZh() {
             )
         override val durationQuarter
             get() = MultiLengthGenderedPattern(
+                long = GenderedPattern(
+                    cases = Cases(
+                        nominative = PluralPattern(
+                            Plurals(
+                                one = "{0} çeyrek",
+                                other = "{0} çeyrek",
+                            )
+                        ),
+                    )
+                ),
                 short = GenderedPattern(
                     cases = Cases(
                         nominative = PluralPattern(
                             Plurals(
-                                other = "{0} 刻",
+                                one = "{0} çey.",
+                                other = "{0} çey.",
                             )
                         ),
                     )
@@ -871,7 +804,18 @@ open class LanguageZhHANT internal constructor() : LanguageZh() {
                     cases = Cases(
                         nominative = PluralPattern(
                             Plurals(
-                                other = "{0} 個月",
+                                one = "{0} ay",
+                                other = "{0} ay",
+                            )
+                        ),
+                    )
+                ),
+                narrow = GenderedPattern(
+                    cases = Cases(
+                        nominative = PluralPattern(
+                            Plurals(
+                                one = "{0}a",
+                                other = "{0}a",
                             )
                         ),
                     )
@@ -879,11 +823,32 @@ open class LanguageZhHANT internal constructor() : LanguageZh() {
             )
         override val durationWeek
             get() = MultiLengthGenderedPattern(
+                long = GenderedPattern(
+                    cases = Cases(
+                        nominative = PluralPattern(
+                            Plurals(
+                                one = "{0} hafta",
+                                other = "{0} hafta",
+                            )
+                        ),
+                    )
+                ),
                 short = GenderedPattern(
                     cases = Cases(
                         nominative = PluralPattern(
                             Plurals(
-                                other = "{0} 週",
+                                one = "{0} hf.",
+                                other = "{0} hf.",
+                            )
+                        ),
+                    )
+                ),
+                narrow = GenderedPattern(
+                    cases = Cases(
+                        nominative = PluralPattern(
+                            Plurals(
+                                one = "{0}h",
+                                other = "{0}h",
                             )
                         ),
                     )
@@ -895,7 +860,18 @@ open class LanguageZhHANT internal constructor() : LanguageZh() {
                     cases = Cases(
                         nominative = PluralPattern(
                             Plurals(
-                                other = "{0} 天",
+                                one = "{0} gün",
+                                other = "{0} gün",
+                            )
+                        ),
+                    )
+                ),
+                narrow = GenderedPattern(
+                    cases = Cases(
+                        nominative = PluralPattern(
+                            Plurals(
+                                one = "{0}g",
+                                other = "{0}g",
                             )
                         ),
                     )
@@ -903,11 +879,32 @@ open class LanguageZhHANT internal constructor() : LanguageZh() {
             )
         override val durationHour
             get() = MultiLengthGenderedPattern(
+                long = GenderedPattern(
+                    cases = Cases(
+                        nominative = PluralPattern(
+                            Plurals(
+                                one = "{0} saat",
+                                other = "{0} saat",
+                            )
+                        ),
+                    )
+                ),
                 short = GenderedPattern(
                     cases = Cases(
                         nominative = PluralPattern(
                             Plurals(
-                                other = "{0} 小時",
+                                one = "{0} sa.",
+                                other = "{0} sa.",
+                            )
+                        ),
+                    )
+                ),
+                narrow = GenderedPattern(
+                    cases = Cases(
+                        nominative = PluralPattern(
+                            Plurals(
+                                one = "{0} sa",
+                                other = "{0}s",
                             )
                         ),
                     )
@@ -915,11 +912,32 @@ open class LanguageZhHANT internal constructor() : LanguageZh() {
             )
         override val durationMinute
             get() = MultiLengthGenderedPattern(
+                long = GenderedPattern(
+                    cases = Cases(
+                        nominative = PluralPattern(
+                            Plurals(
+                                one = "{0} dakika",
+                                other = "{0} dakika",
+                            )
+                        ),
+                    )
+                ),
                 short = GenderedPattern(
                     cases = Cases(
                         nominative = PluralPattern(
                             Plurals(
-                                other = "{0} 分鐘",
+                                one = "{0} dk.",
+                                other = "{0} dk.",
+                            )
+                        ),
+                    )
+                ),
+                narrow = GenderedPattern(
+                    cases = Cases(
+                        nominative = PluralPattern(
+                            Plurals(
+                                one = "{0}d",
+                                other = "{0}d",
                             )
                         ),
                     )
@@ -927,11 +945,32 @@ open class LanguageZhHANT internal constructor() : LanguageZh() {
             )
         override val durationSecond
             get() = MultiLengthGenderedPattern(
+                long = GenderedPattern(
+                    cases = Cases(
+                        nominative = PluralPattern(
+                            Plurals(
+                                one = "{0} saniye",
+                                other = "{0} saniye",
+                            )
+                        ),
+                    )
+                ),
                 short = GenderedPattern(
                     cases = Cases(
                         nominative = PluralPattern(
                             Plurals(
-                                other = "{0} 秒",
+                                one = "{0} sn.",
+                                other = "{0} sn.",
+                            )
+                        ),
+                    )
+                ),
+                narrow = GenderedPattern(
+                    cases = Cases(
+                        nominative = PluralPattern(
+                            Plurals(
+                                one = "{0}sn",
+                                other = "{0}sn",
                             )
                         ),
                     )
@@ -939,11 +978,32 @@ open class LanguageZhHANT internal constructor() : LanguageZh() {
             )
         override val durationMillisecond
             get() = MultiLengthGenderedPattern(
+                long = GenderedPattern(
+                    cases = Cases(
+                        nominative = PluralPattern(
+                            Plurals(
+                                one = "{0} milisaniye",
+                                other = "{0} milisaniye",
+                            )
+                        ),
+                    )
+                ),
                 short = GenderedPattern(
                     cases = Cases(
                         nominative = PluralPattern(
                             Plurals(
-                                other = "{0} 毫秒",
+                                one = "{0} msn",
+                                other = "{0} msn",
+                            )
+                        ),
+                    )
+                ),
+                narrow = GenderedPattern(
+                    cases = Cases(
+                        nominative = PluralPattern(
+                            Plurals(
+                                one = "{0}msn",
+                                other = "{0}msn",
                             )
                         ),
                     )
@@ -951,20 +1011,22 @@ open class LanguageZhHANT internal constructor() : LanguageZh() {
             )
         override val durationMicrosecond
             get() = MultiLengthGenderedPattern(
-                short = GenderedPattern(
+                long = GenderedPattern(
                     cases = Cases(
                         nominative = PluralPattern(
                             Plurals(
-                                other = "{0} 微秒",
+                                one = "{0} mikrosaniye",
+                                other = "{0} mikrosaniye",
                             )
                         ),
                     )
                 ),
-                narrow = GenderedPattern(
+                short = GenderedPattern(
                     cases = Cases(
                         nominative = PluralPattern(
                             Plurals(
-                                other = "{0}μs",
+                                one = "{0} μsn",
+                                other = "{0} μsn",
                             )
                         ),
                     )
@@ -972,20 +1034,22 @@ open class LanguageZhHANT internal constructor() : LanguageZh() {
             )
         override val durationNanosecond
             get() = MultiLengthGenderedPattern(
-                short = GenderedPattern(
+                long = GenderedPattern(
                     cases = Cases(
                         nominative = PluralPattern(
                             Plurals(
-                                other = "{0} 奈秒",
+                                one = "{0} nanosaniye",
+                                other = "{0} nanosaniye",
                             )
                         ),
                     )
                 ),
-                narrow = GenderedPattern(
+                short = GenderedPattern(
                     cases = Cases(
                         nominative = PluralPattern(
                             Plurals(
-                                other = "{0}ns",
+                                one = "{0} nsn",
+                                other = "{0} nsn",
                             )
                         ),
                     )
@@ -993,20 +1057,12 @@ open class LanguageZhHANT internal constructor() : LanguageZh() {
             )
         override val electricAmpere
             get() = MultiLengthGenderedPattern(
-                short = GenderedPattern(
+                long = GenderedPattern(
                     cases = Cases(
                         nominative = PluralPattern(
                             Plurals(
-                                other = "{0} 安培",
-                            )
-                        ),
-                    )
-                ),
-                narrow = GenderedPattern(
-                    cases = Cases(
-                        nominative = PluralPattern(
-                            Plurals(
-                                other = "{0}安培",
+                                one = "{0} amper",
+                                other = "{0} amper",
                             )
                         ),
                     )
@@ -1014,20 +1070,12 @@ open class LanguageZhHANT internal constructor() : LanguageZh() {
             )
         override val electricMilliampere
             get() = MultiLengthGenderedPattern(
-                short = GenderedPattern(
+                long = GenderedPattern(
                     cases = Cases(
                         nominative = PluralPattern(
                             Plurals(
-                                other = "{0} 毫安培",
-                            )
-                        ),
-                    )
-                ),
-                narrow = GenderedPattern(
-                    cases = Cases(
-                        nominative = PluralPattern(
-                            Plurals(
-                                other = "{0}毫安培",
+                                one = "{0} miliamper",
+                                other = "{0} miliamper",
                             )
                         ),
                     )
@@ -1035,71 +1083,42 @@ open class LanguageZhHANT internal constructor() : LanguageZh() {
             )
         override val electricOhm
             get() = MultiLengthGenderedPattern(
-                short = GenderedPattern(
+                long = GenderedPattern(
                     cases = Cases(
                         nominative = PluralPattern(
                             Plurals(
-                                other = "{0} 歐姆",
-                            )
-                        ),
-                    )
-                ),
-                narrow = GenderedPattern(
-                    cases = Cases(
-                        nominative = PluralPattern(
-                            Plurals(
-                                other = "{0}歐姆",
+                                one = "{0} ohm",
+                                other = "{0} ohm",
                             )
                         ),
                     )
                 ),
             )
+        override val electricKilogramSquareMeterPerCubicSecondSquareAmpere: MultiLengthGenderedPattern
+            get() = TODO("KilogramSquareMeterPerCubicSecondSquareAmpere formatter is not implemented yet for tr")
         override val electricVolt
             get() = MultiLengthGenderedPattern(
-                short = GenderedPattern(
+                long = GenderedPattern(
                     cases = Cases(
                         nominative = PluralPattern(
                             Plurals(
-                                other = "{0} 伏特",
-                            )
-                        ),
-                    )
-                ),
-                narrow = GenderedPattern(
-                    cases = Cases(
-                        nominative = PluralPattern(
-                            Plurals(
-                                other = "{0}伏特",
+                                one = "{0} volt",
+                                other = "{0} volt",
                             )
                         ),
                     )
                 ),
             )
+        override val electricKilogramSquareMeterPerCubicSecondAmpere: MultiLengthGenderedPattern
+            get() = TODO("KilogramSquareMeterPerCubicSecondAmpere formatter is not implemented yet for tr")
         override val energyKilocalorie
             get() = MultiLengthGenderedPattern(
                 long = GenderedPattern(
                     cases = Cases(
                         nominative = PluralPattern(
                             Plurals(
-                                other = "{0} 千卡路里",
-                            )
-                        ),
-                    )
-                ),
-                short = GenderedPattern(
-                    cases = Cases(
-                        nominative = PluralPattern(
-                            Plurals(
-                                other = "{0} 千卡",
-                            )
-                        ),
-                    )
-                ),
-                narrow = GenderedPattern(
-                    cases = Cases(
-                        nominative = PluralPattern(
-                            Plurals(
-                                other = "{0}千卡",
+                                one = "{0} kilokalori",
+                                other = "{0} kilokalori",
                             )
                         ),
                     )
@@ -1111,25 +1130,8 @@ open class LanguageZhHANT internal constructor() : LanguageZh() {
                     cases = Cases(
                         nominative = PluralPattern(
                             Plurals(
-                                other = "{0} 卡路里",
-                            )
-                        ),
-                    )
-                ),
-                short = GenderedPattern(
-                    cases = Cases(
-                        nominative = PluralPattern(
-                            Plurals(
-                                other = "{0} 卡",
-                            )
-                        ),
-                    )
-                ),
-                narrow = GenderedPattern(
-                    cases = Cases(
-                        nominative = PluralPattern(
-                            Plurals(
-                                other = "{0}卡",
+                                one = "{0} kalori",
+                                other = "{0} kalori",
                             )
                         ),
                     )
@@ -1137,20 +1139,12 @@ open class LanguageZhHANT internal constructor() : LanguageZh() {
             )
         override val energyFoodcalorie
             get() = MultiLengthGenderedPattern(
-                short = GenderedPattern(
+                long = GenderedPattern(
                     cases = Cases(
                         nominative = PluralPattern(
                             Plurals(
-                                other = "{0} 大卡",
-                            )
-                        ),
-                    )
-                ),
-                narrow = GenderedPattern(
-                    cases = Cases(
-                        nominative = PluralPattern(
-                            Plurals(
-                                other = "{0}大卡",
+                                one = "{0} kilokalori",
+                                other = "{0} kilokalori",
                             )
                         ),
                     )
@@ -1162,25 +1156,8 @@ open class LanguageZhHANT internal constructor() : LanguageZh() {
                     cases = Cases(
                         nominative = PluralPattern(
                             Plurals(
-                                other = "{0} 千焦耳",
-                            )
-                        ),
-                    )
-                ),
-                short = GenderedPattern(
-                    cases = Cases(
-                        nominative = PluralPattern(
-                            Plurals(
-                                other = "{0} 千焦",
-                            )
-                        ),
-                    )
-                ),
-                narrow = GenderedPattern(
-                    cases = Cases(
-                        nominative = PluralPattern(
-                            Plurals(
-                                other = "{0}千焦耳",
+                                one = "{0} kilojul",
+                                other = "{0} kilojul",
                             )
                         ),
                     )
@@ -1192,25 +1169,8 @@ open class LanguageZhHANT internal constructor() : LanguageZh() {
                     cases = Cases(
                         nominative = PluralPattern(
                             Plurals(
-                                other = "{0} 焦耳",
-                            )
-                        ),
-                    )
-                ),
-                short = GenderedPattern(
-                    cases = Cases(
-                        nominative = PluralPattern(
-                            Plurals(
-                                other = "{0} 焦",
-                            )
-                        ),
-                    )
-                ),
-                narrow = GenderedPattern(
-                    cases = Cases(
-                        nominative = PluralPattern(
-                            Plurals(
-                                other = "{0}焦",
+                                one = "{0} jul",
+                                other = "{0} jul",
                             )
                         ),
                     )
@@ -1218,20 +1178,12 @@ open class LanguageZhHANT internal constructor() : LanguageZh() {
             )
         override val energyKilowattHour
             get() = MultiLengthGenderedPattern(
-                short = GenderedPattern(
+                long = GenderedPattern(
                     cases = Cases(
                         nominative = PluralPattern(
                             Plurals(
-                                other = "{0} 千瓦小時",
-                            )
-                        ),
-                    )
-                ),
-                narrow = GenderedPattern(
-                    cases = Cases(
-                        nominative = PluralPattern(
-                            Plurals(
-                                other = "{0}千瓦小時",
+                                one = "{0} kilovatsaat",
+                                other = "{0} kilovatsaat",
                             )
                         ),
                     )
@@ -1239,20 +1191,12 @@ open class LanguageZhHANT internal constructor() : LanguageZh() {
             )
         override val energyElectronvolt
             get() = MultiLengthGenderedPattern(
-                short = GenderedPattern(
+                long = GenderedPattern(
                     cases = Cases(
                         nominative = PluralPattern(
                             Plurals(
-                                other = "{0} 電子伏特",
-                            )
-                        ),
-                    )
-                ),
-                narrow = GenderedPattern(
-                    cases = Cases(
-                        nominative = PluralPattern(
-                            Plurals(
-                                other = "{0}電子伏特",
+                                one = "{0} elektronvolt",
+                                other = "{0} elektronvolt",
                             )
                         ),
                     )
@@ -1260,20 +1204,12 @@ open class LanguageZhHANT internal constructor() : LanguageZh() {
             )
         override val energyBritishThermalUnit
             get() = MultiLengthGenderedPattern(
-                short = GenderedPattern(
+                long = GenderedPattern(
                     cases = Cases(
                         nominative = PluralPattern(
                             Plurals(
-                                other = "{0} 英熱單位",
-                            )
-                        ),
-                    )
-                ),
-                narrow = GenderedPattern(
-                    cases = Cases(
-                        nominative = PluralPattern(
-                            Plurals(
-                                other = "{0}英熱單位",
+                                one = "{0} İngiliz ısı birimi",
+                                other = "{0} İngiliz ısı birimi",
                             )
                         ),
                     )
@@ -1285,37 +1221,23 @@ open class LanguageZhHANT internal constructor() : LanguageZh() {
                     cases = Cases(
                         nominative = PluralPattern(
                             Plurals(
-                                other = "{0} 美制撒姆",
-                            )
-                        ),
-                    )
-                ),
-                narrow = GenderedPattern(
-                    cases = Cases(
-                        nominative = PluralPattern(
-                            Plurals(
-                                other = "{0}美制撒姆",
+                                one = "{0} ABD ısı birimi",
+                                other = "{0} ABD ısı birimi",
                             )
                         ),
                     )
                 ),
             )
+        override val energyKilogramSquareMeterPerSquareSecond: MultiLengthGenderedPattern
+            get() = TODO("KilogramSquareMeterPerSquareSecond formatter is not implemented yet for tr")
         override val forcePoundForce
             get() = MultiLengthGenderedPattern(
                 long = GenderedPattern(
                     cases = Cases(
                         nominative = PluralPattern(
                             Plurals(
-                                other = "{0} 磅力",
-                            )
-                        ),
-                    )
-                ),
-                narrow = GenderedPattern(
-                    cases = Cases(
-                        nominative = PluralPattern(
-                            Plurals(
-                                other = "{0}lbf",
+                                one = "{0} pound kuvvet",
+                                other = "{0} pound kuvvet",
                             )
                         ),
                     )
@@ -1327,16 +1249,8 @@ open class LanguageZhHANT internal constructor() : LanguageZh() {
                     cases = Cases(
                         nominative = PluralPattern(
                             Plurals(
-                                other = "{0} 牛頓",
-                            )
-                        ),
-                    )
-                ),
-                narrow = GenderedPattern(
-                    cases = Cases(
-                        nominative = PluralPattern(
-                            Plurals(
-                                other = "{0}N",
+                                one = "{0} newton",
+                                other = "{0} newton",
                             )
                         ),
                     )
@@ -1344,32 +1258,37 @@ open class LanguageZhHANT internal constructor() : LanguageZh() {
             )
         override val forceKilowattHourPer100Kilometer
             get() = MultiLengthGenderedPattern(
-                narrow = GenderedPattern(
+                long = GenderedPattern(
                     cases = Cases(
                         nominative = PluralPattern(
                             Plurals(
-                                other = "{0}kWh/100km",
+                                one = "100 kilometre/{0} kilowatt-saat",
+                                other = "100 kilometre/{0} kilowatt-saat",
+                            )
+                        ),
+                    )
+                ),
+                short = GenderedPattern(
+                    cases = Cases(
+                        nominative = PluralPattern(
+                            Plurals(
+                                one = "{0} kWh/100 km",
+                                other = "{0} kWh/100 km",
                             )
                         ),
                     )
                 ),
             )
+        override val forceKilogramMeterPerSquareSecond: MultiLengthGenderedPattern
+            get() = TODO("KilogramMeterPerSquareSecond formatter is not implemented yet for tr")
         override val frequencyGigahertz
             get() = MultiLengthGenderedPattern(
-                short = GenderedPattern(
+                long = GenderedPattern(
                     cases = Cases(
                         nominative = PluralPattern(
                             Plurals(
-                                other = "{0} 吉赫",
-                            )
-                        ),
-                    )
-                ),
-                narrow = GenderedPattern(
-                    cases = Cases(
-                        nominative = PluralPattern(
-                            Plurals(
-                                other = "{0}吉赫",
+                                one = "{0} gigahertz",
+                                other = "{0} gigahertz",
                             )
                         ),
                     )
@@ -1377,20 +1296,12 @@ open class LanguageZhHANT internal constructor() : LanguageZh() {
             )
         override val frequencyMegahertz
             get() = MultiLengthGenderedPattern(
-                short = GenderedPattern(
+                long = GenderedPattern(
                     cases = Cases(
                         nominative = PluralPattern(
                             Plurals(
-                                other = "{0} 兆赫",
-                            )
-                        ),
-                    )
-                ),
-                narrow = GenderedPattern(
-                    cases = Cases(
-                        nominative = PluralPattern(
-                            Plurals(
-                                other = "{0}兆赫",
+                                one = "{0} megahertz",
+                                other = "{0} megahertz",
                             )
                         ),
                     )
@@ -1398,20 +1309,12 @@ open class LanguageZhHANT internal constructor() : LanguageZh() {
             )
         override val frequencyKilohertz
             get() = MultiLengthGenderedPattern(
-                short = GenderedPattern(
+                long = GenderedPattern(
                     cases = Cases(
                         nominative = PluralPattern(
                             Plurals(
-                                other = "{0} 千赫",
-                            )
-                        ),
-                    )
-                ),
-                narrow = GenderedPattern(
-                    cases = Cases(
-                        nominative = PluralPattern(
-                            Plurals(
-                                other = "{0}千赫",
+                                one = "{0} kilohertz",
+                                other = "{0} kilohertz",
                             )
                         ),
                     )
@@ -1419,53 +1322,29 @@ open class LanguageZhHANT internal constructor() : LanguageZh() {
             )
         override val frequencyHertz
             get() = MultiLengthGenderedPattern(
-                short = GenderedPattern(
+                long = GenderedPattern(
                     cases = Cases(
                         nominative = PluralPattern(
                             Plurals(
-                                other = "{0} 赫茲",
-                            )
-                        ),
-                    )
-                ),
-                narrow = GenderedPattern(
-                    cases = Cases(
-                        nominative = PluralPattern(
-                            Plurals(
-                                other = "{0}赫茲",
+                                one = "{0} hertz",
+                                other = "{0} hertz",
                             )
                         ),
                     )
                 ),
             )
-        override val graphicsEm
-            get() = MultiLengthGenderedPattern(
-                narrow = GenderedPattern(
-                    cases = Cases(
-                        nominative = PluralPattern(
-                            Plurals(
-                                other = "{0}em",
-                            )
-                        ),
-                    )
-                ),
-            )
+        override val frequencyRevolutionPerSecond: MultiLengthGenderedPattern
+            get() = TODO("RevolutionPerSecond formatter is not implemented yet for tr")
+        override val graphicsEm: MultiLengthGenderedPattern
+            get() = TODO("Em formatter is not implemented yet for tr")
         override val graphicsPixel
             get() = MultiLengthGenderedPattern(
                 long = GenderedPattern(
                     cases = Cases(
                         nominative = PluralPattern(
                             Plurals(
-                                other = "{0} 像素",
-                            )
-                        ),
-                    )
-                ),
-                narrow = GenderedPattern(
-                    cases = Cases(
-                        nominative = PluralPattern(
-                            Plurals(
-                                other = "{0}px",
+                                one = "{0} piksel",
+                                other = "{0} piksel",
                             )
                         ),
                     )
@@ -1477,16 +1356,8 @@ open class LanguageZhHANT internal constructor() : LanguageZh() {
                     cases = Cases(
                         nominative = PluralPattern(
                             Plurals(
-                                other = "{0} 百萬像素",
-                            )
-                        ),
-                    )
-                ),
-                narrow = GenderedPattern(
-                    cases = Cases(
-                        nominative = PluralPattern(
-                            Plurals(
-                                other = "{0}MP",
+                                one = "{0} megapiksel",
+                                other = "{0} megapiksel",
                             )
                         ),
                     )
@@ -1494,11 +1365,12 @@ open class LanguageZhHANT internal constructor() : LanguageZh() {
             )
         override val graphicsDot
             get() = MultiLengthGenderedPattern(
-                narrow = GenderedPattern(
+                short = GenderedPattern(
                     cases = Cases(
                         nominative = PluralPattern(
                             Plurals(
-                                other = "{0}px",
+                                one = "{0} nokta",
+                                other = "{0} nokta",
                             )
                         ),
                     )
@@ -1506,11 +1378,12 @@ open class LanguageZhHANT internal constructor() : LanguageZh() {
             )
         override val graphicsPixelPerCentimeter
             get() = MultiLengthGenderedPattern(
-                narrow = GenderedPattern(
+                long = GenderedPattern(
                     cases = Cases(
                         nominative = PluralPattern(
                             Plurals(
-                                other = "{0}ppcm",
+                                one = "{0} piksel/santimetre",
+                                other = "{0} piksel/santimetre",
                             )
                         ),
                     )
@@ -1518,11 +1391,12 @@ open class LanguageZhHANT internal constructor() : LanguageZh() {
             )
         override val graphicsPixelPerInch
             get() = MultiLengthGenderedPattern(
-                narrow = GenderedPattern(
+                long = GenderedPattern(
                     cases = Cases(
                         nominative = PluralPattern(
                             Plurals(
-                                other = "{0}ppi",
+                                one = "{0} piksel/inç",
+                                other = "{0} piksel/inç",
                             )
                         ),
                     )
@@ -1530,20 +1404,22 @@ open class LanguageZhHANT internal constructor() : LanguageZh() {
             )
         override val graphicsDotPerCentimeter
             get() = MultiLengthGenderedPattern(
-                short = GenderedPattern(
+                long = GenderedPattern(
                     cases = Cases(
                         nominative = PluralPattern(
                             Plurals(
-                                other = "{0} dpcm",
+                                one = "{0} nokta/santimetre",
+                                other = "{0} nokta/santimetre",
                             )
                         ),
                     )
                 ),
-                narrow = GenderedPattern(
+                short = GenderedPattern(
                     cases = Cases(
                         nominative = PluralPattern(
                             Plurals(
-                                other = "{0}dpcm",
+                                one = "{0} dpcm",
+                                other = "{0} dpcm",
                             )
                         ),
                     )
@@ -1551,41 +1427,37 @@ open class LanguageZhHANT internal constructor() : LanguageZh() {
             )
         override val graphicsDotPerInch
             get() = MultiLengthGenderedPattern(
+                long = GenderedPattern(
+                    cases = Cases(
+                        nominative = PluralPattern(
+                            Plurals(
+                                one = "{0} nokta/inç",
+                                other = "{0} nokta/inç",
+                            )
+                        ),
+                    )
+                ),
                 short = GenderedPattern(
                     cases = Cases(
                         nominative = PluralPattern(
                             Plurals(
+                                one = "{0} dpi",
                                 other = "{0} dpi",
                             )
                         ),
                     )
                 ),
-                narrow = GenderedPattern(
-                    cases = Cases(
-                        nominative = PluralPattern(
-                            Plurals(
-                                other = "{0}dpi",
-                            )
-                        ),
-                    )
-                ),
             )
+        override val graphicsPixelPerMeter: MultiLengthGenderedPattern
+            get() = TODO("PixelPerMeter formatter is not implemented yet for tr")
         override val lengthEarthRadius
             get() = MultiLengthGenderedPattern(
                 long = GenderedPattern(
                     cases = Cases(
                         nominative = PluralPattern(
                             Plurals(
-                                other = "{0} 地球半徑",
-                            )
-                        ),
-                    )
-                ),
-                narrow = GenderedPattern(
-                    cases = Cases(
-                        nominative = PluralPattern(
-                            Plurals(
-                                other = "{0}R⊕",
+                                one = "{0} Dünya yarıçapı",
+                                other = "{0} Dünya yarıçapı",
                             )
                         ),
                     )
@@ -1593,20 +1465,12 @@ open class LanguageZhHANT internal constructor() : LanguageZh() {
             )
         override val lengthKilometer
             get() = MultiLengthGenderedPattern(
-                short = GenderedPattern(
+                long = GenderedPattern(
                     cases = Cases(
                         nominative = PluralPattern(
                             Plurals(
-                                other = "{0} 公里",
-                            )
-                        ),
-                    )
-                ),
-                narrow = GenderedPattern(
-                    cases = Cases(
-                        nominative = PluralPattern(
-                            Plurals(
-                                other = "{0}公里",
+                                one = "{0} kilometre",
+                                other = "{0} kilometre",
                             )
                         ),
                     )
@@ -1614,20 +1478,12 @@ open class LanguageZhHANT internal constructor() : LanguageZh() {
             )
         override val lengthMeter
             get() = MultiLengthGenderedPattern(
-                short = GenderedPattern(
+                long = GenderedPattern(
                     cases = Cases(
                         nominative = PluralPattern(
                             Plurals(
-                                other = "{0} 公尺",
-                            )
-                        ),
-                    )
-                ),
-                narrow = GenderedPattern(
-                    cases = Cases(
-                        nominative = PluralPattern(
-                            Plurals(
-                                other = "{0}公尺",
+                                one = "{0} metre",
+                                other = "{0} metre",
                             )
                         ),
                     )
@@ -1635,20 +1491,12 @@ open class LanguageZhHANT internal constructor() : LanguageZh() {
             )
         override val lengthDecimeter
             get() = MultiLengthGenderedPattern(
-                short = GenderedPattern(
+                long = GenderedPattern(
                     cases = Cases(
                         nominative = PluralPattern(
                             Plurals(
-                                other = "{0} 公寸",
-                            )
-                        ),
-                    )
-                ),
-                narrow = GenderedPattern(
-                    cases = Cases(
-                        nominative = PluralPattern(
-                            Plurals(
-                                other = "{0}dm",
+                                one = "{0} desimetre",
+                                other = "{0} desimetre",
                             )
                         ),
                     )
@@ -1656,20 +1504,12 @@ open class LanguageZhHANT internal constructor() : LanguageZh() {
             )
         override val lengthCentimeter
             get() = MultiLengthGenderedPattern(
-                short = GenderedPattern(
+                long = GenderedPattern(
                     cases = Cases(
                         nominative = PluralPattern(
                             Plurals(
-                                other = "{0} 公分",
-                            )
-                        ),
-                    )
-                ),
-                narrow = GenderedPattern(
-                    cases = Cases(
-                        nominative = PluralPattern(
-                            Plurals(
-                                other = "{0}公分",
+                                one = "{0} santimetre",
+                                other = "{0} santimetre",
                             )
                         ),
                     )
@@ -1677,20 +1517,12 @@ open class LanguageZhHANT internal constructor() : LanguageZh() {
             )
         override val lengthMillimeter
             get() = MultiLengthGenderedPattern(
-                short = GenderedPattern(
+                long = GenderedPattern(
                     cases = Cases(
                         nominative = PluralPattern(
                             Plurals(
-                                other = "{0} 公釐",
-                            )
-                        ),
-                    )
-                ),
-                narrow = GenderedPattern(
-                    cases = Cases(
-                        nominative = PluralPattern(
-                            Plurals(
-                                other = "{0}公釐",
+                                one = "{0} milimetre",
+                                other = "{0} milimetre",
                             )
                         ),
                     )
@@ -1698,20 +1530,12 @@ open class LanguageZhHANT internal constructor() : LanguageZh() {
             )
         override val lengthMicrometer
             get() = MultiLengthGenderedPattern(
-                short = GenderedPattern(
+                long = GenderedPattern(
                     cases = Cases(
                         nominative = PluralPattern(
                             Plurals(
-                                other = "{0} 微米",
-                            )
-                        ),
-                    )
-                ),
-                narrow = GenderedPattern(
-                    cases = Cases(
-                        nominative = PluralPattern(
-                            Plurals(
-                                other = "{0}μm",
+                                one = "{0} mikrometre",
+                                other = "{0} mikrometre",
                             )
                         ),
                     )
@@ -1719,20 +1543,12 @@ open class LanguageZhHANT internal constructor() : LanguageZh() {
             )
         override val lengthNanometer
             get() = MultiLengthGenderedPattern(
-                short = GenderedPattern(
+                long = GenderedPattern(
                     cases = Cases(
                         nominative = PluralPattern(
                             Plurals(
-                                other = "{0} 奈米",
-                            )
-                        ),
-                    )
-                ),
-                narrow = GenderedPattern(
-                    cases = Cases(
-                        nominative = PluralPattern(
-                            Plurals(
-                                other = "{0}nm",
+                                one = "{0} nanometre",
+                                other = "{0} nanometre",
                             )
                         ),
                     )
@@ -1740,20 +1556,12 @@ open class LanguageZhHANT internal constructor() : LanguageZh() {
             )
         override val lengthPicometer
             get() = MultiLengthGenderedPattern(
-                short = GenderedPattern(
+                long = GenderedPattern(
                     cases = Cases(
                         nominative = PluralPattern(
                             Plurals(
-                                other = "{0} 皮米",
-                            )
-                        ),
-                    )
-                ),
-                narrow = GenderedPattern(
-                    cases = Cases(
-                        nominative = PluralPattern(
-                            Plurals(
-                                other = "{0}皮米",
+                                one = "{0} pikometre",
+                                other = "{0} pikometre",
                             )
                         ),
                     )
@@ -1765,16 +1573,8 @@ open class LanguageZhHANT internal constructor() : LanguageZh() {
                     cases = Cases(
                         nominative = PluralPattern(
                             Plurals(
-                                other = "{0} 英里",
-                            )
-                        ),
-                    )
-                ),
-                narrow = GenderedPattern(
-                    cases = Cases(
-                        nominative = PluralPattern(
-                            Plurals(
-                                other = "{0}英里",
+                                one = "{0} mil",
+                                other = "{0} mil",
                             )
                         ),
                     )
@@ -1782,20 +1582,12 @@ open class LanguageZhHANT internal constructor() : LanguageZh() {
             )
         override val lengthYard
             get() = MultiLengthGenderedPattern(
-                short = GenderedPattern(
+                long = GenderedPattern(
                     cases = Cases(
                         nominative = PluralPattern(
                             Plurals(
-                                other = "{0} 碼",
-                            )
-                        ),
-                    )
-                ),
-                narrow = GenderedPattern(
-                    cases = Cases(
-                        nominative = PluralPattern(
-                            Plurals(
-                                other = "{0}碼",
+                                one = "{0} yarda",
+                                other = "{0} yarda",
                             )
                         ),
                     )
@@ -1803,20 +1595,12 @@ open class LanguageZhHANT internal constructor() : LanguageZh() {
             )
         override val lengthFoot
             get() = MultiLengthGenderedPattern(
-                long = GenderedPattern(
-                    cases = Cases(
-                        nominative = PluralPattern(
-                            Plurals(
-                                other = "{0} 英尺",
-                            )
-                        ),
-                    )
-                ),
                 short = GenderedPattern(
                     cases = Cases(
                         nominative = PluralPattern(
                             Plurals(
-                                other = "{0} 呎",
+                                one = "{0} fit",
+                                other = "{0} fit",
                             )
                         ),
                     )
@@ -1825,7 +1609,8 @@ open class LanguageZhHANT internal constructor() : LanguageZh() {
                     cases = Cases(
                         nominative = PluralPattern(
                             Plurals(
-                                other = "{0}呎",
+                                one = "{0}′",
+                                other = "{0}′",
                             )
                         ),
                     )
@@ -1833,20 +1618,12 @@ open class LanguageZhHANT internal constructor() : LanguageZh() {
             )
         override val lengthInch
             get() = MultiLengthGenderedPattern(
-                long = GenderedPattern(
-                    cases = Cases(
-                        nominative = PluralPattern(
-                            Plurals(
-                                other = "{0} 英寸",
-                            )
-                        ),
-                    )
-                ),
                 short = GenderedPattern(
                     cases = Cases(
                         nominative = PluralPattern(
                             Plurals(
-                                other = "{0} 吋",
+                                one = "{0} inç",
+                                other = "{0} inç",
                             )
                         ),
                     )
@@ -1855,7 +1632,8 @@ open class LanguageZhHANT internal constructor() : LanguageZh() {
                     cases = Cases(
                         nominative = PluralPattern(
                             Plurals(
-                                other = "{0}吋",
+                                one = "{0}″",
+                                other = "{0}″",
                             )
                         ),
                     )
@@ -1863,20 +1641,12 @@ open class LanguageZhHANT internal constructor() : LanguageZh() {
             )
         override val lengthParsec
             get() = MultiLengthGenderedPattern(
-                short = GenderedPattern(
+                long = GenderedPattern(
                     cases = Cases(
                         nominative = PluralPattern(
                             Plurals(
-                                other = "{0} 秒差距",
-                            )
-                        ),
-                    )
-                ),
-                narrow = GenderedPattern(
-                    cases = Cases(
-                        nominative = PluralPattern(
-                            Plurals(
-                                other = "{0}pc",
+                                one = "{0} parsek",
+                                other = "{0} parsek",
                             )
                         ),
                     )
@@ -1884,20 +1654,22 @@ open class LanguageZhHANT internal constructor() : LanguageZh() {
             )
         override val lengthLightYear
             get() = MultiLengthGenderedPattern(
-                short = GenderedPattern(
+                long = GenderedPattern(
                     cases = Cases(
                         nominative = PluralPattern(
                             Plurals(
-                                other = "{0} 光年",
+                                one = "{0} ışık yılı",
+                                other = "{0} ışık yılı",
                             )
                         ),
                     )
                 ),
-                narrow = GenderedPattern(
+                short = GenderedPattern(
                     cases = Cases(
                         nominative = PluralPattern(
                             Plurals(
-                                other = "{0}光年",
+                                one = "{0} IY",
+                                other = "{0} IY",
                             )
                         ),
                     )
@@ -1905,20 +1677,22 @@ open class LanguageZhHANT internal constructor() : LanguageZh() {
             )
         override val lengthAstronomicalUnit
             get() = MultiLengthGenderedPattern(
-                short = GenderedPattern(
+                long = GenderedPattern(
                     cases = Cases(
                         nominative = PluralPattern(
                             Plurals(
-                                other = "{0} 天文單位",
+                                one = "{0} astronomik birim",
+                                other = "{0} astronomik birim",
                             )
                         ),
                     )
                 ),
-                narrow = GenderedPattern(
+                short = GenderedPattern(
                     cases = Cases(
                         nominative = PluralPattern(
                             Plurals(
-                                other = "{0}au",
+                                one = "{0} AU",
+                                other = "{0} AU",
                             )
                         ),
                     )
@@ -1926,20 +1700,12 @@ open class LanguageZhHANT internal constructor() : LanguageZh() {
             )
         override val lengthFurlong
             get() = MultiLengthGenderedPattern(
-                short = GenderedPattern(
+                long = GenderedPattern(
                     cases = Cases(
                         nominative = PluralPattern(
                             Plurals(
-                                other = "{0} 化朗",
-                            )
-                        ),
-                    )
-                ),
-                narrow = GenderedPattern(
-                    cases = Cases(
-                        nominative = PluralPattern(
-                            Plurals(
-                                other = "{0}化朗",
+                                one = "{0} furlong",
+                                other = "{0} furlong",
                             )
                         ),
                     )
@@ -1947,20 +1713,12 @@ open class LanguageZhHANT internal constructor() : LanguageZh() {
             )
         override val lengthFathom
             get() = MultiLengthGenderedPattern(
-                short = GenderedPattern(
+                long = GenderedPattern(
                     cases = Cases(
                         nominative = PluralPattern(
                             Plurals(
-                                other = "{0} 英尋",
-                            )
-                        ),
-                    )
-                ),
-                narrow = GenderedPattern(
-                    cases = Cases(
-                        nominative = PluralPattern(
-                            Plurals(
-                                other = "{0}fth",
+                                one = "{0} fathom",
+                                other = "{0} fathom",
                             )
                         ),
                     )
@@ -1968,62 +1726,27 @@ open class LanguageZhHANT internal constructor() : LanguageZh() {
             )
         override val lengthNauticalMile
             get() = MultiLengthGenderedPattern(
-                short = GenderedPattern(
+                long = GenderedPattern(
                     cases = Cases(
                         nominative = PluralPattern(
                             Plurals(
-                                other = "{0} 海里",
-                            )
-                        ),
-                    )
-                ),
-                narrow = GenderedPattern(
-                    cases = Cases(
-                        nominative = PluralPattern(
-                            Plurals(
-                                other = "{0}nmi",
+                                one = "{0} deniz mili",
+                                other = "{0} deniz mili",
                             )
                         ),
                     )
                 ),
             )
-        override val lengthMileScandinavian
-            get() = MultiLengthGenderedPattern(
-                short = GenderedPattern(
-                    cases = Cases(
-                        nominative = PluralPattern(
-                            Plurals(
-                                other = "{0} 斯堪地那維亞英里",
-                            )
-                        ),
-                    )
-                ),
-                narrow = GenderedPattern(
-                    cases = Cases(
-                        nominative = PluralPattern(
-                            Plurals(
-                                other = "{0}smi",
-                            )
-                        ),
-                    )
-                ),
-            )
+        override val lengthMileScandinavian: MultiLengthGenderedPattern
+            get() = TODO("MileScandinavian formatter is not implemented yet for tr")
         override val lengthPoint
             get() = MultiLengthGenderedPattern(
-                short = GenderedPattern(
+                long = GenderedPattern(
                     cases = Cases(
                         nominative = PluralPattern(
                             Plurals(
-                                other = "{0} 點",
-                            )
-                        ),
-                    )
-                ),
-                narrow = GenderedPattern(
-                    cases = Cases(
-                        nominative = PluralPattern(
-                            Plurals(
-                                other = "{0}點",
+                                one = "{0} punto",
+                                other = "{0} punto",
                             )
                         ),
                     )
@@ -2035,16 +1758,8 @@ open class LanguageZhHANT internal constructor() : LanguageZh() {
                     cases = Cases(
                         nominative = PluralPattern(
                             Plurals(
-                                other = "{0} 太陽半徑",
-                            )
-                        ),
-                    )
-                ),
-                narrow = GenderedPattern(
-                    cases = Cases(
-                        nominative = PluralPattern(
-                            Plurals(
-                                other = "{0}R☉",
+                                one = "{0} Güneş yarıçapı",
+                                other = "{0} Güneş yarıçapı",
                             )
                         ),
                     )
@@ -2056,37 +1771,23 @@ open class LanguageZhHANT internal constructor() : LanguageZh() {
                     cases = Cases(
                         nominative = PluralPattern(
                             Plurals(
-                                other = "{0} 勒克斯",
-                            )
-                        ),
-                    )
-                ),
-                narrow = GenderedPattern(
-                    cases = Cases(
-                        nominative = PluralPattern(
-                            Plurals(
-                                other = "{0}勒克斯",
+                                one = "{0} lüks",
+                                other = "{0} lüks",
                             )
                         ),
                     )
                 ),
             )
+        override val lightCandelaPerSquareMeter: MultiLengthGenderedPattern
+            get() = TODO("CandelaPerSquareMeter formatter is not implemented yet for tr")
         override val lightCandela
             get() = MultiLengthGenderedPattern(
-                short = GenderedPattern(
+                long = GenderedPattern(
                     cases = Cases(
                         nominative = PluralPattern(
                             Plurals(
-                                other = "{0} 燭光",
-                            )
-                        ),
-                    )
-                ),
-                narrow = GenderedPattern(
-                    cases = Cases(
-                        nominative = PluralPattern(
-                            Plurals(
-                                other = "{0}燭光",
+                                one = "{0} kandela",
+                                other = "{0} kandela",
                             )
                         ),
                     )
@@ -2094,41 +1795,27 @@ open class LanguageZhHANT internal constructor() : LanguageZh() {
             )
         override val lightLumen
             get() = MultiLengthGenderedPattern(
-                short = GenderedPattern(
+                long = GenderedPattern(
                     cases = Cases(
                         nominative = PluralPattern(
                             Plurals(
-                                other = "{0} 流明",
-                            )
-                        ),
-                    )
-                ),
-                narrow = GenderedPattern(
-                    cases = Cases(
-                        nominative = PluralPattern(
-                            Plurals(
-                                other = "{0}流明",
+                                one = "{0} lümen",
+                                other = "{0} lümen",
                             )
                         ),
                     )
                 ),
             )
+        override val lightCandelaSquareMeterPerSquareMeter: MultiLengthGenderedPattern
+            get() = TODO("CandelaSquareMeterPerSquareMeter formatter is not implemented yet for tr")
         override val lightSolarLuminosity
             get() = MultiLengthGenderedPattern(
                 long = GenderedPattern(
                     cases = Cases(
                         nominative = PluralPattern(
                             Plurals(
-                                other = "{0} 太陽光度",
-                            )
-                        ),
-                    )
-                ),
-                narrow = GenderedPattern(
-                    cases = Cases(
-                        nominative = PluralPattern(
-                            Plurals(
-                                other = "{0}L☉",
+                                one = "{0} Güneş parlaklığı",
+                                other = "{0} Güneş parlaklığı",
                             )
                         ),
                     )
@@ -2136,20 +1823,12 @@ open class LanguageZhHANT internal constructor() : LanguageZh() {
             )
         override val massTonne
             get() = MultiLengthGenderedPattern(
-                short = GenderedPattern(
+                long = GenderedPattern(
                     cases = Cases(
                         nominative = PluralPattern(
                             Plurals(
-                                other = "{0} 公噸",
-                            )
-                        ),
-                    )
-                ),
-                narrow = GenderedPattern(
-                    cases = Cases(
-                        nominative = PluralPattern(
-                            Plurals(
-                                other = "{0}公噸",
+                                one = "{0} ton",
+                                other = "{0} ton",
                             )
                         ),
                     )
@@ -2157,20 +1836,12 @@ open class LanguageZhHANT internal constructor() : LanguageZh() {
             )
         override val massKilogram
             get() = MultiLengthGenderedPattern(
-                short = GenderedPattern(
+                long = GenderedPattern(
                     cases = Cases(
                         nominative = PluralPattern(
                             Plurals(
-                                other = "{0} 公斤",
-                            )
-                        ),
-                    )
-                ),
-                narrow = GenderedPattern(
-                    cases = Cases(
-                        nominative = PluralPattern(
-                            Plurals(
-                                other = "{0}公斤",
+                                one = "{0} kilogram",
+                                other = "{0} kilogram",
                             )
                         ),
                     )
@@ -2178,20 +1849,12 @@ open class LanguageZhHANT internal constructor() : LanguageZh() {
             )
         override val massGram
             get() = MultiLengthGenderedPattern(
-                short = GenderedPattern(
+                long = GenderedPattern(
                     cases = Cases(
                         nominative = PluralPattern(
                             Plurals(
-                                other = "{0} 克",
-                            )
-                        ),
-                    )
-                ),
-                narrow = GenderedPattern(
-                    cases = Cases(
-                        nominative = PluralPattern(
-                            Plurals(
-                                other = "{0}克",
+                                one = "{0} gram",
+                                other = "{0} gram",
                             )
                         ),
                     )
@@ -2199,20 +1862,12 @@ open class LanguageZhHANT internal constructor() : LanguageZh() {
             )
         override val massMilligram
             get() = MultiLengthGenderedPattern(
-                short = GenderedPattern(
+                long = GenderedPattern(
                     cases = Cases(
                         nominative = PluralPattern(
                             Plurals(
-                                other = "{0} 毫克",
-                            )
-                        ),
-                    )
-                ),
-                narrow = GenderedPattern(
-                    cases = Cases(
-                        nominative = PluralPattern(
-                            Plurals(
-                                other = "{0}毫克",
+                                one = "{0} miligram",
+                                other = "{0} miligram",
                             )
                         ),
                     )
@@ -2220,20 +1875,12 @@ open class LanguageZhHANT internal constructor() : LanguageZh() {
             )
         override val massMicrogram
             get() = MultiLengthGenderedPattern(
-                short = GenderedPattern(
+                long = GenderedPattern(
                     cases = Cases(
                         nominative = PluralPattern(
                             Plurals(
-                                other = "{0} 微克",
-                            )
-                        ),
-                    )
-                ),
-                narrow = GenderedPattern(
-                    cases = Cases(
-                        nominative = PluralPattern(
-                            Plurals(
-                                other = "{0}微克",
+                                one = "{0} mikrogram",
+                                other = "{0} mikrogram",
                             )
                         ),
                     )
@@ -2241,20 +1888,22 @@ open class LanguageZhHANT internal constructor() : LanguageZh() {
             )
         override val massTon
             get() = MultiLengthGenderedPattern(
-                short = GenderedPattern(
+                long = GenderedPattern(
                     cases = Cases(
                         nominative = PluralPattern(
                             Plurals(
-                                other = "{0} 美噸",
+                                one = "{0} Amerikan tonu",
+                                other = "{0} Amerikan tonu",
                             )
                         ),
                     )
                 ),
-                narrow = GenderedPattern(
+                short = GenderedPattern(
                     cases = Cases(
                         nominative = PluralPattern(
                             Plurals(
-                                other = "{0}美噸",
+                                one = "{0} kısa ton",
+                                other = "{0} kısa ton",
                             )
                         ),
                     )
@@ -2262,20 +1911,12 @@ open class LanguageZhHANT internal constructor() : LanguageZh() {
             )
         override val massStone
             get() = MultiLengthGenderedPattern(
-                short = GenderedPattern(
+                long = GenderedPattern(
                     cases = Cases(
                         nominative = PluralPattern(
                             Plurals(
-                                other = "{0} 英石",
-                            )
-                        ),
-                    )
-                ),
-                narrow = GenderedPattern(
-                    cases = Cases(
-                        nominative = PluralPattern(
-                            Plurals(
-                                other = "{0}英石",
+                                one = "{0} stone",
+                                other = "{0} stone",
                             )
                         ),
                     )
@@ -2283,20 +1924,12 @@ open class LanguageZhHANT internal constructor() : LanguageZh() {
             )
         override val massPound
             get() = MultiLengthGenderedPattern(
-                short = GenderedPattern(
+                long = GenderedPattern(
                     cases = Cases(
                         nominative = PluralPattern(
                             Plurals(
-                                other = "{0} 磅",
-                            )
-                        ),
-                    )
-                ),
-                narrow = GenderedPattern(
-                    cases = Cases(
-                        nominative = PluralPattern(
-                            Plurals(
-                                other = "{0}磅",
+                                one = "{0} libre",
+                                other = "{0} libre",
                             )
                         ),
                     )
@@ -2304,20 +1937,12 @@ open class LanguageZhHANT internal constructor() : LanguageZh() {
             )
         override val massOunce
             get() = MultiLengthGenderedPattern(
-                short = GenderedPattern(
+                long = GenderedPattern(
                     cases = Cases(
                         nominative = PluralPattern(
                             Plurals(
-                                other = "{0} 盎司",
-                            )
-                        ),
-                    )
-                ),
-                narrow = GenderedPattern(
-                    cases = Cases(
-                        nominative = PluralPattern(
-                            Plurals(
-                                other = "{0}盎司",
+                                one = "{0} ons",
+                                other = "{0} ons",
                             )
                         ),
                     )
@@ -2325,20 +1950,12 @@ open class LanguageZhHANT internal constructor() : LanguageZh() {
             )
         override val massOunceTroy
             get() = MultiLengthGenderedPattern(
-                short = GenderedPattern(
+                long = GenderedPattern(
                     cases = Cases(
                         nominative = PluralPattern(
                             Plurals(
-                                other = "{0} 金衡盎司",
-                            )
-                        ),
-                    )
-                ),
-                narrow = GenderedPattern(
-                    cases = Cases(
-                        nominative = PluralPattern(
-                            Plurals(
-                                other = "{0}金衡盎司",
+                                one = "{0} troy ons",
+                                other = "{0} troy ons",
                             )
                         ),
                     )
@@ -2346,20 +1963,22 @@ open class LanguageZhHANT internal constructor() : LanguageZh() {
             )
         override val massCarat
             get() = MultiLengthGenderedPattern(
-                short = GenderedPattern(
+                long = GenderedPattern(
                     cases = Cases(
                         nominative = PluralPattern(
                             Plurals(
-                                other = "{0} 克拉",
+                                one = "{0} karat",
+                                other = "{0} karat",
                             )
                         ),
                     )
                 ),
-                narrow = GenderedPattern(
+                short = GenderedPattern(
                     cases = Cases(
                         nominative = PluralPattern(
                             Plurals(
-                                other = "{0}克拉",
+                                one = "{0} ct",
+                                other = "{0} ct",
                             )
                         ),
                     )
@@ -2367,20 +1986,12 @@ open class LanguageZhHANT internal constructor() : LanguageZh() {
             )
         override val massDalton
             get() = MultiLengthGenderedPattern(
-                short = GenderedPattern(
+                long = GenderedPattern(
                     cases = Cases(
                         nominative = PluralPattern(
                             Plurals(
-                                other = "{0} 達爾頓",
-                            )
-                        ),
-                    )
-                ),
-                narrow = GenderedPattern(
-                    cases = Cases(
-                        nominative = PluralPattern(
-                            Plurals(
-                                other = "{0}達爾頓",
+                                one = "{0} dalton",
+                                other = "{0} dalton",
                             )
                         ),
                     )
@@ -2388,20 +1999,12 @@ open class LanguageZhHANT internal constructor() : LanguageZh() {
             )
         override val massEarthMass
             get() = MultiLengthGenderedPattern(
-                short = GenderedPattern(
+                long = GenderedPattern(
                     cases = Cases(
                         nominative = PluralPattern(
                             Plurals(
-                                other = "{0} 地球質量",
-                            )
-                        ),
-                    )
-                ),
-                narrow = GenderedPattern(
-                    cases = Cases(
-                        nominative = PluralPattern(
-                            Plurals(
-                                other = "{0}地球質量",
+                                one = "{0} Dünya kütlesi",
+                                other = "{0} Dünya kütlesi",
                             )
                         ),
                     )
@@ -2409,20 +2012,12 @@ open class LanguageZhHANT internal constructor() : LanguageZh() {
             )
         override val massSolarMass
             get() = MultiLengthGenderedPattern(
-                short = GenderedPattern(
+                long = GenderedPattern(
                     cases = Cases(
                         nominative = PluralPattern(
                             Plurals(
-                                other = "{0} 太陽質量",
-                            )
-                        ),
-                    )
-                ),
-                narrow = GenderedPattern(
-                    cases = Cases(
-                        nominative = PluralPattern(
-                            Plurals(
-                                other = "{0}太陽質量",
+                                one = "{0} Güneş kütlesi",
+                                other = "{0} Güneş kütlesi",
                             )
                         ),
                     )
@@ -2434,16 +2029,8 @@ open class LanguageZhHANT internal constructor() : LanguageZh() {
                     cases = Cases(
                         nominative = PluralPattern(
                             Plurals(
-                                other = "{0} 格林",
-                            )
-                        ),
-                    )
-                ),
-                narrow = GenderedPattern(
-                    cases = Cases(
-                        nominative = PluralPattern(
-                            Plurals(
-                                other = "{0}格林",
+                                one = "{0} tane",
+                                other = "{0} tane",
                             )
                         ),
                     )
@@ -2451,20 +2038,12 @@ open class LanguageZhHANT internal constructor() : LanguageZh() {
             )
         override val powerGigawatt
             get() = MultiLengthGenderedPattern(
-                short = GenderedPattern(
+                long = GenderedPattern(
                     cases = Cases(
                         nominative = PluralPattern(
                             Plurals(
-                                other = "{0} 吉瓦",
-                            )
-                        ),
-                    )
-                ),
-                narrow = GenderedPattern(
-                    cases = Cases(
-                        nominative = PluralPattern(
-                            Plurals(
-                                other = "{0}吉瓦",
+                                one = "{0} gigavat",
+                                other = "{0} gigavat",
                             )
                         ),
                     )
@@ -2476,25 +2055,8 @@ open class LanguageZhHANT internal constructor() : LanguageZh() {
                     cases = Cases(
                         nominative = PluralPattern(
                             Plurals(
-                                other = "{0} 百萬瓦特",
-                            )
-                        ),
-                    )
-                ),
-                short = GenderedPattern(
-                    cases = Cases(
-                        nominative = PluralPattern(
-                            Plurals(
-                                other = "{0} 百萬瓦",
-                            )
-                        ),
-                    )
-                ),
-                narrow = GenderedPattern(
-                    cases = Cases(
-                        nominative = PluralPattern(
-                            Plurals(
-                                other = "{0}百萬瓦",
+                                one = "{0} megavat",
+                                other = "{0} megavat",
                             )
                         ),
                     )
@@ -2506,25 +2068,8 @@ open class LanguageZhHANT internal constructor() : LanguageZh() {
                     cases = Cases(
                         nominative = PluralPattern(
                             Plurals(
-                                other = "{0} 千瓦特",
-                            )
-                        ),
-                    )
-                ),
-                short = GenderedPattern(
-                    cases = Cases(
-                        nominative = PluralPattern(
-                            Plurals(
-                                other = "{0} 千瓦",
-                            )
-                        ),
-                    )
-                ),
-                narrow = GenderedPattern(
-                    cases = Cases(
-                        nominative = PluralPattern(
-                            Plurals(
-                                other = "{0}千瓦",
+                                one = "{0} kilovat",
+                                other = "{0} kilovat",
                             )
                         ),
                     )
@@ -2536,25 +2081,8 @@ open class LanguageZhHANT internal constructor() : LanguageZh() {
                     cases = Cases(
                         nominative = PluralPattern(
                             Plurals(
-                                other = "{0} 瓦特",
-                            )
-                        ),
-                    )
-                ),
-                short = GenderedPattern(
-                    cases = Cases(
-                        nominative = PluralPattern(
-                            Plurals(
-                                other = "{0} 瓦",
-                            )
-                        ),
-                    )
-                ),
-                narrow = GenderedPattern(
-                    cases = Cases(
-                        nominative = PluralPattern(
-                            Plurals(
-                                other = "{0}瓦特",
+                                one = "{0} vat",
+                                other = "{0} vat",
                             )
                         ),
                     )
@@ -2566,25 +2094,8 @@ open class LanguageZhHANT internal constructor() : LanguageZh() {
                     cases = Cases(
                         nominative = PluralPattern(
                             Plurals(
-                                other = "{0} 毫瓦特",
-                            )
-                        ),
-                    )
-                ),
-                short = GenderedPattern(
-                    cases = Cases(
-                        nominative = PluralPattern(
-                            Plurals(
-                                other = "{0} 毫瓦",
-                            )
-                        ),
-                    )
-                ),
-                narrow = GenderedPattern(
-                    cases = Cases(
-                        nominative = PluralPattern(
-                            Plurals(
-                                other = "{0}毫瓦",
+                                one = "{0} milivat",
+                                other = "{0} milivat",
                             )
                         ),
                     )
@@ -2596,7 +2107,8 @@ open class LanguageZhHANT internal constructor() : LanguageZh() {
                     cases = Cases(
                         nominative = PluralPattern(
                             Plurals(
-                                other = "{0} 匹馬力",
+                                one = "{0} beygir gücü",
+                                other = "{0} beygir gücü",
                             )
                         ),
                     )
@@ -2605,37 +2117,33 @@ open class LanguageZhHANT internal constructor() : LanguageZh() {
                     cases = Cases(
                         nominative = PluralPattern(
                             Plurals(
-                                other = "{0} 匹",
-                            )
-                        ),
-                    )
-                ),
-                narrow = GenderedPattern(
-                    cases = Cases(
-                        nominative = PluralPattern(
-                            Plurals(
-                                other = "{0}匹",
+                                one = "{0} bg",
+                                other = "{0} bg",
                             )
                         ),
                     )
                 ),
             )
+        override val powerKilogramSquareMeterPerCubicSecond: MultiLengthGenderedPattern
+            get() = TODO("KilogramSquareMeterPerCubicSecond formatter is not implemented yet for tr")
         override val pressureMillimeterOfhg
             get() = MultiLengthGenderedPattern(
-                short = GenderedPattern(
+                long = GenderedPattern(
                     cases = Cases(
                         nominative = PluralPattern(
                             Plurals(
-                                other = "{0} 毫米汞柱",
+                                one = "{0} milimetre cıva",
+                                other = "{0} milimetre cıva",
                             )
                         ),
                     )
                 ),
-                narrow = GenderedPattern(
+                short = GenderedPattern(
                     cases = Cases(
                         nominative = PluralPattern(
                             Plurals(
-                                other = "{0}mmHg",
+                                one = "{0} mmHg",
+                                other = "{0} mmHg",
                             )
                         ),
                     )
@@ -2647,7 +2155,8 @@ open class LanguageZhHANT internal constructor() : LanguageZh() {
                     cases = Cases(
                         nominative = PluralPattern(
                             Plurals(
-                                other = "每平方英寸 {0} 磅力",
+                                one = "{0} libre/inç kare",
+                                other = "{0} libre/inç kare",
                             )
                         ),
                     )
@@ -2656,16 +2165,8 @@ open class LanguageZhHANT internal constructor() : LanguageZh() {
                     cases = Cases(
                         nominative = PluralPattern(
                             Plurals(
-                                other = "{0} 磅力/平方英寸",
-                            )
-                        ),
-                    )
-                ),
-                narrow = GenderedPattern(
-                    cases = Cases(
-                        nominative = PluralPattern(
-                            Plurals(
-                                other = "{0}psi",
+                                one = "{0} lb/in²",
+                                other = "{0} lb/in²",
                             )
                         ),
                     )
@@ -2673,53 +2174,27 @@ open class LanguageZhHANT internal constructor() : LanguageZh() {
             )
         override val pressureInchOfhg
             get() = MultiLengthGenderedPattern(
-                short = GenderedPattern(
+                long = GenderedPattern(
                     cases = Cases(
                         nominative = PluralPattern(
                             Plurals(
-                                other = "{0} 英寸汞柱",
-                            )
-                        ),
-                    )
-                ),
-                narrow = GenderedPattern(
-                    cases = Cases(
-                        nominative = PluralPattern(
-                            Plurals(
-                                other = "{0}英吋汞柱",
+                                one = "{0} inç cıva",
+                                other = "{0} inç cıva",
                             )
                         ),
                     )
                 ),
             )
-        override val pressureBar
-            get() = MultiLengthGenderedPattern(
-                short = GenderedPattern(
-                    cases = Cases(
-                        nominative = PluralPattern(
-                            Plurals(
-                                other = "{0} 巴",
-                            )
-                        ),
-                    )
-                ),
-                narrow = GenderedPattern(
-                    cases = Cases(
-                        nominative = PluralPattern(
-                            Plurals(
-                                other = "{0}巴",
-                            )
-                        ),
-                    )
-                ),
-            )
+        override val pressureBar: MultiLengthGenderedPattern
+            get() = TODO("Bar formatter is not implemented yet for tr")
         override val pressureMillibar
             get() = MultiLengthGenderedPattern(
-                short = GenderedPattern(
+                long = GenderedPattern(
                     cases = Cases(
                         nominative = PluralPattern(
                             Plurals(
-                                other = "{0} 毫巴",
+                                one = "{0} milibar",
+                                other = "{0} milibar",
                             )
                         ),
                     )
@@ -2728,7 +2203,8 @@ open class LanguageZhHANT internal constructor() : LanguageZh() {
                     cases = Cases(
                         nominative = PluralPattern(
                             Plurals(
-                                other = "{0}毫巴",
+                                one = "{0} mb",
+                                other = "{0} mb",
                             )
                         ),
                     )
@@ -2740,16 +2216,8 @@ open class LanguageZhHANT internal constructor() : LanguageZh() {
                     cases = Cases(
                         nominative = PluralPattern(
                             Plurals(
-                                other = "{0} 大氣壓",
-                            )
-                        ),
-                    )
-                ),
-                narrow = GenderedPattern(
-                    cases = Cases(
-                        nominative = PluralPattern(
-                            Plurals(
-                                other = "{0}atm",
+                                one = "{0} atmosfer",
+                                other = "{0} atmosfer",
                             )
                         ),
                     )
@@ -2761,25 +2229,8 @@ open class LanguageZhHANT internal constructor() : LanguageZh() {
                     cases = Cases(
                         nominative = PluralPattern(
                             Plurals(
-                                other = "{0} 帕斯卡",
-                            )
-                        ),
-                    )
-                ),
-                short = GenderedPattern(
-                    cases = Cases(
-                        nominative = PluralPattern(
-                            Plurals(
-                                other = "{0} 帕",
-                            )
-                        ),
-                    )
-                ),
-                narrow = GenderedPattern(
-                    cases = Cases(
-                        nominative = PluralPattern(
-                            Plurals(
-                                other = "{0}帕",
+                                one = "{0} paskal",
+                                other = "{0} paskal",
                             )
                         ),
                     )
@@ -2787,20 +2238,12 @@ open class LanguageZhHANT internal constructor() : LanguageZh() {
             )
         override val pressureHectopascal
             get() = MultiLengthGenderedPattern(
-                short = GenderedPattern(
+                long = GenderedPattern(
                     cases = Cases(
                         nominative = PluralPattern(
                             Plurals(
-                                other = "{0} 百帕",
-                            )
-                        ),
-                    )
-                ),
-                narrow = GenderedPattern(
-                    cases = Cases(
-                        nominative = PluralPattern(
-                            Plurals(
-                                other = "{0}百帕",
+                                one = "{0} hektopaskal",
+                                other = "{0} hektopaskal",
                             )
                         ),
                     )
@@ -2808,20 +2251,12 @@ open class LanguageZhHANT internal constructor() : LanguageZh() {
             )
         override val pressureKilopascal
             get() = MultiLengthGenderedPattern(
-                short = GenderedPattern(
+                long = GenderedPattern(
                     cases = Cases(
                         nominative = PluralPattern(
                             Plurals(
-                                other = "{0} 千帕",
-                            )
-                        ),
-                    )
-                ),
-                narrow = GenderedPattern(
-                    cases = Cases(
-                        nominative = PluralPattern(
-                            Plurals(
-                                other = "{0}千帕",
+                                one = "{0} kilopaskal",
+                                other = "{0} kilopaskal",
                             )
                         ),
                     )
@@ -2829,32 +2264,29 @@ open class LanguageZhHANT internal constructor() : LanguageZh() {
             )
         override val pressureMegapascal
             get() = MultiLengthGenderedPattern(
-                short = GenderedPattern(
+                long = GenderedPattern(
                     cases = Cases(
                         nominative = PluralPattern(
                             Plurals(
-                                other = "{0} 兆帕",
-                            )
-                        ),
-                    )
-                ),
-                narrow = GenderedPattern(
-                    cases = Cases(
-                        nominative = PluralPattern(
-                            Plurals(
-                                other = "{0}兆帕",
+                                one = "{0} megapaskal",
+                                other = "{0} megapaskal",
                             )
                         ),
                     )
                 ),
             )
+        override val pressureGasolineEnergyDensity: MultiLengthGenderedPattern
+            get() = TODO("GasolineEnergyDensity formatter is not implemented yet for tr")
+        override val pressureKilogramPerMeterSquareSecond: MultiLengthGenderedPattern
+            get() = TODO("KilogramPerMeterSquareSecond formatter is not implemented yet for tr")
         override val speedKilometerPerHour
             get() = MultiLengthGenderedPattern(
                 long = GenderedPattern(
                     cases = Cases(
                         nominative = PluralPattern(
                             Plurals(
-                                other = "每小時 {0} 公里",
+                                one = "{0} kilometre/saat",
+                                other = "{0} kilometre/saat",
                             )
                         ),
                     )
@@ -2863,16 +2295,8 @@ open class LanguageZhHANT internal constructor() : LanguageZh() {
                     cases = Cases(
                         nominative = PluralPattern(
                             Plurals(
-                                other = "{0} 公里/小時",
-                            )
-                        ),
-                    )
-                ),
-                narrow = GenderedPattern(
-                    cases = Cases(
-                        nominative = PluralPattern(
-                            Plurals(
-                                other = "{0}公里/小時",
+                                one = "{0} km/sa",
+                                other = "{0} km/sa",
                             )
                         ),
                     )
@@ -2884,7 +2308,8 @@ open class LanguageZhHANT internal constructor() : LanguageZh() {
                     cases = Cases(
                         nominative = PluralPattern(
                             Plurals(
-                                other = "每秒 {0} 公尺",
+                                one = "{0} metre/saniye",
+                                other = "{0} metre/saniye",
                             )
                         ),
                     )
@@ -2893,16 +2318,8 @@ open class LanguageZhHANT internal constructor() : LanguageZh() {
                     cases = Cases(
                         nominative = PluralPattern(
                             Plurals(
-                                other = "{0} 公尺/秒",
-                            )
-                        ),
-                    )
-                ),
-                narrow = GenderedPattern(
-                    cases = Cases(
-                        nominative = PluralPattern(
-                            Plurals(
-                                other = "{0}公尺/秒",
+                                one = "{0} m/sn",
+                                other = "{0} m/sn",
                             )
                         ),
                     )
@@ -2914,7 +2331,8 @@ open class LanguageZhHANT internal constructor() : LanguageZh() {
                     cases = Cases(
                         nominative = PluralPattern(
                             Plurals(
-                                other = "每小時 {0} 英里",
+                                one = "{0} mil/saat",
+                                other = "{0} mil/saat",
                             )
                         ),
                     )
@@ -2923,16 +2341,8 @@ open class LanguageZhHANT internal constructor() : LanguageZh() {
                     cases = Cases(
                         nominative = PluralPattern(
                             Plurals(
-                                other = "{0} 英里/小時",
-                            )
-                        ),
-                    )
-                ),
-                narrow = GenderedPattern(
-                    cases = Cases(
-                        nominative = PluralPattern(
-                            Plurals(
-                                other = "{0}英里/小時",
+                                one = "{0} mil/sa",
+                                other = "{0} mil/sa",
                             )
                         ),
                     )
@@ -2940,11 +2350,12 @@ open class LanguageZhHANT internal constructor() : LanguageZh() {
             )
         override val speedKnot
             get() = MultiLengthGenderedPattern(
-                short = GenderedPattern(
+                long = GenderedPattern(
                     cases = Cases(
                         nominative = PluralPattern(
                             Plurals(
-                                other = "{0} 節",
+                                one = "{0} knot",
+                                other = "{0} knot",
                             )
                         ),
                     )
@@ -2952,20 +2363,25 @@ open class LanguageZhHANT internal constructor() : LanguageZh() {
             )
         override val speedBeaufort
             get() = MultiLengthGenderedPattern(
-                short = GenderedPattern(
+                long = GenderedPattern(
                     cases = Cases(
                         nominative = PluralPattern(
                             Plurals(
-                                other = "蒲福風級 {0} 級",
+                                one = "Beaufort {0}",
+                                other = "Beaufort {0}",
                             )
                         ),
                     )
                 ),
-                narrow = GenderedPattern(
+            )
+        override val temperatureGeneric
+            get() = MultiLengthGenderedPattern(
+                long = GenderedPattern(
                     cases = Cases(
                         nominative = PluralPattern(
                             Plurals(
-                                other = "蒲福風級{0}級",
+                                one = "{0} derece",
+                                other = "{0} derece",
                             )
                         ),
                     )
@@ -2977,7 +2393,28 @@ open class LanguageZhHANT internal constructor() : LanguageZh() {
                     cases = Cases(
                         nominative = PluralPattern(
                             Plurals(
-                                other = "攝氏 {0} 度",
+                                one = "{0} santigrat derece",
+                                other = "{0} santigrat derece",
+                            )
+                        ),
+                    )
+                ),
+                short = GenderedPattern(
+                    cases = Cases(
+                        nominative = PluralPattern(
+                            Plurals(
+                                one = "{0} °C",
+                                other = "{0}°C",
+                            )
+                        ),
+                    )
+                ),
+                narrow = GenderedPattern(
+                    cases = Cases(
+                        nominative = PluralPattern(
+                            Plurals(
+                                one = "{0}°C",
+                                other = "{0} °C",
                             )
                         ),
                     )
@@ -2989,7 +2426,28 @@ open class LanguageZhHANT internal constructor() : LanguageZh() {
                     cases = Cases(
                         nominative = PluralPattern(
                             Plurals(
-                                other = "華氏 {0} 度",
+                                one = "{0} fahrenhayt derece",
+                                other = "{0} fahrenhayt derece",
+                            )
+                        ),
+                    )
+                ),
+                short = GenderedPattern(
+                    cases = Cases(
+                        nominative = PluralPattern(
+                            Plurals(
+                                one = "{0} °F",
+                                other = "{0}°F",
+                            )
+                        ),
+                    )
+                ),
+                narrow = GenderedPattern(
+                    cases = Cases(
+                        nominative = PluralPattern(
+                            Plurals(
+                                one = "{0} °F",
+                                other = "{0} °F",
                             )
                         ),
                     )
@@ -2997,11 +2455,22 @@ open class LanguageZhHANT internal constructor() : LanguageZh() {
             )
         override val temperatureKelvin
             get() = MultiLengthGenderedPattern(
+                long = GenderedPattern(
+                    cases = Cases(
+                        nominative = PluralPattern(
+                            Plurals(
+                                one = "{0} kelvin",
+                                other = "{0} kelvin",
+                            )
+                        ),
+                    )
+                ),
                 short = GenderedPattern(
                     cases = Cases(
                         nominative = PluralPattern(
                             Plurals(
-                                other = "{0} 克耳文",
+                                one = "{0}K",
+                                other = "{0} K",
                             )
                         ),
                     )
@@ -3010,7 +2479,8 @@ open class LanguageZhHANT internal constructor() : LanguageZh() {
                     cases = Cases(
                         nominative = PluralPattern(
                             Plurals(
-                                other = "{0}克耳文",
+                                one = "{0} K",
+                                other = "{0} K",
                             )
                         ),
                     )
@@ -3018,20 +2488,12 @@ open class LanguageZhHANT internal constructor() : LanguageZh() {
             )
         override val torquePoundForceFoot
             get() = MultiLengthGenderedPattern(
-                short = GenderedPattern(
+                long = GenderedPattern(
                     cases = Cases(
                         nominative = PluralPattern(
                             Plurals(
-                                other = "{0} 磅英尺",
-                            )
-                        ),
-                    )
-                ),
-                narrow = GenderedPattern(
-                    cases = Cases(
-                        nominative = PluralPattern(
-                            Plurals(
-                                other = "{0}磅英尺",
+                                one = "{0} pound fit",
+                                other = "{0} pound fit",
                             )
                         ),
                     )
@@ -3039,20 +2501,12 @@ open class LanguageZhHANT internal constructor() : LanguageZh() {
             )
         override val torqueNewtonMeter
             get() = MultiLengthGenderedPattern(
-                short = GenderedPattern(
+                long = GenderedPattern(
                     cases = Cases(
                         nominative = PluralPattern(
                             Plurals(
-                                other = "{0} 牛頓米",
-                            )
-                        ),
-                    )
-                ),
-                narrow = GenderedPattern(
-                    cases = Cases(
-                        nominative = PluralPattern(
-                            Plurals(
-                                other = "{0}牛頓米",
+                                one = "{0} newton metre",
+                                other = "{0} newton metre",
                             )
                         ),
                     )
@@ -3060,20 +2514,12 @@ open class LanguageZhHANT internal constructor() : LanguageZh() {
             )
         override val volumeCubicKilometer
             get() = MultiLengthGenderedPattern(
-                short = GenderedPattern(
+                long = GenderedPattern(
                     cases = Cases(
                         nominative = PluralPattern(
                             Plurals(
-                                other = "{0} 立方公里",
-                            )
-                        ),
-                    )
-                ),
-                narrow = GenderedPattern(
-                    cases = Cases(
-                        nominative = PluralPattern(
-                            Plurals(
-                                other = "{0}立方公里",
+                                one = "{0} kilometreküp",
+                                other = "{0} kilometreküp",
                             )
                         ),
                     )
@@ -3081,20 +2527,12 @@ open class LanguageZhHANT internal constructor() : LanguageZh() {
             )
         override val volumeCubicMeter
             get() = MultiLengthGenderedPattern(
-                short = GenderedPattern(
+                long = GenderedPattern(
                     cases = Cases(
                         nominative = PluralPattern(
                             Plurals(
-                                other = "{0} 立方公尺",
-                            )
-                        ),
-                    )
-                ),
-                narrow = GenderedPattern(
-                    cases = Cases(
-                        nominative = PluralPattern(
-                            Plurals(
-                                other = "{0}立方公尺",
+                                one = "{0} metreküp",
+                                other = "{0} metreküp",
                             )
                         ),
                     )
@@ -3102,20 +2540,12 @@ open class LanguageZhHANT internal constructor() : LanguageZh() {
             )
         override val volumeCubicCentimeter
             get() = MultiLengthGenderedPattern(
-                short = GenderedPattern(
+                long = GenderedPattern(
                     cases = Cases(
                         nominative = PluralPattern(
                             Plurals(
-                                other = "{0} 立方公分",
-                            )
-                        ),
-                    )
-                ),
-                narrow = GenderedPattern(
-                    cases = Cases(
-                        nominative = PluralPattern(
-                            Plurals(
-                                other = "{0}立方公分",
+                                one = "{0} santimetreküp",
+                                other = "{0} santimetreküp",
                             )
                         ),
                     )
@@ -3123,20 +2553,22 @@ open class LanguageZhHANT internal constructor() : LanguageZh() {
             )
         override val volumeCubicMile
             get() = MultiLengthGenderedPattern(
-                short = GenderedPattern(
+                long = GenderedPattern(
                     cases = Cases(
                         nominative = PluralPattern(
                             Plurals(
-                                other = "{0} 立方英里",
+                                one = "{0} mil küp",
+                                other = "{0} mil küp",
                             )
                         ),
                     )
                 ),
-                narrow = GenderedPattern(
+                short = GenderedPattern(
                     cases = Cases(
                         nominative = PluralPattern(
                             Plurals(
-                                other = "{0}立方英里",
+                                one = "{0} mil³",
+                                other = "{0} mil³",
                             )
                         ),
                     )
@@ -3144,20 +2576,22 @@ open class LanguageZhHANT internal constructor() : LanguageZh() {
             )
         override val volumeCubicYard
             get() = MultiLengthGenderedPattern(
-                short = GenderedPattern(
+                long = GenderedPattern(
                     cases = Cases(
                         nominative = PluralPattern(
                             Plurals(
-                                other = "{0} 立方碼",
+                                one = "{0} yarda küp",
+                                other = "{0} yarda küp",
                             )
                         ),
                     )
                 ),
-                narrow = GenderedPattern(
+                short = GenderedPattern(
                     cases = Cases(
                         nominative = PluralPattern(
                             Plurals(
-                                other = "{0}立方碼",
+                                one = "{0} yarda³",
+                                other = "{0} yarda³",
                             )
                         ),
                     )
@@ -3165,20 +2599,22 @@ open class LanguageZhHANT internal constructor() : LanguageZh() {
             )
         override val volumeCubicFoot
             get() = MultiLengthGenderedPattern(
-                short = GenderedPattern(
+                long = GenderedPattern(
                     cases = Cases(
                         nominative = PluralPattern(
                             Plurals(
-                                other = "{0} 立方英尺",
+                                one = "{0} fit küp",
+                                other = "{0} fit küp",
                             )
                         ),
                     )
                 ),
-                narrow = GenderedPattern(
+                short = GenderedPattern(
                     cases = Cases(
                         nominative = PluralPattern(
                             Plurals(
-                                other = "{0}立方英尺",
+                                one = "{0} fit³",
+                                other = "{0} fit³",
                             )
                         ),
                     )
@@ -3186,20 +2622,22 @@ open class LanguageZhHANT internal constructor() : LanguageZh() {
             )
         override val volumeCubicInch
             get() = MultiLengthGenderedPattern(
-                short = GenderedPattern(
+                long = GenderedPattern(
                     cases = Cases(
                         nominative = PluralPattern(
                             Plurals(
-                                other = "{0} 立方英寸",
+                                one = "{0} inç küp",
+                                other = "{0} inç küp",
                             )
                         ),
                     )
                 ),
-                narrow = GenderedPattern(
+                short = GenderedPattern(
                     cases = Cases(
                         nominative = PluralPattern(
                             Plurals(
-                                other = "{0}立方英寸",
+                                one = "{0} inç³",
+                                other = "{0} inç³",
                             )
                         ),
                     )
@@ -3207,20 +2645,22 @@ open class LanguageZhHANT internal constructor() : LanguageZh() {
             )
         override val volumeMegaliter
             get() = MultiLengthGenderedPattern(
-                short = GenderedPattern(
+                long = GenderedPattern(
                     cases = Cases(
                         nominative = PluralPattern(
                             Plurals(
-                                other = "{0} 兆升",
+                                one = "{0} megalitre",
+                                other = "{0} megalitre",
                             )
                         ),
                     )
                 ),
-                narrow = GenderedPattern(
+                short = GenderedPattern(
                     cases = Cases(
                         nominative = PluralPattern(
                             Plurals(
-                                other = "{0}兆升",
+                                one = "{0} Ml",
+                                other = "{0} Ml",
                             )
                         ),
                     )
@@ -3228,20 +2668,22 @@ open class LanguageZhHANT internal constructor() : LanguageZh() {
             )
         override val volumeHectoliter
             get() = MultiLengthGenderedPattern(
-                short = GenderedPattern(
+                long = GenderedPattern(
                     cases = Cases(
                         nominative = PluralPattern(
                             Plurals(
-                                other = "{0} 公石",
+                                one = "{0} hektolitre",
+                                other = "{0} hektolitre",
                             )
                         ),
                     )
                 ),
-                narrow = GenderedPattern(
+                short = GenderedPattern(
                     cases = Cases(
                         nominative = PluralPattern(
                             Plurals(
-                                other = "{0}公石",
+                                one = "{0} hl",
+                                other = "{0} hl",
                             )
                         ),
                     )
@@ -3253,25 +2695,8 @@ open class LanguageZhHANT internal constructor() : LanguageZh() {
                     cases = Cases(
                         nominative = PluralPattern(
                             Plurals(
-                                other = "{0} 公升",
-                            )
-                        ),
-                    )
-                ),
-                short = GenderedPattern(
-                    cases = Cases(
-                        nominative = PluralPattern(
-                            Plurals(
-                                other = "{0} 升",
-                            )
-                        ),
-                    )
-                ),
-                narrow = GenderedPattern(
-                    cases = Cases(
-                        nominative = PluralPattern(
-                            Plurals(
-                                other = "{0}升",
+                                one = "{0} litre",
+                                other = "{0} litre",
                             )
                         ),
                     )
@@ -3279,20 +2704,22 @@ open class LanguageZhHANT internal constructor() : LanguageZh() {
             )
         override val volumeDeciliter
             get() = MultiLengthGenderedPattern(
-                short = GenderedPattern(
+                long = GenderedPattern(
                     cases = Cases(
                         nominative = PluralPattern(
                             Plurals(
-                                other = "{0} 公合",
+                                one = "{0} desilitre",
+                                other = "{0} desilitre",
                             )
                         ),
                     )
                 ),
-                narrow = GenderedPattern(
+                short = GenderedPattern(
                     cases = Cases(
                         nominative = PluralPattern(
                             Plurals(
-                                other = "{0}公合",
+                                one = "{0} dl",
+                                other = "{0} dl",
                             )
                         ),
                     )
@@ -3300,20 +2727,22 @@ open class LanguageZhHANT internal constructor() : LanguageZh() {
             )
         override val volumeCentiliter
             get() = MultiLengthGenderedPattern(
-                short = GenderedPattern(
+                long = GenderedPattern(
                     cases = Cases(
                         nominative = PluralPattern(
                             Plurals(
-                                other = "{0} 釐升",
+                                one = "{0} santilitre",
+                                other = "{0} santilitre",
                             )
                         ),
                     )
                 ),
-                narrow = GenderedPattern(
+                short = GenderedPattern(
                     cases = Cases(
                         nominative = PluralPattern(
                             Plurals(
-                                other = "{0}釐升",
+                                one = "{0} cl",
+                                other = "{0} cl",
                             )
                         ),
                     )
@@ -3321,20 +2750,22 @@ open class LanguageZhHANT internal constructor() : LanguageZh() {
             )
         override val volumeMilliliter
             get() = MultiLengthGenderedPattern(
-                short = GenderedPattern(
+                long = GenderedPattern(
                     cases = Cases(
                         nominative = PluralPattern(
                             Plurals(
-                                other = "{0} 毫升",
+                                one = "{0} mililitre",
+                                other = "{0} mililitre",
                             )
                         ),
                     )
                 ),
-                narrow = GenderedPattern(
+                short = GenderedPattern(
                     cases = Cases(
                         nominative = PluralPattern(
                             Plurals(
-                                other = "{0}毫升",
+                                one = "{0} ml",
+                                other = "{0} ml",
                             )
                         ),
                     )
@@ -3342,20 +2773,12 @@ open class LanguageZhHANT internal constructor() : LanguageZh() {
             )
         override val volumePintMetric
             get() = MultiLengthGenderedPattern(
-                short = GenderedPattern(
+                long = GenderedPattern(
                     cases = Cases(
                         nominative = PluralPattern(
                             Plurals(
-                                other = "{0} 公制品脫",
-                            )
-                        ),
-                    )
-                ),
-                narrow = GenderedPattern(
-                    cases = Cases(
-                        nominative = PluralPattern(
-                            Plurals(
-                                other = "{0}公制品脫",
+                                one = "{0} metrik pint",
+                                other = "{0} metrik pint",
                             )
                         ),
                     )
@@ -3363,20 +2786,22 @@ open class LanguageZhHANT internal constructor() : LanguageZh() {
             )
         override val volumeCupMetric
             get() = MultiLengthGenderedPattern(
-                short = GenderedPattern(
+                long = GenderedPattern(
                     cases = Cases(
                         nominative = PluralPattern(
                             Plurals(
-                                other = "{0} 公制杯",
+                                one = "{0} metrik su bardağı",
+                                other = "{0} metrik su bardağı",
                             )
                         ),
                     )
                 ),
-                narrow = GenderedPattern(
+                short = GenderedPattern(
                     cases = Cases(
                         nominative = PluralPattern(
                             Plurals(
-                                other = "{0}公制杯",
+                                one = "{0} msb",
+                                other = "{0} msb",
                             )
                         ),
                     )
@@ -3388,16 +2813,8 @@ open class LanguageZhHANT internal constructor() : LanguageZh() {
                     cases = Cases(
                         nominative = PluralPattern(
                             Plurals(
-                                other = "{0} 英畝英尺",
-                            )
-                        ),
-                    )
-                ),
-                narrow = GenderedPattern(
-                    cases = Cases(
-                        nominative = PluralPattern(
-                            Plurals(
-                                other = "{0}英畝英尺",
+                                one = "{0} akre fit",
+                                other = "{0} akre fit",
                             )
                         ),
                     )
@@ -3405,20 +2822,12 @@ open class LanguageZhHANT internal constructor() : LanguageZh() {
             )
         override val volumeBushel
             get() = MultiLengthGenderedPattern(
-                short = GenderedPattern(
+                long = GenderedPattern(
                     cases = Cases(
                         nominative = PluralPattern(
                             Plurals(
-                                other = "{0} 蒲式耳",
-                            )
-                        ),
-                    )
-                ),
-                narrow = GenderedPattern(
-                    cases = Cases(
-                        nominative = PluralPattern(
-                            Plurals(
-                                other = "{0}蒲式耳",
+                                one = "{0} buşel",
+                                other = "{0} buşel",
                             )
                         ),
                     )
@@ -3426,11 +2835,22 @@ open class LanguageZhHANT internal constructor() : LanguageZh() {
             )
         override val volumeGallon
             get() = MultiLengthGenderedPattern(
+                long = GenderedPattern(
+                    cases = Cases(
+                        nominative = PluralPattern(
+                            Plurals(
+                                one = "{0} galon",
+                                other = "{0} galon",
+                            )
+                        ),
+                    )
+                ),
                 short = GenderedPattern(
                     cases = Cases(
                         nominative = PluralPattern(
                             Plurals(
-                                other = "{0} 加侖",
+                                one = "{0} gal",
+                                other = "{0} gal",
                             )
                         ),
                     )
@@ -3439,7 +2859,8 @@ open class LanguageZhHANT internal constructor() : LanguageZh() {
                     cases = Cases(
                         nominative = PluralPattern(
                             Plurals(
-                                other = "{0}加侖",
+                                one = "{0} galon",
+                                other = "{0} galon",
                             )
                         ),
                     )
@@ -3447,20 +2868,22 @@ open class LanguageZhHANT internal constructor() : LanguageZh() {
             )
         override val volumeGallonImperial
             get() = MultiLengthGenderedPattern(
-                short = GenderedPattern(
+                long = GenderedPattern(
                     cases = Cases(
                         nominative = PluralPattern(
                             Plurals(
-                                other = "{0} 英制加侖",
+                                one = "{0} İng. galonu",
+                                other = "{0} İng. galonu",
                             )
                         ),
                     )
                 ),
-                narrow = GenderedPattern(
+                short = GenderedPattern(
                     cases = Cases(
                         nominative = PluralPattern(
                             Plurals(
-                                other = "{0}英制加侖",
+                                one = "{0} İng. gal",
+                                other = "{0} İng. gal",
                             )
                         ),
                     )
@@ -3468,11 +2891,12 @@ open class LanguageZhHANT internal constructor() : LanguageZh() {
             )
         override val volumeQuart
             get() = MultiLengthGenderedPattern(
-                short = GenderedPattern(
+                long = GenderedPattern(
                     cases = Cases(
                         nominative = PluralPattern(
                             Plurals(
-                                other = "{0} 夸脫",
+                                one = "{0} quart",
+                                other = "{0} quart",
                             )
                         ),
                     )
@@ -3481,7 +2905,8 @@ open class LanguageZhHANT internal constructor() : LanguageZh() {
                     cases = Cases(
                         nominative = PluralPattern(
                             Plurals(
-                                other = "{0}夸脫",
+                                one = "{0} quart",
+                                other = "{0} quart",
                             )
                         ),
                     )
@@ -3493,16 +2918,8 @@ open class LanguageZhHANT internal constructor() : LanguageZh() {
                     cases = Cases(
                         nominative = PluralPattern(
                             Plurals(
-                                other = "{0} 品脫",
-                            )
-                        ),
-                    )
-                ),
-                narrow = GenderedPattern(
-                    cases = Cases(
-                        nominative = PluralPattern(
-                            Plurals(
-                                other = "{0}品脫",
+                                one = "{0} pint",
+                                other = "{0} pint",
                             )
                         ),
                     )
@@ -3510,20 +2927,22 @@ open class LanguageZhHANT internal constructor() : LanguageZh() {
             )
         override val volumeCup
             get() = MultiLengthGenderedPattern(
-                short = GenderedPattern(
+                long = GenderedPattern(
                     cases = Cases(
                         nominative = PluralPattern(
                             Plurals(
-                                other = "{0} 杯",
+                                one = "{0} su bardağı",
+                                other = "{0} su bardağı",
                             )
                         ),
                     )
                 ),
-                narrow = GenderedPattern(
+                short = GenderedPattern(
                     cases = Cases(
                         nominative = PluralPattern(
                             Plurals(
-                                other = "{0}杯",
+                                one = "{0} sb",
+                                other = "{0} sb",
                             )
                         ),
                     )
@@ -3535,16 +2954,8 @@ open class LanguageZhHANT internal constructor() : LanguageZh() {
                     cases = Cases(
                         nominative = PluralPattern(
                             Plurals(
-                                other = "{0} 液盎司",
-                            )
-                        ),
-                    )
-                ),
-                narrow = GenderedPattern(
-                    cases = Cases(
-                        nominative = PluralPattern(
-                            Plurals(
-                                other = "{0}液盎司",
+                                one = "{0} sıvı ons",
+                                other = "{0} sıvı ons",
                             )
                         ),
                     )
@@ -3556,16 +2967,8 @@ open class LanguageZhHANT internal constructor() : LanguageZh() {
                     cases = Cases(
                         nominative = PluralPattern(
                             Plurals(
-                                other = "{0} 英液盎司",
-                            )
-                        ),
-                    )
-                ),
-                narrow = GenderedPattern(
-                    cases = Cases(
-                        nominative = PluralPattern(
-                            Plurals(
-                                other = "{0}英液盎司",
+                                one = "{0} İng. sıvı ons",
+                                other = "{0} İng. sıvı ons",
                             )
                         ),
                     )
@@ -3573,20 +2976,22 @@ open class LanguageZhHANT internal constructor() : LanguageZh() {
             )
         override val volumeTablespoon
             get() = MultiLengthGenderedPattern(
-                short = GenderedPattern(
+                long = GenderedPattern(
                     cases = Cases(
                         nominative = PluralPattern(
                             Plurals(
-                                other = "{0} 湯匙",
+                                one = "{0} yemek kaşığı",
+                                other = "{0} yemek kaşığı",
                             )
                         ),
                     )
                 ),
-                narrow = GenderedPattern(
+                short = GenderedPattern(
                     cases = Cases(
                         nominative = PluralPattern(
                             Plurals(
-                                other = "{0}匙",
+                                one = "{0} yk",
+                                other = "{0} yk",
                             )
                         ),
                     )
@@ -3594,20 +2999,22 @@ open class LanguageZhHANT internal constructor() : LanguageZh() {
             )
         override val volumeTeaspoon
             get() = MultiLengthGenderedPattern(
-                short = GenderedPattern(
+                long = GenderedPattern(
                     cases = Cases(
                         nominative = PluralPattern(
                             Plurals(
-                                other = "{0} 茶匙",
+                                one = "{0} çay kaşığı",
+                                other = "{0} çay kaşığı",
                             )
                         ),
                     )
                 ),
-                narrow = GenderedPattern(
+                short = GenderedPattern(
                     cases = Cases(
                         nominative = PluralPattern(
                             Plurals(
-                                other = "{0}茶匙",
+                                one = "{0} çk",
+                                other = "{0} çk",
                             )
                         ),
                     )
@@ -3615,20 +3022,12 @@ open class LanguageZhHANT internal constructor() : LanguageZh() {
             )
         override val volumeBarrel
             get() = MultiLengthGenderedPattern(
-                short = GenderedPattern(
+                long = GenderedPattern(
                     cases = Cases(
                         nominative = PluralPattern(
                             Plurals(
-                                other = "{0} 桶",
-                            )
-                        ),
-                    )
-                ),
-                narrow = GenderedPattern(
-                    cases = Cases(
-                        nominative = PluralPattern(
-                            Plurals(
-                                other = "{0}桶",
+                                one = "{0} varil",
+                                other = "{0} varil",
                             )
                         ),
                     )
@@ -3636,11 +3035,22 @@ open class LanguageZhHANT internal constructor() : LanguageZh() {
             )
         override val volumeDessertSpoon
             get() = MultiLengthGenderedPattern(
+                long = GenderedPattern(
+                    cases = Cases(
+                        nominative = PluralPattern(
+                            Plurals(
+                                one = "{0} tatlı kaşığı",
+                                other = "{0} tatlı kaşığı",
+                            )
+                        ),
+                    )
+                ),
                 short = GenderedPattern(
                     cases = Cases(
                         nominative = PluralPattern(
                             Plurals(
-                                other = "{0} 甜品匙",
+                                one = "{0} tat. kaşığı",
+                                other = "{0} tat. kaşığı",
                             )
                         ),
                     )
@@ -3649,7 +3059,8 @@ open class LanguageZhHANT internal constructor() : LanguageZh() {
                     cases = Cases(
                         nominative = PluralPattern(
                             Plurals(
-                                other = "{0}甜品匙",
+                                one = "{0} tk",
+                                other = "{0} tk",
                             )
                         ),
                     )
@@ -3657,11 +3068,22 @@ open class LanguageZhHANT internal constructor() : LanguageZh() {
             )
         override val volumeDessertSpoonImperial
             get() = MultiLengthGenderedPattern(
+                long = GenderedPattern(
+                    cases = Cases(
+                        nominative = PluralPattern(
+                            Plurals(
+                                one = "{0} İng. tatlı kaşığı",
+                                other = "{0} İng. tatlı kaşığı",
+                            )
+                        ),
+                    )
+                ),
                 short = GenderedPattern(
                     cases = Cases(
                         nominative = PluralPattern(
                             Plurals(
-                                other = "{0} 英制甜品匙",
+                                one = "{0} İng. tat. kaşığı",
+                                other = "{0} İng. tat. kaşığı",
                             )
                         ),
                     )
@@ -3670,7 +3092,8 @@ open class LanguageZhHANT internal constructor() : LanguageZh() {
                     cases = Cases(
                         nominative = PluralPattern(
                             Plurals(
-                                other = "{0}甜品匙",
+                                one = "{0} İng. tk",
+                                other = "{0} İng. tk",
                             )
                         ),
                     )
@@ -3682,16 +3105,8 @@ open class LanguageZhHANT internal constructor() : LanguageZh() {
                     cases = Cases(
                         nominative = PluralPattern(
                             Plurals(
-                                other = "{0} 滴",
-                            )
-                        ),
-                    )
-                ),
-                narrow = GenderedPattern(
-                    cases = Cases(
-                        nominative = PluralPattern(
-                            Plurals(
-                                other = "{0}滴",
+                                one = "{0} damla",
+                                other = "{0} damla",
                             )
                         ),
                     )
@@ -3699,62 +3114,37 @@ open class LanguageZhHANT internal constructor() : LanguageZh() {
             )
         override val volumeDram
             get() = MultiLengthGenderedPattern(
-                short = GenderedPattern(
+                long = GenderedPattern(
                     cases = Cases(
                         nominative = PluralPattern(
                             Plurals(
-                                other = "{0} 打蘭",
+                                one = "{0} dram",
+                                other = "{0} dram",
                             )
                         ),
                     )
                 ),
-                narrow = GenderedPattern(
+                short = GenderedPattern(
                     cases = Cases(
                         nominative = PluralPattern(
                             Plurals(
-                                other = "{0}打蘭",
+                                one = "{0} sıvı dram",
+                                other = "{0} sıvı dram",
                             )
                         ),
                     )
                 ),
             )
-        override val volumeJigger
-            get() = MultiLengthGenderedPattern(
-                short = GenderedPattern(
-                    cases = Cases(
-                        nominative = PluralPattern(
-                            Plurals(
-                                other = "{0} 量酒杯",
-                            )
-                        ),
-                    )
-                ),
-                narrow = GenderedPattern(
-                    cases = Cases(
-                        nominative = PluralPattern(
-                            Plurals(
-                                other = "{0}量酒杯",
-                            )
-                        ),
-                    )
-                ),
-            )
+        override val volumeJigger: MultiLengthGenderedPattern
+            get() = TODO("Jigger formatter is not implemented yet for tr")
         override val volumePinch
             get() = MultiLengthGenderedPattern(
                 short = GenderedPattern(
                     cases = Cases(
                         nominative = PluralPattern(
                             Plurals(
-                                other = "{0} 小撮",
-                            )
-                        ),
-                    )
-                ),
-                narrow = GenderedPattern(
-                    cases = Cases(
-                        nominative = PluralPattern(
-                            Plurals(
-                                other = "{0}小撮",
+                                one = "{0} tutam",
+                                other = "{0} tutam",
                             )
                         ),
                     )
@@ -3766,7 +3156,8 @@ open class LanguageZhHANT internal constructor() : LanguageZh() {
                     cases = Cases(
                         nominative = PluralPattern(
                             Plurals(
-                                other = "{0} 英制夸脫",
+                                one = "{0} İng. quart",
+                                other = "{0} İng. quart",
                             )
                         ),
                     )
@@ -3775,7 +3166,8 @@ open class LanguageZhHANT internal constructor() : LanguageZh() {
                     cases = Cases(
                         nominative = PluralPattern(
                             Plurals(
-                                other = "{0}英制夸脫",
+                                one = "{0} İng. qt.",
+                                other = "{0} İng. qt.",
                             )
                         ),
                     )
@@ -3786,9 +3178,10 @@ open class LanguageZhHANT internal constructor() : LanguageZh() {
     override val measurementUnits: MeasurementUnitLanguage
         get() = MeasurementUnitLanguage()
 
-    open class NumberLanguage internal constructor() : LanguageZh.NumberLanguage() {
-        override val symbols = LanguageZh.NumberLanguage().symbols.copy(
-            nanSymbol = "非數值",
+    open class NumberLanguage internal constructor() : info.leonenko.i18n.NumberLanguage {
+        override val symbols = NumberSymbols(
+            decimalSymbol = ",",
+            groupSymbol = ".",
         )
     }
 

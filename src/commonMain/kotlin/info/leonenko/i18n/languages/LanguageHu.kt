@@ -1,25 +1,10 @@
 package info.leonenko.i18n.languages
-
-import info.leonenko.i18n.Language
-import info.leonenko.i18n.PluralFormChooser
-import info.leonenko.i18n.EllipsisFormatter
-import info.leonenko.i18n.PatternedListFormatter
-import info.leonenko.i18n.ListFormatter
-import info.leonenko.i18n.MultiLengthPatternedListFormatter
-import info.leonenko.i18n.MultiLengthGenderedPattern
-import info.leonenko.i18n.NumberSymbols
-import info.leonenko.i18n.GenderedPattern
-import info.leonenko.i18n.PluralPattern
-import info.leonenko.i18n.Plurals
-import info.leonenko.i18n.Gender
-import info.leonenko.i18n.Cases
-import info.leonenko.i18n.RBNF
+import info.leonenko.i18n.*
 import info.leonenko.i18n.rbnf.RBNFHu
 
 val Language.Companion.hu
     get() = languageHu
 private val languageHu = LanguageHu()
-
 open class LanguageHu internal constructor() : Language {
     override val code: String = "hu"
     override val language: String = "hu"
@@ -40,12 +25,12 @@ open class LanguageHu internal constructor() : Language {
         get() = EllipsisLanguage()
 
     open class ListLanguage internal constructor(val ellipsis: EllipsisLanguage) : info.leonenko.i18n.ListLanguage {
-        override val formatter: ListFormatter
-            get() = TODO("ListFormatter is not yet implemented for hu")
-        override val orFormatter: ListFormatter
-            get() = TODO("Or ListFormatter is not yet implemented for hu")
-        override val unitFormatter: ListFormatter
-            get() = TODO("Unit ListFormatter is not yet implemented for hu")
+        override val formatter: ListFormatter = MultiLengthPatternedListFormatter(
+            long = PatternedListFormatter(start = "{0}, {1}", middle = "{0}, {1}", end = "{0} és {1}", two = "{0} és {1}", ellipsis = ellipsis.wordFormatter),
+        )
+        override val orFormatter: ListFormatter =
+            MultiLengthPatternedListFormatter(long = PatternedListFormatter(start = "{0}, {1}", middle = "{0}, {1}", end = "{0} vagy {1}", two = "{0} vagy {1}", ellipsis = ellipsis.wordFormatter))
+        override val unitFormatter: ListFormatter = formatter
     }
 
     override val list: ListLanguage
