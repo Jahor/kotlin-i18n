@@ -323,6 +323,19 @@ data class GenderedPattern(
     val cases: Cases<PluralPattern>
 )
 
+fun MultiLengthGenderedPattern(
+    base: MultiLengthGenderedPattern,
+    long: GenderedPattern? = null,
+    short: GenderedPattern? = null,
+    narrow: GenderedPattern? = null
+): MultiLengthGenderedPattern {
+    return MultiLengthGenderedPattern(
+        long ?: base.long,
+        short ?: base.short,
+        narrow ?: base.narrow
+    )
+}
+
 data class MultiLengthGenderedPattern(
     val long: GenderedPattern? = null,
     val short: GenderedPattern? = null,

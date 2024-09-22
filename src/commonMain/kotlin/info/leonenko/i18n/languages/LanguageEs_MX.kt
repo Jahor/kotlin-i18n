@@ -1,9 +1,11 @@
 package info.leonenko.i18n.languages
+
 import info.leonenko.i18n.*
 
 val Language.Companion.es_MX
     get() = languageEs_MX
 private val languageEs_MX = LanguageEs_MX()
+
 class LanguageEs_MX internal constructor() : LanguageEs() {
     override val code: String = "es_MX"
     override val script: String? = null
@@ -24,6 +26,7 @@ class LanguageEs_MX internal constructor() : LanguageEs() {
     class MeasurementUnitLanguage internal constructor() : LanguageEs.MeasurementUnitLanguage() {
         override val angleDegree
             get() = MultiLengthGenderedPattern(
+                base = super.angleDegree,
                 short = GenderedPattern(
                     cases = Cases(
                         nominative = PluralPattern(
@@ -37,6 +40,7 @@ class LanguageEs_MX internal constructor() : LanguageEs() {
             )
         override val concentrationKarat
             get() = MultiLengthGenderedPattern(
+                base = super.concentrationKarat,
                 short = GenderedPattern(
                     cases = Cases(
                         nominative = PluralPattern(
@@ -60,6 +64,7 @@ class LanguageEs_MX internal constructor() : LanguageEs() {
             )
         override val consumptionMilePerGallonImperial
             get() = MultiLengthGenderedPattern(
+                base = super.consumptionMilePerGallonImperial,
                 short = GenderedPattern(
                     cases = Cases(
                         nominative = PluralPattern(
@@ -73,6 +78,7 @@ class LanguageEs_MX internal constructor() : LanguageEs() {
             )
         override val digitalTerabyte
             get() = MultiLengthGenderedPattern(
+                base = super.digitalTerabyte,
                 narrow = GenderedPattern(
                     cases = Cases(
                         nominative = PluralPattern(
@@ -86,6 +92,7 @@ class LanguageEs_MX internal constructor() : LanguageEs() {
             )
         override val digitalTerabit
             get() = MultiLengthGenderedPattern(
+                base = super.digitalTerabit,
                 narrow = GenderedPattern(
                     cases = Cases(
                         nominative = PluralPattern(
@@ -99,6 +106,7 @@ class LanguageEs_MX internal constructor() : LanguageEs() {
             )
         override val digitalGigabyte
             get() = MultiLengthGenderedPattern(
+                base = super.digitalGigabyte,
                 narrow = GenderedPattern(
                     cases = Cases(
                         nominative = PluralPattern(
@@ -112,6 +120,7 @@ class LanguageEs_MX internal constructor() : LanguageEs() {
             )
         override val digitalKilobit
             get() = MultiLengthGenderedPattern(
+                base = super.digitalKilobit,
                 narrow = GenderedPattern(
                     cases = Cases(
                         nominative = PluralPattern(
@@ -125,6 +134,7 @@ class LanguageEs_MX internal constructor() : LanguageEs() {
             )
         override val digitalByte
             get() = MultiLengthGenderedPattern(
+                base = super.digitalByte,
                 short = GenderedPattern(
                     cases = Cases(
                         nominative = PluralPattern(
@@ -138,6 +148,7 @@ class LanguageEs_MX internal constructor() : LanguageEs() {
             )
         override val durationYear
             get() = MultiLengthGenderedPattern(
+                base = super.durationYear,
                 short = GenderedPattern(
                     cases = Cases(
                         nominative = PluralPattern(
@@ -161,6 +172,7 @@ class LanguageEs_MX internal constructor() : LanguageEs() {
             )
         override val durationMonth
             get() = MultiLengthGenderedPattern(
+                base = super.durationMonth,
                 short = GenderedPattern(
                     cases = Cases(
                         nominative = PluralPattern(
@@ -184,6 +196,7 @@ class LanguageEs_MX internal constructor() : LanguageEs() {
             )
         override val durationWeek
             get() = MultiLengthGenderedPattern(
+                base = super.durationWeek,
                 short = GenderedPattern(
                     cases = Cases(
                         nominative = PluralPattern(
@@ -207,6 +220,7 @@ class LanguageEs_MX internal constructor() : LanguageEs() {
             )
         override val durationDay
             get() = MultiLengthGenderedPattern(
+                base = super.durationDay,
                 short = GenderedPattern(
                     cases = Cases(
                         nominative = PluralPattern(
@@ -230,6 +244,7 @@ class LanguageEs_MX internal constructor() : LanguageEs() {
             )
         override val electricOhm
             get() = MultiLengthGenderedPattern(
+                base = super.electricOhm,
                 long = GenderedPattern(
                     cases = Cases(
                         nominative = PluralPattern(
@@ -243,6 +258,7 @@ class LanguageEs_MX internal constructor() : LanguageEs() {
             )
         override val electricVolt
             get() = MultiLengthGenderedPattern(
+                base = super.electricVolt,
                 narrow = GenderedPattern(
                     cases = Cases(
                         nominative = PluralPattern(
@@ -256,6 +272,7 @@ class LanguageEs_MX internal constructor() : LanguageEs() {
             )
         override val energyKilowattHour
             get() = MultiLengthGenderedPattern(
+                base = super.energyKilowattHour,
                 long = GenderedPattern(
                     cases = Cases(
                         nominative = PluralPattern(
@@ -269,6 +286,7 @@ class LanguageEs_MX internal constructor() : LanguageEs() {
             )
         override val frequencyGigahertz
             get() = MultiLengthGenderedPattern(
+                base = super.frequencyGigahertz,
                 narrow = GenderedPattern(
                     cases = Cases(
                         nominative = PluralPattern(
@@ -282,6 +300,7 @@ class LanguageEs_MX internal constructor() : LanguageEs() {
             )
         override val frequencyMegahertz
             get() = MultiLengthGenderedPattern(
+                base = super.frequencyMegahertz,
                 narrow = GenderedPattern(
                     cases = Cases(
                         nominative = PluralPattern(
@@ -295,6 +314,7 @@ class LanguageEs_MX internal constructor() : LanguageEs() {
             )
         override val frequencyKilohertz
             get() = MultiLengthGenderedPattern(
+                base = super.frequencyKilohertz,
                 narrow = GenderedPattern(
                     cases = Cases(
                         nominative = PluralPattern(
@@ -308,6 +328,7 @@ class LanguageEs_MX internal constructor() : LanguageEs() {
             )
         override val frequencyHertz
             get() = MultiLengthGenderedPattern(
+                base = super.frequencyHertz,
                 narrow = GenderedPattern(
                     cases = Cases(
                         nominative = PluralPattern(
@@ -321,6 +342,7 @@ class LanguageEs_MX internal constructor() : LanguageEs() {
             )
         override val lengthKilometer
             get() = MultiLengthGenderedPattern(
+                base = super.lengthKilometer,
                 narrow = GenderedPattern(
                     cases = Cases(
                         nominative = PluralPattern(
@@ -334,6 +356,7 @@ class LanguageEs_MX internal constructor() : LanguageEs() {
             )
         override val lengthCentimeter
             get() = MultiLengthGenderedPattern(
+                base = super.lengthCentimeter,
                 narrow = GenderedPattern(
                     cases = Cases(
                         nominative = PluralPattern(
@@ -347,6 +370,7 @@ class LanguageEs_MX internal constructor() : LanguageEs() {
             )
         override val lengthMillimeter
             get() = MultiLengthGenderedPattern(
+                base = super.lengthMillimeter,
                 narrow = GenderedPattern(
                     cases = Cases(
                         nominative = PluralPattern(
@@ -360,6 +384,7 @@ class LanguageEs_MX internal constructor() : LanguageEs() {
             )
         override val lengthParsec
             get() = MultiLengthGenderedPattern(
+                base = super.lengthParsec,
                 long = GenderedPattern(
                     cases = Cases(
                         nominative = PluralPattern(
@@ -373,6 +398,7 @@ class LanguageEs_MX internal constructor() : LanguageEs() {
             )
         override val lengthLightYear
             get() = MultiLengthGenderedPattern(
+                base = super.lengthLightYear,
                 short = GenderedPattern(
                     cases = Cases(
                         nominative = PluralPattern(
@@ -386,6 +412,7 @@ class LanguageEs_MX internal constructor() : LanguageEs() {
             )
         override val lengthAstronomicalUnit
             get() = MultiLengthGenderedPattern(
+                base = super.lengthAstronomicalUnit,
                 short = GenderedPattern(
                     cases = Cases(
                         nominative = PluralPattern(
@@ -399,6 +426,7 @@ class LanguageEs_MX internal constructor() : LanguageEs() {
             )
         override val lengthNauticalMile
             get() = MultiLengthGenderedPattern(
+                base = super.lengthNauticalMile,
                 long = GenderedPattern(
                     cases = Cases(
                         nominative = PluralPattern(
@@ -422,6 +450,7 @@ class LanguageEs_MX internal constructor() : LanguageEs() {
             )
         override val lengthPoint
             get() = MultiLengthGenderedPattern(
+                base = super.lengthPoint,
                 short = GenderedPattern(
                     cases = Cases(
                         nominative = PluralPattern(
@@ -435,6 +464,7 @@ class LanguageEs_MX internal constructor() : LanguageEs() {
             )
         override val massKilogram
             get() = MultiLengthGenderedPattern(
+                base = super.massKilogram,
                 narrow = GenderedPattern(
                     cases = Cases(
                         nominative = PluralPattern(
@@ -448,6 +478,7 @@ class LanguageEs_MX internal constructor() : LanguageEs() {
             )
         override val massCarat
             get() = MultiLengthGenderedPattern(
+                base = super.massCarat,
                 short = GenderedPattern(
                     cases = Cases(
                         nominative = PluralPattern(
@@ -461,6 +492,7 @@ class LanguageEs_MX internal constructor() : LanguageEs() {
             )
         override val powerHorsepower
             get() = MultiLengthGenderedPattern(
+                base = super.powerHorsepower,
                 long = GenderedPattern(
                     cases = Cases(
                         nominative = PluralPattern(
@@ -484,6 +516,7 @@ class LanguageEs_MX internal constructor() : LanguageEs() {
             )
         override val pressureAtmosphere
             get() = MultiLengthGenderedPattern(
+                base = super.pressureAtmosphere,
                 narrow = GenderedPattern(
                     cases = Cases(
                         nominative = PluralPattern(
@@ -497,6 +530,7 @@ class LanguageEs_MX internal constructor() : LanguageEs() {
             )
         override val speedBeaufort
             get() = MultiLengthGenderedPattern(
+                base = super.speedBeaufort,
                 long = GenderedPattern(
                     cases = Cases(
                         nominative = PluralPattern(
@@ -510,6 +544,7 @@ class LanguageEs_MX internal constructor() : LanguageEs() {
             )
         override val temperatureKelvin
             get() = MultiLengthGenderedPattern(
+                base = super.temperatureKelvin,
                 long = GenderedPattern(
                     cases = Cases(
                         nominative = PluralPattern(
@@ -523,6 +558,7 @@ class LanguageEs_MX internal constructor() : LanguageEs() {
             )
         override val torqueNewtonMeter
             get() = MultiLengthGenderedPattern(
+                base = super.torqueNewtonMeter,
                 short = GenderedPattern(
                     cases = Cases(
                         nominative = PluralPattern(
@@ -536,6 +572,7 @@ class LanguageEs_MX internal constructor() : LanguageEs() {
             )
         override val volumeAcreFoot
             get() = MultiLengthGenderedPattern(
+                base = super.volumeAcreFoot,
                 long = GenderedPattern(
                     cases = Cases(
                         nominative = PluralPattern(
@@ -549,6 +586,7 @@ class LanguageEs_MX internal constructor() : LanguageEs() {
             )
         override val volumeCup
             get() = MultiLengthGenderedPattern(
+                base = super.volumeCup,
                 short = GenderedPattern(
                     cases = Cases(
                         nominative = PluralPattern(
@@ -562,6 +600,7 @@ class LanguageEs_MX internal constructor() : LanguageEs() {
             )
         override val volumeFluidOunce
             get() = MultiLengthGenderedPattern(
+                base = super.volumeFluidOunce,
                 long = GenderedPattern(
                     cases = Cases(
                         nominative = PluralPattern(

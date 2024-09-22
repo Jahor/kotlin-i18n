@@ -1,9 +1,11 @@
 package info.leonenko.i18n.languages
+
 import info.leonenko.i18n.*
 
 val Language.Companion.es_AR
     get() = languageEs_AR
 private val languageEs_AR = LanguageEs_AR()
+
 class LanguageEs_AR internal constructor() : LanguageEs() {
     override val code: String = "es_AR"
     override val script: String? = null
@@ -24,6 +26,7 @@ class LanguageEs_AR internal constructor() : LanguageEs() {
     class MeasurementUnitLanguage internal constructor() : LanguageEs.MeasurementUnitLanguage() {
         override val durationCentury
             get() = MultiLengthGenderedPattern(
+                base = super.durationCentury,
                 short = GenderedPattern(
                     cases = Cases(
                         nominative = PluralPattern(
@@ -37,6 +40,7 @@ class LanguageEs_AR internal constructor() : LanguageEs() {
             )
         override val durationYear
             get() = MultiLengthGenderedPattern(
+                base = super.durationYear,
                 short = GenderedPattern(
                     cases = Cases(
                         nominative = PluralPattern(
@@ -60,6 +64,7 @@ class LanguageEs_AR internal constructor() : LanguageEs() {
             )
         override val durationSecond
             get() = MultiLengthGenderedPattern(
+                base = super.durationSecond,
                 short = GenderedPattern(
                     cases = Cases(
                         nominative = PluralPattern(
@@ -83,6 +88,7 @@ class LanguageEs_AR internal constructor() : LanguageEs() {
             )
         override val electricAmpere
             get() = MultiLengthGenderedPattern(
+                base = super.electricAmpere,
                 long = GenderedPattern(
                     cases = Cases(
                         nominative = PluralPattern(
@@ -96,6 +102,7 @@ class LanguageEs_AR internal constructor() : LanguageEs() {
             )
         override val electricMilliampere
             get() = MultiLengthGenderedPattern(
+                base = super.electricMilliampere,
                 long = GenderedPattern(
                     cases = Cases(
                         nominative = PluralPattern(
@@ -109,6 +116,7 @@ class LanguageEs_AR internal constructor() : LanguageEs() {
             )
         override val electricOhm
             get() = MultiLengthGenderedPattern(
+                base = super.electricOhm,
                 long = GenderedPattern(
                     cases = Cases(
                         nominative = PluralPattern(
@@ -122,6 +130,7 @@ class LanguageEs_AR internal constructor() : LanguageEs() {
             )
         override val energyKilojoule
             get() = MultiLengthGenderedPattern(
+                base = super.energyKilojoule,
                 long = GenderedPattern(
                     cases = Cases(
                         nominative = PluralPattern(
@@ -135,6 +144,7 @@ class LanguageEs_AR internal constructor() : LanguageEs() {
             )
         override val energyJoule
             get() = MultiLengthGenderedPattern(
+                base = super.energyJoule,
                 long = GenderedPattern(
                     cases = Cases(
                         nominative = PluralPattern(

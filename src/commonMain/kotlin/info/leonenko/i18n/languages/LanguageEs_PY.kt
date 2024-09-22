@@ -1,9 +1,11 @@
 package info.leonenko.i18n.languages
+
 import info.leonenko.i18n.*
 
 val Language.Companion.es_PY
     get() = languageEs_PY
 private val languageEs_PY = LanguageEs_PY()
+
 class LanguageEs_PY internal constructor() : LanguageEs() {
     override val code: String = "es_PY"
     override val script: String? = null
@@ -27,6 +29,7 @@ class LanguageEs_PY internal constructor() : LanguageEs() {
     class MeasurementUnitLanguage internal constructor() : LanguageEs.MeasurementUnitLanguage() {
         override val durationYear
             get() = MultiLengthGenderedPattern(
+                base = super.durationYear,
                 short = GenderedPattern(
                     cases = Cases(
                         nominative = PluralPattern(
@@ -40,6 +43,7 @@ class LanguageEs_PY internal constructor() : LanguageEs() {
             )
         override val durationMonth
             get() = MultiLengthGenderedPattern(
+                base = super.durationMonth,
                 short = GenderedPattern(
                     cases = Cases(
                         nominative = PluralPattern(
@@ -53,6 +57,7 @@ class LanguageEs_PY internal constructor() : LanguageEs() {
             )
         override val durationDay
             get() = MultiLengthGenderedPattern(
+                base = super.durationDay,
                 short = GenderedPattern(
                     cases = Cases(
                         nominative = PluralPattern(
@@ -66,6 +71,7 @@ class LanguageEs_PY internal constructor() : LanguageEs() {
             )
         override val durationSecond
             get() = MultiLengthGenderedPattern(
+                base = super.durationSecond,
                 short = GenderedPattern(
                     cases = Cases(
                         nominative = PluralPattern(
@@ -79,6 +85,7 @@ class LanguageEs_PY internal constructor() : LanguageEs() {
             )
         override val electricAmpere
             get() = MultiLengthGenderedPattern(
+                base = super.electricAmpere,
                 long = GenderedPattern(
                     cases = Cases(
                         nominative = PluralPattern(
@@ -92,6 +99,7 @@ class LanguageEs_PY internal constructor() : LanguageEs() {
             )
         override val electricMilliampere
             get() = MultiLengthGenderedPattern(
+                base = super.electricMilliampere,
                 long = GenderedPattern(
                     cases = Cases(
                         nominative = PluralPattern(
@@ -105,6 +113,7 @@ class LanguageEs_PY internal constructor() : LanguageEs() {
             )
         override val electricOhm
             get() = MultiLengthGenderedPattern(
+                base = super.electricOhm,
                 long = GenderedPattern(
                     cases = Cases(
                         nominative = PluralPattern(

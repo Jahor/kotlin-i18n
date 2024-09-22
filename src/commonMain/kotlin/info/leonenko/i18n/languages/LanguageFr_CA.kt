@@ -1,9 +1,11 @@
 package info.leonenko.i18n.languages
+
 import info.leonenko.i18n.*
 
 val Language.Companion.fr_CA
     get() = languageFr_CA
 private val languageFr_CA = LanguageFr_CA()
+
 class LanguageFr_CA internal constructor() : LanguageFr() {
     override val code: String = "fr_CA"
     override val script: String? = null
@@ -24,6 +26,7 @@ class LanguageFr_CA internal constructor() : LanguageFr() {
     class MeasurementUnitLanguage internal constructor() : LanguageFr.MeasurementUnitLanguage() {
         override val accelerationGForce
             get() = MultiLengthGenderedPattern(
+                base = super.accelerationGForce,
                 short = GenderedPattern(
                     cases = Cases(
                         nominative = PluralPattern(
@@ -37,6 +40,7 @@ class LanguageFr_CA internal constructor() : LanguageFr() {
             )
         override val accelerationMeterPerSquareSecond
             get() = MultiLengthGenderedPattern(
+                base = super.accelerationMeterPerSquareSecond,
                 long = GenderedPattern(
                     cases = Cases(
                         nominative = PluralPattern(
@@ -60,6 +64,7 @@ class LanguageFr_CA internal constructor() : LanguageFr() {
             )
         override val angleRadian
             get() = MultiLengthGenderedPattern(
+                base = super.angleRadian,
                 long = GenderedPattern(
                     cases = Cases(
                         nominative = PluralPattern(
@@ -93,6 +98,7 @@ class LanguageFr_CA internal constructor() : LanguageFr() {
             )
         override val angleDegree
             get() = MultiLengthGenderedPattern(
+                base = super.angleDegree,
                 long = GenderedPattern(
                     cases = Cases(
                         nominative = PluralPattern(
@@ -106,6 +112,7 @@ class LanguageFr_CA internal constructor() : LanguageFr() {
             )
         override val areaSquareKilometer
             get() = MultiLengthGenderedPattern(
+                base = super.areaSquareKilometer,
                 long = GenderedPattern(
                     cases = Cases(
                         nominative = PluralPattern(
@@ -129,6 +136,7 @@ class LanguageFr_CA internal constructor() : LanguageFr() {
             )
         override val areaHectare
             get() = MultiLengthGenderedPattern(
+                base = super.areaHectare,
                 long = GenderedPattern(
                     cases = Cases(
                         nominative = PluralPattern(
@@ -152,6 +160,7 @@ class LanguageFr_CA internal constructor() : LanguageFr() {
             )
         override val areaSquareMeter
             get() = MultiLengthGenderedPattern(
+                base = super.areaSquareMeter,
                 long = GenderedPattern(
                     cases = Cases(
                         nominative = PluralPattern(
@@ -175,6 +184,7 @@ class LanguageFr_CA internal constructor() : LanguageFr() {
             )
         override val areaSquareCentimeter
             get() = MultiLengthGenderedPattern(
+                base = super.areaSquareCentimeter,
                 long = GenderedPattern(
                     cases = Cases(
                         nominative = PluralPattern(
@@ -198,6 +208,7 @@ class LanguageFr_CA internal constructor() : LanguageFr() {
             )
         override val areaSquareMile
             get() = MultiLengthGenderedPattern(
+                base = super.areaSquareMile,
                 long = GenderedPattern(
                     cases = Cases(
                         nominative = PluralPattern(
@@ -221,6 +232,7 @@ class LanguageFr_CA internal constructor() : LanguageFr() {
             )
         override val areaAcre
             get() = MultiLengthGenderedPattern(
+                base = super.areaAcre,
                 long = GenderedPattern(
                     cases = Cases(
                         nominative = PluralPattern(
@@ -244,6 +256,7 @@ class LanguageFr_CA internal constructor() : LanguageFr() {
             )
         override val areaSquareYard
             get() = MultiLengthGenderedPattern(
+                base = super.areaSquareYard,
                 long = GenderedPattern(
                     cases = Cases(
                         nominative = PluralPattern(
@@ -277,6 +290,7 @@ class LanguageFr_CA internal constructor() : LanguageFr() {
             )
         override val areaSquareFoot
             get() = MultiLengthGenderedPattern(
+                base = super.areaSquareFoot,
                 long = GenderedPattern(
                     cases = Cases(
                         nominative = PluralPattern(
@@ -300,6 +314,7 @@ class LanguageFr_CA internal constructor() : LanguageFr() {
             )
         override val areaSquareInch
             get() = MultiLengthGenderedPattern(
+                base = super.areaSquareInch,
                 long = GenderedPattern(
                     cases = Cases(
                         nominative = PluralPattern(
@@ -323,6 +338,7 @@ class LanguageFr_CA internal constructor() : LanguageFr() {
             )
         override val concentrationPermillion
             get() = MultiLengthGenderedPattern(
+                base = super.concentrationPermillion,
                 long = GenderedPattern(
                     cases = Cases(
                         nominative = PluralPattern(
@@ -336,6 +352,7 @@ class LanguageFr_CA internal constructor() : LanguageFr() {
             )
         override val concentrationPercent
             get() = MultiLengthGenderedPattern(
+                base = super.concentrationPercent,
                 short = GenderedPattern(
                     cases = Cases(
                         nominative = PluralPattern(
@@ -349,6 +366,7 @@ class LanguageFr_CA internal constructor() : LanguageFr() {
             )
         override val concentrationPermille
             get() = MultiLengthGenderedPattern(
+                base = super.concentrationPermille,
                 long = GenderedPattern(
                     cases = Cases(
                         nominative = PluralPattern(
@@ -372,6 +390,7 @@ class LanguageFr_CA internal constructor() : LanguageFr() {
             )
         override val concentrationItem
             get() = MultiLengthGenderedPattern(
+                base = super.concentrationItem,
                 short = GenderedPattern(
                     cases = Cases(
                         nominative = PluralPattern(
@@ -385,6 +404,7 @@ class LanguageFr_CA internal constructor() : LanguageFr() {
             )
         override val consumptionLiterPer100Kilometer
             get() = MultiLengthGenderedPattern(
+                base = super.consumptionLiterPer100Kilometer,
                 long = GenderedPattern(
                     cases = Cases(
                         nominative = PluralPattern(
@@ -398,6 +418,7 @@ class LanguageFr_CA internal constructor() : LanguageFr() {
             )
         override val consumptionMilePerGallon
             get() = MultiLengthGenderedPattern(
+                base = super.consumptionMilePerGallon,
                 long = GenderedPattern(
                     cases = Cases(
                         nominative = PluralPattern(
@@ -421,6 +442,7 @@ class LanguageFr_CA internal constructor() : LanguageFr() {
             )
         override val consumptionMilePerGallonImperial
             get() = MultiLengthGenderedPattern(
+                base = super.consumptionMilePerGallonImperial,
                 long = GenderedPattern(
                     cases = Cases(
                         nominative = PluralPattern(
@@ -434,6 +456,7 @@ class LanguageFr_CA internal constructor() : LanguageFr() {
             )
         override val digitalTerabyte
             get() = MultiLengthGenderedPattern(
+                base = super.digitalTerabyte,
                 long = GenderedPattern(
                     cases = Cases(
                         nominative = PluralPattern(
@@ -457,6 +480,7 @@ class LanguageFr_CA internal constructor() : LanguageFr() {
             )
         override val digitalTerabit
             get() = MultiLengthGenderedPattern(
+                base = super.digitalTerabit,
                 long = GenderedPattern(
                     cases = Cases(
                         nominative = PluralPattern(
@@ -490,6 +514,7 @@ class LanguageFr_CA internal constructor() : LanguageFr() {
             )
         override val digitalGigabyte
             get() = MultiLengthGenderedPattern(
+                base = super.digitalGigabyte,
                 long = GenderedPattern(
                     cases = Cases(
                         nominative = PluralPattern(
@@ -513,6 +538,7 @@ class LanguageFr_CA internal constructor() : LanguageFr() {
             )
         override val digitalGigabit
             get() = MultiLengthGenderedPattern(
+                base = super.digitalGigabit,
                 long = GenderedPattern(
                     cases = Cases(
                         nominative = PluralPattern(
@@ -546,6 +572,7 @@ class LanguageFr_CA internal constructor() : LanguageFr() {
             )
         override val digitalMegabyte
             get() = MultiLengthGenderedPattern(
+                base = super.digitalMegabyte,
                 long = GenderedPattern(
                     cases = Cases(
                         nominative = PluralPattern(
@@ -569,6 +596,7 @@ class LanguageFr_CA internal constructor() : LanguageFr() {
             )
         override val digitalMegabit
             get() = MultiLengthGenderedPattern(
+                base = super.digitalMegabit,
                 long = GenderedPattern(
                     cases = Cases(
                         nominative = PluralPattern(
@@ -602,6 +630,7 @@ class LanguageFr_CA internal constructor() : LanguageFr() {
             )
         override val digitalKilobyte
             get() = MultiLengthGenderedPattern(
+                base = super.digitalKilobyte,
                 long = GenderedPattern(
                     cases = Cases(
                         nominative = PluralPattern(
@@ -625,6 +654,7 @@ class LanguageFr_CA internal constructor() : LanguageFr() {
             )
         override val digitalKilobit
             get() = MultiLengthGenderedPattern(
+                base = super.digitalKilobit,
                 long = GenderedPattern(
                     cases = Cases(
                         nominative = PluralPattern(
@@ -658,6 +688,7 @@ class LanguageFr_CA internal constructor() : LanguageFr() {
             )
         override val digitalByte
             get() = MultiLengthGenderedPattern(
+                base = super.digitalByte,
                 long = GenderedPattern(
                     cases = Cases(
                         nominative = PluralPattern(
@@ -681,6 +712,7 @@ class LanguageFr_CA internal constructor() : LanguageFr() {
             )
         override val digitalBit
             get() = MultiLengthGenderedPattern(
+                base = super.digitalBit,
                 long = GenderedPattern(
                     cases = Cases(
                         nominative = PluralPattern(
@@ -704,6 +736,7 @@ class LanguageFr_CA internal constructor() : LanguageFr() {
             )
         override val durationDecade
             get() = MultiLengthGenderedPattern(
+                base = super.durationDecade,
                 narrow = GenderedPattern(
                     cases = Cases(
                         nominative = PluralPattern(
@@ -717,6 +750,7 @@ class LanguageFr_CA internal constructor() : LanguageFr() {
             )
         override val durationYear
             get() = MultiLengthGenderedPattern(
+                base = super.durationYear,
                 short = GenderedPattern(
                     cases = Cases(
                         nominative = PluralPattern(
@@ -730,6 +764,7 @@ class LanguageFr_CA internal constructor() : LanguageFr() {
             )
         override val durationMonth
             get() = MultiLengthGenderedPattern(
+                base = super.durationMonth,
                 long = GenderedPattern(
                     cases = Cases(
                         nominative = PluralPattern(
@@ -763,6 +798,7 @@ class LanguageFr_CA internal constructor() : LanguageFr() {
             )
         override val durationWeek
             get() = MultiLengthGenderedPattern(
+                base = super.durationWeek,
                 long = GenderedPattern(
                     cases = Cases(
                         nominative = PluralPattern(
@@ -796,6 +832,7 @@ class LanguageFr_CA internal constructor() : LanguageFr() {
             )
         override val durationDay
             get() = MultiLengthGenderedPattern(
+                base = super.durationDay,
                 long = GenderedPattern(
                     cases = Cases(
                         nominative = PluralPattern(
@@ -819,6 +856,7 @@ class LanguageFr_CA internal constructor() : LanguageFr() {
             )
         override val durationHour
             get() = MultiLengthGenderedPattern(
+                base = super.durationHour,
                 long = GenderedPattern(
                     cases = Cases(
                         nominative = PluralPattern(
@@ -842,6 +880,7 @@ class LanguageFr_CA internal constructor() : LanguageFr() {
             )
         override val durationMinute
             get() = MultiLengthGenderedPattern(
+                base = super.durationMinute,
                 short = GenderedPattern(
                     cases = Cases(
                         nominative = PluralPattern(
@@ -865,6 +904,7 @@ class LanguageFr_CA internal constructor() : LanguageFr() {
             )
         override val durationSecond
             get() = MultiLengthGenderedPattern(
+                base = super.durationSecond,
                 long = GenderedPattern(
                     cases = Cases(
                         nominative = PluralPattern(
@@ -888,6 +928,7 @@ class LanguageFr_CA internal constructor() : LanguageFr() {
             )
         override val durationMillisecond
             get() = MultiLengthGenderedPattern(
+                base = super.durationMillisecond,
                 long = GenderedPattern(
                     cases = Cases(
                         nominative = PluralPattern(
@@ -911,6 +952,7 @@ class LanguageFr_CA internal constructor() : LanguageFr() {
             )
         override val durationMicrosecond
             get() = MultiLengthGenderedPattern(
+                base = super.durationMicrosecond,
                 long = GenderedPattern(
                     cases = Cases(
                         nominative = PluralPattern(
@@ -934,6 +976,7 @@ class LanguageFr_CA internal constructor() : LanguageFr() {
             )
         override val durationNanosecond
             get() = MultiLengthGenderedPattern(
+                base = super.durationNanosecond,
                 long = GenderedPattern(
                     cases = Cases(
                         nominative = PluralPattern(
@@ -957,6 +1000,7 @@ class LanguageFr_CA internal constructor() : LanguageFr() {
             )
         override val electricAmpere
             get() = MultiLengthGenderedPattern(
+                base = super.electricAmpere,
                 long = GenderedPattern(
                     cases = Cases(
                         nominative = PluralPattern(
@@ -980,6 +1024,7 @@ class LanguageFr_CA internal constructor() : LanguageFr() {
             )
         override val electricMilliampere
             get() = MultiLengthGenderedPattern(
+                base = super.electricMilliampere,
                 long = GenderedPattern(
                     cases = Cases(
                         nominative = PluralPattern(
@@ -1003,6 +1048,7 @@ class LanguageFr_CA internal constructor() : LanguageFr() {
             )
         override val electricOhm
             get() = MultiLengthGenderedPattern(
+                base = super.electricOhm,
                 long = GenderedPattern(
                     cases = Cases(
                         nominative = PluralPattern(
@@ -1026,6 +1072,7 @@ class LanguageFr_CA internal constructor() : LanguageFr() {
             )
         override val electricVolt
             get() = MultiLengthGenderedPattern(
+                base = super.electricVolt,
                 long = GenderedPattern(
                     cases = Cases(
                         nominative = PluralPattern(
@@ -1049,6 +1096,7 @@ class LanguageFr_CA internal constructor() : LanguageFr() {
             )
         override val energyKilocalorie
             get() = MultiLengthGenderedPattern(
+                base = super.energyKilocalorie,
                 long = GenderedPattern(
                     cases = Cases(
                         nominative = PluralPattern(
@@ -1072,6 +1120,7 @@ class LanguageFr_CA internal constructor() : LanguageFr() {
             )
         override val energyCalorie
             get() = MultiLengthGenderedPattern(
+                base = super.energyCalorie,
                 long = GenderedPattern(
                     cases = Cases(
                         nominative = PluralPattern(
@@ -1095,6 +1144,7 @@ class LanguageFr_CA internal constructor() : LanguageFr() {
             )
         override val energyFoodcalorie
             get() = MultiLengthGenderedPattern(
+                base = super.energyFoodcalorie,
                 long = GenderedPattern(
                     cases = Cases(
                         nominative = PluralPattern(
@@ -1108,6 +1158,7 @@ class LanguageFr_CA internal constructor() : LanguageFr() {
             )
         override val energyKilojoule
             get() = MultiLengthGenderedPattern(
+                base = super.energyKilojoule,
                 long = GenderedPattern(
                     cases = Cases(
                         nominative = PluralPattern(
@@ -1131,6 +1182,7 @@ class LanguageFr_CA internal constructor() : LanguageFr() {
             )
         override val energyJoule
             get() = MultiLengthGenderedPattern(
+                base = super.energyJoule,
                 long = GenderedPattern(
                     cases = Cases(
                         nominative = PluralPattern(
@@ -1154,6 +1206,7 @@ class LanguageFr_CA internal constructor() : LanguageFr() {
             )
         override val energyKilowattHour
             get() = MultiLengthGenderedPattern(
+                base = super.energyKilowattHour,
                 long = GenderedPattern(
                     cases = Cases(
                         nominative = PluralPattern(
@@ -1177,6 +1230,7 @@ class LanguageFr_CA internal constructor() : LanguageFr() {
             )
         override val energyBritishThermalUnit
             get() = MultiLengthGenderedPattern(
+                base = super.energyBritishThermalUnit,
                 long = GenderedPattern(
                     cases = Cases(
                         nominative = PluralPattern(
@@ -1210,6 +1264,7 @@ class LanguageFr_CA internal constructor() : LanguageFr() {
             )
         override val energyThermUs
             get() = MultiLengthGenderedPattern(
+                base = super.energyThermUs,
                 long = GenderedPattern(
                     cases = Cases(
                         nominative = PluralPattern(
@@ -1233,6 +1288,7 @@ class LanguageFr_CA internal constructor() : LanguageFr() {
             )
         override val frequencyGigahertz
             get() = MultiLengthGenderedPattern(
+                base = super.frequencyGigahertz,
                 long = GenderedPattern(
                     cases = Cases(
                         nominative = PluralPattern(
@@ -1256,6 +1312,7 @@ class LanguageFr_CA internal constructor() : LanguageFr() {
             )
         override val frequencyMegahertz
             get() = MultiLengthGenderedPattern(
+                base = super.frequencyMegahertz,
                 long = GenderedPattern(
                     cases = Cases(
                         nominative = PluralPattern(
@@ -1279,6 +1336,7 @@ class LanguageFr_CA internal constructor() : LanguageFr() {
             )
         override val frequencyKilohertz
             get() = MultiLengthGenderedPattern(
+                base = super.frequencyKilohertz,
                 long = GenderedPattern(
                     cases = Cases(
                         nominative = PluralPattern(
@@ -1302,6 +1360,7 @@ class LanguageFr_CA internal constructor() : LanguageFr() {
             )
         override val frequencyHertz
             get() = MultiLengthGenderedPattern(
+                base = super.frequencyHertz,
                 long = GenderedPattern(
                     cases = Cases(
                         nominative = PluralPattern(
@@ -1325,6 +1384,7 @@ class LanguageFr_CA internal constructor() : LanguageFr() {
             )
         override val graphicsDotPerCentimeter
             get() = MultiLengthGenderedPattern(
+                base = super.graphicsDotPerCentimeter,
                 short = GenderedPattern(
                     cases = Cases(
                         nominative = PluralPattern(
@@ -1338,6 +1398,7 @@ class LanguageFr_CA internal constructor() : LanguageFr() {
             )
         override val lengthEarthRadius
             get() = MultiLengthGenderedPattern(
+                base = super.lengthEarthRadius,
                 narrow = GenderedPattern(
                     cases = Cases(
                         nominative = PluralPattern(
@@ -1351,6 +1412,7 @@ class LanguageFr_CA internal constructor() : LanguageFr() {
             )
         override val lengthKilometer
             get() = MultiLengthGenderedPattern(
+                base = super.lengthKilometer,
                 long = GenderedPattern(
                     cases = Cases(
                         nominative = PluralPattern(
@@ -1374,6 +1436,7 @@ class LanguageFr_CA internal constructor() : LanguageFr() {
             )
         override val lengthMeter
             get() = MultiLengthGenderedPattern(
+                base = super.lengthMeter,
                 long = GenderedPattern(
                     cases = Cases(
                         nominative = PluralPattern(
@@ -1397,6 +1460,7 @@ class LanguageFr_CA internal constructor() : LanguageFr() {
             )
         override val lengthDecimeter
             get() = MultiLengthGenderedPattern(
+                base = super.lengthDecimeter,
                 long = GenderedPattern(
                     cases = Cases(
                         nominative = PluralPattern(
@@ -1430,6 +1494,7 @@ class LanguageFr_CA internal constructor() : LanguageFr() {
             )
         override val lengthCentimeter
             get() = MultiLengthGenderedPattern(
+                base = super.lengthCentimeter,
                 long = GenderedPattern(
                     cases = Cases(
                         nominative = PluralPattern(
@@ -1453,6 +1518,7 @@ class LanguageFr_CA internal constructor() : LanguageFr() {
             )
         override val lengthMillimeter
             get() = MultiLengthGenderedPattern(
+                base = super.lengthMillimeter,
                 long = GenderedPattern(
                     cases = Cases(
                         nominative = PluralPattern(
@@ -1476,6 +1542,7 @@ class LanguageFr_CA internal constructor() : LanguageFr() {
             )
         override val lengthMicrometer
             get() = MultiLengthGenderedPattern(
+                base = super.lengthMicrometer,
                 long = GenderedPattern(
                     cases = Cases(
                         nominative = PluralPattern(
@@ -1509,6 +1576,7 @@ class LanguageFr_CA internal constructor() : LanguageFr() {
             )
         override val lengthNanometer
             get() = MultiLengthGenderedPattern(
+                base = super.lengthNanometer,
                 long = GenderedPattern(
                     cases = Cases(
                         nominative = PluralPattern(
@@ -1542,6 +1610,7 @@ class LanguageFr_CA internal constructor() : LanguageFr() {
             )
         override val lengthPicometer
             get() = MultiLengthGenderedPattern(
+                base = super.lengthPicometer,
                 long = GenderedPattern(
                     cases = Cases(
                         nominative = PluralPattern(
@@ -1565,6 +1634,7 @@ class LanguageFr_CA internal constructor() : LanguageFr() {
             )
         override val lengthMile
             get() = MultiLengthGenderedPattern(
+                base = super.lengthMile,
                 long = GenderedPattern(
                     cases = Cases(
                         nominative = PluralPattern(
@@ -1588,6 +1658,7 @@ class LanguageFr_CA internal constructor() : LanguageFr() {
             )
         override val lengthYard
             get() = MultiLengthGenderedPattern(
+                base = super.lengthYard,
                 long = GenderedPattern(
                     gender = Gender.Feminine,
                     cases = Cases(
@@ -1622,6 +1693,7 @@ class LanguageFr_CA internal constructor() : LanguageFr() {
             )
         override val lengthFoot
             get() = MultiLengthGenderedPattern(
+                base = super.lengthFoot,
                 long = GenderedPattern(
                     cases = Cases(
                         nominative = PluralPattern(
@@ -1655,6 +1727,7 @@ class LanguageFr_CA internal constructor() : LanguageFr() {
             )
         override val lengthInch
             get() = MultiLengthGenderedPattern(
+                base = super.lengthInch,
                 long = GenderedPattern(
                     cases = Cases(
                         nominative = PluralPattern(
@@ -1688,6 +1761,7 @@ class LanguageFr_CA internal constructor() : LanguageFr() {
             )
         override val lengthParsec
             get() = MultiLengthGenderedPattern(
+                base = super.lengthParsec,
                 long = GenderedPattern(
                     cases = Cases(
                         nominative = PluralPattern(
@@ -1721,6 +1795,7 @@ class LanguageFr_CA internal constructor() : LanguageFr() {
             )
         override val lengthLightYear
             get() = MultiLengthGenderedPattern(
+                base = super.lengthLightYear,
                 long = GenderedPattern(
                     cases = Cases(
                         nominative = PluralPattern(
@@ -1754,6 +1829,7 @@ class LanguageFr_CA internal constructor() : LanguageFr() {
             )
         override val lengthAstronomicalUnit
             get() = MultiLengthGenderedPattern(
+                base = super.lengthAstronomicalUnit,
                 long = GenderedPattern(
                     cases = Cases(
                         nominative = PluralPattern(
@@ -1777,6 +1853,7 @@ class LanguageFr_CA internal constructor() : LanguageFr() {
             )
         override val lengthFurlong
             get() = MultiLengthGenderedPattern(
+                base = super.lengthFurlong,
                 narrow = GenderedPattern(
                     cases = Cases(
                         nominative = PluralPattern(
@@ -1790,6 +1867,7 @@ class LanguageFr_CA internal constructor() : LanguageFr() {
             )
         override val lengthFathom
             get() = MultiLengthGenderedPattern(
+                base = super.lengthFathom,
                 narrow = GenderedPattern(
                     cases = Cases(
                         nominative = PluralPattern(
@@ -1803,6 +1881,7 @@ class LanguageFr_CA internal constructor() : LanguageFr() {
             )
         override val lengthNauticalMile
             get() = MultiLengthGenderedPattern(
+                base = super.lengthNauticalMile,
                 long = GenderedPattern(
                     cases = Cases(
                         nominative = PluralPattern(
@@ -1836,6 +1915,7 @@ class LanguageFr_CA internal constructor() : LanguageFr() {
             )
         override val lengthMileScandinavian
             get() = MultiLengthGenderedPattern(
+                base = super.lengthMileScandinavian,
                 narrow = GenderedPattern(
                     cases = Cases(
                         nominative = PluralPattern(
@@ -1849,6 +1929,7 @@ class LanguageFr_CA internal constructor() : LanguageFr() {
             )
         override val lengthPoint
             get() = MultiLengthGenderedPattern(
+                base = super.lengthPoint,
                 narrow = GenderedPattern(
                     cases = Cases(
                         nominative = PluralPattern(
@@ -1862,6 +1943,7 @@ class LanguageFr_CA internal constructor() : LanguageFr() {
             )
         override val lightLux
             get() = MultiLengthGenderedPattern(
+                base = super.lightLux,
                 long = GenderedPattern(
                     cases = Cases(
                         nominative = PluralPattern(
@@ -1885,6 +1967,7 @@ class LanguageFr_CA internal constructor() : LanguageFr() {
             )
         override val massTonne
             get() = MultiLengthGenderedPattern(
+                base = super.massTonne,
                 short = GenderedPattern(
                     cases = Cases(
                         nominative = PluralPattern(
@@ -1898,6 +1981,7 @@ class LanguageFr_CA internal constructor() : LanguageFr() {
             )
         override val massKilogram
             get() = MultiLengthGenderedPattern(
+                base = super.massKilogram,
                 long = GenderedPattern(
                     cases = Cases(
                         nominative = PluralPattern(
@@ -1921,6 +2005,7 @@ class LanguageFr_CA internal constructor() : LanguageFr() {
             )
         override val massGram
             get() = MultiLengthGenderedPattern(
+                base = super.massGram,
                 long = GenderedPattern(
                     cases = Cases(
                         nominative = PluralPattern(
@@ -1944,6 +2029,7 @@ class LanguageFr_CA internal constructor() : LanguageFr() {
             )
         override val massMilligram
             get() = MultiLengthGenderedPattern(
+                base = super.massMilligram,
                 long = GenderedPattern(
                     cases = Cases(
                         nominative = PluralPattern(
@@ -1967,6 +2053,7 @@ class LanguageFr_CA internal constructor() : LanguageFr() {
             )
         override val massMicrogram
             get() = MultiLengthGenderedPattern(
+                base = super.massMicrogram,
                 short = GenderedPattern(
                     cases = Cases(
                         nominative = PluralPattern(
@@ -1980,6 +2067,7 @@ class LanguageFr_CA internal constructor() : LanguageFr() {
             )
         override val massTon
             get() = MultiLengthGenderedPattern(
+                base = super.massTon,
                 long = GenderedPattern(
                     cases = Cases(
                         nominative = PluralPattern(
@@ -2013,6 +2101,7 @@ class LanguageFr_CA internal constructor() : LanguageFr() {
             )
         override val massStone
             get() = MultiLengthGenderedPattern(
+                base = super.massStone,
                 long = GenderedPattern(
                     cases = Cases(
                         nominative = PluralPattern(
@@ -2036,6 +2125,7 @@ class LanguageFr_CA internal constructor() : LanguageFr() {
             )
         override val massPound
             get() = MultiLengthGenderedPattern(
+                base = super.massPound,
                 long = GenderedPattern(
                     cases = Cases(
                         nominative = PluralPattern(
@@ -2059,6 +2149,7 @@ class LanguageFr_CA internal constructor() : LanguageFr() {
             )
         override val massOunce
             get() = MultiLengthGenderedPattern(
+                base = super.massOunce,
                 long = GenderedPattern(
                     cases = Cases(
                         nominative = PluralPattern(
@@ -2082,6 +2173,7 @@ class LanguageFr_CA internal constructor() : LanguageFr() {
             )
         override val massOunceTroy
             get() = MultiLengthGenderedPattern(
+                base = super.massOunceTroy,
                 long = GenderedPattern(
                     cases = Cases(
                         nominative = PluralPattern(
@@ -2105,6 +2197,7 @@ class LanguageFr_CA internal constructor() : LanguageFr() {
             )
         override val massCarat
             get() = MultiLengthGenderedPattern(
+                base = super.massCarat,
                 long = GenderedPattern(
                     cases = Cases(
                         nominative = PluralPattern(
@@ -2128,6 +2221,7 @@ class LanguageFr_CA internal constructor() : LanguageFr() {
             )
         override val massGrain
             get() = MultiLengthGenderedPattern(
+                base = super.massGrain,
                 short = GenderedPattern(
                     cases = Cases(
                         nominative = PluralPattern(
@@ -2141,6 +2235,7 @@ class LanguageFr_CA internal constructor() : LanguageFr() {
             )
         override val powerGigawatt
             get() = MultiLengthGenderedPattern(
+                base = super.powerGigawatt,
                 long = GenderedPattern(
                     cases = Cases(
                         nominative = PluralPattern(
@@ -2164,6 +2259,7 @@ class LanguageFr_CA internal constructor() : LanguageFr() {
             )
         override val powerMegawatt
             get() = MultiLengthGenderedPattern(
+                base = super.powerMegawatt,
                 long = GenderedPattern(
                     cases = Cases(
                         nominative = PluralPattern(
@@ -2187,6 +2283,7 @@ class LanguageFr_CA internal constructor() : LanguageFr() {
             )
         override val powerKilowatt
             get() = MultiLengthGenderedPattern(
+                base = super.powerKilowatt,
                 long = GenderedPattern(
                     cases = Cases(
                         nominative = PluralPattern(
@@ -2210,6 +2307,7 @@ class LanguageFr_CA internal constructor() : LanguageFr() {
             )
         override val powerWatt
             get() = MultiLengthGenderedPattern(
+                base = super.powerWatt,
                 long = GenderedPattern(
                     cases = Cases(
                         nominative = PluralPattern(
@@ -2233,6 +2331,7 @@ class LanguageFr_CA internal constructor() : LanguageFr() {
             )
         override val powerMilliwatt
             get() = MultiLengthGenderedPattern(
+                base = super.powerMilliwatt,
                 long = GenderedPattern(
                     cases = Cases(
                         nominative = PluralPattern(
@@ -2256,6 +2355,7 @@ class LanguageFr_CA internal constructor() : LanguageFr() {
             )
         override val powerHorsepower
             get() = MultiLengthGenderedPattern(
+                base = super.powerHorsepower,
                 long = GenderedPattern(
                     cases = Cases(
                         nominative = PluralPattern(
@@ -2279,6 +2379,7 @@ class LanguageFr_CA internal constructor() : LanguageFr() {
             )
         override val pressureMillimeterOfhg
             get() = MultiLengthGenderedPattern(
+                base = super.pressureMillimeterOfhg,
                 short = GenderedPattern(
                     cases = Cases(
                         nominative = PluralPattern(
@@ -2302,6 +2403,7 @@ class LanguageFr_CA internal constructor() : LanguageFr() {
             )
         override val pressurePoundForcePerSquareInch
             get() = MultiLengthGenderedPattern(
+                base = super.pressurePoundForcePerSquareInch,
                 short = GenderedPattern(
                     cases = Cases(
                         nominative = PluralPattern(
@@ -2325,6 +2427,7 @@ class LanguageFr_CA internal constructor() : LanguageFr() {
             )
         override val pressureInchOfhg
             get() = MultiLengthGenderedPattern(
+                base = super.pressureInchOfhg,
                 long = GenderedPattern(
                     cases = Cases(
                         nominative = PluralPattern(
@@ -2358,6 +2461,7 @@ class LanguageFr_CA internal constructor() : LanguageFr() {
             )
         override val pressureMillibar
             get() = MultiLengthGenderedPattern(
+                base = super.pressureMillibar,
                 long = GenderedPattern(
                     cases = Cases(
                         nominative = PluralPattern(
@@ -2381,6 +2485,7 @@ class LanguageFr_CA internal constructor() : LanguageFr() {
             )
         override val pressureAtmosphere
             get() = MultiLengthGenderedPattern(
+                base = super.pressureAtmosphere,
                 long = GenderedPattern(
                     cases = Cases(
                         nominative = PluralPattern(
@@ -2394,6 +2499,7 @@ class LanguageFr_CA internal constructor() : LanguageFr() {
             )
         override val pressureHectopascal
             get() = MultiLengthGenderedPattern(
+                base = super.pressureHectopascal,
                 long = GenderedPattern(
                     cases = Cases(
                         nominative = PluralPattern(
@@ -2417,6 +2523,7 @@ class LanguageFr_CA internal constructor() : LanguageFr() {
             )
         override val speedKilometerPerHour
             get() = MultiLengthGenderedPattern(
+                base = super.speedKilometerPerHour,
                 long = GenderedPattern(
                     cases = Cases(
                         nominative = PluralPattern(
@@ -2440,6 +2547,7 @@ class LanguageFr_CA internal constructor() : LanguageFr() {
             )
         override val speedMeterPerSecond
             get() = MultiLengthGenderedPattern(
+                base = super.speedMeterPerSecond,
                 long = GenderedPattern(
                     cases = Cases(
                         nominative = PluralPattern(
@@ -2463,6 +2571,7 @@ class LanguageFr_CA internal constructor() : LanguageFr() {
             )
         override val speedMilePerHour
             get() = MultiLengthGenderedPattern(
+                base = super.speedMilePerHour,
                 long = GenderedPattern(
                     cases = Cases(
                         nominative = PluralPattern(
@@ -2486,6 +2595,7 @@ class LanguageFr_CA internal constructor() : LanguageFr() {
             )
         override val speedKnot
             get() = MultiLengthGenderedPattern(
+                base = super.speedKnot,
                 narrow = GenderedPattern(
                     cases = Cases(
                         nominative = PluralPattern(
@@ -2499,6 +2609,7 @@ class LanguageFr_CA internal constructor() : LanguageFr() {
             )
         override val speedBeaufort
             get() = MultiLengthGenderedPattern(
+                base = super.speedBeaufort,
                 short = GenderedPattern(
                     cases = Cases(
                         nominative = PluralPattern(
@@ -2522,6 +2633,7 @@ class LanguageFr_CA internal constructor() : LanguageFr() {
             )
         override val temperatureGeneric
             get() = MultiLengthGenderedPattern(
+                base = super.temperatureGeneric,
                 long = GenderedPattern(
                     cases = Cases(
                         nominative = PluralPattern(
@@ -2535,6 +2647,7 @@ class LanguageFr_CA internal constructor() : LanguageFr() {
             )
         override val temperatureCelsius
             get() = MultiLengthGenderedPattern(
+                base = super.temperatureCelsius,
                 long = GenderedPattern(
                     cases = Cases(
                         nominative = PluralPattern(
@@ -2568,6 +2681,7 @@ class LanguageFr_CA internal constructor() : LanguageFr() {
             )
         override val temperatureFahrenheit
             get() = MultiLengthGenderedPattern(
+                base = super.temperatureFahrenheit,
                 long = GenderedPattern(
                     cases = Cases(
                         nominative = PluralPattern(
@@ -2591,6 +2705,7 @@ class LanguageFr_CA internal constructor() : LanguageFr() {
             )
         override val temperatureKelvin
             get() = MultiLengthGenderedPattern(
+                base = super.temperatureKelvin,
                 short = GenderedPattern(
                     cases = Cases(
                         nominative = PluralPattern(
@@ -2604,6 +2719,7 @@ class LanguageFr_CA internal constructor() : LanguageFr() {
             )
         override val torquePoundForceFoot
             get() = MultiLengthGenderedPattern(
+                base = super.torquePoundForceFoot,
                 short = GenderedPattern(
                     cases = Cases(
                         nominative = PluralPattern(
@@ -2627,6 +2743,7 @@ class LanguageFr_CA internal constructor() : LanguageFr() {
             )
         override val volumeCubicKilometer
             get() = MultiLengthGenderedPattern(
+                base = super.volumeCubicKilometer,
                 long = GenderedPattern(
                     cases = Cases(
                         nominative = PluralPattern(
@@ -2650,6 +2767,7 @@ class LanguageFr_CA internal constructor() : LanguageFr() {
             )
         override val volumeCubicMeter
             get() = MultiLengthGenderedPattern(
+                base = super.volumeCubicMeter,
                 long = GenderedPattern(
                     cases = Cases(
                         nominative = PluralPattern(
@@ -2673,6 +2791,7 @@ class LanguageFr_CA internal constructor() : LanguageFr() {
             )
         override val volumeCubicCentimeter
             get() = MultiLengthGenderedPattern(
+                base = super.volumeCubicCentimeter,
                 long = GenderedPattern(
                     cases = Cases(
                         nominative = PluralPattern(
@@ -2696,6 +2815,7 @@ class LanguageFr_CA internal constructor() : LanguageFr() {
             )
         override val volumeCubicMile
             get() = MultiLengthGenderedPattern(
+                base = super.volumeCubicMile,
                 long = GenderedPattern(
                     cases = Cases(
                         nominative = PluralPattern(
@@ -2719,6 +2839,7 @@ class LanguageFr_CA internal constructor() : LanguageFr() {
             )
         override val volumeCubicYard
             get() = MultiLengthGenderedPattern(
+                base = super.volumeCubicYard,
                 long = GenderedPattern(
                     cases = Cases(
                         nominative = PluralPattern(
@@ -2752,6 +2873,7 @@ class LanguageFr_CA internal constructor() : LanguageFr() {
             )
         override val volumeCubicFoot
             get() = MultiLengthGenderedPattern(
+                base = super.volumeCubicFoot,
                 long = GenderedPattern(
                     cases = Cases(
                         nominative = PluralPattern(
@@ -2775,6 +2897,7 @@ class LanguageFr_CA internal constructor() : LanguageFr() {
             )
         override val volumeCubicInch
             get() = MultiLengthGenderedPattern(
+                base = super.volumeCubicInch,
                 long = GenderedPattern(
                     cases = Cases(
                         nominative = PluralPattern(
@@ -2798,6 +2921,7 @@ class LanguageFr_CA internal constructor() : LanguageFr() {
             )
         override val volumeMegaliter
             get() = MultiLengthGenderedPattern(
+                base = super.volumeMegaliter,
                 long = GenderedPattern(
                     cases = Cases(
                         nominative = PluralPattern(
@@ -2811,6 +2935,7 @@ class LanguageFr_CA internal constructor() : LanguageFr() {
             )
         override val volumeHectoliter
             get() = MultiLengthGenderedPattern(
+                base = super.volumeHectoliter,
                 long = GenderedPattern(
                     cases = Cases(
                         nominative = PluralPattern(
@@ -2824,6 +2949,7 @@ class LanguageFr_CA internal constructor() : LanguageFr() {
             )
         override val volumeLiter
             get() = MultiLengthGenderedPattern(
+                base = super.volumeLiter,
                 long = GenderedPattern(
                     cases = Cases(
                         nominative = PluralPattern(
@@ -2837,6 +2963,7 @@ class LanguageFr_CA internal constructor() : LanguageFr() {
             )
         override val volumeAcreFoot
             get() = MultiLengthGenderedPattern(
+                base = super.volumeAcreFoot,
                 narrow = GenderedPattern(
                     cases = Cases(
                         nominative = PluralPattern(
@@ -2850,6 +2977,7 @@ class LanguageFr_CA internal constructor() : LanguageFr() {
             )
         override val volumeGallonImperial
             get() = MultiLengthGenderedPattern(
+                base = super.volumeGallonImperial,
                 short = GenderedPattern(
                     cases = Cases(
                         nominative = PluralPattern(
@@ -2873,6 +3001,7 @@ class LanguageFr_CA internal constructor() : LanguageFr() {
             )
         override val volumeQuart
             get() = MultiLengthGenderedPattern(
+                base = super.volumeQuart,
                 long = GenderedPattern(
                     gender = Gender.Feminine,
                     cases = Cases(
@@ -2907,6 +3036,7 @@ class LanguageFr_CA internal constructor() : LanguageFr() {
             )
         override val volumePint
             get() = MultiLengthGenderedPattern(
+                base = super.volumePint,
                 long = GenderedPattern(
                     cases = Cases(
                         nominative = PluralPattern(
@@ -2940,6 +3070,7 @@ class LanguageFr_CA internal constructor() : LanguageFr() {
             )
         override val volumeFluidOunce
             get() = MultiLengthGenderedPattern(
+                base = super.volumeFluidOunce,
                 short = GenderedPattern(
                     cases = Cases(
                         nominative = PluralPattern(
@@ -2963,6 +3094,7 @@ class LanguageFr_CA internal constructor() : LanguageFr() {
             )
         override val volumeFluidOunceImperial
             get() = MultiLengthGenderedPattern(
+                base = super.volumeFluidOunceImperial,
                 short = GenderedPattern(
                     cases = Cases(
                         nominative = PluralPattern(
@@ -2986,6 +3118,7 @@ class LanguageFr_CA internal constructor() : LanguageFr() {
             )
         override val volumeTablespoon
             get() = MultiLengthGenderedPattern(
+                base = super.volumeTablespoon,
                 narrow = GenderedPattern(
                     cases = Cases(
                         nominative = PluralPattern(
@@ -2999,6 +3132,7 @@ class LanguageFr_CA internal constructor() : LanguageFr() {
             )
         override val volumeTeaspoon
             get() = MultiLengthGenderedPattern(
+                base = super.volumeTeaspoon,
                 long = GenderedPattern(
                     cases = Cases(
                         nominative = PluralPattern(
@@ -3032,6 +3166,7 @@ class LanguageFr_CA internal constructor() : LanguageFr() {
             )
         override val volumeDessertSpoon
             get() = MultiLengthGenderedPattern(
+                base = super.volumeDessertSpoon,
                 short = GenderedPattern(
                     cases = Cases(
                         nominative = PluralPattern(
@@ -3055,6 +3190,7 @@ class LanguageFr_CA internal constructor() : LanguageFr() {
             )
         override val volumeDessertSpoonImperial
             get() = MultiLengthGenderedPattern(
+                base = super.volumeDessertSpoonImperial,
                 short = GenderedPattern(
                     cases = Cases(
                         nominative = PluralPattern(
@@ -3078,6 +3214,7 @@ class LanguageFr_CA internal constructor() : LanguageFr() {
             )
         override val volumeDrop
             get() = MultiLengthGenderedPattern(
+                base = super.volumeDrop,
                 short = GenderedPattern(
                     cases = Cases(
                         nominative = PluralPattern(
@@ -3101,6 +3238,7 @@ class LanguageFr_CA internal constructor() : LanguageFr() {
             )
         override val volumeDram
             get() = MultiLengthGenderedPattern(
+                base = super.volumeDram,
                 short = GenderedPattern(
                     cases = Cases(
                         nominative = PluralPattern(
@@ -3124,6 +3262,7 @@ class LanguageFr_CA internal constructor() : LanguageFr() {
             )
         override val volumeJigger
             get() = MultiLengthGenderedPattern(
+                base = super.volumeJigger,
                 short = GenderedPattern(
                     cases = Cases(
                         nominative = PluralPattern(
@@ -3147,6 +3286,7 @@ class LanguageFr_CA internal constructor() : LanguageFr() {
             )
         override val volumePinch
             get() = MultiLengthGenderedPattern(
+                base = super.volumePinch,
                 narrow = GenderedPattern(
                     cases = Cases(
                         nominative = PluralPattern(
@@ -3160,6 +3300,7 @@ class LanguageFr_CA internal constructor() : LanguageFr() {
             )
         override val volumeQuartImperial
             get() = MultiLengthGenderedPattern(
+                base = super.volumeQuartImperial,
                 long = GenderedPattern(
                     gender = Gender.Feminine,
                     cases = Cases(

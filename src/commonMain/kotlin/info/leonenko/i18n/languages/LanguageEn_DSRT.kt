@@ -26,6 +26,7 @@ open class LanguageEn_DSRT internal constructor() : LanguageEn() {
     open class MeasurementUnitLanguage internal constructor() : LanguageEn.MeasurementUnitLanguage() {
         override val durationYear
             get() = MultiLengthGenderedPattern(
+                base = super.durationYear,
                 long = GenderedPattern(
                     cases = Cases(
                         nominative = PluralPattern(
@@ -39,6 +40,7 @@ open class LanguageEn_DSRT internal constructor() : LanguageEn() {
             )
         override val durationMonth
             get() = MultiLengthGenderedPattern(
+                base = super.durationMonth,
                 long = GenderedPattern(
                     cases = Cases(
                         nominative = PluralPattern(
@@ -52,6 +54,7 @@ open class LanguageEn_DSRT internal constructor() : LanguageEn() {
             )
         override val durationWeek
             get() = MultiLengthGenderedPattern(
+                base = super.durationWeek,
                 long = GenderedPattern(
                     cases = Cases(
                         nominative = PluralPattern(
@@ -65,6 +68,7 @@ open class LanguageEn_DSRT internal constructor() : LanguageEn() {
             )
         override val durationDay
             get() = MultiLengthGenderedPattern(
+                base = super.durationDay,
                 long = GenderedPattern(
                     cases = Cases(
                         nominative = PluralPattern(
@@ -78,6 +82,7 @@ open class LanguageEn_DSRT internal constructor() : LanguageEn() {
             )
         override val durationHour
             get() = MultiLengthGenderedPattern(
+                base = super.durationHour,
                 long = GenderedPattern(
                     cases = Cases(
                         nominative = PluralPattern(
@@ -91,6 +96,7 @@ open class LanguageEn_DSRT internal constructor() : LanguageEn() {
             )
         override val durationMinute
             get() = MultiLengthGenderedPattern(
+                base = super.durationMinute,
                 long = GenderedPattern(
                     cases = Cases(
                         nominative = PluralPattern(
@@ -104,6 +110,7 @@ open class LanguageEn_DSRT internal constructor() : LanguageEn() {
             )
         override val durationSecond
             get() = MultiLengthGenderedPattern(
+                base = super.durationSecond,
                 long = GenderedPattern(
                     cases = Cases(
                         nominative = PluralPattern(

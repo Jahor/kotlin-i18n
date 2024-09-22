@@ -3113,30 +3113,30 @@ open class RBNFPl(val language: Language = Language.pl) : RBNF {
             Gender.Neuter -> when (case) {
                 Case.Nominative -> spelloutCardinalNeuter
                 Case.Locative -> spelloutCardinalNeuterLocative
-                Case.Genitive -> spelloutCardinalNeuterGenitive
                 Case.Dative -> spelloutCardinalNeuterDative
-                Case.Instrumental -> spelloutCardinalNeuterInstrumental
+                Case.Genitive -> spelloutCardinalNeuterGenitive
                 Case.Accusative -> spelloutCardinalNeuterAccusative
+                Case.Instrumental -> spelloutCardinalNeuterInstrumental
                 else -> TODO("pl does not support $case case")
             }
 
             Gender.Masculine -> when (case) {
                 Case.Nominative -> spelloutCardinalMasculine
                 Case.Locative -> spelloutCardinalMasculineLocative
-                Case.Genitive -> spelloutCardinalMasculineGenitive
                 Case.Dative -> spelloutCardinalMasculineDative
-                Case.Instrumental -> spelloutCardinalMasculineInstrumental
+                Case.Genitive -> spelloutCardinalMasculineGenitive
                 Case.Accusative -> spelloutCardinalMasculineAccusative
+                Case.Instrumental -> spelloutCardinalMasculineInstrumental
                 else -> TODO("pl does not support $case case")
             }
 
             Gender.Feminine -> when (case) {
                 Case.Nominative -> spelloutCardinalFeminine
                 Case.Locative -> spelloutCardinalFeminineLocative
-                Case.Genitive -> spelloutCardinalFeminineGenitive
                 Case.Dative -> spelloutCardinalFeminineDative
-                Case.Instrumental -> spelloutCardinalFeminineInstrumental
+                Case.Genitive -> spelloutCardinalFeminineGenitive
                 Case.Accusative -> spelloutCardinalFeminineAccusative
+                Case.Instrumental -> spelloutCardinalFeminineInstrumental
                 else -> TODO("pl does not support $case case")
             }
 

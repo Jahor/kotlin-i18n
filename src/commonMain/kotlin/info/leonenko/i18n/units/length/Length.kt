@@ -1,4 +1,5 @@
 package info.leonenko.i18n.units.length
+
 import info.leonenko.i18n.units.MeasurementUnit
 import info.leonenko.i18n.units.MeasurementUnitLanguage
 import info.leonenko.i18n.units.MeasurementUnitValue
@@ -21,6 +22,7 @@ interface Length : MeasurementUnit, Comparable<Length> {
     class Serializer : CustomSerializer()
     open class CustomSerializer(val decoders: Map<String, (MeasurementUnitValue) -> Length> = emptyMap()) : KSerializer<Length> {
         private val delegateSerializer = MapSerializer(String.serializer(), MeasurementUnitValue.serializer())
+
         @OptIn(ExperimentalSerializationApi::class)
         override val descriptor: SerialDescriptor = SerialDescriptor("Length", delegateSerializer.descriptor)
         override fun deserialize(decoder: Decoder): Length {

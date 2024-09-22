@@ -26,6 +26,7 @@ class LanguageZh_SG_HANS internal constructor() : LanguageZh_HANS() {
     class MeasurementUnitLanguage internal constructor() : LanguageZh_HANS.MeasurementUnitLanguage() {
         override val accelerationGForce
             get() = MultiLengthGenderedPattern(
+                base = super.accelerationGForce,
                 short = GenderedPattern(
                     cases = Cases(
                         nominative = PluralPattern(
@@ -38,6 +39,7 @@ class LanguageZh_SG_HANS internal constructor() : LanguageZh_HANS() {
             )
         override val concentrationKarat
             get() = MultiLengthGenderedPattern(
+                base = super.concentrationKarat,
                 long = GenderedPattern(
                     cases = Cases(
                         nominative = PluralPattern(
@@ -68,6 +70,7 @@ class LanguageZh_SG_HANS internal constructor() : LanguageZh_HANS() {
             )
         override val durationSecond
             get() = MultiLengthGenderedPattern(
+                base = super.durationSecond,
                 long = GenderedPattern(
                     cases = Cases(
                         nominative = PluralPattern(
@@ -80,6 +83,7 @@ class LanguageZh_SG_HANS internal constructor() : LanguageZh_HANS() {
             )
         override val lengthPicometer
             get() = MultiLengthGenderedPattern(
+                base = super.lengthPicometer,
                 narrow = GenderedPattern(
                     cases = Cases(
                         nominative = PluralPattern(
@@ -92,6 +96,7 @@ class LanguageZh_SG_HANS internal constructor() : LanguageZh_HANS() {
             )
         override val lengthMile
             get() = MultiLengthGenderedPattern(
+                base = super.lengthMile,
                 narrow = GenderedPattern(
                     cases = Cases(
                         nominative = PluralPattern(
@@ -104,6 +109,7 @@ class LanguageZh_SG_HANS internal constructor() : LanguageZh_HANS() {
             )
         override val lengthYard
             get() = MultiLengthGenderedPattern(
+                base = super.lengthYard,
                 narrow = GenderedPattern(
                     cases = Cases(
                         nominative = PluralPattern(
@@ -116,6 +122,7 @@ class LanguageZh_SG_HANS internal constructor() : LanguageZh_HANS() {
             )
         override val lengthFoot
             get() = MultiLengthGenderedPattern(
+                base = super.lengthFoot,
                 narrow = GenderedPattern(
                     cases = Cases(
                         nominative = PluralPattern(
@@ -128,6 +135,7 @@ class LanguageZh_SG_HANS internal constructor() : LanguageZh_HANS() {
             )
         override val lengthInch
             get() = MultiLengthGenderedPattern(
+                base = super.lengthInch,
                 narrow = GenderedPattern(
                     cases = Cases(
                         nominative = PluralPattern(
@@ -140,6 +148,7 @@ class LanguageZh_SG_HANS internal constructor() : LanguageZh_HANS() {
             )
         override val lengthLightYear
             get() = MultiLengthGenderedPattern(
+                base = super.lengthLightYear,
                 narrow = GenderedPattern(
                     cases = Cases(
                         nominative = PluralPattern(
@@ -152,6 +161,7 @@ class LanguageZh_SG_HANS internal constructor() : LanguageZh_HANS() {
             )
         override val temperatureKelvin
             get() = MultiLengthGenderedPattern(
+                base = super.temperatureKelvin,
                 long = GenderedPattern(
                     cases = Cases(
                         nominative = PluralPattern(

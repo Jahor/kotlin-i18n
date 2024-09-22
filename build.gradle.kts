@@ -15,7 +15,7 @@ plugins {
 }
 
 group = "info.leonenko"
-version = "1.0.21"
+version = "1.0.22"
 
 val frameworkName = "i18n"
 

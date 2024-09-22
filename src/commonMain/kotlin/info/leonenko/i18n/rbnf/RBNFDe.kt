@@ -2603,8 +2603,8 @@ open class RBNFDe(val language: Language = Language.de) : RBNF {
     fun spelloutCardinalFor(gender: Gender): NumberFormatter {
         return when (gender) {
             Gender.Neuter -> spelloutCardinalNeuter
-            Gender.Feminine -> spelloutCardinalFeminine
             Gender.Masculine -> spelloutCardinalMasculine
+            Gender.Feminine -> spelloutCardinalFeminine
             else -> TODO("de does not support $gender gender")
         }
 

@@ -1,4 +1,5 @@
 package info.leonenko.i18n.languages
+
 import info.leonenko.i18n.Language
 
 val Language.Companion.supported: Map<String, Language>

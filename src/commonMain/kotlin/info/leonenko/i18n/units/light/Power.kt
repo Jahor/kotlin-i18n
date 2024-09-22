@@ -1,4 +1,5 @@
 package info.leonenko.i18n.units.light
+
 import info.leonenko.i18n.units.MeasurementUnitLanguage
 import info.leonenko.i18n.units.MeasurementUnitValue
 import info.leonenko.i18n.units.power.KilogramSquareMeterPerCubicSecond

@@ -1,4 +1,5 @@
 package info.leonenko.i18n.units.acceleration
+
 import info.leonenko.i18n.units.MeasurementUnit
 import info.leonenko.i18n.units.MeasurementUnitLanguage
 import info.leonenko.i18n.units.MeasurementUnitValue
@@ -21,6 +22,7 @@ interface Acceleration : MeasurementUnit, Comparable<Acceleration> {
     class Serializer : CustomSerializer()
     open class CustomSerializer(val decoders: Map<String, (MeasurementUnitValue) -> Acceleration> = emptyMap()) : KSerializer<Acceleration> {
         private val delegateSerializer = MapSerializer(String.serializer(), MeasurementUnitValue.serializer())
+
         @OptIn(ExperimentalSerializationApi::class)
         override val descriptor: SerialDescriptor = SerialDescriptor("Acceleration", delegateSerializer.descriptor)
         override fun deserialize(decoder: Decoder): Acceleration {

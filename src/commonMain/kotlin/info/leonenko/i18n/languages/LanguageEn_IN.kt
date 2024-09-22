@@ -1,10 +1,12 @@
 package info.leonenko.i18n.languages
+
 import info.leonenko.i18n.*
 import info.leonenko.i18n.rbnf.RBNFEn_in
 
 val Language.Companion.en_IN
     get() = languageEn_IN
 private val languageEn_IN = LanguageEn_IN()
+
 class LanguageEn_IN internal constructor() : LanguageEn() {
     override val code: String = "en_IN"
     override val script: String? = null
@@ -30,6 +32,7 @@ class LanguageEn_IN internal constructor() : LanguageEn() {
     class MeasurementUnitLanguage internal constructor() : LanguageEn.MeasurementUnitLanguage() {
         override val lengthEarthRadius
             get() = MultiLengthGenderedPattern(
+                base = super.lengthEarthRadius,
                 long = GenderedPattern(
                     cases = Cases(
                         nominative = PluralPattern(
@@ -43,6 +46,7 @@ class LanguageEn_IN internal constructor() : LanguageEn() {
             )
         override val speedKilometerPerHour
             get() = MultiLengthGenderedPattern(
+                base = super.speedKilometerPerHour,
                 short = GenderedPattern(
                     cases = Cases(
                         nominative = PluralPattern(
@@ -66,6 +70,7 @@ class LanguageEn_IN internal constructor() : LanguageEn() {
             )
         override val temperatureGeneric
             get() = MultiLengthGenderedPattern(
+                base = super.temperatureGeneric,
                 long = GenderedPattern(
                     cases = Cases(
                         nominative = PluralPattern(

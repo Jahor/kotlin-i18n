@@ -1,4 +1,5 @@
 package info.leonenko.i18n.units.energy
+
 import info.leonenko.i18n.units.MeasurementUnit
 import info.leonenko.i18n.units.MeasurementUnitLanguage
 import info.leonenko.i18n.units.MeasurementUnitValue
@@ -21,6 +22,7 @@ interface Energy : MeasurementUnit, Comparable<Energy> {
     class Serializer : CustomSerializer()
     open class CustomSerializer(val decoders: Map<String, (MeasurementUnitValue) -> Energy> = emptyMap()) : KSerializer<Energy> {
         private val delegateSerializer = MapSerializer(String.serializer(), MeasurementUnitValue.serializer())
+
         @OptIn(ExperimentalSerializationApi::class)
         override val descriptor: SerialDescriptor = SerialDescriptor("Energy", delegateSerializer.descriptor)
         override fun deserialize(decoder: Decoder): Energy {

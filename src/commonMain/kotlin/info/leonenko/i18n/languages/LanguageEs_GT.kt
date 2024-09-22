@@ -1,9 +1,11 @@
 package info.leonenko.i18n.languages
+
 import info.leonenko.i18n.*
 
 val Language.Companion.es_GT
     get() = languageEs_GT
 private val languageEs_GT = LanguageEs_GT()
+
 class LanguageEs_GT internal constructor() : LanguageEs() {
     override val code: String = "es_GT"
     override val script: String? = null
@@ -24,6 +26,7 @@ class LanguageEs_GT internal constructor() : LanguageEs() {
     class MeasurementUnitLanguage internal constructor() : LanguageEs.MeasurementUnitLanguage() {
         override val electricAmpere
             get() = MultiLengthGenderedPattern(
+                base = super.electricAmpere,
                 long = GenderedPattern(
                     cases = Cases(
                         nominative = PluralPattern(
@@ -37,6 +40,7 @@ class LanguageEs_GT internal constructor() : LanguageEs() {
             )
         override val electricMilliampere
             get() = MultiLengthGenderedPattern(
+                base = super.electricMilliampere,
                 long = GenderedPattern(
                     cases = Cases(
                         nominative = PluralPattern(
@@ -50,6 +54,7 @@ class LanguageEs_GT internal constructor() : LanguageEs() {
             )
         override val electricOhm
             get() = MultiLengthGenderedPattern(
+                base = super.electricOhm,
                 long = GenderedPattern(
                     cases = Cases(
                         nominative = PluralPattern(
@@ -63,6 +68,7 @@ class LanguageEs_GT internal constructor() : LanguageEs() {
             )
         override val energyKilojoule
             get() = MultiLengthGenderedPattern(
+                base = super.energyKilojoule,
                 long = GenderedPattern(
                     cases = Cases(
                         nominative = PluralPattern(
@@ -76,6 +82,7 @@ class LanguageEs_GT internal constructor() : LanguageEs() {
             )
         override val energyJoule
             get() = MultiLengthGenderedPattern(
+                base = super.energyJoule,
                 long = GenderedPattern(
                     cases = Cases(
                         nominative = PluralPattern(
@@ -89,6 +96,7 @@ class LanguageEs_GT internal constructor() : LanguageEs() {
             )
         override val powerHorsepower
             get() = MultiLengthGenderedPattern(
+                base = super.powerHorsepower,
                 long = GenderedPattern(
                     cases = Cases(
                         nominative = PluralPattern(

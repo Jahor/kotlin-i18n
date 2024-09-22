@@ -770,7 +770,7 @@ open class RBNFHu(val language: Language = Language.hu) : RBNF {
                     in 2001L..999999L -> if ((value).toLong() % 1000 == 0L) {
                         spelloutCardinalInitial.format((value).toLong() / 1000) + "­ezr" + format(value % 1000)
                     } else
-                    spelloutCardinalInitial.format((value).toLong() / 1000) + "­ezer­" + format(value % 1000)
+                        spelloutCardinalInitial.format((value).toLong() / 1000) + "­ezer­" + format(value % 1000)
 
                     in 1000000L..999999999L -> spelloutCardinalInitial.format((value).toLong() / 1000000) + "­milliom­" + spelloutOrdinalOdik.format(value % 1000000)
                     else -> {
@@ -819,7 +819,7 @@ open class RBNFHu(val language: Language = Language.hu) : RBNF {
                     in 2001L..999999L -> if ((value) % 1000 == 0L) {
                         spelloutCardinalInitial.format((value) / 1000) + "­ezr" + format(value % 1000)
                     } else
-                    spelloutCardinalInitial.format((value) / 1000) + "­ezer­" + format(value % 1000)
+                        spelloutCardinalInitial.format((value) / 1000) + "­ezer­" + format(value % 1000)
 
                     in 1000000L..999999999L -> spelloutCardinalInitial.format((value) / 1000000) + "­milliom­" + spelloutOrdinalOdik.format(value % 1000000)
                     else -> {
@@ -1018,7 +1018,7 @@ open class RBNFHu(val language: Language = Language.hu) : RBNF {
                     in 1001L..999999L -> if ((value).toLong() % 1000 == 0L) {
                         spelloutCardinalVerbose.format((value).toLong() / 1000) + "­ezr" + format(value % 1000)
                     } else
-                    spelloutCardinalVerbose.format((value).toLong() / 1000) + "­ezer­" + format(value % 1000)
+                        spelloutCardinalVerbose.format((value).toLong() / 1000) + "­ezer­" + format(value % 1000)
 
                     in 1000000L..999999999L -> spelloutCardinalVerbose.format((value).toLong() / 1000000) + "­milliom­" + spelloutOrdinalVerboseOdik.format(value % 1000000)
                     else -> {
@@ -1044,7 +1044,7 @@ open class RBNFHu(val language: Language = Language.hu) : RBNF {
                     in 1001L..999999L -> if ((value) % 1000 == 0L) {
                         spelloutCardinalVerbose.format((value) / 1000) + "­ezr" + format(value % 1000)
                     } else
-                    spelloutCardinalVerbose.format((value) / 1000) + "­ezer­" + format(value % 1000)
+                        spelloutCardinalVerbose.format((value) / 1000) + "­ezer­" + format(value % 1000)
 
                     in 1000000L..999999999L -> spelloutCardinalVerbose.format((value) / 1000000) + "­milliom­" + spelloutOrdinalVerboseOdik.format(value % 1000000)
                     else -> {

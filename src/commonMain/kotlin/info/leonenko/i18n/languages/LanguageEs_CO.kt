@@ -1,9 +1,11 @@
 package info.leonenko.i18n.languages
+
 import info.leonenko.i18n.*
 
 val Language.Companion.es_CO
     get() = languageEs_CO
 private val languageEs_CO = LanguageEs_CO()
+
 class LanguageEs_CO internal constructor() : LanguageEs() {
     override val code: String = "es_CO"
     override val script: String? = null
@@ -24,6 +26,7 @@ class LanguageEs_CO internal constructor() : LanguageEs() {
     class MeasurementUnitLanguage internal constructor() : LanguageEs.MeasurementUnitLanguage() {
         override val durationYear
             get() = MultiLengthGenderedPattern(
+                base = super.durationYear,
                 short = GenderedPattern(
                     cases = Cases(
                         nominative = PluralPattern(
@@ -47,6 +50,7 @@ class LanguageEs_CO internal constructor() : LanguageEs() {
             )
         override val durationMonth
             get() = MultiLengthGenderedPattern(
+                base = super.durationMonth,
                 short = GenderedPattern(
                     cases = Cases(
                         nominative = PluralPattern(
@@ -70,6 +74,7 @@ class LanguageEs_CO internal constructor() : LanguageEs() {
             )
         override val durationWeek
             get() = MultiLengthGenderedPattern(
+                base = super.durationWeek,
                 narrow = GenderedPattern(
                     cases = Cases(
                         nominative = PluralPattern(
@@ -83,6 +88,7 @@ class LanguageEs_CO internal constructor() : LanguageEs() {
             )
         override val durationDay
             get() = MultiLengthGenderedPattern(
+                base = super.durationDay,
                 short = GenderedPattern(
                     cases = Cases(
                         nominative = PluralPattern(
@@ -106,6 +112,7 @@ class LanguageEs_CO internal constructor() : LanguageEs() {
             )
         override val durationHour
             get() = MultiLengthGenderedPattern(
+                base = super.durationHour,
                 narrow = GenderedPattern(
                     cases = Cases(
                         nominative = PluralPattern(
@@ -119,6 +126,7 @@ class LanguageEs_CO internal constructor() : LanguageEs() {
             )
         override val durationMinute
             get() = MultiLengthGenderedPattern(
+                base = super.durationMinute,
                 narrow = GenderedPattern(
                     cases = Cases(
                         nominative = PluralPattern(
@@ -132,6 +140,7 @@ class LanguageEs_CO internal constructor() : LanguageEs() {
             )
         override val durationSecond
             get() = MultiLengthGenderedPattern(
+                base = super.durationSecond,
                 narrow = GenderedPattern(
                     cases = Cases(
                         nominative = PluralPattern(
@@ -145,6 +154,7 @@ class LanguageEs_CO internal constructor() : LanguageEs() {
             )
         override val durationMillisecond
             get() = MultiLengthGenderedPattern(
+                base = super.durationMillisecond,
                 narrow = GenderedPattern(
                     cases = Cases(
                         nominative = PluralPattern(

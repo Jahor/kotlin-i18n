@@ -2160,7 +2160,7 @@ open class LanguageBe internal constructor() : Language {
 
     open class NumberLanguage internal constructor() : info.leonenko.i18n.NumberLanguage {
         override val symbols: NumberSymbols
-            get() = TODO("Symbols are not supported")
+            get() = LanguageRoot().numbers.symbols
     }
 
     override val numbers: NumberLanguage

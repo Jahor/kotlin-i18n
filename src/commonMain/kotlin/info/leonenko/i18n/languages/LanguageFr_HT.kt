@@ -1,9 +1,11 @@
 package info.leonenko.i18n.languages
+
 import info.leonenko.i18n.*
 
 val Language.Companion.fr_HT
     get() = languageFr_HT
 private val languageFr_HT = LanguageFr_HT()
+
 class LanguageFr_HT internal constructor() : LanguageFr() {
     override val code: String = "fr_HT"
     override val script: String? = null
@@ -24,6 +26,7 @@ class LanguageFr_HT internal constructor() : LanguageFr() {
     class MeasurementUnitLanguage internal constructor() : LanguageFr.MeasurementUnitLanguage() {
         override val areaHectare
             get() = MultiLengthGenderedPattern(
+                base = super.areaHectare,
                 long = GenderedPattern(
                     cases = Cases(
                         nominative = PluralPattern(
@@ -37,6 +40,7 @@ class LanguageFr_HT internal constructor() : LanguageFr() {
             )
         override val massGram
             get() = MultiLengthGenderedPattern(
+                base = super.massGram,
                 short = GenderedPattern(
                     cases = Cases(
                         nominative = PluralPattern(
@@ -50,6 +54,7 @@ class LanguageFr_HT internal constructor() : LanguageFr() {
             )
         override val massCarat
             get() = MultiLengthGenderedPattern(
+                base = super.massCarat,
                 short = GenderedPattern(
                     cases = Cases(
                         nominative = PluralPattern(

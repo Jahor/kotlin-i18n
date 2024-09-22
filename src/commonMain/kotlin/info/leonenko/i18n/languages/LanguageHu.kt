@@ -1,10 +1,12 @@
 package info.leonenko.i18n.languages
+
 import info.leonenko.i18n.*
 import info.leonenko.i18n.rbnf.RBNFHu
 
 val Language.Companion.hu
     get() = languageHu
 private val languageHu = LanguageHu()
+
 open class LanguageHu internal constructor() : Language {
     override val code: String = "hu"
     override val language: String = "hu"

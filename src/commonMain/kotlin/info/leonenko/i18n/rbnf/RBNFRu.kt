@@ -16269,9 +16269,9 @@ open class RBNFRu(val language: Language = Language.ru) : RBNF {
             Gender.Neuter -> when (case) {
                 Case.Nominative -> spelloutCardinalNeuter
                 Case.Locative -> spelloutCardinalNeuterLocative
-                Case.Ablative -> spelloutCardinalNeuterAblative
-                Case.Genitive -> spelloutCardinalNeuterGenitive
                 Case.Dative -> spelloutCardinalNeuterDative
+                Case.Genitive -> spelloutCardinalNeuterGenitive
+                Case.Ablative -> spelloutCardinalNeuterAblative
                 Case.Accusative -> spelloutCardinalNeuterAccusative
                 else -> TODO("ru does not support $case case")
             }
@@ -16279,9 +16279,9 @@ open class RBNFRu(val language: Language = Language.ru) : RBNF {
             Gender.Masculine -> when (case) {
                 Case.Nominative -> spelloutCardinalMasculine
                 Case.Locative -> spelloutCardinalMasculineLocative
-                Case.Ablative -> spelloutCardinalMasculineAblative
-                Case.Genitive -> spelloutCardinalMasculineGenitive
                 Case.Dative -> spelloutCardinalMasculineDative
+                Case.Genitive -> spelloutCardinalMasculineGenitive
+                Case.Ablative -> spelloutCardinalMasculineAblative
                 Case.Accusative -> spelloutCardinalMasculineAccusative
                 else -> TODO("ru does not support $case case")
             }
@@ -16289,9 +16289,9 @@ open class RBNFRu(val language: Language = Language.ru) : RBNF {
             Gender.Feminine -> when (case) {
                 Case.Nominative -> spelloutCardinalFeminine
                 Case.Locative -> spelloutCardinalFeminineLocative
-                Case.Ablative -> spelloutCardinalFeminineAblative
-                Case.Genitive -> spelloutCardinalFeminineGenitive
                 Case.Dative -> spelloutCardinalFeminineDative
+                Case.Genitive -> spelloutCardinalFeminineGenitive
+                Case.Ablative -> spelloutCardinalFeminineAblative
                 Case.Accusative -> spelloutCardinalFeminineAccusative
                 else -> TODO("ru does not support $case case")
             }
@@ -16306,9 +16306,9 @@ open class RBNFRu(val language: Language = Language.ru) : RBNF {
             Gender.Neuter -> when (case) {
                 Case.Nominative -> spelloutOrdinalNeuter
                 Case.Locative -> spelloutOrdinalNeuterLocative
-                Case.Ablative -> spelloutOrdinalNeuterAblative
-                Case.Genitive -> spelloutOrdinalNeuterGenitive
                 Case.Dative -> spelloutOrdinalNeuterDative
+                Case.Genitive -> spelloutOrdinalNeuterGenitive
+                Case.Ablative -> spelloutOrdinalNeuterAblative
                 Case.Accusative -> spelloutOrdinalNeuterAccusative
                 else -> TODO("ru does not support $case case")
             }
@@ -16316,9 +16316,9 @@ open class RBNFRu(val language: Language = Language.ru) : RBNF {
             Gender.Masculine -> when (case) {
                 Case.Nominative -> spelloutOrdinalMasculine
                 Case.Locative -> spelloutOrdinalMasculineLocative
-                Case.Ablative -> spelloutOrdinalMasculineAblative
-                Case.Genitive -> spelloutOrdinalMasculineGenitive
                 Case.Dative -> spelloutOrdinalMasculineDative
+                Case.Genitive -> spelloutOrdinalMasculineGenitive
+                Case.Ablative -> spelloutOrdinalMasculineAblative
                 Case.Accusative -> spelloutOrdinalMasculineAccusative
                 else -> TODO("ru does not support $case case")
             }
@@ -16326,9 +16326,9 @@ open class RBNFRu(val language: Language = Language.ru) : RBNF {
             Gender.Feminine -> when (case) {
                 Case.Nominative -> spelloutOrdinalFeminine
                 Case.Locative -> spelloutOrdinalFeminineLocative
-                Case.Ablative -> spelloutOrdinalFeminineAblative
-                Case.Genitive -> spelloutOrdinalFeminineGenitive
                 Case.Dative -> spelloutOrdinalFeminineDative
+                Case.Genitive -> spelloutOrdinalFeminineGenitive
+                Case.Ablative -> spelloutOrdinalFeminineAblative
                 Case.Accusative -> spelloutOrdinalFeminineAccusative
                 else -> TODO("ru does not support $case case")
             }
@@ -16343,30 +16343,30 @@ open class RBNFRu(val language: Language = Language.ru) : RBNF {
             Gender.Neuter -> when (case) {
                 Case.Nominative -> digitsOrdinalNeuter
                 Case.Locative -> digitsOrdinalNeuterLocative
-                Case.Ablative -> digitsOrdinalNeuterAblative
-                Case.Genitive -> digitsOrdinalNeuterGenitive
                 Case.Dative -> digitsOrdinalNeuterDative
+                Case.Genitive -> digitsOrdinalNeuterGenitive
+                Case.Ablative -> digitsOrdinalNeuterAblative
                 Case.Accusative -> digitsOrdinalNeuterAccusative
-                else -> TODO("ru does not support $case case")
-            }
-
-            Gender.Feminine -> when (case) {
-                Case.Nominative -> digitsOrdinalFeminine
-                Case.Locative -> digitsOrdinalFeminineLocative
-                Case.Ablative -> digitsOrdinalFeminineAblative
-                Case.Genitive -> digitsOrdinalFeminineGenitive
-                Case.Dative -> digitsOrdinalFeminineDative
-                Case.Accusative -> digitsOrdinalFeminineAccusative
                 else -> TODO("ru does not support $case case")
             }
 
             Gender.Masculine -> when (case) {
                 Case.Nominative -> digitsOrdinalMasculine
                 Case.Locative -> digitsOrdinalMasculineLocative
-                Case.Ablative -> digitsOrdinalMasculineAblative
-                Case.Genitive -> digitsOrdinalMasculineGenitive
                 Case.Dative -> digitsOrdinalMasculineDative
+                Case.Genitive -> digitsOrdinalMasculineGenitive
+                Case.Ablative -> digitsOrdinalMasculineAblative
                 Case.Accusative -> digitsOrdinalMasculineAccusative
+                else -> TODO("ru does not support $case case")
+            }
+
+            Gender.Feminine -> when (case) {
+                Case.Nominative -> digitsOrdinalFeminine
+                Case.Locative -> digitsOrdinalFeminineLocative
+                Case.Dative -> digitsOrdinalFeminineDative
+                Case.Genitive -> digitsOrdinalFeminineGenitive
+                Case.Ablative -> digitsOrdinalFeminineAblative
+                Case.Accusative -> digitsOrdinalFeminineAccusative
                 else -> TODO("ru does not support $case case")
             }
 

@@ -1,9 +1,11 @@
 package info.leonenko.i18n.languages
+
 import info.leonenko.i18n.*
 
 val Language.Companion.en_PW
     get() = languageEn_PW
 private val languageEn_PW = LanguageEn_PW()
+
 class LanguageEn_PW internal constructor() : LanguageEn() {
     override val code: String = "en_PW"
     override val script: String? = null
@@ -24,6 +26,7 @@ class LanguageEn_PW internal constructor() : LanguageEn() {
     class MeasurementUnitLanguage internal constructor() : LanguageEn.MeasurementUnitLanguage() {
         override val temperatureCelsius
             get() = MultiLengthGenderedPattern(
+                base = super.temperatureCelsius,
                 narrow = GenderedPattern(
                     cases = Cases(
                         nominative = PluralPattern(
@@ -37,6 +40,7 @@ class LanguageEn_PW internal constructor() : LanguageEn() {
             )
         override val temperatureFahrenheit
             get() = MultiLengthGenderedPattern(
+                base = super.temperatureFahrenheit,
                 narrow = GenderedPattern(
                     cases = Cases(
                         nominative = PluralPattern(

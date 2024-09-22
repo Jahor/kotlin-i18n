@@ -1,10 +1,12 @@
 package info.leonenko.i18n.languages
+
 import info.leonenko.i18n.*
 import info.leonenko.i18n.rbnf.RBNFZh
 
 val Language.Companion.zh
     get() = languageZh
 private val languageZh = LanguageZh()
+
 open class LanguageZh internal constructor() : Language {
     override val code: String = "zh"
     override val language: String = "zh"
@@ -3647,7 +3649,7 @@ open class LanguageZh internal constructor() : Language {
 
     open class NumberLanguage internal constructor() : info.leonenko.i18n.NumberLanguage {
         override val symbols: NumberSymbols
-            get() = TODO("Symbols are not supported")
+            get() = LanguageRoot().numbers.symbols
     }
 
     override val numbers: NumberLanguage

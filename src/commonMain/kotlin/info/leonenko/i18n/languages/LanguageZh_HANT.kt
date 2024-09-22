@@ -35,6 +35,7 @@ open class LanguageZh_HANT internal constructor() : LanguageZh() {
     open class MeasurementUnitLanguage internal constructor() : LanguageZh.MeasurementUnitLanguage() {
         override val accelerationGForce
             get() = MultiLengthGenderedPattern(
+                base = super.accelerationGForce,
                 short = GenderedPattern(
                     cases = Cases(
                         nominative = PluralPattern(
@@ -56,6 +57,7 @@ open class LanguageZh_HANT internal constructor() : LanguageZh() {
             )
         override val accelerationMeterPerSquareSecond
             get() = MultiLengthGenderedPattern(
+                base = super.accelerationMeterPerSquareSecond,
                 long = GenderedPattern(
                     cases = Cases(
                         nominative = PluralPattern(
@@ -86,6 +88,7 @@ open class LanguageZh_HANT internal constructor() : LanguageZh() {
             )
         override val angleRevolution
             get() = MultiLengthGenderedPattern(
+                base = super.angleRevolution,
                 short = GenderedPattern(
                     cases = Cases(
                         nominative = PluralPattern(
@@ -107,6 +110,7 @@ open class LanguageZh_HANT internal constructor() : LanguageZh() {
             )
         override val angleRadian
             get() = MultiLengthGenderedPattern(
+                base = super.angleRadian,
                 short = GenderedPattern(
                     cases = Cases(
                         nominative = PluralPattern(
@@ -128,6 +132,7 @@ open class LanguageZh_HANT internal constructor() : LanguageZh() {
             )
         override val angleDegree
             get() = MultiLengthGenderedPattern(
+                base = super.angleDegree,
                 short = GenderedPattern(
                     cases = Cases(
                         nominative = PluralPattern(
@@ -149,6 +154,7 @@ open class LanguageZh_HANT internal constructor() : LanguageZh() {
             )
         override val angleArcMinute
             get() = MultiLengthGenderedPattern(
+                base = super.angleArcMinute,
                 short = GenderedPattern(
                     cases = Cases(
                         nominative = PluralPattern(
@@ -170,6 +176,7 @@ open class LanguageZh_HANT internal constructor() : LanguageZh() {
             )
         override val angleArcSecond
             get() = MultiLengthGenderedPattern(
+                base = super.angleArcSecond,
                 short = GenderedPattern(
                     cases = Cases(
                         nominative = PluralPattern(
@@ -191,6 +198,7 @@ open class LanguageZh_HANT internal constructor() : LanguageZh() {
             )
         override val areaSquareKilometer
             get() = MultiLengthGenderedPattern(
+                base = super.areaSquareKilometer,
                 short = GenderedPattern(
                     cases = Cases(
                         nominative = PluralPattern(
@@ -212,6 +220,7 @@ open class LanguageZh_HANT internal constructor() : LanguageZh() {
             )
         override val areaHectare
             get() = MultiLengthGenderedPattern(
+                base = super.areaHectare,
                 short = GenderedPattern(
                     cases = Cases(
                         nominative = PluralPattern(
@@ -233,6 +242,7 @@ open class LanguageZh_HANT internal constructor() : LanguageZh() {
             )
         override val areaSquareMeter
             get() = MultiLengthGenderedPattern(
+                base = super.areaSquareMeter,
                 short = GenderedPattern(
                     cases = Cases(
                         nominative = PluralPattern(
@@ -254,6 +264,7 @@ open class LanguageZh_HANT internal constructor() : LanguageZh() {
             )
         override val areaSquareCentimeter
             get() = MultiLengthGenderedPattern(
+                base = super.areaSquareCentimeter,
                 short = GenderedPattern(
                     cases = Cases(
                         nominative = PluralPattern(
@@ -275,6 +286,7 @@ open class LanguageZh_HANT internal constructor() : LanguageZh() {
             )
         override val areaSquareMile
             get() = MultiLengthGenderedPattern(
+                base = super.areaSquareMile,
                 short = GenderedPattern(
                     cases = Cases(
                         nominative = PluralPattern(
@@ -296,6 +308,7 @@ open class LanguageZh_HANT internal constructor() : LanguageZh() {
             )
         override val areaAcre
             get() = MultiLengthGenderedPattern(
+                base = super.areaAcre,
                 short = GenderedPattern(
                     cases = Cases(
                         nominative = PluralPattern(
@@ -317,6 +330,7 @@ open class LanguageZh_HANT internal constructor() : LanguageZh() {
             )
         override val areaSquareYard
             get() = MultiLengthGenderedPattern(
+                base = super.areaSquareYard,
                 short = GenderedPattern(
                     cases = Cases(
                         nominative = PluralPattern(
@@ -338,6 +352,7 @@ open class LanguageZh_HANT internal constructor() : LanguageZh() {
             )
         override val areaSquareFoot
             get() = MultiLengthGenderedPattern(
+                base = super.areaSquareFoot,
                 short = GenderedPattern(
                     cases = Cases(
                         nominative = PluralPattern(
@@ -359,6 +374,7 @@ open class LanguageZh_HANT internal constructor() : LanguageZh() {
             )
         override val areaSquareInch
             get() = MultiLengthGenderedPattern(
+                base = super.areaSquareInch,
                 short = GenderedPattern(
                     cases = Cases(
                         nominative = PluralPattern(
@@ -380,6 +396,7 @@ open class LanguageZh_HANT internal constructor() : LanguageZh() {
             )
         override val areaDunam
             get() = MultiLengthGenderedPattern(
+                base = super.areaDunam,
                 short = GenderedPattern(
                     cases = Cases(
                         nominative = PluralPattern(
@@ -401,6 +418,7 @@ open class LanguageZh_HANT internal constructor() : LanguageZh() {
             )
         override val concentrationKarat
             get() = MultiLengthGenderedPattern(
+                base = super.concentrationKarat,
                 short = GenderedPattern(
                     cases = Cases(
                         nominative = PluralPattern(
@@ -422,6 +440,7 @@ open class LanguageZh_HANT internal constructor() : LanguageZh() {
             )
         override val concentrationPermillion
             get() = MultiLengthGenderedPattern(
+                base = super.concentrationPermillion,
                 short = GenderedPattern(
                     cases = Cases(
                         nominative = PluralPattern(
@@ -443,6 +462,7 @@ open class LanguageZh_HANT internal constructor() : LanguageZh() {
             )
         override val concentrationMilligramOfglucosePerDeciliter
             get() = MultiLengthGenderedPattern(
+                base = super.concentrationMilligramOfglucosePerDeciliter,
                 long = GenderedPattern(
                     cases = Cases(
                         nominative = PluralPattern(
@@ -473,6 +493,7 @@ open class LanguageZh_HANT internal constructor() : LanguageZh() {
             )
         override val concentrationMillimolePerLiter
             get() = MultiLengthGenderedPattern(
+                base = super.concentrationMillimolePerLiter,
                 long = GenderedPattern(
                     cases = Cases(
                         nominative = PluralPattern(
@@ -503,6 +524,7 @@ open class LanguageZh_HANT internal constructor() : LanguageZh() {
             )
         override val concentrationItem
             get() = MultiLengthGenderedPattern(
+                base = super.concentrationItem,
                 short = GenderedPattern(
                     cases = Cases(
                         nominative = PluralPattern(
@@ -524,6 +546,7 @@ open class LanguageZh_HANT internal constructor() : LanguageZh() {
             )
         override val concentrationMole
             get() = MultiLengthGenderedPattern(
+                base = super.concentrationMole,
                 short = GenderedPattern(
                     cases = Cases(
                         nominative = PluralPattern(
@@ -545,6 +568,7 @@ open class LanguageZh_HANT internal constructor() : LanguageZh() {
             )
         override val consumptionLiterPerKilometer
             get() = MultiLengthGenderedPattern(
+                base = super.consumptionLiterPerKilometer,
                 long = GenderedPattern(
                     cases = Cases(
                         nominative = PluralPattern(
@@ -575,6 +599,7 @@ open class LanguageZh_HANT internal constructor() : LanguageZh() {
             )
         override val consumptionLiterPer100Kilometer
             get() = MultiLengthGenderedPattern(
+                base = super.consumptionLiterPer100Kilometer,
                 long = GenderedPattern(
                     cases = Cases(
                         nominative = PluralPattern(
@@ -605,6 +630,7 @@ open class LanguageZh_HANT internal constructor() : LanguageZh() {
             )
         override val consumptionMilePerGallon
             get() = MultiLengthGenderedPattern(
+                base = super.consumptionMilePerGallon,
                 long = GenderedPattern(
                     cases = Cases(
                         nominative = PluralPattern(
@@ -635,6 +661,7 @@ open class LanguageZh_HANT internal constructor() : LanguageZh() {
             )
         override val consumptionMilePerGallonImperial
             get() = MultiLengthGenderedPattern(
+                base = super.consumptionMilePerGallonImperial,
                 long = GenderedPattern(
                     cases = Cases(
                         nominative = PluralPattern(
@@ -665,6 +692,7 @@ open class LanguageZh_HANT internal constructor() : LanguageZh() {
             )
         override val digitalPetabyte
             get() = MultiLengthGenderedPattern(
+                base = super.digitalPetabyte,
                 narrow = GenderedPattern(
                     cases = Cases(
                         nominative = PluralPattern(
@@ -677,6 +705,7 @@ open class LanguageZh_HANT internal constructor() : LanguageZh() {
             )
         override val digitalTerabyte
             get() = MultiLengthGenderedPattern(
+                base = super.digitalTerabyte,
                 narrow = GenderedPattern(
                     cases = Cases(
                         nominative = PluralPattern(
@@ -689,6 +718,7 @@ open class LanguageZh_HANT internal constructor() : LanguageZh() {
             )
         override val digitalTerabit
             get() = MultiLengthGenderedPattern(
+                base = super.digitalTerabit,
                 narrow = GenderedPattern(
                     cases = Cases(
                         nominative = PluralPattern(
@@ -701,6 +731,7 @@ open class LanguageZh_HANT internal constructor() : LanguageZh() {
             )
         override val digitalGigabyte
             get() = MultiLengthGenderedPattern(
+                base = super.digitalGigabyte,
                 narrow = GenderedPattern(
                     cases = Cases(
                         nominative = PluralPattern(
@@ -713,6 +744,7 @@ open class LanguageZh_HANT internal constructor() : LanguageZh() {
             )
         override val digitalGigabit
             get() = MultiLengthGenderedPattern(
+                base = super.digitalGigabit,
                 narrow = GenderedPattern(
                     cases = Cases(
                         nominative = PluralPattern(
@@ -725,6 +757,7 @@ open class LanguageZh_HANT internal constructor() : LanguageZh() {
             )
         override val digitalMegabyte
             get() = MultiLengthGenderedPattern(
+                base = super.digitalMegabyte,
                 narrow = GenderedPattern(
                     cases = Cases(
                         nominative = PluralPattern(
@@ -737,6 +770,7 @@ open class LanguageZh_HANT internal constructor() : LanguageZh() {
             )
         override val digitalMegabit
             get() = MultiLengthGenderedPattern(
+                base = super.digitalMegabit,
                 narrow = GenderedPattern(
                     cases = Cases(
                         nominative = PluralPattern(
@@ -749,6 +783,7 @@ open class LanguageZh_HANT internal constructor() : LanguageZh() {
             )
         override val digitalKilobyte
             get() = MultiLengthGenderedPattern(
+                base = super.digitalKilobyte,
                 narrow = GenderedPattern(
                     cases = Cases(
                         nominative = PluralPattern(
@@ -761,6 +796,7 @@ open class LanguageZh_HANT internal constructor() : LanguageZh() {
             )
         override val digitalKilobit
             get() = MultiLengthGenderedPattern(
+                base = super.digitalKilobit,
                 narrow = GenderedPattern(
                     cases = Cases(
                         nominative = PluralPattern(
@@ -773,6 +809,7 @@ open class LanguageZh_HANT internal constructor() : LanguageZh() {
             )
         override val digitalByte
             get() = MultiLengthGenderedPattern(
+                base = super.digitalByte,
                 narrow = GenderedPattern(
                     cases = Cases(
                         nominative = PluralPattern(
@@ -785,6 +822,7 @@ open class LanguageZh_HANT internal constructor() : LanguageZh() {
             )
         override val digitalBit
             get() = MultiLengthGenderedPattern(
+                base = super.digitalBit,
                 narrow = GenderedPattern(
                     cases = Cases(
                         nominative = PluralPattern(
@@ -797,6 +835,7 @@ open class LanguageZh_HANT internal constructor() : LanguageZh() {
             )
         override val durationCentury
             get() = MultiLengthGenderedPattern(
+                base = super.durationCentury,
                 long = GenderedPattern(
                     cases = Cases(
                         nominative = PluralPattern(
@@ -818,6 +857,7 @@ open class LanguageZh_HANT internal constructor() : LanguageZh() {
             )
         override val durationDecade
             get() = MultiLengthGenderedPattern(
+                base = super.durationDecade,
                 short = GenderedPattern(
                     cases = Cases(
                         nominative = PluralPattern(
@@ -830,6 +870,7 @@ open class LanguageZh_HANT internal constructor() : LanguageZh() {
             )
         override val durationYear
             get() = MultiLengthGenderedPattern(
+                base = super.durationYear,
                 short = GenderedPattern(
                     cases = Cases(
                         nominative = PluralPattern(
@@ -842,6 +883,7 @@ open class LanguageZh_HANT internal constructor() : LanguageZh() {
             )
         override val durationQuarter
             get() = MultiLengthGenderedPattern(
+                base = super.durationQuarter,
                 short = GenderedPattern(
                     cases = Cases(
                         nominative = PluralPattern(
@@ -854,6 +896,7 @@ open class LanguageZh_HANT internal constructor() : LanguageZh() {
             )
         override val durationMonth
             get() = MultiLengthGenderedPattern(
+                base = super.durationMonth,
                 short = GenderedPattern(
                     cases = Cases(
                         nominative = PluralPattern(
@@ -866,6 +909,7 @@ open class LanguageZh_HANT internal constructor() : LanguageZh() {
             )
         override val durationWeek
             get() = MultiLengthGenderedPattern(
+                base = super.durationWeek,
                 short = GenderedPattern(
                     cases = Cases(
                         nominative = PluralPattern(
@@ -878,6 +922,7 @@ open class LanguageZh_HANT internal constructor() : LanguageZh() {
             )
         override val durationDay
             get() = MultiLengthGenderedPattern(
+                base = super.durationDay,
                 short = GenderedPattern(
                     cases = Cases(
                         nominative = PluralPattern(
@@ -890,6 +935,7 @@ open class LanguageZh_HANT internal constructor() : LanguageZh() {
             )
         override val durationHour
             get() = MultiLengthGenderedPattern(
+                base = super.durationHour,
                 short = GenderedPattern(
                     cases = Cases(
                         nominative = PluralPattern(
@@ -902,6 +948,7 @@ open class LanguageZh_HANT internal constructor() : LanguageZh() {
             )
         override val durationMinute
             get() = MultiLengthGenderedPattern(
+                base = super.durationMinute,
                 short = GenderedPattern(
                     cases = Cases(
                         nominative = PluralPattern(
@@ -914,6 +961,7 @@ open class LanguageZh_HANT internal constructor() : LanguageZh() {
             )
         override val durationSecond
             get() = MultiLengthGenderedPattern(
+                base = super.durationSecond,
                 short = GenderedPattern(
                     cases = Cases(
                         nominative = PluralPattern(
@@ -926,6 +974,7 @@ open class LanguageZh_HANT internal constructor() : LanguageZh() {
             )
         override val durationMillisecond
             get() = MultiLengthGenderedPattern(
+                base = super.durationMillisecond,
                 short = GenderedPattern(
                     cases = Cases(
                         nominative = PluralPattern(
@@ -938,6 +987,7 @@ open class LanguageZh_HANT internal constructor() : LanguageZh() {
             )
         override val durationMicrosecond
             get() = MultiLengthGenderedPattern(
+                base = super.durationMicrosecond,
                 short = GenderedPattern(
                     cases = Cases(
                         nominative = PluralPattern(
@@ -959,6 +1009,7 @@ open class LanguageZh_HANT internal constructor() : LanguageZh() {
             )
         override val durationNanosecond
             get() = MultiLengthGenderedPattern(
+                base = super.durationNanosecond,
                 short = GenderedPattern(
                     cases = Cases(
                         nominative = PluralPattern(
@@ -980,6 +1031,7 @@ open class LanguageZh_HANT internal constructor() : LanguageZh() {
             )
         override val electricAmpere
             get() = MultiLengthGenderedPattern(
+                base = super.electricAmpere,
                 short = GenderedPattern(
                     cases = Cases(
                         nominative = PluralPattern(
@@ -1001,6 +1053,7 @@ open class LanguageZh_HANT internal constructor() : LanguageZh() {
             )
         override val electricMilliampere
             get() = MultiLengthGenderedPattern(
+                base = super.electricMilliampere,
                 short = GenderedPattern(
                     cases = Cases(
                         nominative = PluralPattern(
@@ -1022,6 +1075,7 @@ open class LanguageZh_HANT internal constructor() : LanguageZh() {
             )
         override val electricOhm
             get() = MultiLengthGenderedPattern(
+                base = super.electricOhm,
                 short = GenderedPattern(
                     cases = Cases(
                         nominative = PluralPattern(
@@ -1043,6 +1097,7 @@ open class LanguageZh_HANT internal constructor() : LanguageZh() {
             )
         override val electricVolt
             get() = MultiLengthGenderedPattern(
+                base = super.electricVolt,
                 short = GenderedPattern(
                     cases = Cases(
                         nominative = PluralPattern(
@@ -1064,6 +1119,7 @@ open class LanguageZh_HANT internal constructor() : LanguageZh() {
             )
         override val energyKilocalorie
             get() = MultiLengthGenderedPattern(
+                base = super.energyKilocalorie,
                 long = GenderedPattern(
                     cases = Cases(
                         nominative = PluralPattern(
@@ -1094,6 +1150,7 @@ open class LanguageZh_HANT internal constructor() : LanguageZh() {
             )
         override val energyCalorie
             get() = MultiLengthGenderedPattern(
+                base = super.energyCalorie,
                 long = GenderedPattern(
                     cases = Cases(
                         nominative = PluralPattern(
@@ -1124,6 +1181,7 @@ open class LanguageZh_HANT internal constructor() : LanguageZh() {
             )
         override val energyFoodcalorie
             get() = MultiLengthGenderedPattern(
+                base = super.energyFoodcalorie,
                 short = GenderedPattern(
                     cases = Cases(
                         nominative = PluralPattern(
@@ -1145,6 +1203,7 @@ open class LanguageZh_HANT internal constructor() : LanguageZh() {
             )
         override val energyKilojoule
             get() = MultiLengthGenderedPattern(
+                base = super.energyKilojoule,
                 long = GenderedPattern(
                     cases = Cases(
                         nominative = PluralPattern(
@@ -1175,6 +1234,7 @@ open class LanguageZh_HANT internal constructor() : LanguageZh() {
             )
         override val energyJoule
             get() = MultiLengthGenderedPattern(
+                base = super.energyJoule,
                 long = GenderedPattern(
                     cases = Cases(
                         nominative = PluralPattern(
@@ -1205,6 +1265,7 @@ open class LanguageZh_HANT internal constructor() : LanguageZh() {
             )
         override val energyKilowattHour
             get() = MultiLengthGenderedPattern(
+                base = super.energyKilowattHour,
                 short = GenderedPattern(
                     cases = Cases(
                         nominative = PluralPattern(
@@ -1226,6 +1287,7 @@ open class LanguageZh_HANT internal constructor() : LanguageZh() {
             )
         override val energyElectronvolt
             get() = MultiLengthGenderedPattern(
+                base = super.energyElectronvolt,
                 short = GenderedPattern(
                     cases = Cases(
                         nominative = PluralPattern(
@@ -1247,6 +1309,7 @@ open class LanguageZh_HANT internal constructor() : LanguageZh() {
             )
         override val energyBritishThermalUnit
             get() = MultiLengthGenderedPattern(
+                base = super.energyBritishThermalUnit,
                 short = GenderedPattern(
                     cases = Cases(
                         nominative = PluralPattern(
@@ -1268,6 +1331,7 @@ open class LanguageZh_HANT internal constructor() : LanguageZh() {
             )
         override val energyThermUs
             get() = MultiLengthGenderedPattern(
+                base = super.energyThermUs,
                 short = GenderedPattern(
                     cases = Cases(
                         nominative = PluralPattern(
@@ -1289,6 +1353,7 @@ open class LanguageZh_HANT internal constructor() : LanguageZh() {
             )
         override val forcePoundForce
             get() = MultiLengthGenderedPattern(
+                base = super.forcePoundForce,
                 long = GenderedPattern(
                     cases = Cases(
                         nominative = PluralPattern(
@@ -1310,6 +1375,7 @@ open class LanguageZh_HANT internal constructor() : LanguageZh() {
             )
         override val forceNewton
             get() = MultiLengthGenderedPattern(
+                base = super.forceNewton,
                 long = GenderedPattern(
                     cases = Cases(
                         nominative = PluralPattern(
@@ -1331,6 +1397,7 @@ open class LanguageZh_HANT internal constructor() : LanguageZh() {
             )
         override val forceKilowattHourPer100Kilometer
             get() = MultiLengthGenderedPattern(
+                base = super.forceKilowattHourPer100Kilometer,
                 narrow = GenderedPattern(
                     cases = Cases(
                         nominative = PluralPattern(
@@ -1343,6 +1410,7 @@ open class LanguageZh_HANT internal constructor() : LanguageZh() {
             )
         override val frequencyGigahertz
             get() = MultiLengthGenderedPattern(
+                base = super.frequencyGigahertz,
                 short = GenderedPattern(
                     cases = Cases(
                         nominative = PluralPattern(
@@ -1364,6 +1432,7 @@ open class LanguageZh_HANT internal constructor() : LanguageZh() {
             )
         override val frequencyMegahertz
             get() = MultiLengthGenderedPattern(
+                base = super.frequencyMegahertz,
                 short = GenderedPattern(
                     cases = Cases(
                         nominative = PluralPattern(
@@ -1385,6 +1454,7 @@ open class LanguageZh_HANT internal constructor() : LanguageZh() {
             )
         override val frequencyKilohertz
             get() = MultiLengthGenderedPattern(
+                base = super.frequencyKilohertz,
                 short = GenderedPattern(
                     cases = Cases(
                         nominative = PluralPattern(
@@ -1406,6 +1476,7 @@ open class LanguageZh_HANT internal constructor() : LanguageZh() {
             )
         override val frequencyHertz
             get() = MultiLengthGenderedPattern(
+                base = super.frequencyHertz,
                 short = GenderedPattern(
                     cases = Cases(
                         nominative = PluralPattern(
@@ -1427,6 +1498,7 @@ open class LanguageZh_HANT internal constructor() : LanguageZh() {
             )
         override val graphicsEm
             get() = MultiLengthGenderedPattern(
+                base = super.graphicsEm,
                 narrow = GenderedPattern(
                     cases = Cases(
                         nominative = PluralPattern(
@@ -1439,6 +1511,7 @@ open class LanguageZh_HANT internal constructor() : LanguageZh() {
             )
         override val graphicsPixel
             get() = MultiLengthGenderedPattern(
+                base = super.graphicsPixel,
                 long = GenderedPattern(
                     cases = Cases(
                         nominative = PluralPattern(
@@ -1460,6 +1533,7 @@ open class LanguageZh_HANT internal constructor() : LanguageZh() {
             )
         override val graphicsMegapixel
             get() = MultiLengthGenderedPattern(
+                base = super.graphicsMegapixel,
                 long = GenderedPattern(
                     cases = Cases(
                         nominative = PluralPattern(
@@ -1481,6 +1555,7 @@ open class LanguageZh_HANT internal constructor() : LanguageZh() {
             )
         override val graphicsDot
             get() = MultiLengthGenderedPattern(
+                base = super.graphicsDot,
                 narrow = GenderedPattern(
                     cases = Cases(
                         nominative = PluralPattern(
@@ -1493,6 +1568,7 @@ open class LanguageZh_HANT internal constructor() : LanguageZh() {
             )
         override val graphicsPixelPerCentimeter
             get() = MultiLengthGenderedPattern(
+                base = super.graphicsPixelPerCentimeter,
                 narrow = GenderedPattern(
                     cases = Cases(
                         nominative = PluralPattern(
@@ -1505,6 +1581,7 @@ open class LanguageZh_HANT internal constructor() : LanguageZh() {
             )
         override val graphicsPixelPerInch
             get() = MultiLengthGenderedPattern(
+                base = super.graphicsPixelPerInch,
                 narrow = GenderedPattern(
                     cases = Cases(
                         nominative = PluralPattern(
@@ -1517,6 +1594,7 @@ open class LanguageZh_HANT internal constructor() : LanguageZh() {
             )
         override val graphicsDotPerCentimeter
             get() = MultiLengthGenderedPattern(
+                base = super.graphicsDotPerCentimeter,
                 short = GenderedPattern(
                     cases = Cases(
                         nominative = PluralPattern(
@@ -1538,6 +1616,7 @@ open class LanguageZh_HANT internal constructor() : LanguageZh() {
             )
         override val graphicsDotPerInch
             get() = MultiLengthGenderedPattern(
+                base = super.graphicsDotPerInch,
                 short = GenderedPattern(
                     cases = Cases(
                         nominative = PluralPattern(
@@ -1559,6 +1638,7 @@ open class LanguageZh_HANT internal constructor() : LanguageZh() {
             )
         override val lengthEarthRadius
             get() = MultiLengthGenderedPattern(
+                base = super.lengthEarthRadius,
                 long = GenderedPattern(
                     cases = Cases(
                         nominative = PluralPattern(
@@ -1580,6 +1660,7 @@ open class LanguageZh_HANT internal constructor() : LanguageZh() {
             )
         override val lengthKilometer
             get() = MultiLengthGenderedPattern(
+                base = super.lengthKilometer,
                 short = GenderedPattern(
                     cases = Cases(
                         nominative = PluralPattern(
@@ -1601,6 +1682,7 @@ open class LanguageZh_HANT internal constructor() : LanguageZh() {
             )
         override val lengthMeter
             get() = MultiLengthGenderedPattern(
+                base = super.lengthMeter,
                 short = GenderedPattern(
                     cases = Cases(
                         nominative = PluralPattern(
@@ -1622,6 +1704,7 @@ open class LanguageZh_HANT internal constructor() : LanguageZh() {
             )
         override val lengthDecimeter
             get() = MultiLengthGenderedPattern(
+                base = super.lengthDecimeter,
                 short = GenderedPattern(
                     cases = Cases(
                         nominative = PluralPattern(
@@ -1643,6 +1726,7 @@ open class LanguageZh_HANT internal constructor() : LanguageZh() {
             )
         override val lengthCentimeter
             get() = MultiLengthGenderedPattern(
+                base = super.lengthCentimeter,
                 short = GenderedPattern(
                     cases = Cases(
                         nominative = PluralPattern(
@@ -1664,6 +1748,7 @@ open class LanguageZh_HANT internal constructor() : LanguageZh() {
             )
         override val lengthMillimeter
             get() = MultiLengthGenderedPattern(
+                base = super.lengthMillimeter,
                 short = GenderedPattern(
                     cases = Cases(
                         nominative = PluralPattern(
@@ -1685,6 +1770,7 @@ open class LanguageZh_HANT internal constructor() : LanguageZh() {
             )
         override val lengthMicrometer
             get() = MultiLengthGenderedPattern(
+                base = super.lengthMicrometer,
                 short = GenderedPattern(
                     cases = Cases(
                         nominative = PluralPattern(
@@ -1706,6 +1792,7 @@ open class LanguageZh_HANT internal constructor() : LanguageZh() {
             )
         override val lengthNanometer
             get() = MultiLengthGenderedPattern(
+                base = super.lengthNanometer,
                 short = GenderedPattern(
                     cases = Cases(
                         nominative = PluralPattern(
@@ -1727,6 +1814,7 @@ open class LanguageZh_HANT internal constructor() : LanguageZh() {
             )
         override val lengthPicometer
             get() = MultiLengthGenderedPattern(
+                base = super.lengthPicometer,
                 short = GenderedPattern(
                     cases = Cases(
                         nominative = PluralPattern(
@@ -1748,6 +1836,7 @@ open class LanguageZh_HANT internal constructor() : LanguageZh() {
             )
         override val lengthMile
             get() = MultiLengthGenderedPattern(
+                base = super.lengthMile,
                 short = GenderedPattern(
                     cases = Cases(
                         nominative = PluralPattern(
@@ -1769,6 +1858,7 @@ open class LanguageZh_HANT internal constructor() : LanguageZh() {
             )
         override val lengthYard
             get() = MultiLengthGenderedPattern(
+                base = super.lengthYard,
                 short = GenderedPattern(
                     cases = Cases(
                         nominative = PluralPattern(
@@ -1790,6 +1880,7 @@ open class LanguageZh_HANT internal constructor() : LanguageZh() {
             )
         override val lengthFoot
             get() = MultiLengthGenderedPattern(
+                base = super.lengthFoot,
                 long = GenderedPattern(
                     cases = Cases(
                         nominative = PluralPattern(
@@ -1820,6 +1911,7 @@ open class LanguageZh_HANT internal constructor() : LanguageZh() {
             )
         override val lengthInch
             get() = MultiLengthGenderedPattern(
+                base = super.lengthInch,
                 long = GenderedPattern(
                     cases = Cases(
                         nominative = PluralPattern(
@@ -1850,6 +1942,7 @@ open class LanguageZh_HANT internal constructor() : LanguageZh() {
             )
         override val lengthParsec
             get() = MultiLengthGenderedPattern(
+                base = super.lengthParsec,
                 short = GenderedPattern(
                     cases = Cases(
                         nominative = PluralPattern(
@@ -1871,6 +1964,7 @@ open class LanguageZh_HANT internal constructor() : LanguageZh() {
             )
         override val lengthLightYear
             get() = MultiLengthGenderedPattern(
+                base = super.lengthLightYear,
                 short = GenderedPattern(
                     cases = Cases(
                         nominative = PluralPattern(
@@ -1892,6 +1986,7 @@ open class LanguageZh_HANT internal constructor() : LanguageZh() {
             )
         override val lengthAstronomicalUnit
             get() = MultiLengthGenderedPattern(
+                base = super.lengthAstronomicalUnit,
                 short = GenderedPattern(
                     cases = Cases(
                         nominative = PluralPattern(
@@ -1913,6 +2008,7 @@ open class LanguageZh_HANT internal constructor() : LanguageZh() {
             )
         override val lengthFurlong
             get() = MultiLengthGenderedPattern(
+                base = super.lengthFurlong,
                 short = GenderedPattern(
                     cases = Cases(
                         nominative = PluralPattern(
@@ -1934,6 +2030,7 @@ open class LanguageZh_HANT internal constructor() : LanguageZh() {
             )
         override val lengthFathom
             get() = MultiLengthGenderedPattern(
+                base = super.lengthFathom,
                 short = GenderedPattern(
                     cases = Cases(
                         nominative = PluralPattern(
@@ -1955,6 +2052,7 @@ open class LanguageZh_HANT internal constructor() : LanguageZh() {
             )
         override val lengthNauticalMile
             get() = MultiLengthGenderedPattern(
+                base = super.lengthNauticalMile,
                 short = GenderedPattern(
                     cases = Cases(
                         nominative = PluralPattern(
@@ -1976,6 +2074,7 @@ open class LanguageZh_HANT internal constructor() : LanguageZh() {
             )
         override val lengthMileScandinavian
             get() = MultiLengthGenderedPattern(
+                base = super.lengthMileScandinavian,
                 short = GenderedPattern(
                     cases = Cases(
                         nominative = PluralPattern(
@@ -1997,6 +2096,7 @@ open class LanguageZh_HANT internal constructor() : LanguageZh() {
             )
         override val lengthPoint
             get() = MultiLengthGenderedPattern(
+                base = super.lengthPoint,
                 short = GenderedPattern(
                     cases = Cases(
                         nominative = PluralPattern(
@@ -2018,6 +2118,7 @@ open class LanguageZh_HANT internal constructor() : LanguageZh() {
             )
         override val lengthSolarRadius
             get() = MultiLengthGenderedPattern(
+                base = super.lengthSolarRadius,
                 long = GenderedPattern(
                     cases = Cases(
                         nominative = PluralPattern(
@@ -2039,6 +2140,7 @@ open class LanguageZh_HANT internal constructor() : LanguageZh() {
             )
         override val lightLux
             get() = MultiLengthGenderedPattern(
+                base = super.lightLux,
                 short = GenderedPattern(
                     cases = Cases(
                         nominative = PluralPattern(
@@ -2060,6 +2162,7 @@ open class LanguageZh_HANT internal constructor() : LanguageZh() {
             )
         override val lightCandela
             get() = MultiLengthGenderedPattern(
+                base = super.lightCandela,
                 short = GenderedPattern(
                     cases = Cases(
                         nominative = PluralPattern(
@@ -2081,6 +2184,7 @@ open class LanguageZh_HANT internal constructor() : LanguageZh() {
             )
         override val lightLumen
             get() = MultiLengthGenderedPattern(
+                base = super.lightLumen,
                 short = GenderedPattern(
                     cases = Cases(
                         nominative = PluralPattern(
@@ -2102,6 +2206,7 @@ open class LanguageZh_HANT internal constructor() : LanguageZh() {
             )
         override val lightSolarLuminosity
             get() = MultiLengthGenderedPattern(
+                base = super.lightSolarLuminosity,
                 long = GenderedPattern(
                     cases = Cases(
                         nominative = PluralPattern(
@@ -2123,6 +2228,7 @@ open class LanguageZh_HANT internal constructor() : LanguageZh() {
             )
         override val massTonne
             get() = MultiLengthGenderedPattern(
+                base = super.massTonne,
                 short = GenderedPattern(
                     cases = Cases(
                         nominative = PluralPattern(
@@ -2144,6 +2250,7 @@ open class LanguageZh_HANT internal constructor() : LanguageZh() {
             )
         override val massKilogram
             get() = MultiLengthGenderedPattern(
+                base = super.massKilogram,
                 short = GenderedPattern(
                     cases = Cases(
                         nominative = PluralPattern(
@@ -2165,6 +2272,7 @@ open class LanguageZh_HANT internal constructor() : LanguageZh() {
             )
         override val massGram
             get() = MultiLengthGenderedPattern(
+                base = super.massGram,
                 short = GenderedPattern(
                     cases = Cases(
                         nominative = PluralPattern(
@@ -2186,6 +2294,7 @@ open class LanguageZh_HANT internal constructor() : LanguageZh() {
             )
         override val massMilligram
             get() = MultiLengthGenderedPattern(
+                base = super.massMilligram,
                 short = GenderedPattern(
                     cases = Cases(
                         nominative = PluralPattern(
@@ -2207,6 +2316,7 @@ open class LanguageZh_HANT internal constructor() : LanguageZh() {
             )
         override val massMicrogram
             get() = MultiLengthGenderedPattern(
+                base = super.massMicrogram,
                 short = GenderedPattern(
                     cases = Cases(
                         nominative = PluralPattern(
@@ -2228,6 +2338,7 @@ open class LanguageZh_HANT internal constructor() : LanguageZh() {
             )
         override val massTon
             get() = MultiLengthGenderedPattern(
+                base = super.massTon,
                 short = GenderedPattern(
                     cases = Cases(
                         nominative = PluralPattern(
@@ -2249,6 +2360,7 @@ open class LanguageZh_HANT internal constructor() : LanguageZh() {
             )
         override val massStone
             get() = MultiLengthGenderedPattern(
+                base = super.massStone,
                 short = GenderedPattern(
                     cases = Cases(
                         nominative = PluralPattern(
@@ -2270,6 +2382,7 @@ open class LanguageZh_HANT internal constructor() : LanguageZh() {
             )
         override val massPound
             get() = MultiLengthGenderedPattern(
+                base = super.massPound,
                 short = GenderedPattern(
                     cases = Cases(
                         nominative = PluralPattern(
@@ -2291,6 +2404,7 @@ open class LanguageZh_HANT internal constructor() : LanguageZh() {
             )
         override val massOunce
             get() = MultiLengthGenderedPattern(
+                base = super.massOunce,
                 short = GenderedPattern(
                     cases = Cases(
                         nominative = PluralPattern(
@@ -2312,6 +2426,7 @@ open class LanguageZh_HANT internal constructor() : LanguageZh() {
             )
         override val massOunceTroy
             get() = MultiLengthGenderedPattern(
+                base = super.massOunceTroy,
                 short = GenderedPattern(
                     cases = Cases(
                         nominative = PluralPattern(
@@ -2333,6 +2448,7 @@ open class LanguageZh_HANT internal constructor() : LanguageZh() {
             )
         override val massCarat
             get() = MultiLengthGenderedPattern(
+                base = super.massCarat,
                 short = GenderedPattern(
                     cases = Cases(
                         nominative = PluralPattern(
@@ -2354,6 +2470,7 @@ open class LanguageZh_HANT internal constructor() : LanguageZh() {
             )
         override val massDalton
             get() = MultiLengthGenderedPattern(
+                base = super.massDalton,
                 short = GenderedPattern(
                     cases = Cases(
                         nominative = PluralPattern(
@@ -2375,6 +2492,7 @@ open class LanguageZh_HANT internal constructor() : LanguageZh() {
             )
         override val massEarthMass
             get() = MultiLengthGenderedPattern(
+                base = super.massEarthMass,
                 short = GenderedPattern(
                     cases = Cases(
                         nominative = PluralPattern(
@@ -2396,6 +2514,7 @@ open class LanguageZh_HANT internal constructor() : LanguageZh() {
             )
         override val massSolarMass
             get() = MultiLengthGenderedPattern(
+                base = super.massSolarMass,
                 short = GenderedPattern(
                     cases = Cases(
                         nominative = PluralPattern(
@@ -2417,6 +2536,7 @@ open class LanguageZh_HANT internal constructor() : LanguageZh() {
             )
         override val massGrain
             get() = MultiLengthGenderedPattern(
+                base = super.massGrain,
                 short = GenderedPattern(
                     cases = Cases(
                         nominative = PluralPattern(
@@ -2438,6 +2558,7 @@ open class LanguageZh_HANT internal constructor() : LanguageZh() {
             )
         override val powerGigawatt
             get() = MultiLengthGenderedPattern(
+                base = super.powerGigawatt,
                 short = GenderedPattern(
                     cases = Cases(
                         nominative = PluralPattern(
@@ -2459,6 +2580,7 @@ open class LanguageZh_HANT internal constructor() : LanguageZh() {
             )
         override val powerMegawatt
             get() = MultiLengthGenderedPattern(
+                base = super.powerMegawatt,
                 long = GenderedPattern(
                     cases = Cases(
                         nominative = PluralPattern(
@@ -2489,6 +2611,7 @@ open class LanguageZh_HANT internal constructor() : LanguageZh() {
             )
         override val powerKilowatt
             get() = MultiLengthGenderedPattern(
+                base = super.powerKilowatt,
                 long = GenderedPattern(
                     cases = Cases(
                         nominative = PluralPattern(
@@ -2519,6 +2642,7 @@ open class LanguageZh_HANT internal constructor() : LanguageZh() {
             )
         override val powerWatt
             get() = MultiLengthGenderedPattern(
+                base = super.powerWatt,
                 long = GenderedPattern(
                     cases = Cases(
                         nominative = PluralPattern(
@@ -2549,6 +2673,7 @@ open class LanguageZh_HANT internal constructor() : LanguageZh() {
             )
         override val powerMilliwatt
             get() = MultiLengthGenderedPattern(
+                base = super.powerMilliwatt,
                 long = GenderedPattern(
                     cases = Cases(
                         nominative = PluralPattern(
@@ -2579,6 +2704,7 @@ open class LanguageZh_HANT internal constructor() : LanguageZh() {
             )
         override val powerHorsepower
             get() = MultiLengthGenderedPattern(
+                base = super.powerHorsepower,
                 long = GenderedPattern(
                     cases = Cases(
                         nominative = PluralPattern(
@@ -2609,6 +2735,7 @@ open class LanguageZh_HANT internal constructor() : LanguageZh() {
             )
         override val pressureMillimeterOfhg
             get() = MultiLengthGenderedPattern(
+                base = super.pressureMillimeterOfhg,
                 short = GenderedPattern(
                     cases = Cases(
                         nominative = PluralPattern(
@@ -2630,6 +2757,7 @@ open class LanguageZh_HANT internal constructor() : LanguageZh() {
             )
         override val pressurePoundForcePerSquareInch
             get() = MultiLengthGenderedPattern(
+                base = super.pressurePoundForcePerSquareInch,
                 long = GenderedPattern(
                     cases = Cases(
                         nominative = PluralPattern(
@@ -2660,6 +2788,7 @@ open class LanguageZh_HANT internal constructor() : LanguageZh() {
             )
         override val pressureInchOfhg
             get() = MultiLengthGenderedPattern(
+                base = super.pressureInchOfhg,
                 short = GenderedPattern(
                     cases = Cases(
                         nominative = PluralPattern(
@@ -2681,6 +2810,7 @@ open class LanguageZh_HANT internal constructor() : LanguageZh() {
             )
         override val pressureBar
             get() = MultiLengthGenderedPattern(
+                base = super.pressureBar,
                 short = GenderedPattern(
                     cases = Cases(
                         nominative = PluralPattern(
@@ -2702,6 +2832,7 @@ open class LanguageZh_HANT internal constructor() : LanguageZh() {
             )
         override val pressureMillibar
             get() = MultiLengthGenderedPattern(
+                base = super.pressureMillibar,
                 short = GenderedPattern(
                     cases = Cases(
                         nominative = PluralPattern(
@@ -2723,6 +2854,7 @@ open class LanguageZh_HANT internal constructor() : LanguageZh() {
             )
         override val pressureAtmosphere
             get() = MultiLengthGenderedPattern(
+                base = super.pressureAtmosphere,
                 long = GenderedPattern(
                     cases = Cases(
                         nominative = PluralPattern(
@@ -2744,6 +2876,7 @@ open class LanguageZh_HANT internal constructor() : LanguageZh() {
             )
         override val pressurePascal
             get() = MultiLengthGenderedPattern(
+                base = super.pressurePascal,
                 long = GenderedPattern(
                     cases = Cases(
                         nominative = PluralPattern(
@@ -2774,6 +2907,7 @@ open class LanguageZh_HANT internal constructor() : LanguageZh() {
             )
         override val pressureHectopascal
             get() = MultiLengthGenderedPattern(
+                base = super.pressureHectopascal,
                 short = GenderedPattern(
                     cases = Cases(
                         nominative = PluralPattern(
@@ -2795,6 +2929,7 @@ open class LanguageZh_HANT internal constructor() : LanguageZh() {
             )
         override val pressureKilopascal
             get() = MultiLengthGenderedPattern(
+                base = super.pressureKilopascal,
                 short = GenderedPattern(
                     cases = Cases(
                         nominative = PluralPattern(
@@ -2816,6 +2951,7 @@ open class LanguageZh_HANT internal constructor() : LanguageZh() {
             )
         override val pressureMegapascal
             get() = MultiLengthGenderedPattern(
+                base = super.pressureMegapascal,
                 short = GenderedPattern(
                     cases = Cases(
                         nominative = PluralPattern(
@@ -2837,6 +2973,7 @@ open class LanguageZh_HANT internal constructor() : LanguageZh() {
             )
         override val speedKilometerPerHour
             get() = MultiLengthGenderedPattern(
+                base = super.speedKilometerPerHour,
                 long = GenderedPattern(
                     cases = Cases(
                         nominative = PluralPattern(
@@ -2867,6 +3004,7 @@ open class LanguageZh_HANT internal constructor() : LanguageZh() {
             )
         override val speedMeterPerSecond
             get() = MultiLengthGenderedPattern(
+                base = super.speedMeterPerSecond,
                 long = GenderedPattern(
                     cases = Cases(
                         nominative = PluralPattern(
@@ -2897,6 +3035,7 @@ open class LanguageZh_HANT internal constructor() : LanguageZh() {
             )
         override val speedMilePerHour
             get() = MultiLengthGenderedPattern(
+                base = super.speedMilePerHour,
                 long = GenderedPattern(
                     cases = Cases(
                         nominative = PluralPattern(
@@ -2927,6 +3066,7 @@ open class LanguageZh_HANT internal constructor() : LanguageZh() {
             )
         override val speedKnot
             get() = MultiLengthGenderedPattern(
+                base = super.speedKnot,
                 short = GenderedPattern(
                     cases = Cases(
                         nominative = PluralPattern(
@@ -2939,6 +3079,7 @@ open class LanguageZh_HANT internal constructor() : LanguageZh() {
             )
         override val speedBeaufort
             get() = MultiLengthGenderedPattern(
+                base = super.speedBeaufort,
                 short = GenderedPattern(
                     cases = Cases(
                         nominative = PluralPattern(
@@ -2960,6 +3101,7 @@ open class LanguageZh_HANT internal constructor() : LanguageZh() {
             )
         override val temperatureCelsius
             get() = MultiLengthGenderedPattern(
+                base = super.temperatureCelsius,
                 long = GenderedPattern(
                     cases = Cases(
                         nominative = PluralPattern(
@@ -2972,6 +3114,7 @@ open class LanguageZh_HANT internal constructor() : LanguageZh() {
             )
         override val temperatureFahrenheit
             get() = MultiLengthGenderedPattern(
+                base = super.temperatureFahrenheit,
                 long = GenderedPattern(
                     cases = Cases(
                         nominative = PluralPattern(
@@ -2984,6 +3127,7 @@ open class LanguageZh_HANT internal constructor() : LanguageZh() {
             )
         override val temperatureKelvin
             get() = MultiLengthGenderedPattern(
+                base = super.temperatureKelvin,
                 short = GenderedPattern(
                     cases = Cases(
                         nominative = PluralPattern(
@@ -3005,6 +3149,7 @@ open class LanguageZh_HANT internal constructor() : LanguageZh() {
             )
         override val torquePoundForceFoot
             get() = MultiLengthGenderedPattern(
+                base = super.torquePoundForceFoot,
                 short = GenderedPattern(
                     cases = Cases(
                         nominative = PluralPattern(
@@ -3026,6 +3171,7 @@ open class LanguageZh_HANT internal constructor() : LanguageZh() {
             )
         override val torqueNewtonMeter
             get() = MultiLengthGenderedPattern(
+                base = super.torqueNewtonMeter,
                 short = GenderedPattern(
                     cases = Cases(
                         nominative = PluralPattern(
@@ -3047,6 +3193,7 @@ open class LanguageZh_HANT internal constructor() : LanguageZh() {
             )
         override val volumeCubicKilometer
             get() = MultiLengthGenderedPattern(
+                base = super.volumeCubicKilometer,
                 short = GenderedPattern(
                     cases = Cases(
                         nominative = PluralPattern(
@@ -3068,6 +3215,7 @@ open class LanguageZh_HANT internal constructor() : LanguageZh() {
             )
         override val volumeCubicMeter
             get() = MultiLengthGenderedPattern(
+                base = super.volumeCubicMeter,
                 short = GenderedPattern(
                     cases = Cases(
                         nominative = PluralPattern(
@@ -3089,6 +3237,7 @@ open class LanguageZh_HANT internal constructor() : LanguageZh() {
             )
         override val volumeCubicCentimeter
             get() = MultiLengthGenderedPattern(
+                base = super.volumeCubicCentimeter,
                 short = GenderedPattern(
                     cases = Cases(
                         nominative = PluralPattern(
@@ -3110,6 +3259,7 @@ open class LanguageZh_HANT internal constructor() : LanguageZh() {
             )
         override val volumeCubicMile
             get() = MultiLengthGenderedPattern(
+                base = super.volumeCubicMile,
                 short = GenderedPattern(
                     cases = Cases(
                         nominative = PluralPattern(
@@ -3131,6 +3281,7 @@ open class LanguageZh_HANT internal constructor() : LanguageZh() {
             )
         override val volumeCubicYard
             get() = MultiLengthGenderedPattern(
+                base = super.volumeCubicYard,
                 short = GenderedPattern(
                     cases = Cases(
                         nominative = PluralPattern(
@@ -3152,6 +3303,7 @@ open class LanguageZh_HANT internal constructor() : LanguageZh() {
             )
         override val volumeCubicFoot
             get() = MultiLengthGenderedPattern(
+                base = super.volumeCubicFoot,
                 short = GenderedPattern(
                     cases = Cases(
                         nominative = PluralPattern(
@@ -3173,6 +3325,7 @@ open class LanguageZh_HANT internal constructor() : LanguageZh() {
             )
         override val volumeCubicInch
             get() = MultiLengthGenderedPattern(
+                base = super.volumeCubicInch,
                 short = GenderedPattern(
                     cases = Cases(
                         nominative = PluralPattern(
@@ -3194,6 +3347,7 @@ open class LanguageZh_HANT internal constructor() : LanguageZh() {
             )
         override val volumeMegaliter
             get() = MultiLengthGenderedPattern(
+                base = super.volumeMegaliter,
                 short = GenderedPattern(
                     cases = Cases(
                         nominative = PluralPattern(
@@ -3215,6 +3369,7 @@ open class LanguageZh_HANT internal constructor() : LanguageZh() {
             )
         override val volumeHectoliter
             get() = MultiLengthGenderedPattern(
+                base = super.volumeHectoliter,
                 short = GenderedPattern(
                     cases = Cases(
                         nominative = PluralPattern(
@@ -3236,6 +3391,7 @@ open class LanguageZh_HANT internal constructor() : LanguageZh() {
             )
         override val volumeLiter
             get() = MultiLengthGenderedPattern(
+                base = super.volumeLiter,
                 long = GenderedPattern(
                     cases = Cases(
                         nominative = PluralPattern(
@@ -3266,6 +3422,7 @@ open class LanguageZh_HANT internal constructor() : LanguageZh() {
             )
         override val volumeDeciliter
             get() = MultiLengthGenderedPattern(
+                base = super.volumeDeciliter,
                 short = GenderedPattern(
                     cases = Cases(
                         nominative = PluralPattern(
@@ -3287,6 +3444,7 @@ open class LanguageZh_HANT internal constructor() : LanguageZh() {
             )
         override val volumeCentiliter
             get() = MultiLengthGenderedPattern(
+                base = super.volumeCentiliter,
                 short = GenderedPattern(
                     cases = Cases(
                         nominative = PluralPattern(
@@ -3308,6 +3466,7 @@ open class LanguageZh_HANT internal constructor() : LanguageZh() {
             )
         override val volumeMilliliter
             get() = MultiLengthGenderedPattern(
+                base = super.volumeMilliliter,
                 short = GenderedPattern(
                     cases = Cases(
                         nominative = PluralPattern(
@@ -3329,6 +3488,7 @@ open class LanguageZh_HANT internal constructor() : LanguageZh() {
             )
         override val volumePintMetric
             get() = MultiLengthGenderedPattern(
+                base = super.volumePintMetric,
                 short = GenderedPattern(
                     cases = Cases(
                         nominative = PluralPattern(
@@ -3350,6 +3510,7 @@ open class LanguageZh_HANT internal constructor() : LanguageZh() {
             )
         override val volumeCupMetric
             get() = MultiLengthGenderedPattern(
+                base = super.volumeCupMetric,
                 short = GenderedPattern(
                     cases = Cases(
                         nominative = PluralPattern(
@@ -3371,6 +3532,7 @@ open class LanguageZh_HANT internal constructor() : LanguageZh() {
             )
         override val volumeAcreFoot
             get() = MultiLengthGenderedPattern(
+                base = super.volumeAcreFoot,
                 short = GenderedPattern(
                     cases = Cases(
                         nominative = PluralPattern(
@@ -3392,6 +3554,7 @@ open class LanguageZh_HANT internal constructor() : LanguageZh() {
             )
         override val volumeBushel
             get() = MultiLengthGenderedPattern(
+                base = super.volumeBushel,
                 short = GenderedPattern(
                     cases = Cases(
                         nominative = PluralPattern(
@@ -3413,6 +3576,7 @@ open class LanguageZh_HANT internal constructor() : LanguageZh() {
             )
         override val volumeGallon
             get() = MultiLengthGenderedPattern(
+                base = super.volumeGallon,
                 short = GenderedPattern(
                     cases = Cases(
                         nominative = PluralPattern(
@@ -3434,6 +3598,7 @@ open class LanguageZh_HANT internal constructor() : LanguageZh() {
             )
         override val volumeGallonImperial
             get() = MultiLengthGenderedPattern(
+                base = super.volumeGallonImperial,
                 short = GenderedPattern(
                     cases = Cases(
                         nominative = PluralPattern(
@@ -3455,6 +3620,7 @@ open class LanguageZh_HANT internal constructor() : LanguageZh() {
             )
         override val volumeQuart
             get() = MultiLengthGenderedPattern(
+                base = super.volumeQuart,
                 short = GenderedPattern(
                     cases = Cases(
                         nominative = PluralPattern(
@@ -3476,6 +3642,7 @@ open class LanguageZh_HANT internal constructor() : LanguageZh() {
             )
         override val volumePint
             get() = MultiLengthGenderedPattern(
+                base = super.volumePint,
                 short = GenderedPattern(
                     cases = Cases(
                         nominative = PluralPattern(
@@ -3497,6 +3664,7 @@ open class LanguageZh_HANT internal constructor() : LanguageZh() {
             )
         override val volumeCup
             get() = MultiLengthGenderedPattern(
+                base = super.volumeCup,
                 short = GenderedPattern(
                     cases = Cases(
                         nominative = PluralPattern(
@@ -3518,6 +3686,7 @@ open class LanguageZh_HANT internal constructor() : LanguageZh() {
             )
         override val volumeFluidOunce
             get() = MultiLengthGenderedPattern(
+                base = super.volumeFluidOunce,
                 short = GenderedPattern(
                     cases = Cases(
                         nominative = PluralPattern(
@@ -3539,6 +3708,7 @@ open class LanguageZh_HANT internal constructor() : LanguageZh() {
             )
         override val volumeFluidOunceImperial
             get() = MultiLengthGenderedPattern(
+                base = super.volumeFluidOunceImperial,
                 short = GenderedPattern(
                     cases = Cases(
                         nominative = PluralPattern(
@@ -3560,6 +3730,7 @@ open class LanguageZh_HANT internal constructor() : LanguageZh() {
             )
         override val volumeTablespoon
             get() = MultiLengthGenderedPattern(
+                base = super.volumeTablespoon,
                 short = GenderedPattern(
                     cases = Cases(
                         nominative = PluralPattern(
@@ -3581,6 +3752,7 @@ open class LanguageZh_HANT internal constructor() : LanguageZh() {
             )
         override val volumeTeaspoon
             get() = MultiLengthGenderedPattern(
+                base = super.volumeTeaspoon,
                 short = GenderedPattern(
                     cases = Cases(
                         nominative = PluralPattern(
@@ -3602,6 +3774,7 @@ open class LanguageZh_HANT internal constructor() : LanguageZh() {
             )
         override val volumeBarrel
             get() = MultiLengthGenderedPattern(
+                base = super.volumeBarrel,
                 short = GenderedPattern(
                     cases = Cases(
                         nominative = PluralPattern(
@@ -3623,6 +3796,7 @@ open class LanguageZh_HANT internal constructor() : LanguageZh() {
             )
         override val volumeDessertSpoon
             get() = MultiLengthGenderedPattern(
+                base = super.volumeDessertSpoon,
                 short = GenderedPattern(
                     cases = Cases(
                         nominative = PluralPattern(
@@ -3644,6 +3818,7 @@ open class LanguageZh_HANT internal constructor() : LanguageZh() {
             )
         override val volumeDessertSpoonImperial
             get() = MultiLengthGenderedPattern(
+                base = super.volumeDessertSpoonImperial,
                 short = GenderedPattern(
                     cases = Cases(
                         nominative = PluralPattern(
@@ -3665,6 +3840,7 @@ open class LanguageZh_HANT internal constructor() : LanguageZh() {
             )
         override val volumeDrop
             get() = MultiLengthGenderedPattern(
+                base = super.volumeDrop,
                 short = GenderedPattern(
                     cases = Cases(
                         nominative = PluralPattern(
@@ -3686,6 +3862,7 @@ open class LanguageZh_HANT internal constructor() : LanguageZh() {
             )
         override val volumeDram
             get() = MultiLengthGenderedPattern(
+                base = super.volumeDram,
                 short = GenderedPattern(
                     cases = Cases(
                         nominative = PluralPattern(
@@ -3707,6 +3884,7 @@ open class LanguageZh_HANT internal constructor() : LanguageZh() {
             )
         override val volumeJigger
             get() = MultiLengthGenderedPattern(
+                base = super.volumeJigger,
                 short = GenderedPattern(
                     cases = Cases(
                         nominative = PluralPattern(
@@ -3728,6 +3906,7 @@ open class LanguageZh_HANT internal constructor() : LanguageZh() {
             )
         override val volumePinch
             get() = MultiLengthGenderedPattern(
+                base = super.volumePinch,
                 short = GenderedPattern(
                     cases = Cases(
                         nominative = PluralPattern(
@@ -3749,6 +3928,7 @@ open class LanguageZh_HANT internal constructor() : LanguageZh() {
             )
         override val volumeQuartImperial
             get() = MultiLengthGenderedPattern(
+                base = super.volumeQuartImperial,
                 short = GenderedPattern(
                     cases = Cases(
                         nominative = PluralPattern(

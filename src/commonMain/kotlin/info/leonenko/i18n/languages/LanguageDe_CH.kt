@@ -29,6 +29,7 @@ class LanguageDe_CH internal constructor() : LanguageDe() {
     class MeasurementUnitLanguage internal constructor() : LanguageDe.MeasurementUnitLanguage() {
         override val areaSquareFoot
             get() = MultiLengthGenderedPattern(
+                base = super.areaSquareFoot,
                 long = GenderedPattern(
                     cases = Cases(
                         nominative = PluralPattern(
@@ -48,6 +49,7 @@ class LanguageDe_CH internal constructor() : LanguageDe() {
             )
         override val lengthFoot
             get() = MultiLengthGenderedPattern(
+                base = super.lengthFoot,
                 long = GenderedPattern(
                     cases = Cases(
                         nominative = PluralPattern(
@@ -67,6 +69,7 @@ class LanguageDe_CH internal constructor() : LanguageDe() {
             )
         override val speedBeaufort
             get() = MultiLengthGenderedPattern(
+                base = super.speedBeaufort,
                 long = GenderedPattern(
                     cases = Cases(
                         nominative = PluralPattern(
@@ -90,6 +93,7 @@ class LanguageDe_CH internal constructor() : LanguageDe() {
             )
         override val volumeCubicFoot
             get() = MultiLengthGenderedPattern(
+                base = super.volumeCubicFoot,
                 long = GenderedPattern(
                     cases = Cases(
                         nominative = PluralPattern(
@@ -121,6 +125,7 @@ class LanguageDe_CH internal constructor() : LanguageDe() {
             )
         override val volumeDram
             get() = MultiLengthGenderedPattern(
+                base = super.volumeDram,
                 short = GenderedPattern(
                     cases = Cases(
                         nominative = PluralPattern(
@@ -134,6 +139,7 @@ class LanguageDe_CH internal constructor() : LanguageDe() {
             )
         override val volumeJigger
             get() = MultiLengthGenderedPattern(
+                base = super.volumeJigger,
                 short = GenderedPattern(
                     cases = Cases(
                         nominative = PluralPattern(
@@ -147,6 +153,7 @@ class LanguageDe_CH internal constructor() : LanguageDe() {
             )
         override val volumePinch
             get() = MultiLengthGenderedPattern(
+                base = super.volumePinch,
                 short = GenderedPattern(
                     cases = Cases(
                         nominative = PluralPattern(

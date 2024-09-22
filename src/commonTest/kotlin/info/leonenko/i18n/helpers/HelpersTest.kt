@@ -7,8 +7,10 @@ import info.leonenko.i18n.units.angle.Angle
 import info.leonenko.i18n.units.angle.Degree
 import info.leonenko.i18n.units.angle.Radian
 import info.leonenko.i18n.units.angle.Revolution
-import info.leonenko.i18n.units.duration.*
+import info.leonenko.i18n.units.duration.Duration
 import info.leonenko.i18n.units.duration.hour
+import info.leonenko.i18n.units.duration.minute
+import info.leonenko.i18n.units.duration.second
 import info.leonenko.i18n.units.length.foot
 import info.leonenko.i18n.units.length.inch
 import info.leonenko.i18n.units.length.kilometer
@@ -28,10 +30,12 @@ class HelpersTest {
         assertEquals(0.6.kilometer, 36.kilometerPerHour * 60.second, 0.01.meter)
         assertEquals(600.meter, 36.kilometerPerHour * 60.second, 0.01.meter)
     }
+
     @Test
     fun lengthDivSpeed() {
         assertEquals(1.hour, 3.704.kilometer / 2.knot, 1.second)
     }
+
     @Test
     fun lengthDivDuration() {
         assertEquals(2.kilometerPerHour, 1.kilometer / 30.minute, 1.meterPerSecond)
@@ -86,7 +90,7 @@ fun Duration.toPositionalString(): String {
     }
 }
 
-fun <T: MeasurementUnit> assertEquals(expected: T, actual: T, absoluteTolerance: T, message: String? = null) {
+fun <T : MeasurementUnit> assertEquals(expected: T, actual: T, absoluteTolerance: T, message: String? = null) {
     val equal = expected == actual || abs(expected.getBaseUnitValue() - actual.getBaseUnitValue()) <= absoluteTolerance.value
 
     assertTrue(

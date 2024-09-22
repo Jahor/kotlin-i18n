@@ -187,8 +187,9 @@ def language_units(cldr, all_units, plurals, lang_name, open, base=None):
                             get() = TODO(\"{ucamel(unit)} formatter is not implemented yet for {lang_name}\")""")
                 else:
                     print(f"override val {lcamel(section + '-' + unit)} get() = MultiLengthGenderedPattern(")
-                    for length, info in lengths.items():
-                        gender, counts = info
+                    if base is not None:
+                        print(f"base = super.{lcamel(section + '-' + unit)},")
+                    for length, (gender, counts) in lengths.items():
                         print(f"      {lcamel(length)} = GenderedPattern(")
                         if gender is not None:
                             print(f"       gender = Gender.{gender.capitalize()},")
@@ -565,7 +566,7 @@ def language_numbers(cldr, open, base=None):
 
     elif base is None:
         print("override val symbols : NumberSymbols")
-        print("   get() = TODO(\"Symbols are not supported\")")
+        print("   get() = LanguageRoot().numbers.symbols")  # TODO(\"Symbols are not supported\")
 
     print("}")
     print("override val numbers : NumberLanguage\n get() = NumberLanguage() ")

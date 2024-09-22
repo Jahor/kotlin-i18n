@@ -1,10 +1,12 @@
 package info.leonenko.i18n.languages
+
 import info.leonenko.i18n.*
 import info.leonenko.i18n.rbnf.RBNFRoot
 
 val Language.Companion.root
     get() = languageRoot
 private val languageRoot = LanguageRoot()
+
 open class LanguageRoot internal constructor() : Language {
     override val code: String = "root"
     override val language: String = "root"

@@ -1740,19 +1740,19 @@ open class RBNFRoot(val language: Language = Language.root) : RBNF {
                     in 1001L..1999L -> if ((value) % 1000 == 0L) {
                         "אלף"
                     } else
-                    hebrewThousands.format((value) / 1000) + (if ((value) % 1000 == 0L) "" else format(value % 1000))
+                        hebrewThousands.format((value) / 1000) + (if ((value) % 1000 == 0L) "" else format(value % 1000))
 
                     2000L -> "אלפיים"
                     in 2001L..2999L -> if ((value) % 1000 == 0L) {
                         "אלפיים"
                     } else
-                    hebrewThousands.format((value) / 1000) + (if ((value) % 1000 == 0L) "" else format(value % 1000))
+                        hebrewThousands.format((value) / 1000) + (if ((value) % 1000 == 0L) "" else format(value % 1000))
 
                     3000L -> format((value) / 1000) + " אלפים"
                     in 3001L..999999L -> if ((value) % 1000 == 0L) {
                         format((value) / 1000) + " אלפים"
                     } else
-                    hebrewThousands.format((value) / 1000) + (if ((value) % 1000 == 0L) "" else format(value % 1000))
+                        hebrewThousands.format((value) / 1000) + (if ((value) % 1000 == 0L) "" else format(value % 1000))
 
                     1000000L -> "אלף אלפים"
                     else -> {
