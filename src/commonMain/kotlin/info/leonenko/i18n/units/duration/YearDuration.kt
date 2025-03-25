@@ -22,7 +22,6 @@ interface YearDuration : MeasurementUnit, Comparable<YearDuration> {
     class Serializer : CustomSerializer()
     open class CustomSerializer(val decoders: Map<String, (MeasurementUnitValue) -> YearDuration> = emptyMap()) : KSerializer<YearDuration> {
         private val delegateSerializer = MapSerializer(String.serializer(), MeasurementUnitValue.serializer())
-
         @OptIn(ExperimentalSerializationApi::class)
         override val descriptor: SerialDescriptor = SerialDescriptor("YearDuration", delegateSerializer.descriptor)
         override fun deserialize(decoder: Decoder): YearDuration {
@@ -85,34 +84,34 @@ interface YearDuration : MeasurementUnit, Comparable<YearDuration> {
     fun abs(): YearDuration
 
 
-    operator fun times(other: kotlin.Byte): YearDuration
-    operator fun div(other: kotlin.Byte): YearDuration
-    operator fun rem(other: kotlin.Byte): YearDuration
+    operator fun times(other: Byte): YearDuration
+    operator fun div(other: Byte): YearDuration
+    operator fun rem(other: Byte): YearDuration
 
 
-    operator fun times(other: kotlin.Short): YearDuration
-    operator fun div(other: kotlin.Short): YearDuration
-    operator fun rem(other: kotlin.Short): YearDuration
+    operator fun times(other: Short): YearDuration
+    operator fun div(other: Short): YearDuration
+    operator fun rem(other: Short): YearDuration
 
 
-    operator fun times(other: kotlin.Int): YearDuration
-    operator fun div(other: kotlin.Int): YearDuration
-    operator fun rem(other: kotlin.Int): YearDuration
+    operator fun times(other: Int): YearDuration
+    operator fun div(other: Int): YearDuration
+    operator fun rem(other: Int): YearDuration
 
 
-    operator fun times(other: kotlin.Long): YearDuration
-    operator fun div(other: kotlin.Long): YearDuration
-    operator fun rem(other: kotlin.Long): YearDuration
+    operator fun times(other: Long): YearDuration
+    operator fun div(other: Long): YearDuration
+    operator fun rem(other: Long): YearDuration
 
 
-    operator fun times(other: kotlin.Float): YearDuration
-    operator fun div(other: kotlin.Float): YearDuration
-    operator fun rem(other: kotlin.Float): YearDuration
+    operator fun times(other: Float): YearDuration
+    operator fun div(other: Float): YearDuration
+    operator fun rem(other: Float): YearDuration
 
 
-    operator fun times(other: kotlin.Double): YearDuration
-    operator fun div(other: kotlin.Double): YearDuration
-    operator fun rem(other: kotlin.Double): YearDuration
+    operator fun times(other: Double): YearDuration
+    operator fun div(other: Double): YearDuration
+    operator fun rem(other: Double): YearDuration
 
 }
 
@@ -132,40 +131,40 @@ data class Century(override val value: MeasurementUnitValue) : YearDuration {
     operator fun plus(other: Century): Century = Century(this.value + other.value)
     operator fun minus(other: Century): Century = Century(this.value - other.value)
 
-    constructor(value: kotlin.Byte) : this(value.toMeasurementUnitValue())
+    constructor(value: Byte) : this(value.toMeasurementUnitValue())
 
-    override operator fun times(other: kotlin.Byte): Century = Century(this.value.times(other))
-    override operator fun div(other: kotlin.Byte): Century = Century(this.value.div(other))
-    override operator fun rem(other: kotlin.Byte): Century = Century(this.value.rem(other))
+    override operator fun times(other: Byte): Century = Century(this.value.times(other))
+    override operator fun div(other: Byte): Century = Century(this.value.div(other))
+    override operator fun rem(other: Byte): Century = Century(this.value.rem(other))
 
-    constructor(value: kotlin.Short) : this(value.toMeasurementUnitValue())
+    constructor(value: Short) : this(value.toMeasurementUnitValue())
 
-    override operator fun times(other: kotlin.Short): Century = Century(this.value.times(other))
-    override operator fun div(other: kotlin.Short): Century = Century(this.value.div(other))
-    override operator fun rem(other: kotlin.Short): Century = Century(this.value.rem(other))
+    override operator fun times(other: Short): Century = Century(this.value.times(other))
+    override operator fun div(other: Short): Century = Century(this.value.div(other))
+    override operator fun rem(other: Short): Century = Century(this.value.rem(other))
 
-    constructor(value: kotlin.Int) : this(value.toMeasurementUnitValue())
+    constructor(value: Int) : this(value.toMeasurementUnitValue())
 
-    override operator fun times(other: kotlin.Int): Century = Century(this.value.times(other))
-    override operator fun div(other: kotlin.Int): Century = Century(this.value.div(other))
-    override operator fun rem(other: kotlin.Int): Century = Century(this.value.rem(other))
+    override operator fun times(other: Int): Century = Century(this.value.times(other))
+    override operator fun div(other: Int): Century = Century(this.value.div(other))
+    override operator fun rem(other: Int): Century = Century(this.value.rem(other))
 
-    constructor(value: kotlin.Long) : this(value.toMeasurementUnitValue())
+    constructor(value: Long) : this(value.toMeasurementUnitValue())
 
-    override operator fun times(other: kotlin.Long): Century = Century(this.value.times(other))
-    override operator fun div(other: kotlin.Long): Century = Century(this.value.div(other))
-    override operator fun rem(other: kotlin.Long): Century = Century(this.value.rem(other))
+    override operator fun times(other: Long): Century = Century(this.value.times(other))
+    override operator fun div(other: Long): Century = Century(this.value.div(other))
+    override operator fun rem(other: Long): Century = Century(this.value.rem(other))
 
-    constructor(value: kotlin.Float) : this(value.toMeasurementUnitValue())
+    constructor(value: Float) : this(value.toMeasurementUnitValue())
 
-    override operator fun times(other: kotlin.Float): Century = Century(this.value.times(other))
-    override operator fun div(other: kotlin.Float): Century = Century(this.value.div(other))
-    override operator fun rem(other: kotlin.Float): Century = Century(this.value.rem(other))
+    override operator fun times(other: Float): Century = Century(this.value.times(other))
+    override operator fun div(other: Float): Century = Century(this.value.div(other))
+    override operator fun rem(other: Float): Century = Century(this.value.rem(other))
 
 
-    override operator fun times(other: kotlin.Double): Century = Century(this.value.times(other))
-    override operator fun div(other: kotlin.Double): Century = Century(this.value.div(other))
-    override operator fun rem(other: kotlin.Double): Century = Century(this.value.rem(other))
+    override operator fun times(other: Double): Century = Century(this.value.times(other))
+    override operator fun div(other: Double): Century = Century(this.value.div(other))
+    override operator fun rem(other: Double): Century = Century(this.value.rem(other))
 
 
     override operator fun unaryMinus(): Century = Century(-value)
@@ -190,27 +189,27 @@ data class Century(override val value: MeasurementUnitValue) : YearDuration {
 
 }
 
-val kotlin.Byte.century
+val Byte.century
     get() = Century(this)
 
 
-val kotlin.Short.century
+val Short.century
     get() = Century(this)
 
 
-val kotlin.Int.century
+val Int.century
     get() = Century(this)
 
 
-val kotlin.Long.century
+val Long.century
     get() = Century(this)
 
 
-val kotlin.Float.century
+val Float.century
     get() = Century(this)
 
 
-val kotlin.Double.century
+val Double.century
     get() = Century(this)
 
 
@@ -230,40 +229,40 @@ data class Decade(override val value: MeasurementUnitValue) : YearDuration {
     operator fun plus(other: Decade): Decade = Decade(this.value + other.value)
     operator fun minus(other: Decade): Decade = Decade(this.value - other.value)
 
-    constructor(value: kotlin.Byte) : this(value.toMeasurementUnitValue())
+    constructor(value: Byte) : this(value.toMeasurementUnitValue())
 
-    override operator fun times(other: kotlin.Byte): Decade = Decade(this.value.times(other))
-    override operator fun div(other: kotlin.Byte): Decade = Decade(this.value.div(other))
-    override operator fun rem(other: kotlin.Byte): Decade = Decade(this.value.rem(other))
+    override operator fun times(other: Byte): Decade = Decade(this.value.times(other))
+    override operator fun div(other: Byte): Decade = Decade(this.value.div(other))
+    override operator fun rem(other: Byte): Decade = Decade(this.value.rem(other))
 
-    constructor(value: kotlin.Short) : this(value.toMeasurementUnitValue())
+    constructor(value: Short) : this(value.toMeasurementUnitValue())
 
-    override operator fun times(other: kotlin.Short): Decade = Decade(this.value.times(other))
-    override operator fun div(other: kotlin.Short): Decade = Decade(this.value.div(other))
-    override operator fun rem(other: kotlin.Short): Decade = Decade(this.value.rem(other))
+    override operator fun times(other: Short): Decade = Decade(this.value.times(other))
+    override operator fun div(other: Short): Decade = Decade(this.value.div(other))
+    override operator fun rem(other: Short): Decade = Decade(this.value.rem(other))
 
-    constructor(value: kotlin.Int) : this(value.toMeasurementUnitValue())
+    constructor(value: Int) : this(value.toMeasurementUnitValue())
 
-    override operator fun times(other: kotlin.Int): Decade = Decade(this.value.times(other))
-    override operator fun div(other: kotlin.Int): Decade = Decade(this.value.div(other))
-    override operator fun rem(other: kotlin.Int): Decade = Decade(this.value.rem(other))
+    override operator fun times(other: Int): Decade = Decade(this.value.times(other))
+    override operator fun div(other: Int): Decade = Decade(this.value.div(other))
+    override operator fun rem(other: Int): Decade = Decade(this.value.rem(other))
 
-    constructor(value: kotlin.Long) : this(value.toMeasurementUnitValue())
+    constructor(value: Long) : this(value.toMeasurementUnitValue())
 
-    override operator fun times(other: kotlin.Long): Decade = Decade(this.value.times(other))
-    override operator fun div(other: kotlin.Long): Decade = Decade(this.value.div(other))
-    override operator fun rem(other: kotlin.Long): Decade = Decade(this.value.rem(other))
+    override operator fun times(other: Long): Decade = Decade(this.value.times(other))
+    override operator fun div(other: Long): Decade = Decade(this.value.div(other))
+    override operator fun rem(other: Long): Decade = Decade(this.value.rem(other))
 
-    constructor(value: kotlin.Float) : this(value.toMeasurementUnitValue())
+    constructor(value: Float) : this(value.toMeasurementUnitValue())
 
-    override operator fun times(other: kotlin.Float): Decade = Decade(this.value.times(other))
-    override operator fun div(other: kotlin.Float): Decade = Decade(this.value.div(other))
-    override operator fun rem(other: kotlin.Float): Decade = Decade(this.value.rem(other))
+    override operator fun times(other: Float): Decade = Decade(this.value.times(other))
+    override operator fun div(other: Float): Decade = Decade(this.value.div(other))
+    override operator fun rem(other: Float): Decade = Decade(this.value.rem(other))
 
 
-    override operator fun times(other: kotlin.Double): Decade = Decade(this.value.times(other))
-    override operator fun div(other: kotlin.Double): Decade = Decade(this.value.div(other))
-    override operator fun rem(other: kotlin.Double): Decade = Decade(this.value.rem(other))
+    override operator fun times(other: Double): Decade = Decade(this.value.times(other))
+    override operator fun div(other: Double): Decade = Decade(this.value.div(other))
+    override operator fun rem(other: Double): Decade = Decade(this.value.rem(other))
 
 
     override operator fun unaryMinus(): Decade = Decade(-value)
@@ -288,27 +287,27 @@ data class Decade(override val value: MeasurementUnitValue) : YearDuration {
 
 }
 
-val kotlin.Byte.decade
+val Byte.decade
     get() = Decade(this)
 
 
-val kotlin.Short.decade
+val Short.decade
     get() = Decade(this)
 
 
-val kotlin.Int.decade
+val Int.decade
     get() = Decade(this)
 
 
-val kotlin.Long.decade
+val Long.decade
     get() = Decade(this)
 
 
-val kotlin.Float.decade
+val Float.decade
     get() = Decade(this)
 
 
-val kotlin.Double.decade
+val Double.decade
     get() = Decade(this)
 
 
@@ -328,40 +327,40 @@ data class Year(override val value: MeasurementUnitValue) : YearDuration {
     operator fun plus(other: Year): Year = Year(this.value + other.value)
     operator fun minus(other: Year): Year = Year(this.value - other.value)
 
-    constructor(value: kotlin.Byte) : this(value.toMeasurementUnitValue())
+    constructor(value: Byte) : this(value.toMeasurementUnitValue())
 
-    override operator fun times(other: kotlin.Byte): Year = Year(this.value.times(other))
-    override operator fun div(other: kotlin.Byte): Year = Year(this.value.div(other))
-    override operator fun rem(other: kotlin.Byte): Year = Year(this.value.rem(other))
+    override operator fun times(other: Byte): Year = Year(this.value.times(other))
+    override operator fun div(other: Byte): Year = Year(this.value.div(other))
+    override operator fun rem(other: Byte): Year = Year(this.value.rem(other))
 
-    constructor(value: kotlin.Short) : this(value.toMeasurementUnitValue())
+    constructor(value: Short) : this(value.toMeasurementUnitValue())
 
-    override operator fun times(other: kotlin.Short): Year = Year(this.value.times(other))
-    override operator fun div(other: kotlin.Short): Year = Year(this.value.div(other))
-    override operator fun rem(other: kotlin.Short): Year = Year(this.value.rem(other))
+    override operator fun times(other: Short): Year = Year(this.value.times(other))
+    override operator fun div(other: Short): Year = Year(this.value.div(other))
+    override operator fun rem(other: Short): Year = Year(this.value.rem(other))
 
-    constructor(value: kotlin.Int) : this(value.toMeasurementUnitValue())
+    constructor(value: Int) : this(value.toMeasurementUnitValue())
 
-    override operator fun times(other: kotlin.Int): Year = Year(this.value.times(other))
-    override operator fun div(other: kotlin.Int): Year = Year(this.value.div(other))
-    override operator fun rem(other: kotlin.Int): Year = Year(this.value.rem(other))
+    override operator fun times(other: Int): Year = Year(this.value.times(other))
+    override operator fun div(other: Int): Year = Year(this.value.div(other))
+    override operator fun rem(other: Int): Year = Year(this.value.rem(other))
 
-    constructor(value: kotlin.Long) : this(value.toMeasurementUnitValue())
+    constructor(value: Long) : this(value.toMeasurementUnitValue())
 
-    override operator fun times(other: kotlin.Long): Year = Year(this.value.times(other))
-    override operator fun div(other: kotlin.Long): Year = Year(this.value.div(other))
-    override operator fun rem(other: kotlin.Long): Year = Year(this.value.rem(other))
+    override operator fun times(other: Long): Year = Year(this.value.times(other))
+    override operator fun div(other: Long): Year = Year(this.value.div(other))
+    override operator fun rem(other: Long): Year = Year(this.value.rem(other))
 
-    constructor(value: kotlin.Float) : this(value.toMeasurementUnitValue())
+    constructor(value: Float) : this(value.toMeasurementUnitValue())
 
-    override operator fun times(other: kotlin.Float): Year = Year(this.value.times(other))
-    override operator fun div(other: kotlin.Float): Year = Year(this.value.div(other))
-    override operator fun rem(other: kotlin.Float): Year = Year(this.value.rem(other))
+    override operator fun times(other: Float): Year = Year(this.value.times(other))
+    override operator fun div(other: Float): Year = Year(this.value.div(other))
+    override operator fun rem(other: Float): Year = Year(this.value.rem(other))
 
 
-    override operator fun times(other: kotlin.Double): Year = Year(this.value.times(other))
-    override operator fun div(other: kotlin.Double): Year = Year(this.value.div(other))
-    override operator fun rem(other: kotlin.Double): Year = Year(this.value.rem(other))
+    override operator fun times(other: Double): Year = Year(this.value.times(other))
+    override operator fun div(other: Double): Year = Year(this.value.div(other))
+    override operator fun rem(other: Double): Year = Year(this.value.rem(other))
 
 
     override operator fun unaryMinus(): Year = Year(-value)
@@ -386,27 +385,27 @@ data class Year(override val value: MeasurementUnitValue) : YearDuration {
 
 }
 
-val kotlin.Byte.year
+val Byte.year
     get() = Year(this)
 
 
-val kotlin.Short.year
+val Short.year
     get() = Year(this)
 
 
-val kotlin.Int.year
+val Int.year
     get() = Year(this)
 
 
-val kotlin.Long.year
+val Long.year
     get() = Year(this)
 
 
-val kotlin.Float.year
+val Float.year
     get() = Year(this)
 
 
-val kotlin.Double.year
+val Double.year
     get() = Year(this)
 
 
@@ -426,40 +425,40 @@ data class Quarter(override val value: MeasurementUnitValue) : YearDuration {
     operator fun plus(other: Quarter): Quarter = Quarter(this.value + other.value)
     operator fun minus(other: Quarter): Quarter = Quarter(this.value - other.value)
 
-    constructor(value: kotlin.Byte) : this(value.toMeasurementUnitValue())
+    constructor(value: Byte) : this(value.toMeasurementUnitValue())
 
-    override operator fun times(other: kotlin.Byte): Quarter = Quarter(this.value.times(other))
-    override operator fun div(other: kotlin.Byte): Quarter = Quarter(this.value.div(other))
-    override operator fun rem(other: kotlin.Byte): Quarter = Quarter(this.value.rem(other))
+    override operator fun times(other: Byte): Quarter = Quarter(this.value.times(other))
+    override operator fun div(other: Byte): Quarter = Quarter(this.value.div(other))
+    override operator fun rem(other: Byte): Quarter = Quarter(this.value.rem(other))
 
-    constructor(value: kotlin.Short) : this(value.toMeasurementUnitValue())
+    constructor(value: Short) : this(value.toMeasurementUnitValue())
 
-    override operator fun times(other: kotlin.Short): Quarter = Quarter(this.value.times(other))
-    override operator fun div(other: kotlin.Short): Quarter = Quarter(this.value.div(other))
-    override operator fun rem(other: kotlin.Short): Quarter = Quarter(this.value.rem(other))
+    override operator fun times(other: Short): Quarter = Quarter(this.value.times(other))
+    override operator fun div(other: Short): Quarter = Quarter(this.value.div(other))
+    override operator fun rem(other: Short): Quarter = Quarter(this.value.rem(other))
 
-    constructor(value: kotlin.Int) : this(value.toMeasurementUnitValue())
+    constructor(value: Int) : this(value.toMeasurementUnitValue())
 
-    override operator fun times(other: kotlin.Int): Quarter = Quarter(this.value.times(other))
-    override operator fun div(other: kotlin.Int): Quarter = Quarter(this.value.div(other))
-    override operator fun rem(other: kotlin.Int): Quarter = Quarter(this.value.rem(other))
+    override operator fun times(other: Int): Quarter = Quarter(this.value.times(other))
+    override operator fun div(other: Int): Quarter = Quarter(this.value.div(other))
+    override operator fun rem(other: Int): Quarter = Quarter(this.value.rem(other))
 
-    constructor(value: kotlin.Long) : this(value.toMeasurementUnitValue())
+    constructor(value: Long) : this(value.toMeasurementUnitValue())
 
-    override operator fun times(other: kotlin.Long): Quarter = Quarter(this.value.times(other))
-    override operator fun div(other: kotlin.Long): Quarter = Quarter(this.value.div(other))
-    override operator fun rem(other: kotlin.Long): Quarter = Quarter(this.value.rem(other))
+    override operator fun times(other: Long): Quarter = Quarter(this.value.times(other))
+    override operator fun div(other: Long): Quarter = Quarter(this.value.div(other))
+    override operator fun rem(other: Long): Quarter = Quarter(this.value.rem(other))
 
-    constructor(value: kotlin.Float) : this(value.toMeasurementUnitValue())
+    constructor(value: Float) : this(value.toMeasurementUnitValue())
 
-    override operator fun times(other: kotlin.Float): Quarter = Quarter(this.value.times(other))
-    override operator fun div(other: kotlin.Float): Quarter = Quarter(this.value.div(other))
-    override operator fun rem(other: kotlin.Float): Quarter = Quarter(this.value.rem(other))
+    override operator fun times(other: Float): Quarter = Quarter(this.value.times(other))
+    override operator fun div(other: Float): Quarter = Quarter(this.value.div(other))
+    override operator fun rem(other: Float): Quarter = Quarter(this.value.rem(other))
 
 
-    override operator fun times(other: kotlin.Double): Quarter = Quarter(this.value.times(other))
-    override operator fun div(other: kotlin.Double): Quarter = Quarter(this.value.div(other))
-    override operator fun rem(other: kotlin.Double): Quarter = Quarter(this.value.rem(other))
+    override operator fun times(other: Double): Quarter = Quarter(this.value.times(other))
+    override operator fun div(other: Double): Quarter = Quarter(this.value.div(other))
+    override operator fun rem(other: Double): Quarter = Quarter(this.value.rem(other))
 
 
     override operator fun unaryMinus(): Quarter = Quarter(-value)
@@ -484,27 +483,27 @@ data class Quarter(override val value: MeasurementUnitValue) : YearDuration {
 
 }
 
-val kotlin.Byte.quarter
+val Byte.quarter
     get() = Quarter(this)
 
 
-val kotlin.Short.quarter
+val Short.quarter
     get() = Quarter(this)
 
 
-val kotlin.Int.quarter
+val Int.quarter
     get() = Quarter(this)
 
 
-val kotlin.Long.quarter
+val Long.quarter
     get() = Quarter(this)
 
 
-val kotlin.Float.quarter
+val Float.quarter
     get() = Quarter(this)
 
 
-val kotlin.Double.quarter
+val Double.quarter
     get() = Quarter(this)
 
 
@@ -524,40 +523,40 @@ data class Month(override val value: MeasurementUnitValue) : YearDuration {
     operator fun plus(other: Month): Month = Month(this.value + other.value)
     operator fun minus(other: Month): Month = Month(this.value - other.value)
 
-    constructor(value: kotlin.Byte) : this(value.toMeasurementUnitValue())
+    constructor(value: Byte) : this(value.toMeasurementUnitValue())
 
-    override operator fun times(other: kotlin.Byte): Month = Month(this.value.times(other))
-    override operator fun div(other: kotlin.Byte): Month = Month(this.value.div(other))
-    override operator fun rem(other: kotlin.Byte): Month = Month(this.value.rem(other))
+    override operator fun times(other: Byte): Month = Month(this.value.times(other))
+    override operator fun div(other: Byte): Month = Month(this.value.div(other))
+    override operator fun rem(other: Byte): Month = Month(this.value.rem(other))
 
-    constructor(value: kotlin.Short) : this(value.toMeasurementUnitValue())
+    constructor(value: Short) : this(value.toMeasurementUnitValue())
 
-    override operator fun times(other: kotlin.Short): Month = Month(this.value.times(other))
-    override operator fun div(other: kotlin.Short): Month = Month(this.value.div(other))
-    override operator fun rem(other: kotlin.Short): Month = Month(this.value.rem(other))
+    override operator fun times(other: Short): Month = Month(this.value.times(other))
+    override operator fun div(other: Short): Month = Month(this.value.div(other))
+    override operator fun rem(other: Short): Month = Month(this.value.rem(other))
 
-    constructor(value: kotlin.Int) : this(value.toMeasurementUnitValue())
+    constructor(value: Int) : this(value.toMeasurementUnitValue())
 
-    override operator fun times(other: kotlin.Int): Month = Month(this.value.times(other))
-    override operator fun div(other: kotlin.Int): Month = Month(this.value.div(other))
-    override operator fun rem(other: kotlin.Int): Month = Month(this.value.rem(other))
+    override operator fun times(other: Int): Month = Month(this.value.times(other))
+    override operator fun div(other: Int): Month = Month(this.value.div(other))
+    override operator fun rem(other: Int): Month = Month(this.value.rem(other))
 
-    constructor(value: kotlin.Long) : this(value.toMeasurementUnitValue())
+    constructor(value: Long) : this(value.toMeasurementUnitValue())
 
-    override operator fun times(other: kotlin.Long): Month = Month(this.value.times(other))
-    override operator fun div(other: kotlin.Long): Month = Month(this.value.div(other))
-    override operator fun rem(other: kotlin.Long): Month = Month(this.value.rem(other))
+    override operator fun times(other: Long): Month = Month(this.value.times(other))
+    override operator fun div(other: Long): Month = Month(this.value.div(other))
+    override operator fun rem(other: Long): Month = Month(this.value.rem(other))
 
-    constructor(value: kotlin.Float) : this(value.toMeasurementUnitValue())
+    constructor(value: Float) : this(value.toMeasurementUnitValue())
 
-    override operator fun times(other: kotlin.Float): Month = Month(this.value.times(other))
-    override operator fun div(other: kotlin.Float): Month = Month(this.value.div(other))
-    override operator fun rem(other: kotlin.Float): Month = Month(this.value.rem(other))
+    override operator fun times(other: Float): Month = Month(this.value.times(other))
+    override operator fun div(other: Float): Month = Month(this.value.div(other))
+    override operator fun rem(other: Float): Month = Month(this.value.rem(other))
 
 
-    override operator fun times(other: kotlin.Double): Month = Month(this.value.times(other))
-    override operator fun div(other: kotlin.Double): Month = Month(this.value.div(other))
-    override operator fun rem(other: kotlin.Double): Month = Month(this.value.rem(other))
+    override operator fun times(other: Double): Month = Month(this.value.times(other))
+    override operator fun div(other: Double): Month = Month(this.value.div(other))
+    override operator fun rem(other: Double): Month = Month(this.value.rem(other))
 
 
     override operator fun unaryMinus(): Month = Month(-value)
@@ -582,26 +581,26 @@ data class Month(override val value: MeasurementUnitValue) : YearDuration {
 
 }
 
-val kotlin.Byte.month
+val Byte.month
     get() = Month(this)
 
 
-val kotlin.Short.month
+val Short.month
     get() = Month(this)
 
 
-val kotlin.Int.month
+val Int.month
     get() = Month(this)
 
 
-val kotlin.Long.month
+val Long.month
     get() = Month(this)
 
 
-val kotlin.Float.month
+val Float.month
     get() = Month(this)
 
 
-val kotlin.Double.month
+val Double.month
     get() = Month(this)
                             

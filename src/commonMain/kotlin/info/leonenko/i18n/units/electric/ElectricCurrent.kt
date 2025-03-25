@@ -22,7 +22,6 @@ interface ElectricCurrent : MeasurementUnit, Comparable<ElectricCurrent> {
     class Serializer : CustomSerializer()
     open class CustomSerializer(val decoders: Map<String, (MeasurementUnitValue) -> ElectricCurrent> = emptyMap()) : KSerializer<ElectricCurrent> {
         private val delegateSerializer = MapSerializer(String.serializer(), MeasurementUnitValue.serializer())
-
         @OptIn(ExperimentalSerializationApi::class)
         override val descriptor: SerialDescriptor = SerialDescriptor("ElectricCurrent", delegateSerializer.descriptor)
         override fun deserialize(decoder: Decoder): ElectricCurrent {
@@ -70,34 +69,34 @@ interface ElectricCurrent : MeasurementUnit, Comparable<ElectricCurrent> {
     fun abs(): ElectricCurrent
 
 
-    operator fun times(other: kotlin.Byte): ElectricCurrent
-    operator fun div(other: kotlin.Byte): ElectricCurrent
-    operator fun rem(other: kotlin.Byte): ElectricCurrent
+    operator fun times(other: Byte): ElectricCurrent
+    operator fun div(other: Byte): ElectricCurrent
+    operator fun rem(other: Byte): ElectricCurrent
 
 
-    operator fun times(other: kotlin.Short): ElectricCurrent
-    operator fun div(other: kotlin.Short): ElectricCurrent
-    operator fun rem(other: kotlin.Short): ElectricCurrent
+    operator fun times(other: Short): ElectricCurrent
+    operator fun div(other: Short): ElectricCurrent
+    operator fun rem(other: Short): ElectricCurrent
 
 
-    operator fun times(other: kotlin.Int): ElectricCurrent
-    operator fun div(other: kotlin.Int): ElectricCurrent
-    operator fun rem(other: kotlin.Int): ElectricCurrent
+    operator fun times(other: Int): ElectricCurrent
+    operator fun div(other: Int): ElectricCurrent
+    operator fun rem(other: Int): ElectricCurrent
 
 
-    operator fun times(other: kotlin.Long): ElectricCurrent
-    operator fun div(other: kotlin.Long): ElectricCurrent
-    operator fun rem(other: kotlin.Long): ElectricCurrent
+    operator fun times(other: Long): ElectricCurrent
+    operator fun div(other: Long): ElectricCurrent
+    operator fun rem(other: Long): ElectricCurrent
 
 
-    operator fun times(other: kotlin.Float): ElectricCurrent
-    operator fun div(other: kotlin.Float): ElectricCurrent
-    operator fun rem(other: kotlin.Float): ElectricCurrent
+    operator fun times(other: Float): ElectricCurrent
+    operator fun div(other: Float): ElectricCurrent
+    operator fun rem(other: Float): ElectricCurrent
 
 
-    operator fun times(other: kotlin.Double): ElectricCurrent
-    operator fun div(other: kotlin.Double): ElectricCurrent
-    operator fun rem(other: kotlin.Double): ElectricCurrent
+    operator fun times(other: Double): ElectricCurrent
+    operator fun div(other: Double): ElectricCurrent
+    operator fun rem(other: Double): ElectricCurrent
 
 }
 
@@ -117,40 +116,40 @@ data class Ampere(override val value: MeasurementUnitValue) : ElectricCurrent {
     operator fun plus(other: Ampere): Ampere = Ampere(this.value + other.value)
     operator fun minus(other: Ampere): Ampere = Ampere(this.value - other.value)
 
-    constructor(value: kotlin.Byte) : this(value.toMeasurementUnitValue())
+    constructor(value: Byte) : this(value.toMeasurementUnitValue())
 
-    override operator fun times(other: kotlin.Byte): Ampere = Ampere(this.value.times(other))
-    override operator fun div(other: kotlin.Byte): Ampere = Ampere(this.value.div(other))
-    override operator fun rem(other: kotlin.Byte): Ampere = Ampere(this.value.rem(other))
+    override operator fun times(other: Byte): Ampere = Ampere(this.value.times(other))
+    override operator fun div(other: Byte): Ampere = Ampere(this.value.div(other))
+    override operator fun rem(other: Byte): Ampere = Ampere(this.value.rem(other))
 
-    constructor(value: kotlin.Short) : this(value.toMeasurementUnitValue())
+    constructor(value: Short) : this(value.toMeasurementUnitValue())
 
-    override operator fun times(other: kotlin.Short): Ampere = Ampere(this.value.times(other))
-    override operator fun div(other: kotlin.Short): Ampere = Ampere(this.value.div(other))
-    override operator fun rem(other: kotlin.Short): Ampere = Ampere(this.value.rem(other))
+    override operator fun times(other: Short): Ampere = Ampere(this.value.times(other))
+    override operator fun div(other: Short): Ampere = Ampere(this.value.div(other))
+    override operator fun rem(other: Short): Ampere = Ampere(this.value.rem(other))
 
-    constructor(value: kotlin.Int) : this(value.toMeasurementUnitValue())
+    constructor(value: Int) : this(value.toMeasurementUnitValue())
 
-    override operator fun times(other: kotlin.Int): Ampere = Ampere(this.value.times(other))
-    override operator fun div(other: kotlin.Int): Ampere = Ampere(this.value.div(other))
-    override operator fun rem(other: kotlin.Int): Ampere = Ampere(this.value.rem(other))
+    override operator fun times(other: Int): Ampere = Ampere(this.value.times(other))
+    override operator fun div(other: Int): Ampere = Ampere(this.value.div(other))
+    override operator fun rem(other: Int): Ampere = Ampere(this.value.rem(other))
 
-    constructor(value: kotlin.Long) : this(value.toMeasurementUnitValue())
+    constructor(value: Long) : this(value.toMeasurementUnitValue())
 
-    override operator fun times(other: kotlin.Long): Ampere = Ampere(this.value.times(other))
-    override operator fun div(other: kotlin.Long): Ampere = Ampere(this.value.div(other))
-    override operator fun rem(other: kotlin.Long): Ampere = Ampere(this.value.rem(other))
+    override operator fun times(other: Long): Ampere = Ampere(this.value.times(other))
+    override operator fun div(other: Long): Ampere = Ampere(this.value.div(other))
+    override operator fun rem(other: Long): Ampere = Ampere(this.value.rem(other))
 
-    constructor(value: kotlin.Float) : this(value.toMeasurementUnitValue())
+    constructor(value: Float) : this(value.toMeasurementUnitValue())
 
-    override operator fun times(other: kotlin.Float): Ampere = Ampere(this.value.times(other))
-    override operator fun div(other: kotlin.Float): Ampere = Ampere(this.value.div(other))
-    override operator fun rem(other: kotlin.Float): Ampere = Ampere(this.value.rem(other))
+    override operator fun times(other: Float): Ampere = Ampere(this.value.times(other))
+    override operator fun div(other: Float): Ampere = Ampere(this.value.div(other))
+    override operator fun rem(other: Float): Ampere = Ampere(this.value.rem(other))
 
 
-    override operator fun times(other: kotlin.Double): Ampere = Ampere(this.value.times(other))
-    override operator fun div(other: kotlin.Double): Ampere = Ampere(this.value.div(other))
-    override operator fun rem(other: kotlin.Double): Ampere = Ampere(this.value.rem(other))
+    override operator fun times(other: Double): Ampere = Ampere(this.value.times(other))
+    override operator fun div(other: Double): Ampere = Ampere(this.value.div(other))
+    override operator fun rem(other: Double): Ampere = Ampere(this.value.rem(other))
 
 
     override operator fun unaryMinus(): Ampere = Ampere(-value)
@@ -175,27 +174,27 @@ data class Ampere(override val value: MeasurementUnitValue) : ElectricCurrent {
 
 }
 
-val kotlin.Byte.ampere
+val Byte.ampere
     get() = Ampere(this)
 
 
-val kotlin.Short.ampere
+val Short.ampere
     get() = Ampere(this)
 
 
-val kotlin.Int.ampere
+val Int.ampere
     get() = Ampere(this)
 
 
-val kotlin.Long.ampere
+val Long.ampere
     get() = Ampere(this)
 
 
-val kotlin.Float.ampere
+val Float.ampere
     get() = Ampere(this)
 
 
-val kotlin.Double.ampere
+val Double.ampere
     get() = Ampere(this)
 
 
@@ -215,40 +214,40 @@ data class Milliampere(override val value: MeasurementUnitValue) : ElectricCurre
     operator fun plus(other: Milliampere): Milliampere = Milliampere(this.value + other.value)
     operator fun minus(other: Milliampere): Milliampere = Milliampere(this.value - other.value)
 
-    constructor(value: kotlin.Byte) : this(value.toMeasurementUnitValue())
+    constructor(value: Byte) : this(value.toMeasurementUnitValue())
 
-    override operator fun times(other: kotlin.Byte): Milliampere = Milliampere(this.value.times(other))
-    override operator fun div(other: kotlin.Byte): Milliampere = Milliampere(this.value.div(other))
-    override operator fun rem(other: kotlin.Byte): Milliampere = Milliampere(this.value.rem(other))
+    override operator fun times(other: Byte): Milliampere = Milliampere(this.value.times(other))
+    override operator fun div(other: Byte): Milliampere = Milliampere(this.value.div(other))
+    override operator fun rem(other: Byte): Milliampere = Milliampere(this.value.rem(other))
 
-    constructor(value: kotlin.Short) : this(value.toMeasurementUnitValue())
+    constructor(value: Short) : this(value.toMeasurementUnitValue())
 
-    override operator fun times(other: kotlin.Short): Milliampere = Milliampere(this.value.times(other))
-    override operator fun div(other: kotlin.Short): Milliampere = Milliampere(this.value.div(other))
-    override operator fun rem(other: kotlin.Short): Milliampere = Milliampere(this.value.rem(other))
+    override operator fun times(other: Short): Milliampere = Milliampere(this.value.times(other))
+    override operator fun div(other: Short): Milliampere = Milliampere(this.value.div(other))
+    override operator fun rem(other: Short): Milliampere = Milliampere(this.value.rem(other))
 
-    constructor(value: kotlin.Int) : this(value.toMeasurementUnitValue())
+    constructor(value: Int) : this(value.toMeasurementUnitValue())
 
-    override operator fun times(other: kotlin.Int): Milliampere = Milliampere(this.value.times(other))
-    override operator fun div(other: kotlin.Int): Milliampere = Milliampere(this.value.div(other))
-    override operator fun rem(other: kotlin.Int): Milliampere = Milliampere(this.value.rem(other))
+    override operator fun times(other: Int): Milliampere = Milliampere(this.value.times(other))
+    override operator fun div(other: Int): Milliampere = Milliampere(this.value.div(other))
+    override operator fun rem(other: Int): Milliampere = Milliampere(this.value.rem(other))
 
-    constructor(value: kotlin.Long) : this(value.toMeasurementUnitValue())
+    constructor(value: Long) : this(value.toMeasurementUnitValue())
 
-    override operator fun times(other: kotlin.Long): Milliampere = Milliampere(this.value.times(other))
-    override operator fun div(other: kotlin.Long): Milliampere = Milliampere(this.value.div(other))
-    override operator fun rem(other: kotlin.Long): Milliampere = Milliampere(this.value.rem(other))
+    override operator fun times(other: Long): Milliampere = Milliampere(this.value.times(other))
+    override operator fun div(other: Long): Milliampere = Milliampere(this.value.div(other))
+    override operator fun rem(other: Long): Milliampere = Milliampere(this.value.rem(other))
 
-    constructor(value: kotlin.Float) : this(value.toMeasurementUnitValue())
+    constructor(value: Float) : this(value.toMeasurementUnitValue())
 
-    override operator fun times(other: kotlin.Float): Milliampere = Milliampere(this.value.times(other))
-    override operator fun div(other: kotlin.Float): Milliampere = Milliampere(this.value.div(other))
-    override operator fun rem(other: kotlin.Float): Milliampere = Milliampere(this.value.rem(other))
+    override operator fun times(other: Float): Milliampere = Milliampere(this.value.times(other))
+    override operator fun div(other: Float): Milliampere = Milliampere(this.value.div(other))
+    override operator fun rem(other: Float): Milliampere = Milliampere(this.value.rem(other))
 
 
-    override operator fun times(other: kotlin.Double): Milliampere = Milliampere(this.value.times(other))
-    override operator fun div(other: kotlin.Double): Milliampere = Milliampere(this.value.div(other))
-    override operator fun rem(other: kotlin.Double): Milliampere = Milliampere(this.value.rem(other))
+    override operator fun times(other: Double): Milliampere = Milliampere(this.value.times(other))
+    override operator fun div(other: Double): Milliampere = Milliampere(this.value.div(other))
+    override operator fun rem(other: Double): Milliampere = Milliampere(this.value.rem(other))
 
 
     override operator fun unaryMinus(): Milliampere = Milliampere(-value)
@@ -273,26 +272,26 @@ data class Milliampere(override val value: MeasurementUnitValue) : ElectricCurre
 
 }
 
-val kotlin.Byte.milliampere
+val Byte.milliampere
     get() = Milliampere(this)
 
 
-val kotlin.Short.milliampere
+val Short.milliampere
     get() = Milliampere(this)
 
 
-val kotlin.Int.milliampere
+val Int.milliampere
     get() = Milliampere(this)
 
 
-val kotlin.Long.milliampere
+val Long.milliampere
     get() = Milliampere(this)
 
 
-val kotlin.Float.milliampere
+val Float.milliampere
     get() = Milliampere(this)
 
 
-val kotlin.Double.milliampere
+val Double.milliampere
     get() = Milliampere(this)
                             

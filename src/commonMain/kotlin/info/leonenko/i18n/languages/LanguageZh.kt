@@ -6,7 +6,6 @@ import info.leonenko.i18n.rbnf.RBNFZh
 val Language.Companion.zh
     get() = languageZh
 private val languageZh = LanguageZh()
-
 open class LanguageZh internal constructor() : Language {
     override val code: String = "zh"
     override val language: String = "zh"
@@ -466,8 +465,18 @@ open class LanguageZh internal constructor() : Language {
                     )
                 ),
             )
-        override val concentrationItemPerCubicMeter: MultiLengthGenderedPattern
-            get() = TODO("ItemPerCubicMeter formatter is not implemented yet for zh")
+        override val concentrationPortionPer1e9
+            get() = MultiLengthGenderedPattern(
+                long = GenderedPattern(
+                    cases = Cases(
+                        nominative = PluralPattern(
+                            Plurals(
+                                other = "十亿分之{0}",
+                            )
+                        ),
+                    )
+                ),
+            )
         override val concentrationItem
             get() = MultiLengthGenderedPattern(
                 short = GenderedPattern(
@@ -693,7 +702,7 @@ open class LanguageZh internal constructor() : Language {
                     )
                 ),
             )
-        override val digitalByte
+        override val digitalByteUnit
             get() = MultiLengthGenderedPattern(
                 long = GenderedPattern(
                     cases = Cases(
@@ -922,6 +931,36 @@ open class LanguageZh internal constructor() : Language {
                         nominative = PluralPattern(
                             Plurals(
                                 other = "{0}ns",
+                            )
+                        ),
+                    )
+                ),
+            )
+        override val durationNight
+            get() = MultiLengthGenderedPattern(
+                long = GenderedPattern(
+                    cases = Cases(
+                        nominative = PluralPattern(
+                            Plurals(
+                                other = "{0}晚",
+                            )
+                        ),
+                    )
+                ),
+                short = GenderedPattern(
+                    cases = Cases(
+                        nominative = PluralPattern(
+                            Plurals(
+                                other = "{0}晚",
+                            )
+                        ),
+                    )
+                ),
+                narrow = GenderedPattern(
+                    cases = Cases(
+                        nominative = PluralPattern(
+                            Plurals(
+                                other = "{0}晚",
                             )
                         ),
                     )
@@ -2843,6 +2882,36 @@ open class LanguageZh internal constructor() : Language {
                         nominative = PluralPattern(
                             Plurals(
                                 other = "B{0}",
+                            )
+                        ),
+                    )
+                ),
+            )
+        override val speedLightSpeed
+            get() = MultiLengthGenderedPattern(
+                long = GenderedPattern(
+                    cases = Cases(
+                        nominative = PluralPattern(
+                            Plurals(
+                                other = "{0}光",
+                            )
+                        ),
+                    )
+                ),
+                short = GenderedPattern(
+                    cases = Cases(
+                        nominative = PluralPattern(
+                            Plurals(
+                                other = "{0}光",
+                            )
+                        ),
+                    )
+                ),
+                narrow = GenderedPattern(
+                    cases = Cases(
+                        nominative = PluralPattern(
+                            Plurals(
+                                other = "{0}光",
                             )
                         ),
                     )

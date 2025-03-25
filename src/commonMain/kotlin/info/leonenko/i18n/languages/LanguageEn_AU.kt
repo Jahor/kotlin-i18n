@@ -5,7 +5,6 @@ import info.leonenko.i18n.*
 val Language.Companion.en_AU
     get() = languageEn_AU
 private val languageEn_AU = LanguageEn_AU()
-
 class LanguageEn_AU internal constructor() : LanguageEn() {
     override val code: String = "en_AU"
     override val script: String? = null
@@ -197,8 +196,8 @@ class LanguageEn_AU internal constructor() : LanguageEn() {
                     cases = Cases(
                         nominative = PluralPattern(
                             Plurals(
-                                one = "{0} C.",
-                                other = "{0} C.",
+                                one = "{0} C",
+                                other = "{0} C",
                             )
                         ),
                     )
@@ -207,32 +206,8 @@ class LanguageEn_AU internal constructor() : LanguageEn() {
                     cases = Cases(
                         nominative = PluralPattern(
                             Plurals(
-                                one = "{0}C.",
-                                other = "{0}C.",
-                            )
-                        ),
-                    )
-                ),
-            )
-        override val durationSecond
-            get() = MultiLengthGenderedPattern(
-                base = super.durationSecond,
-                short = GenderedPattern(
-                    cases = Cases(
-                        nominative = PluralPattern(
-                            Plurals(
-                                one = "{0} sec.",
-                                other = "{0} secs",
-                            )
-                        ),
-                    )
-                ),
-                narrow = GenderedPattern(
-                    cases = Cases(
-                        nominative = PluralPattern(
-                            Plurals(
-                                one = "{0}s.",
-                                other = "{0}s.",
+                                one = "{0}C",
+                                other = "{0}C",
                             )
                         ),
                     )
@@ -373,20 +348,6 @@ class LanguageEn_AU internal constructor() : LanguageEn() {
                             Plurals(
                                 one = "{0} degree",
                                 other = "{0} degrees",
-                            )
-                        ),
-                    )
-                ),
-            )
-        override val temperatureCelsius
-            get() = MultiLengthGenderedPattern(
-                base = super.temperatureCelsius,
-                narrow = GenderedPattern(
-                    cases = Cases(
-                        nominative = PluralPattern(
-                            Plurals(
-                                one = "{0}°C",
-                                other = "{0}°C",
                             )
                         ),
                     )

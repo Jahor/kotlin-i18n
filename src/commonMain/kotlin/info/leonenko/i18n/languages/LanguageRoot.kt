@@ -6,7 +6,6 @@ import info.leonenko.i18n.rbnf.RBNFRoot
 val Language.Companion.root
     get() = languageRoot
 private val languageRoot = LanguageRoot()
-
 open class LanguageRoot internal constructor() : Language {
     override val code: String = "root"
     override val language: String = "root"
@@ -335,8 +334,18 @@ open class LanguageRoot internal constructor() : Language {
                     )
                 ),
             )
-        override val concentrationItemPerCubicMeter: MultiLengthGenderedPattern
-            get() = TODO("ItemPerCubicMeter formatter is not implemented yet for root")
+        override val concentrationPortionPer1e9
+            get() = MultiLengthGenderedPattern(
+                short = GenderedPattern(
+                    cases = Cases(
+                        nominative = PluralPattern(
+                            Plurals(
+                                other = "{0} ppb",
+                            )
+                        ),
+                    )
+                ),
+            )
         override val concentrationItem
             get() = MultiLengthGenderedPattern(
                 short = GenderedPattern(
@@ -517,7 +526,7 @@ open class LanguageRoot internal constructor() : Language {
                     )
                 ),
             )
-        override val digitalByte
+        override val digitalByteUnit
             get() = MultiLengthGenderedPattern(
                 short = GenderedPattern(
                     cases = Cases(
@@ -692,6 +701,18 @@ open class LanguageRoot internal constructor() : Language {
                         nominative = PluralPattern(
                             Plurals(
                                 other = "{0} ns",
+                            )
+                        ),
+                    )
+                ),
+            )
+        override val durationNight
+            get() = MultiLengthGenderedPattern(
+                short = GenderedPattern(
+                    cases = Cases(
+                        nominative = PluralPattern(
+                            Plurals(
+                                other = "{0} night",
                             )
                         ),
                     )
@@ -1754,6 +1775,18 @@ open class LanguageRoot internal constructor() : Language {
                         nominative = PluralPattern(
                             Plurals(
                                 other = "B {0}",
+                            )
+                        ),
+                    )
+                ),
+            )
+        override val speedLightSpeed
+            get() = MultiLengthGenderedPattern(
+                short = GenderedPattern(
+                    cases = Cases(
+                        nominative = PluralPattern(
+                            Plurals(
+                                other = "{0} light",
                             )
                         ),
                     )

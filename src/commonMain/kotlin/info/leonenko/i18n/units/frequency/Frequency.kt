@@ -22,7 +22,6 @@ interface Frequency : MeasurementUnit, Comparable<Frequency> {
     class Serializer : CustomSerializer()
     open class CustomSerializer(val decoders: Map<String, (MeasurementUnitValue) -> Frequency> = emptyMap()) : KSerializer<Frequency> {
         private val delegateSerializer = MapSerializer(String.serializer(), MeasurementUnitValue.serializer())
-
         @OptIn(ExperimentalSerializationApi::class)
         override val descriptor: SerialDescriptor = SerialDescriptor("Frequency", delegateSerializer.descriptor)
         override fun deserialize(decoder: Decoder): Frequency {
@@ -86,34 +85,34 @@ interface Frequency : MeasurementUnit, Comparable<Frequency> {
     fun abs(): Frequency
 
 
-    operator fun times(other: kotlin.Byte): Frequency
-    operator fun div(other: kotlin.Byte): Frequency
-    operator fun rem(other: kotlin.Byte): Frequency
+    operator fun times(other: Byte): Frequency
+    operator fun div(other: Byte): Frequency
+    operator fun rem(other: Byte): Frequency
 
 
-    operator fun times(other: kotlin.Short): Frequency
-    operator fun div(other: kotlin.Short): Frequency
-    operator fun rem(other: kotlin.Short): Frequency
+    operator fun times(other: Short): Frequency
+    operator fun div(other: Short): Frequency
+    operator fun rem(other: Short): Frequency
 
 
-    operator fun times(other: kotlin.Int): Frequency
-    operator fun div(other: kotlin.Int): Frequency
-    operator fun rem(other: kotlin.Int): Frequency
+    operator fun times(other: Int): Frequency
+    operator fun div(other: Int): Frequency
+    operator fun rem(other: Int): Frequency
 
 
-    operator fun times(other: kotlin.Long): Frequency
-    operator fun div(other: kotlin.Long): Frequency
-    operator fun rem(other: kotlin.Long): Frequency
+    operator fun times(other: Long): Frequency
+    operator fun div(other: Long): Frequency
+    operator fun rem(other: Long): Frequency
 
 
-    operator fun times(other: kotlin.Float): Frequency
-    operator fun div(other: kotlin.Float): Frequency
-    operator fun rem(other: kotlin.Float): Frequency
+    operator fun times(other: Float): Frequency
+    operator fun div(other: Float): Frequency
+    operator fun rem(other: Float): Frequency
 
 
-    operator fun times(other: kotlin.Double): Frequency
-    operator fun div(other: kotlin.Double): Frequency
-    operator fun rem(other: kotlin.Double): Frequency
+    operator fun times(other: Double): Frequency
+    operator fun div(other: Double): Frequency
+    operator fun rem(other: Double): Frequency
 
 }
 
@@ -133,40 +132,40 @@ data class Gigahertz(override val value: MeasurementUnitValue) : Frequency {
     operator fun plus(other: Gigahertz): Gigahertz = Gigahertz(this.value + other.value)
     operator fun minus(other: Gigahertz): Gigahertz = Gigahertz(this.value - other.value)
 
-    constructor(value: kotlin.Byte) : this(value.toMeasurementUnitValue())
+    constructor(value: Byte) : this(value.toMeasurementUnitValue())
 
-    override operator fun times(other: kotlin.Byte): Gigahertz = Gigahertz(this.value.times(other))
-    override operator fun div(other: kotlin.Byte): Gigahertz = Gigahertz(this.value.div(other))
-    override operator fun rem(other: kotlin.Byte): Gigahertz = Gigahertz(this.value.rem(other))
+    override operator fun times(other: Byte): Gigahertz = Gigahertz(this.value.times(other))
+    override operator fun div(other: Byte): Gigahertz = Gigahertz(this.value.div(other))
+    override operator fun rem(other: Byte): Gigahertz = Gigahertz(this.value.rem(other))
 
-    constructor(value: kotlin.Short) : this(value.toMeasurementUnitValue())
+    constructor(value: Short) : this(value.toMeasurementUnitValue())
 
-    override operator fun times(other: kotlin.Short): Gigahertz = Gigahertz(this.value.times(other))
-    override operator fun div(other: kotlin.Short): Gigahertz = Gigahertz(this.value.div(other))
-    override operator fun rem(other: kotlin.Short): Gigahertz = Gigahertz(this.value.rem(other))
+    override operator fun times(other: Short): Gigahertz = Gigahertz(this.value.times(other))
+    override operator fun div(other: Short): Gigahertz = Gigahertz(this.value.div(other))
+    override operator fun rem(other: Short): Gigahertz = Gigahertz(this.value.rem(other))
 
-    constructor(value: kotlin.Int) : this(value.toMeasurementUnitValue())
+    constructor(value: Int) : this(value.toMeasurementUnitValue())
 
-    override operator fun times(other: kotlin.Int): Gigahertz = Gigahertz(this.value.times(other))
-    override operator fun div(other: kotlin.Int): Gigahertz = Gigahertz(this.value.div(other))
-    override operator fun rem(other: kotlin.Int): Gigahertz = Gigahertz(this.value.rem(other))
+    override operator fun times(other: Int): Gigahertz = Gigahertz(this.value.times(other))
+    override operator fun div(other: Int): Gigahertz = Gigahertz(this.value.div(other))
+    override operator fun rem(other: Int): Gigahertz = Gigahertz(this.value.rem(other))
 
-    constructor(value: kotlin.Long) : this(value.toMeasurementUnitValue())
+    constructor(value: Long) : this(value.toMeasurementUnitValue())
 
-    override operator fun times(other: kotlin.Long): Gigahertz = Gigahertz(this.value.times(other))
-    override operator fun div(other: kotlin.Long): Gigahertz = Gigahertz(this.value.div(other))
-    override operator fun rem(other: kotlin.Long): Gigahertz = Gigahertz(this.value.rem(other))
+    override operator fun times(other: Long): Gigahertz = Gigahertz(this.value.times(other))
+    override operator fun div(other: Long): Gigahertz = Gigahertz(this.value.div(other))
+    override operator fun rem(other: Long): Gigahertz = Gigahertz(this.value.rem(other))
 
-    constructor(value: kotlin.Float) : this(value.toMeasurementUnitValue())
+    constructor(value: Float) : this(value.toMeasurementUnitValue())
 
-    override operator fun times(other: kotlin.Float): Gigahertz = Gigahertz(this.value.times(other))
-    override operator fun div(other: kotlin.Float): Gigahertz = Gigahertz(this.value.div(other))
-    override operator fun rem(other: kotlin.Float): Gigahertz = Gigahertz(this.value.rem(other))
+    override operator fun times(other: Float): Gigahertz = Gigahertz(this.value.times(other))
+    override operator fun div(other: Float): Gigahertz = Gigahertz(this.value.div(other))
+    override operator fun rem(other: Float): Gigahertz = Gigahertz(this.value.rem(other))
 
 
-    override operator fun times(other: kotlin.Double): Gigahertz = Gigahertz(this.value.times(other))
-    override operator fun div(other: kotlin.Double): Gigahertz = Gigahertz(this.value.div(other))
-    override operator fun rem(other: kotlin.Double): Gigahertz = Gigahertz(this.value.rem(other))
+    override operator fun times(other: Double): Gigahertz = Gigahertz(this.value.times(other))
+    override operator fun div(other: Double): Gigahertz = Gigahertz(this.value.div(other))
+    override operator fun rem(other: Double): Gigahertz = Gigahertz(this.value.rem(other))
 
 
     override operator fun unaryMinus(): Gigahertz = Gigahertz(-value)
@@ -191,27 +190,27 @@ data class Gigahertz(override val value: MeasurementUnitValue) : Frequency {
 
 }
 
-val kotlin.Byte.gigahertz
+val Byte.gigahertz
     get() = Gigahertz(this)
 
 
-val kotlin.Short.gigahertz
+val Short.gigahertz
     get() = Gigahertz(this)
 
 
-val kotlin.Int.gigahertz
+val Int.gigahertz
     get() = Gigahertz(this)
 
 
-val kotlin.Long.gigahertz
+val Long.gigahertz
     get() = Gigahertz(this)
 
 
-val kotlin.Float.gigahertz
+val Float.gigahertz
     get() = Gigahertz(this)
 
 
-val kotlin.Double.gigahertz
+val Double.gigahertz
     get() = Gigahertz(this)
 
 
@@ -231,40 +230,40 @@ data class Megahertz(override val value: MeasurementUnitValue) : Frequency {
     operator fun plus(other: Megahertz): Megahertz = Megahertz(this.value + other.value)
     operator fun minus(other: Megahertz): Megahertz = Megahertz(this.value - other.value)
 
-    constructor(value: kotlin.Byte) : this(value.toMeasurementUnitValue())
+    constructor(value: Byte) : this(value.toMeasurementUnitValue())
 
-    override operator fun times(other: kotlin.Byte): Megahertz = Megahertz(this.value.times(other))
-    override operator fun div(other: kotlin.Byte): Megahertz = Megahertz(this.value.div(other))
-    override operator fun rem(other: kotlin.Byte): Megahertz = Megahertz(this.value.rem(other))
+    override operator fun times(other: Byte): Megahertz = Megahertz(this.value.times(other))
+    override operator fun div(other: Byte): Megahertz = Megahertz(this.value.div(other))
+    override operator fun rem(other: Byte): Megahertz = Megahertz(this.value.rem(other))
 
-    constructor(value: kotlin.Short) : this(value.toMeasurementUnitValue())
+    constructor(value: Short) : this(value.toMeasurementUnitValue())
 
-    override operator fun times(other: kotlin.Short): Megahertz = Megahertz(this.value.times(other))
-    override operator fun div(other: kotlin.Short): Megahertz = Megahertz(this.value.div(other))
-    override operator fun rem(other: kotlin.Short): Megahertz = Megahertz(this.value.rem(other))
+    override operator fun times(other: Short): Megahertz = Megahertz(this.value.times(other))
+    override operator fun div(other: Short): Megahertz = Megahertz(this.value.div(other))
+    override operator fun rem(other: Short): Megahertz = Megahertz(this.value.rem(other))
 
-    constructor(value: kotlin.Int) : this(value.toMeasurementUnitValue())
+    constructor(value: Int) : this(value.toMeasurementUnitValue())
 
-    override operator fun times(other: kotlin.Int): Megahertz = Megahertz(this.value.times(other))
-    override operator fun div(other: kotlin.Int): Megahertz = Megahertz(this.value.div(other))
-    override operator fun rem(other: kotlin.Int): Megahertz = Megahertz(this.value.rem(other))
+    override operator fun times(other: Int): Megahertz = Megahertz(this.value.times(other))
+    override operator fun div(other: Int): Megahertz = Megahertz(this.value.div(other))
+    override operator fun rem(other: Int): Megahertz = Megahertz(this.value.rem(other))
 
-    constructor(value: kotlin.Long) : this(value.toMeasurementUnitValue())
+    constructor(value: Long) : this(value.toMeasurementUnitValue())
 
-    override operator fun times(other: kotlin.Long): Megahertz = Megahertz(this.value.times(other))
-    override operator fun div(other: kotlin.Long): Megahertz = Megahertz(this.value.div(other))
-    override operator fun rem(other: kotlin.Long): Megahertz = Megahertz(this.value.rem(other))
+    override operator fun times(other: Long): Megahertz = Megahertz(this.value.times(other))
+    override operator fun div(other: Long): Megahertz = Megahertz(this.value.div(other))
+    override operator fun rem(other: Long): Megahertz = Megahertz(this.value.rem(other))
 
-    constructor(value: kotlin.Float) : this(value.toMeasurementUnitValue())
+    constructor(value: Float) : this(value.toMeasurementUnitValue())
 
-    override operator fun times(other: kotlin.Float): Megahertz = Megahertz(this.value.times(other))
-    override operator fun div(other: kotlin.Float): Megahertz = Megahertz(this.value.div(other))
-    override operator fun rem(other: kotlin.Float): Megahertz = Megahertz(this.value.rem(other))
+    override operator fun times(other: Float): Megahertz = Megahertz(this.value.times(other))
+    override operator fun div(other: Float): Megahertz = Megahertz(this.value.div(other))
+    override operator fun rem(other: Float): Megahertz = Megahertz(this.value.rem(other))
 
 
-    override operator fun times(other: kotlin.Double): Megahertz = Megahertz(this.value.times(other))
-    override operator fun div(other: kotlin.Double): Megahertz = Megahertz(this.value.div(other))
-    override operator fun rem(other: kotlin.Double): Megahertz = Megahertz(this.value.rem(other))
+    override operator fun times(other: Double): Megahertz = Megahertz(this.value.times(other))
+    override operator fun div(other: Double): Megahertz = Megahertz(this.value.div(other))
+    override operator fun rem(other: Double): Megahertz = Megahertz(this.value.rem(other))
 
 
     override operator fun unaryMinus(): Megahertz = Megahertz(-value)
@@ -289,27 +288,27 @@ data class Megahertz(override val value: MeasurementUnitValue) : Frequency {
 
 }
 
-val kotlin.Byte.megahertz
+val Byte.megahertz
     get() = Megahertz(this)
 
 
-val kotlin.Short.megahertz
+val Short.megahertz
     get() = Megahertz(this)
 
 
-val kotlin.Int.megahertz
+val Int.megahertz
     get() = Megahertz(this)
 
 
-val kotlin.Long.megahertz
+val Long.megahertz
     get() = Megahertz(this)
 
 
-val kotlin.Float.megahertz
+val Float.megahertz
     get() = Megahertz(this)
 
 
-val kotlin.Double.megahertz
+val Double.megahertz
     get() = Megahertz(this)
 
 
@@ -329,40 +328,40 @@ data class Kilohertz(override val value: MeasurementUnitValue) : Frequency {
     operator fun plus(other: Kilohertz): Kilohertz = Kilohertz(this.value + other.value)
     operator fun minus(other: Kilohertz): Kilohertz = Kilohertz(this.value - other.value)
 
-    constructor(value: kotlin.Byte) : this(value.toMeasurementUnitValue())
+    constructor(value: Byte) : this(value.toMeasurementUnitValue())
 
-    override operator fun times(other: kotlin.Byte): Kilohertz = Kilohertz(this.value.times(other))
-    override operator fun div(other: kotlin.Byte): Kilohertz = Kilohertz(this.value.div(other))
-    override operator fun rem(other: kotlin.Byte): Kilohertz = Kilohertz(this.value.rem(other))
+    override operator fun times(other: Byte): Kilohertz = Kilohertz(this.value.times(other))
+    override operator fun div(other: Byte): Kilohertz = Kilohertz(this.value.div(other))
+    override operator fun rem(other: Byte): Kilohertz = Kilohertz(this.value.rem(other))
 
-    constructor(value: kotlin.Short) : this(value.toMeasurementUnitValue())
+    constructor(value: Short) : this(value.toMeasurementUnitValue())
 
-    override operator fun times(other: kotlin.Short): Kilohertz = Kilohertz(this.value.times(other))
-    override operator fun div(other: kotlin.Short): Kilohertz = Kilohertz(this.value.div(other))
-    override operator fun rem(other: kotlin.Short): Kilohertz = Kilohertz(this.value.rem(other))
+    override operator fun times(other: Short): Kilohertz = Kilohertz(this.value.times(other))
+    override operator fun div(other: Short): Kilohertz = Kilohertz(this.value.div(other))
+    override operator fun rem(other: Short): Kilohertz = Kilohertz(this.value.rem(other))
 
-    constructor(value: kotlin.Int) : this(value.toMeasurementUnitValue())
+    constructor(value: Int) : this(value.toMeasurementUnitValue())
 
-    override operator fun times(other: kotlin.Int): Kilohertz = Kilohertz(this.value.times(other))
-    override operator fun div(other: kotlin.Int): Kilohertz = Kilohertz(this.value.div(other))
-    override operator fun rem(other: kotlin.Int): Kilohertz = Kilohertz(this.value.rem(other))
+    override operator fun times(other: Int): Kilohertz = Kilohertz(this.value.times(other))
+    override operator fun div(other: Int): Kilohertz = Kilohertz(this.value.div(other))
+    override operator fun rem(other: Int): Kilohertz = Kilohertz(this.value.rem(other))
 
-    constructor(value: kotlin.Long) : this(value.toMeasurementUnitValue())
+    constructor(value: Long) : this(value.toMeasurementUnitValue())
 
-    override operator fun times(other: kotlin.Long): Kilohertz = Kilohertz(this.value.times(other))
-    override operator fun div(other: kotlin.Long): Kilohertz = Kilohertz(this.value.div(other))
-    override operator fun rem(other: kotlin.Long): Kilohertz = Kilohertz(this.value.rem(other))
+    override operator fun times(other: Long): Kilohertz = Kilohertz(this.value.times(other))
+    override operator fun div(other: Long): Kilohertz = Kilohertz(this.value.div(other))
+    override operator fun rem(other: Long): Kilohertz = Kilohertz(this.value.rem(other))
 
-    constructor(value: kotlin.Float) : this(value.toMeasurementUnitValue())
+    constructor(value: Float) : this(value.toMeasurementUnitValue())
 
-    override operator fun times(other: kotlin.Float): Kilohertz = Kilohertz(this.value.times(other))
-    override operator fun div(other: kotlin.Float): Kilohertz = Kilohertz(this.value.div(other))
-    override operator fun rem(other: kotlin.Float): Kilohertz = Kilohertz(this.value.rem(other))
+    override operator fun times(other: Float): Kilohertz = Kilohertz(this.value.times(other))
+    override operator fun div(other: Float): Kilohertz = Kilohertz(this.value.div(other))
+    override operator fun rem(other: Float): Kilohertz = Kilohertz(this.value.rem(other))
 
 
-    override operator fun times(other: kotlin.Double): Kilohertz = Kilohertz(this.value.times(other))
-    override operator fun div(other: kotlin.Double): Kilohertz = Kilohertz(this.value.div(other))
-    override operator fun rem(other: kotlin.Double): Kilohertz = Kilohertz(this.value.rem(other))
+    override operator fun times(other: Double): Kilohertz = Kilohertz(this.value.times(other))
+    override operator fun div(other: Double): Kilohertz = Kilohertz(this.value.div(other))
+    override operator fun rem(other: Double): Kilohertz = Kilohertz(this.value.rem(other))
 
 
     override operator fun unaryMinus(): Kilohertz = Kilohertz(-value)
@@ -387,27 +386,27 @@ data class Kilohertz(override val value: MeasurementUnitValue) : Frequency {
 
 }
 
-val kotlin.Byte.kilohertz
+val Byte.kilohertz
     get() = Kilohertz(this)
 
 
-val kotlin.Short.kilohertz
+val Short.kilohertz
     get() = Kilohertz(this)
 
 
-val kotlin.Int.kilohertz
+val Int.kilohertz
     get() = Kilohertz(this)
 
 
-val kotlin.Long.kilohertz
+val Long.kilohertz
     get() = Kilohertz(this)
 
 
-val kotlin.Float.kilohertz
+val Float.kilohertz
     get() = Kilohertz(this)
 
 
-val kotlin.Double.kilohertz
+val Double.kilohertz
     get() = Kilohertz(this)
 
 
@@ -427,40 +426,40 @@ data class Hertz(override val value: MeasurementUnitValue) : Frequency {
     operator fun plus(other: Hertz): Hertz = Hertz(this.value + other.value)
     operator fun minus(other: Hertz): Hertz = Hertz(this.value - other.value)
 
-    constructor(value: kotlin.Byte) : this(value.toMeasurementUnitValue())
+    constructor(value: Byte) : this(value.toMeasurementUnitValue())
 
-    override operator fun times(other: kotlin.Byte): Hertz = Hertz(this.value.times(other))
-    override operator fun div(other: kotlin.Byte): Hertz = Hertz(this.value.div(other))
-    override operator fun rem(other: kotlin.Byte): Hertz = Hertz(this.value.rem(other))
+    override operator fun times(other: Byte): Hertz = Hertz(this.value.times(other))
+    override operator fun div(other: Byte): Hertz = Hertz(this.value.div(other))
+    override operator fun rem(other: Byte): Hertz = Hertz(this.value.rem(other))
 
-    constructor(value: kotlin.Short) : this(value.toMeasurementUnitValue())
+    constructor(value: Short) : this(value.toMeasurementUnitValue())
 
-    override operator fun times(other: kotlin.Short): Hertz = Hertz(this.value.times(other))
-    override operator fun div(other: kotlin.Short): Hertz = Hertz(this.value.div(other))
-    override operator fun rem(other: kotlin.Short): Hertz = Hertz(this.value.rem(other))
+    override operator fun times(other: Short): Hertz = Hertz(this.value.times(other))
+    override operator fun div(other: Short): Hertz = Hertz(this.value.div(other))
+    override operator fun rem(other: Short): Hertz = Hertz(this.value.rem(other))
 
-    constructor(value: kotlin.Int) : this(value.toMeasurementUnitValue())
+    constructor(value: Int) : this(value.toMeasurementUnitValue())
 
-    override operator fun times(other: kotlin.Int): Hertz = Hertz(this.value.times(other))
-    override operator fun div(other: kotlin.Int): Hertz = Hertz(this.value.div(other))
-    override operator fun rem(other: kotlin.Int): Hertz = Hertz(this.value.rem(other))
+    override operator fun times(other: Int): Hertz = Hertz(this.value.times(other))
+    override operator fun div(other: Int): Hertz = Hertz(this.value.div(other))
+    override operator fun rem(other: Int): Hertz = Hertz(this.value.rem(other))
 
-    constructor(value: kotlin.Long) : this(value.toMeasurementUnitValue())
+    constructor(value: Long) : this(value.toMeasurementUnitValue())
 
-    override operator fun times(other: kotlin.Long): Hertz = Hertz(this.value.times(other))
-    override operator fun div(other: kotlin.Long): Hertz = Hertz(this.value.div(other))
-    override operator fun rem(other: kotlin.Long): Hertz = Hertz(this.value.rem(other))
+    override operator fun times(other: Long): Hertz = Hertz(this.value.times(other))
+    override operator fun div(other: Long): Hertz = Hertz(this.value.div(other))
+    override operator fun rem(other: Long): Hertz = Hertz(this.value.rem(other))
 
-    constructor(value: kotlin.Float) : this(value.toMeasurementUnitValue())
+    constructor(value: Float) : this(value.toMeasurementUnitValue())
 
-    override operator fun times(other: kotlin.Float): Hertz = Hertz(this.value.times(other))
-    override operator fun div(other: kotlin.Float): Hertz = Hertz(this.value.div(other))
-    override operator fun rem(other: kotlin.Float): Hertz = Hertz(this.value.rem(other))
+    override operator fun times(other: Float): Hertz = Hertz(this.value.times(other))
+    override operator fun div(other: Float): Hertz = Hertz(this.value.div(other))
+    override operator fun rem(other: Float): Hertz = Hertz(this.value.rem(other))
 
 
-    override operator fun times(other: kotlin.Double): Hertz = Hertz(this.value.times(other))
-    override operator fun div(other: kotlin.Double): Hertz = Hertz(this.value.div(other))
-    override operator fun rem(other: kotlin.Double): Hertz = Hertz(this.value.rem(other))
+    override operator fun times(other: Double): Hertz = Hertz(this.value.times(other))
+    override operator fun div(other: Double): Hertz = Hertz(this.value.div(other))
+    override operator fun rem(other: Double): Hertz = Hertz(this.value.rem(other))
 
 
     override operator fun unaryMinus(): Hertz = Hertz(-value)
@@ -485,27 +484,27 @@ data class Hertz(override val value: MeasurementUnitValue) : Frequency {
 
 }
 
-val kotlin.Byte.hertz
+val Byte.hertz
     get() = Hertz(this)
 
 
-val kotlin.Short.hertz
+val Short.hertz
     get() = Hertz(this)
 
 
-val kotlin.Int.hertz
+val Int.hertz
     get() = Hertz(this)
 
 
-val kotlin.Long.hertz
+val Long.hertz
     get() = Hertz(this)
 
 
-val kotlin.Float.hertz
+val Float.hertz
     get() = Hertz(this)
 
 
-val kotlin.Double.hertz
+val Double.hertz
     get() = Hertz(this)
 
 
@@ -525,40 +524,40 @@ data class RevolutionPerSecond(override val value: MeasurementUnitValue) : Frequ
     operator fun plus(other: RevolutionPerSecond): RevolutionPerSecond = RevolutionPerSecond(this.value + other.value)
     operator fun minus(other: RevolutionPerSecond): RevolutionPerSecond = RevolutionPerSecond(this.value - other.value)
 
-    constructor(value: kotlin.Byte) : this(value.toMeasurementUnitValue())
+    constructor(value: Byte) : this(value.toMeasurementUnitValue())
 
-    override operator fun times(other: kotlin.Byte): RevolutionPerSecond = RevolutionPerSecond(this.value.times(other))
-    override operator fun div(other: kotlin.Byte): RevolutionPerSecond = RevolutionPerSecond(this.value.div(other))
-    override operator fun rem(other: kotlin.Byte): RevolutionPerSecond = RevolutionPerSecond(this.value.rem(other))
+    override operator fun times(other: Byte): RevolutionPerSecond = RevolutionPerSecond(this.value.times(other))
+    override operator fun div(other: Byte): RevolutionPerSecond = RevolutionPerSecond(this.value.div(other))
+    override operator fun rem(other: Byte): RevolutionPerSecond = RevolutionPerSecond(this.value.rem(other))
 
-    constructor(value: kotlin.Short) : this(value.toMeasurementUnitValue())
+    constructor(value: Short) : this(value.toMeasurementUnitValue())
 
-    override operator fun times(other: kotlin.Short): RevolutionPerSecond = RevolutionPerSecond(this.value.times(other))
-    override operator fun div(other: kotlin.Short): RevolutionPerSecond = RevolutionPerSecond(this.value.div(other))
-    override operator fun rem(other: kotlin.Short): RevolutionPerSecond = RevolutionPerSecond(this.value.rem(other))
+    override operator fun times(other: Short): RevolutionPerSecond = RevolutionPerSecond(this.value.times(other))
+    override operator fun div(other: Short): RevolutionPerSecond = RevolutionPerSecond(this.value.div(other))
+    override operator fun rem(other: Short): RevolutionPerSecond = RevolutionPerSecond(this.value.rem(other))
 
-    constructor(value: kotlin.Int) : this(value.toMeasurementUnitValue())
+    constructor(value: Int) : this(value.toMeasurementUnitValue())
 
-    override operator fun times(other: kotlin.Int): RevolutionPerSecond = RevolutionPerSecond(this.value.times(other))
-    override operator fun div(other: kotlin.Int): RevolutionPerSecond = RevolutionPerSecond(this.value.div(other))
-    override operator fun rem(other: kotlin.Int): RevolutionPerSecond = RevolutionPerSecond(this.value.rem(other))
+    override operator fun times(other: Int): RevolutionPerSecond = RevolutionPerSecond(this.value.times(other))
+    override operator fun div(other: Int): RevolutionPerSecond = RevolutionPerSecond(this.value.div(other))
+    override operator fun rem(other: Int): RevolutionPerSecond = RevolutionPerSecond(this.value.rem(other))
 
-    constructor(value: kotlin.Long) : this(value.toMeasurementUnitValue())
+    constructor(value: Long) : this(value.toMeasurementUnitValue())
 
-    override operator fun times(other: kotlin.Long): RevolutionPerSecond = RevolutionPerSecond(this.value.times(other))
-    override operator fun div(other: kotlin.Long): RevolutionPerSecond = RevolutionPerSecond(this.value.div(other))
-    override operator fun rem(other: kotlin.Long): RevolutionPerSecond = RevolutionPerSecond(this.value.rem(other))
+    override operator fun times(other: Long): RevolutionPerSecond = RevolutionPerSecond(this.value.times(other))
+    override operator fun div(other: Long): RevolutionPerSecond = RevolutionPerSecond(this.value.div(other))
+    override operator fun rem(other: Long): RevolutionPerSecond = RevolutionPerSecond(this.value.rem(other))
 
-    constructor(value: kotlin.Float) : this(value.toMeasurementUnitValue())
+    constructor(value: Float) : this(value.toMeasurementUnitValue())
 
-    override operator fun times(other: kotlin.Float): RevolutionPerSecond = RevolutionPerSecond(this.value.times(other))
-    override operator fun div(other: kotlin.Float): RevolutionPerSecond = RevolutionPerSecond(this.value.div(other))
-    override operator fun rem(other: kotlin.Float): RevolutionPerSecond = RevolutionPerSecond(this.value.rem(other))
+    override operator fun times(other: Float): RevolutionPerSecond = RevolutionPerSecond(this.value.times(other))
+    override operator fun div(other: Float): RevolutionPerSecond = RevolutionPerSecond(this.value.div(other))
+    override operator fun rem(other: Float): RevolutionPerSecond = RevolutionPerSecond(this.value.rem(other))
 
 
-    override operator fun times(other: kotlin.Double): RevolutionPerSecond = RevolutionPerSecond(this.value.times(other))
-    override operator fun div(other: kotlin.Double): RevolutionPerSecond = RevolutionPerSecond(this.value.div(other))
-    override operator fun rem(other: kotlin.Double): RevolutionPerSecond = RevolutionPerSecond(this.value.rem(other))
+    override operator fun times(other: Double): RevolutionPerSecond = RevolutionPerSecond(this.value.times(other))
+    override operator fun div(other: Double): RevolutionPerSecond = RevolutionPerSecond(this.value.div(other))
+    override operator fun rem(other: Double): RevolutionPerSecond = RevolutionPerSecond(this.value.rem(other))
 
 
     override operator fun unaryMinus(): RevolutionPerSecond = RevolutionPerSecond(-value)
@@ -583,26 +582,26 @@ data class RevolutionPerSecond(override val value: MeasurementUnitValue) : Frequ
 
 }
 
-val kotlin.Byte.revolutionPerSecond
+val Byte.revolutionPerSecond
     get() = RevolutionPerSecond(this)
 
 
-val kotlin.Short.revolutionPerSecond
+val Short.revolutionPerSecond
     get() = RevolutionPerSecond(this)
 
 
-val kotlin.Int.revolutionPerSecond
+val Int.revolutionPerSecond
     get() = RevolutionPerSecond(this)
 
 
-val kotlin.Long.revolutionPerSecond
+val Long.revolutionPerSecond
     get() = RevolutionPerSecond(this)
 
 
-val kotlin.Float.revolutionPerSecond
+val Float.revolutionPerSecond
     get() = RevolutionPerSecond(this)
 
 
-val kotlin.Double.revolutionPerSecond
+val Double.revolutionPerSecond
     get() = RevolutionPerSecond(this)
                             

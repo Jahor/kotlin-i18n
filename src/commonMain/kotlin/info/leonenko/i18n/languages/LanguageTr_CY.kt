@@ -1,11 +1,9 @@
 package info.leonenko.i18n.languages
-
 import info.leonenko.i18n.Language
 
 val Language.Companion.tr_CY
     get() = languageTr_CY
 private val languageTr_CY = LanguageTr_CY()
-
 class LanguageTr_CY internal constructor() : LanguageTr() {
     override val code: String = "tr_CY"
     override val script: String? = null

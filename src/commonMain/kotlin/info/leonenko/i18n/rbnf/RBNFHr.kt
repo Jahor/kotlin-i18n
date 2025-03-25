@@ -3281,12 +3281,21 @@ open class RBNFHr(val language: Language = Language.hr) : RBNF {
         get() = spelloutRules.spelloutOrdinalNeuter
     open val spelloutOrdinalFeminine: NumberFormatter
         get() = spelloutRules.spelloutOrdinalFeminine
-    override val spelloutOrdinal: NumberFormatter
-        get() = TODO("spelloutOrdinal is not available for hr")
     override val spelloutCardinal: NumberFormatter
         get() = TODO("spelloutCardinal is not available for hr")
+    override val spelloutOrdinal: NumberFormatter
+        get() = TODO("spelloutOrdinal is not available for hr")
 
-    fun spelloutCardinalFor(gender: Gender): NumberFormatter {
+    override fun spelloutNumberingFor(gender: Gender, case: Case): NumberFormatter {
+        return spelloutNumbering
+
+    }
+
+    fun spelloutNumberingFor(): NumberFormatter {
+        return spelloutNumberingFor(Gender.Neuter, Case.Nominative)
+    }
+
+    override fun spelloutCardinalFor(gender: Gender, case: Case): NumberFormatter {
         return when (gender) {
             Gender.Neuter -> spelloutCardinalNeuter
             Gender.Masculine -> spelloutCardinalMasculine
@@ -3296,7 +3305,11 @@ open class RBNFHr(val language: Language = Language.hr) : RBNF {
 
     }
 
-    fun spelloutOrdinalFor(gender: Gender): NumberFormatter {
+    fun spelloutCardinalFor(gender: Gender): NumberFormatter {
+        return spelloutCardinalFor(gender, Case.Nominative)
+    }
+
+    override fun spelloutOrdinalFor(gender: Gender, case: Case): NumberFormatter {
         return when (gender) {
             Gender.Neuter -> spelloutOrdinalNeuter
             Gender.Masculine -> spelloutOrdinalMasculine
@@ -3304,5 +3317,13 @@ open class RBNFHr(val language: Language = Language.hr) : RBNF {
             else -> TODO("hr does not support $gender gender")
         }
 
+    }
+
+    fun spelloutOrdinalFor(gender: Gender): NumberFormatter {
+        return spelloutOrdinalFor(gender, Case.Nominative)
+    }
+
+    override fun spelloutNumberingYearFor(gender: Gender, case: Case): NumberFormatter {
+        TODO("spelloutNumberingYear is not available for hr")
     }
 }

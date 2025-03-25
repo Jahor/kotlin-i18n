@@ -6,7 +6,6 @@ import info.leonenko.i18n.rbnf.RBNFTr
 val Language.Companion.tr
     get() = languageTr
 private val languageTr = LanguageTr()
-
 open class LanguageTr internal constructor() : Language {
     override val code: String = "tr"
     override val language: String = "tr"
@@ -465,8 +464,19 @@ open class LanguageTr internal constructor() : Language {
                     )
                 ),
             )
-        override val concentrationItemPerCubicMeter: MultiLengthGenderedPattern
-            get() = TODO("ItemPerCubicMeter formatter is not implemented yet for tr")
+        override val concentrationPortionPer1e9
+            get() = MultiLengthGenderedPattern(
+                long = GenderedPattern(
+                    cases = Cases(
+                        nominative = PluralPattern(
+                            Plurals(
+                                one = "{0} parça/milyar",
+                                other = "{0} parça/milyar",
+                            )
+                        ),
+                    )
+                ),
+            )
         override val concentrationItem
             get() = MultiLengthGenderedPattern(
                 short = GenderedPattern(
@@ -701,7 +711,7 @@ open class LanguageTr internal constructor() : Language {
                     )
                 ),
             )
-        override val digitalByte
+        override val digitalByteUnit
             get() = MultiLengthGenderedPattern(
                 short = GenderedPattern(
                     cases = Cases(
@@ -1050,6 +1060,39 @@ open class LanguageTr internal constructor() : Language {
                             Plurals(
                                 one = "{0} nsn",
                                 other = "{0} nsn",
+                            )
+                        ),
+                    )
+                ),
+            )
+        override val durationNight
+            get() = MultiLengthGenderedPattern(
+                long = GenderedPattern(
+                    cases = Cases(
+                        nominative = PluralPattern(
+                            Plurals(
+                                one = "{0} gece",
+                                other = "{0} gece",
+                            )
+                        ),
+                    )
+                ),
+                short = GenderedPattern(
+                    cases = Cases(
+                        nominative = PluralPattern(
+                            Plurals(
+                                one = "{0} gece",
+                                other = "{0} gece",
+                            )
+                        ),
+                    )
+                ),
+                narrow = GenderedPattern(
+                    cases = Cases(
+                        nominative = PluralPattern(
+                            Plurals(
+                                one = "{0} gece",
+                                other = "{0} gece",
                             )
                         ),
                     )
@@ -2369,6 +2412,39 @@ open class LanguageTr internal constructor() : Language {
                             Plurals(
                                 one = "Beaufort {0}",
                                 other = "Beaufort {0}",
+                            )
+                        ),
+                    )
+                ),
+            )
+        override val speedLightSpeed
+            get() = MultiLengthGenderedPattern(
+                long = GenderedPattern(
+                    cases = Cases(
+                        nominative = PluralPattern(
+                            Plurals(
+                                one = "{0} ışık",
+                                other = "{0} ışık",
+                            )
+                        ),
+                    )
+                ),
+                short = GenderedPattern(
+                    cases = Cases(
+                        nominative = PluralPattern(
+                            Plurals(
+                                one = "{0} ışık",
+                                other = "{0} ışık",
+                            )
+                        ),
+                    )
+                ),
+                narrow = GenderedPattern(
+                    cases = Cases(
+                        nominative = PluralPattern(
+                            Plurals(
+                                one = "{0} ışık",
+                                other = "{0} ışık",
                             )
                         ),
                     )

@@ -22,7 +22,6 @@ interface Resolution : MeasurementUnit, Comparable<Resolution> {
     class Serializer : CustomSerializer()
     open class CustomSerializer(val decoders: Map<String, (MeasurementUnitValue) -> Resolution> = emptyMap()) : KSerializer<Resolution> {
         private val delegateSerializer = MapSerializer(String.serializer(), MeasurementUnitValue.serializer())
-
         @OptIn(ExperimentalSerializationApi::class)
         override val descriptor: SerialDescriptor = SerialDescriptor("Resolution", delegateSerializer.descriptor)
         override fun deserialize(decoder: Decoder): Resolution {
@@ -86,34 +85,34 @@ interface Resolution : MeasurementUnit, Comparable<Resolution> {
     fun abs(): Resolution
 
 
-    operator fun times(other: kotlin.Byte): Resolution
-    operator fun div(other: kotlin.Byte): Resolution
-    operator fun rem(other: kotlin.Byte): Resolution
+    operator fun times(other: Byte): Resolution
+    operator fun div(other: Byte): Resolution
+    operator fun rem(other: Byte): Resolution
 
 
-    operator fun times(other: kotlin.Short): Resolution
-    operator fun div(other: kotlin.Short): Resolution
-    operator fun rem(other: kotlin.Short): Resolution
+    operator fun times(other: Short): Resolution
+    operator fun div(other: Short): Resolution
+    operator fun rem(other: Short): Resolution
 
 
-    operator fun times(other: kotlin.Int): Resolution
-    operator fun div(other: kotlin.Int): Resolution
-    operator fun rem(other: kotlin.Int): Resolution
+    operator fun times(other: Int): Resolution
+    operator fun div(other: Int): Resolution
+    operator fun rem(other: Int): Resolution
 
 
-    operator fun times(other: kotlin.Long): Resolution
-    operator fun div(other: kotlin.Long): Resolution
-    operator fun rem(other: kotlin.Long): Resolution
+    operator fun times(other: Long): Resolution
+    operator fun div(other: Long): Resolution
+    operator fun rem(other: Long): Resolution
 
 
-    operator fun times(other: kotlin.Float): Resolution
-    operator fun div(other: kotlin.Float): Resolution
-    operator fun rem(other: kotlin.Float): Resolution
+    operator fun times(other: Float): Resolution
+    operator fun div(other: Float): Resolution
+    operator fun rem(other: Float): Resolution
 
 
-    operator fun times(other: kotlin.Double): Resolution
-    operator fun div(other: kotlin.Double): Resolution
-    operator fun rem(other: kotlin.Double): Resolution
+    operator fun times(other: Double): Resolution
+    operator fun div(other: Double): Resolution
+    operator fun rem(other: Double): Resolution
 
 }
 
@@ -133,40 +132,40 @@ data class PixelPerCentimeter(override val value: MeasurementUnitValue) : Resolu
     operator fun plus(other: PixelPerCentimeter): PixelPerCentimeter = PixelPerCentimeter(this.value + other.value)
     operator fun minus(other: PixelPerCentimeter): PixelPerCentimeter = PixelPerCentimeter(this.value - other.value)
 
-    constructor(value: kotlin.Byte) : this(value.toMeasurementUnitValue())
+    constructor(value: Byte) : this(value.toMeasurementUnitValue())
 
-    override operator fun times(other: kotlin.Byte): PixelPerCentimeter = PixelPerCentimeter(this.value.times(other))
-    override operator fun div(other: kotlin.Byte): PixelPerCentimeter = PixelPerCentimeter(this.value.div(other))
-    override operator fun rem(other: kotlin.Byte): PixelPerCentimeter = PixelPerCentimeter(this.value.rem(other))
+    override operator fun times(other: Byte): PixelPerCentimeter = PixelPerCentimeter(this.value.times(other))
+    override operator fun div(other: Byte): PixelPerCentimeter = PixelPerCentimeter(this.value.div(other))
+    override operator fun rem(other: Byte): PixelPerCentimeter = PixelPerCentimeter(this.value.rem(other))
 
-    constructor(value: kotlin.Short) : this(value.toMeasurementUnitValue())
+    constructor(value: Short) : this(value.toMeasurementUnitValue())
 
-    override operator fun times(other: kotlin.Short): PixelPerCentimeter = PixelPerCentimeter(this.value.times(other))
-    override operator fun div(other: kotlin.Short): PixelPerCentimeter = PixelPerCentimeter(this.value.div(other))
-    override operator fun rem(other: kotlin.Short): PixelPerCentimeter = PixelPerCentimeter(this.value.rem(other))
+    override operator fun times(other: Short): PixelPerCentimeter = PixelPerCentimeter(this.value.times(other))
+    override operator fun div(other: Short): PixelPerCentimeter = PixelPerCentimeter(this.value.div(other))
+    override operator fun rem(other: Short): PixelPerCentimeter = PixelPerCentimeter(this.value.rem(other))
 
-    constructor(value: kotlin.Int) : this(value.toMeasurementUnitValue())
+    constructor(value: Int) : this(value.toMeasurementUnitValue())
 
-    override operator fun times(other: kotlin.Int): PixelPerCentimeter = PixelPerCentimeter(this.value.times(other))
-    override operator fun div(other: kotlin.Int): PixelPerCentimeter = PixelPerCentimeter(this.value.div(other))
-    override operator fun rem(other: kotlin.Int): PixelPerCentimeter = PixelPerCentimeter(this.value.rem(other))
+    override operator fun times(other: Int): PixelPerCentimeter = PixelPerCentimeter(this.value.times(other))
+    override operator fun div(other: Int): PixelPerCentimeter = PixelPerCentimeter(this.value.div(other))
+    override operator fun rem(other: Int): PixelPerCentimeter = PixelPerCentimeter(this.value.rem(other))
 
-    constructor(value: kotlin.Long) : this(value.toMeasurementUnitValue())
+    constructor(value: Long) : this(value.toMeasurementUnitValue())
 
-    override operator fun times(other: kotlin.Long): PixelPerCentimeter = PixelPerCentimeter(this.value.times(other))
-    override operator fun div(other: kotlin.Long): PixelPerCentimeter = PixelPerCentimeter(this.value.div(other))
-    override operator fun rem(other: kotlin.Long): PixelPerCentimeter = PixelPerCentimeter(this.value.rem(other))
+    override operator fun times(other: Long): PixelPerCentimeter = PixelPerCentimeter(this.value.times(other))
+    override operator fun div(other: Long): PixelPerCentimeter = PixelPerCentimeter(this.value.div(other))
+    override operator fun rem(other: Long): PixelPerCentimeter = PixelPerCentimeter(this.value.rem(other))
 
-    constructor(value: kotlin.Float) : this(value.toMeasurementUnitValue())
+    constructor(value: Float) : this(value.toMeasurementUnitValue())
 
-    override operator fun times(other: kotlin.Float): PixelPerCentimeter = PixelPerCentimeter(this.value.times(other))
-    override operator fun div(other: kotlin.Float): PixelPerCentimeter = PixelPerCentimeter(this.value.div(other))
-    override operator fun rem(other: kotlin.Float): PixelPerCentimeter = PixelPerCentimeter(this.value.rem(other))
+    override operator fun times(other: Float): PixelPerCentimeter = PixelPerCentimeter(this.value.times(other))
+    override operator fun div(other: Float): PixelPerCentimeter = PixelPerCentimeter(this.value.div(other))
+    override operator fun rem(other: Float): PixelPerCentimeter = PixelPerCentimeter(this.value.rem(other))
 
 
-    override operator fun times(other: kotlin.Double): PixelPerCentimeter = PixelPerCentimeter(this.value.times(other))
-    override operator fun div(other: kotlin.Double): PixelPerCentimeter = PixelPerCentimeter(this.value.div(other))
-    override operator fun rem(other: kotlin.Double): PixelPerCentimeter = PixelPerCentimeter(this.value.rem(other))
+    override operator fun times(other: Double): PixelPerCentimeter = PixelPerCentimeter(this.value.times(other))
+    override operator fun div(other: Double): PixelPerCentimeter = PixelPerCentimeter(this.value.div(other))
+    override operator fun rem(other: Double): PixelPerCentimeter = PixelPerCentimeter(this.value.rem(other))
 
 
     override operator fun unaryMinus(): PixelPerCentimeter = PixelPerCentimeter(-value)
@@ -191,27 +190,27 @@ data class PixelPerCentimeter(override val value: MeasurementUnitValue) : Resolu
 
 }
 
-val kotlin.Byte.pixelPerCentimeter
+val Byte.pixelPerCentimeter
     get() = PixelPerCentimeter(this)
 
 
-val kotlin.Short.pixelPerCentimeter
+val Short.pixelPerCentimeter
     get() = PixelPerCentimeter(this)
 
 
-val kotlin.Int.pixelPerCentimeter
+val Int.pixelPerCentimeter
     get() = PixelPerCentimeter(this)
 
 
-val kotlin.Long.pixelPerCentimeter
+val Long.pixelPerCentimeter
     get() = PixelPerCentimeter(this)
 
 
-val kotlin.Float.pixelPerCentimeter
+val Float.pixelPerCentimeter
     get() = PixelPerCentimeter(this)
 
 
-val kotlin.Double.pixelPerCentimeter
+val Double.pixelPerCentimeter
     get() = PixelPerCentimeter(this)
 
 
@@ -231,40 +230,40 @@ data class PixelPerInch(override val value: MeasurementUnitValue) : Resolution {
     operator fun plus(other: PixelPerInch): PixelPerInch = PixelPerInch(this.value + other.value)
     operator fun minus(other: PixelPerInch): PixelPerInch = PixelPerInch(this.value - other.value)
 
-    constructor(value: kotlin.Byte) : this(value.toMeasurementUnitValue())
+    constructor(value: Byte) : this(value.toMeasurementUnitValue())
 
-    override operator fun times(other: kotlin.Byte): PixelPerInch = PixelPerInch(this.value.times(other))
-    override operator fun div(other: kotlin.Byte): PixelPerInch = PixelPerInch(this.value.div(other))
-    override operator fun rem(other: kotlin.Byte): PixelPerInch = PixelPerInch(this.value.rem(other))
+    override operator fun times(other: Byte): PixelPerInch = PixelPerInch(this.value.times(other))
+    override operator fun div(other: Byte): PixelPerInch = PixelPerInch(this.value.div(other))
+    override operator fun rem(other: Byte): PixelPerInch = PixelPerInch(this.value.rem(other))
 
-    constructor(value: kotlin.Short) : this(value.toMeasurementUnitValue())
+    constructor(value: Short) : this(value.toMeasurementUnitValue())
 
-    override operator fun times(other: kotlin.Short): PixelPerInch = PixelPerInch(this.value.times(other))
-    override operator fun div(other: kotlin.Short): PixelPerInch = PixelPerInch(this.value.div(other))
-    override operator fun rem(other: kotlin.Short): PixelPerInch = PixelPerInch(this.value.rem(other))
+    override operator fun times(other: Short): PixelPerInch = PixelPerInch(this.value.times(other))
+    override operator fun div(other: Short): PixelPerInch = PixelPerInch(this.value.div(other))
+    override operator fun rem(other: Short): PixelPerInch = PixelPerInch(this.value.rem(other))
 
-    constructor(value: kotlin.Int) : this(value.toMeasurementUnitValue())
+    constructor(value: Int) : this(value.toMeasurementUnitValue())
 
-    override operator fun times(other: kotlin.Int): PixelPerInch = PixelPerInch(this.value.times(other))
-    override operator fun div(other: kotlin.Int): PixelPerInch = PixelPerInch(this.value.div(other))
-    override operator fun rem(other: kotlin.Int): PixelPerInch = PixelPerInch(this.value.rem(other))
+    override operator fun times(other: Int): PixelPerInch = PixelPerInch(this.value.times(other))
+    override operator fun div(other: Int): PixelPerInch = PixelPerInch(this.value.div(other))
+    override operator fun rem(other: Int): PixelPerInch = PixelPerInch(this.value.rem(other))
 
-    constructor(value: kotlin.Long) : this(value.toMeasurementUnitValue())
+    constructor(value: Long) : this(value.toMeasurementUnitValue())
 
-    override operator fun times(other: kotlin.Long): PixelPerInch = PixelPerInch(this.value.times(other))
-    override operator fun div(other: kotlin.Long): PixelPerInch = PixelPerInch(this.value.div(other))
-    override operator fun rem(other: kotlin.Long): PixelPerInch = PixelPerInch(this.value.rem(other))
+    override operator fun times(other: Long): PixelPerInch = PixelPerInch(this.value.times(other))
+    override operator fun div(other: Long): PixelPerInch = PixelPerInch(this.value.div(other))
+    override operator fun rem(other: Long): PixelPerInch = PixelPerInch(this.value.rem(other))
 
-    constructor(value: kotlin.Float) : this(value.toMeasurementUnitValue())
+    constructor(value: Float) : this(value.toMeasurementUnitValue())
 
-    override operator fun times(other: kotlin.Float): PixelPerInch = PixelPerInch(this.value.times(other))
-    override operator fun div(other: kotlin.Float): PixelPerInch = PixelPerInch(this.value.div(other))
-    override operator fun rem(other: kotlin.Float): PixelPerInch = PixelPerInch(this.value.rem(other))
+    override operator fun times(other: Float): PixelPerInch = PixelPerInch(this.value.times(other))
+    override operator fun div(other: Float): PixelPerInch = PixelPerInch(this.value.div(other))
+    override operator fun rem(other: Float): PixelPerInch = PixelPerInch(this.value.rem(other))
 
 
-    override operator fun times(other: kotlin.Double): PixelPerInch = PixelPerInch(this.value.times(other))
-    override operator fun div(other: kotlin.Double): PixelPerInch = PixelPerInch(this.value.div(other))
-    override operator fun rem(other: kotlin.Double): PixelPerInch = PixelPerInch(this.value.rem(other))
+    override operator fun times(other: Double): PixelPerInch = PixelPerInch(this.value.times(other))
+    override operator fun div(other: Double): PixelPerInch = PixelPerInch(this.value.div(other))
+    override operator fun rem(other: Double): PixelPerInch = PixelPerInch(this.value.rem(other))
 
 
     override operator fun unaryMinus(): PixelPerInch = PixelPerInch(-value)
@@ -289,27 +288,27 @@ data class PixelPerInch(override val value: MeasurementUnitValue) : Resolution {
 
 }
 
-val kotlin.Byte.pixelPerInch
+val Byte.pixelPerInch
     get() = PixelPerInch(this)
 
 
-val kotlin.Short.pixelPerInch
+val Short.pixelPerInch
     get() = PixelPerInch(this)
 
 
-val kotlin.Int.pixelPerInch
+val Int.pixelPerInch
     get() = PixelPerInch(this)
 
 
-val kotlin.Long.pixelPerInch
+val Long.pixelPerInch
     get() = PixelPerInch(this)
 
 
-val kotlin.Float.pixelPerInch
+val Float.pixelPerInch
     get() = PixelPerInch(this)
 
 
-val kotlin.Double.pixelPerInch
+val Double.pixelPerInch
     get() = PixelPerInch(this)
 
 
@@ -329,40 +328,40 @@ data class DotPerCentimeter(override val value: MeasurementUnitValue) : Resoluti
     operator fun plus(other: DotPerCentimeter): DotPerCentimeter = DotPerCentimeter(this.value + other.value)
     operator fun minus(other: DotPerCentimeter): DotPerCentimeter = DotPerCentimeter(this.value - other.value)
 
-    constructor(value: kotlin.Byte) : this(value.toMeasurementUnitValue())
+    constructor(value: Byte) : this(value.toMeasurementUnitValue())
 
-    override operator fun times(other: kotlin.Byte): DotPerCentimeter = DotPerCentimeter(this.value.times(other))
-    override operator fun div(other: kotlin.Byte): DotPerCentimeter = DotPerCentimeter(this.value.div(other))
-    override operator fun rem(other: kotlin.Byte): DotPerCentimeter = DotPerCentimeter(this.value.rem(other))
+    override operator fun times(other: Byte): DotPerCentimeter = DotPerCentimeter(this.value.times(other))
+    override operator fun div(other: Byte): DotPerCentimeter = DotPerCentimeter(this.value.div(other))
+    override operator fun rem(other: Byte): DotPerCentimeter = DotPerCentimeter(this.value.rem(other))
 
-    constructor(value: kotlin.Short) : this(value.toMeasurementUnitValue())
+    constructor(value: Short) : this(value.toMeasurementUnitValue())
 
-    override operator fun times(other: kotlin.Short): DotPerCentimeter = DotPerCentimeter(this.value.times(other))
-    override operator fun div(other: kotlin.Short): DotPerCentimeter = DotPerCentimeter(this.value.div(other))
-    override operator fun rem(other: kotlin.Short): DotPerCentimeter = DotPerCentimeter(this.value.rem(other))
+    override operator fun times(other: Short): DotPerCentimeter = DotPerCentimeter(this.value.times(other))
+    override operator fun div(other: Short): DotPerCentimeter = DotPerCentimeter(this.value.div(other))
+    override operator fun rem(other: Short): DotPerCentimeter = DotPerCentimeter(this.value.rem(other))
 
-    constructor(value: kotlin.Int) : this(value.toMeasurementUnitValue())
+    constructor(value: Int) : this(value.toMeasurementUnitValue())
 
-    override operator fun times(other: kotlin.Int): DotPerCentimeter = DotPerCentimeter(this.value.times(other))
-    override operator fun div(other: kotlin.Int): DotPerCentimeter = DotPerCentimeter(this.value.div(other))
-    override operator fun rem(other: kotlin.Int): DotPerCentimeter = DotPerCentimeter(this.value.rem(other))
+    override operator fun times(other: Int): DotPerCentimeter = DotPerCentimeter(this.value.times(other))
+    override operator fun div(other: Int): DotPerCentimeter = DotPerCentimeter(this.value.div(other))
+    override operator fun rem(other: Int): DotPerCentimeter = DotPerCentimeter(this.value.rem(other))
 
-    constructor(value: kotlin.Long) : this(value.toMeasurementUnitValue())
+    constructor(value: Long) : this(value.toMeasurementUnitValue())
 
-    override operator fun times(other: kotlin.Long): DotPerCentimeter = DotPerCentimeter(this.value.times(other))
-    override operator fun div(other: kotlin.Long): DotPerCentimeter = DotPerCentimeter(this.value.div(other))
-    override operator fun rem(other: kotlin.Long): DotPerCentimeter = DotPerCentimeter(this.value.rem(other))
+    override operator fun times(other: Long): DotPerCentimeter = DotPerCentimeter(this.value.times(other))
+    override operator fun div(other: Long): DotPerCentimeter = DotPerCentimeter(this.value.div(other))
+    override operator fun rem(other: Long): DotPerCentimeter = DotPerCentimeter(this.value.rem(other))
 
-    constructor(value: kotlin.Float) : this(value.toMeasurementUnitValue())
+    constructor(value: Float) : this(value.toMeasurementUnitValue())
 
-    override operator fun times(other: kotlin.Float): DotPerCentimeter = DotPerCentimeter(this.value.times(other))
-    override operator fun div(other: kotlin.Float): DotPerCentimeter = DotPerCentimeter(this.value.div(other))
-    override operator fun rem(other: kotlin.Float): DotPerCentimeter = DotPerCentimeter(this.value.rem(other))
+    override operator fun times(other: Float): DotPerCentimeter = DotPerCentimeter(this.value.times(other))
+    override operator fun div(other: Float): DotPerCentimeter = DotPerCentimeter(this.value.div(other))
+    override operator fun rem(other: Float): DotPerCentimeter = DotPerCentimeter(this.value.rem(other))
 
 
-    override operator fun times(other: kotlin.Double): DotPerCentimeter = DotPerCentimeter(this.value.times(other))
-    override operator fun div(other: kotlin.Double): DotPerCentimeter = DotPerCentimeter(this.value.div(other))
-    override operator fun rem(other: kotlin.Double): DotPerCentimeter = DotPerCentimeter(this.value.rem(other))
+    override operator fun times(other: Double): DotPerCentimeter = DotPerCentimeter(this.value.times(other))
+    override operator fun div(other: Double): DotPerCentimeter = DotPerCentimeter(this.value.div(other))
+    override operator fun rem(other: Double): DotPerCentimeter = DotPerCentimeter(this.value.rem(other))
 
 
     override operator fun unaryMinus(): DotPerCentimeter = DotPerCentimeter(-value)
@@ -387,27 +386,27 @@ data class DotPerCentimeter(override val value: MeasurementUnitValue) : Resoluti
 
 }
 
-val kotlin.Byte.dotPerCentimeter
+val Byte.dotPerCentimeter
     get() = DotPerCentimeter(this)
 
 
-val kotlin.Short.dotPerCentimeter
+val Short.dotPerCentimeter
     get() = DotPerCentimeter(this)
 
 
-val kotlin.Int.dotPerCentimeter
+val Int.dotPerCentimeter
     get() = DotPerCentimeter(this)
 
 
-val kotlin.Long.dotPerCentimeter
+val Long.dotPerCentimeter
     get() = DotPerCentimeter(this)
 
 
-val kotlin.Float.dotPerCentimeter
+val Float.dotPerCentimeter
     get() = DotPerCentimeter(this)
 
 
-val kotlin.Double.dotPerCentimeter
+val Double.dotPerCentimeter
     get() = DotPerCentimeter(this)
 
 
@@ -427,40 +426,40 @@ data class DotPerInch(override val value: MeasurementUnitValue) : Resolution {
     operator fun plus(other: DotPerInch): DotPerInch = DotPerInch(this.value + other.value)
     operator fun minus(other: DotPerInch): DotPerInch = DotPerInch(this.value - other.value)
 
-    constructor(value: kotlin.Byte) : this(value.toMeasurementUnitValue())
+    constructor(value: Byte) : this(value.toMeasurementUnitValue())
 
-    override operator fun times(other: kotlin.Byte): DotPerInch = DotPerInch(this.value.times(other))
-    override operator fun div(other: kotlin.Byte): DotPerInch = DotPerInch(this.value.div(other))
-    override operator fun rem(other: kotlin.Byte): DotPerInch = DotPerInch(this.value.rem(other))
+    override operator fun times(other: Byte): DotPerInch = DotPerInch(this.value.times(other))
+    override operator fun div(other: Byte): DotPerInch = DotPerInch(this.value.div(other))
+    override operator fun rem(other: Byte): DotPerInch = DotPerInch(this.value.rem(other))
 
-    constructor(value: kotlin.Short) : this(value.toMeasurementUnitValue())
+    constructor(value: Short) : this(value.toMeasurementUnitValue())
 
-    override operator fun times(other: kotlin.Short): DotPerInch = DotPerInch(this.value.times(other))
-    override operator fun div(other: kotlin.Short): DotPerInch = DotPerInch(this.value.div(other))
-    override operator fun rem(other: kotlin.Short): DotPerInch = DotPerInch(this.value.rem(other))
+    override operator fun times(other: Short): DotPerInch = DotPerInch(this.value.times(other))
+    override operator fun div(other: Short): DotPerInch = DotPerInch(this.value.div(other))
+    override operator fun rem(other: Short): DotPerInch = DotPerInch(this.value.rem(other))
 
-    constructor(value: kotlin.Int) : this(value.toMeasurementUnitValue())
+    constructor(value: Int) : this(value.toMeasurementUnitValue())
 
-    override operator fun times(other: kotlin.Int): DotPerInch = DotPerInch(this.value.times(other))
-    override operator fun div(other: kotlin.Int): DotPerInch = DotPerInch(this.value.div(other))
-    override operator fun rem(other: kotlin.Int): DotPerInch = DotPerInch(this.value.rem(other))
+    override operator fun times(other: Int): DotPerInch = DotPerInch(this.value.times(other))
+    override operator fun div(other: Int): DotPerInch = DotPerInch(this.value.div(other))
+    override operator fun rem(other: Int): DotPerInch = DotPerInch(this.value.rem(other))
 
-    constructor(value: kotlin.Long) : this(value.toMeasurementUnitValue())
+    constructor(value: Long) : this(value.toMeasurementUnitValue())
 
-    override operator fun times(other: kotlin.Long): DotPerInch = DotPerInch(this.value.times(other))
-    override operator fun div(other: kotlin.Long): DotPerInch = DotPerInch(this.value.div(other))
-    override operator fun rem(other: kotlin.Long): DotPerInch = DotPerInch(this.value.rem(other))
+    override operator fun times(other: Long): DotPerInch = DotPerInch(this.value.times(other))
+    override operator fun div(other: Long): DotPerInch = DotPerInch(this.value.div(other))
+    override operator fun rem(other: Long): DotPerInch = DotPerInch(this.value.rem(other))
 
-    constructor(value: kotlin.Float) : this(value.toMeasurementUnitValue())
+    constructor(value: Float) : this(value.toMeasurementUnitValue())
 
-    override operator fun times(other: kotlin.Float): DotPerInch = DotPerInch(this.value.times(other))
-    override operator fun div(other: kotlin.Float): DotPerInch = DotPerInch(this.value.div(other))
-    override operator fun rem(other: kotlin.Float): DotPerInch = DotPerInch(this.value.rem(other))
+    override operator fun times(other: Float): DotPerInch = DotPerInch(this.value.times(other))
+    override operator fun div(other: Float): DotPerInch = DotPerInch(this.value.div(other))
+    override operator fun rem(other: Float): DotPerInch = DotPerInch(this.value.rem(other))
 
 
-    override operator fun times(other: kotlin.Double): DotPerInch = DotPerInch(this.value.times(other))
-    override operator fun div(other: kotlin.Double): DotPerInch = DotPerInch(this.value.div(other))
-    override operator fun rem(other: kotlin.Double): DotPerInch = DotPerInch(this.value.rem(other))
+    override operator fun times(other: Double): DotPerInch = DotPerInch(this.value.times(other))
+    override operator fun div(other: Double): DotPerInch = DotPerInch(this.value.div(other))
+    override operator fun rem(other: Double): DotPerInch = DotPerInch(this.value.rem(other))
 
 
     override operator fun unaryMinus(): DotPerInch = DotPerInch(-value)
@@ -485,27 +484,27 @@ data class DotPerInch(override val value: MeasurementUnitValue) : Resolution {
 
 }
 
-val kotlin.Byte.dotPerInch
+val Byte.dotPerInch
     get() = DotPerInch(this)
 
 
-val kotlin.Short.dotPerInch
+val Short.dotPerInch
     get() = DotPerInch(this)
 
 
-val kotlin.Int.dotPerInch
+val Int.dotPerInch
     get() = DotPerInch(this)
 
 
-val kotlin.Long.dotPerInch
+val Long.dotPerInch
     get() = DotPerInch(this)
 
 
-val kotlin.Float.dotPerInch
+val Float.dotPerInch
     get() = DotPerInch(this)
 
 
-val kotlin.Double.dotPerInch
+val Double.dotPerInch
     get() = DotPerInch(this)
 
 
@@ -525,40 +524,40 @@ data class PixelPerMeter(override val value: MeasurementUnitValue) : Resolution 
     operator fun plus(other: PixelPerMeter): PixelPerMeter = PixelPerMeter(this.value + other.value)
     operator fun minus(other: PixelPerMeter): PixelPerMeter = PixelPerMeter(this.value - other.value)
 
-    constructor(value: kotlin.Byte) : this(value.toMeasurementUnitValue())
+    constructor(value: Byte) : this(value.toMeasurementUnitValue())
 
-    override operator fun times(other: kotlin.Byte): PixelPerMeter = PixelPerMeter(this.value.times(other))
-    override operator fun div(other: kotlin.Byte): PixelPerMeter = PixelPerMeter(this.value.div(other))
-    override operator fun rem(other: kotlin.Byte): PixelPerMeter = PixelPerMeter(this.value.rem(other))
+    override operator fun times(other: Byte): PixelPerMeter = PixelPerMeter(this.value.times(other))
+    override operator fun div(other: Byte): PixelPerMeter = PixelPerMeter(this.value.div(other))
+    override operator fun rem(other: Byte): PixelPerMeter = PixelPerMeter(this.value.rem(other))
 
-    constructor(value: kotlin.Short) : this(value.toMeasurementUnitValue())
+    constructor(value: Short) : this(value.toMeasurementUnitValue())
 
-    override operator fun times(other: kotlin.Short): PixelPerMeter = PixelPerMeter(this.value.times(other))
-    override operator fun div(other: kotlin.Short): PixelPerMeter = PixelPerMeter(this.value.div(other))
-    override operator fun rem(other: kotlin.Short): PixelPerMeter = PixelPerMeter(this.value.rem(other))
+    override operator fun times(other: Short): PixelPerMeter = PixelPerMeter(this.value.times(other))
+    override operator fun div(other: Short): PixelPerMeter = PixelPerMeter(this.value.div(other))
+    override operator fun rem(other: Short): PixelPerMeter = PixelPerMeter(this.value.rem(other))
 
-    constructor(value: kotlin.Int) : this(value.toMeasurementUnitValue())
+    constructor(value: Int) : this(value.toMeasurementUnitValue())
 
-    override operator fun times(other: kotlin.Int): PixelPerMeter = PixelPerMeter(this.value.times(other))
-    override operator fun div(other: kotlin.Int): PixelPerMeter = PixelPerMeter(this.value.div(other))
-    override operator fun rem(other: kotlin.Int): PixelPerMeter = PixelPerMeter(this.value.rem(other))
+    override operator fun times(other: Int): PixelPerMeter = PixelPerMeter(this.value.times(other))
+    override operator fun div(other: Int): PixelPerMeter = PixelPerMeter(this.value.div(other))
+    override operator fun rem(other: Int): PixelPerMeter = PixelPerMeter(this.value.rem(other))
 
-    constructor(value: kotlin.Long) : this(value.toMeasurementUnitValue())
+    constructor(value: Long) : this(value.toMeasurementUnitValue())
 
-    override operator fun times(other: kotlin.Long): PixelPerMeter = PixelPerMeter(this.value.times(other))
-    override operator fun div(other: kotlin.Long): PixelPerMeter = PixelPerMeter(this.value.div(other))
-    override operator fun rem(other: kotlin.Long): PixelPerMeter = PixelPerMeter(this.value.rem(other))
+    override operator fun times(other: Long): PixelPerMeter = PixelPerMeter(this.value.times(other))
+    override operator fun div(other: Long): PixelPerMeter = PixelPerMeter(this.value.div(other))
+    override operator fun rem(other: Long): PixelPerMeter = PixelPerMeter(this.value.rem(other))
 
-    constructor(value: kotlin.Float) : this(value.toMeasurementUnitValue())
+    constructor(value: Float) : this(value.toMeasurementUnitValue())
 
-    override operator fun times(other: kotlin.Float): PixelPerMeter = PixelPerMeter(this.value.times(other))
-    override operator fun div(other: kotlin.Float): PixelPerMeter = PixelPerMeter(this.value.div(other))
-    override operator fun rem(other: kotlin.Float): PixelPerMeter = PixelPerMeter(this.value.rem(other))
+    override operator fun times(other: Float): PixelPerMeter = PixelPerMeter(this.value.times(other))
+    override operator fun div(other: Float): PixelPerMeter = PixelPerMeter(this.value.div(other))
+    override operator fun rem(other: Float): PixelPerMeter = PixelPerMeter(this.value.rem(other))
 
 
-    override operator fun times(other: kotlin.Double): PixelPerMeter = PixelPerMeter(this.value.times(other))
-    override operator fun div(other: kotlin.Double): PixelPerMeter = PixelPerMeter(this.value.div(other))
-    override operator fun rem(other: kotlin.Double): PixelPerMeter = PixelPerMeter(this.value.rem(other))
+    override operator fun times(other: Double): PixelPerMeter = PixelPerMeter(this.value.times(other))
+    override operator fun div(other: Double): PixelPerMeter = PixelPerMeter(this.value.div(other))
+    override operator fun rem(other: Double): PixelPerMeter = PixelPerMeter(this.value.rem(other))
 
 
     override operator fun unaryMinus(): PixelPerMeter = PixelPerMeter(-value)
@@ -583,26 +582,26 @@ data class PixelPerMeter(override val value: MeasurementUnitValue) : Resolution 
 
 }
 
-val kotlin.Byte.pixelPerMeter
+val Byte.pixelPerMeter
     get() = PixelPerMeter(this)
 
 
-val kotlin.Short.pixelPerMeter
+val Short.pixelPerMeter
     get() = PixelPerMeter(this)
 
 
-val kotlin.Int.pixelPerMeter
+val Int.pixelPerMeter
     get() = PixelPerMeter(this)
 
 
-val kotlin.Long.pixelPerMeter
+val Long.pixelPerMeter
     get() = PixelPerMeter(this)
 
 
-val kotlin.Float.pixelPerMeter
+val Float.pixelPerMeter
     get() = PixelPerMeter(this)
 
 
-val kotlin.Double.pixelPerMeter
+val Double.pixelPerMeter
     get() = PixelPerMeter(this)
                             

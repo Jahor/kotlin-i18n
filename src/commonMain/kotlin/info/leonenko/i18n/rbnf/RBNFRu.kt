@@ -51,6 +51,16 @@ open class RBNFRu(val language: Language = Language.ru) : RBNF {
 
         val fractionsFeminineAccusative = FractionsFeminineAccusative()
 
+        val spelloutCardinalMasculinePrepositional = SpelloutCardinalMasculinePrepositional()
+
+        val spelloutCardinalNeuterPrepositional = SpelloutCardinalNeuterPrepositional()
+
+        val spelloutCardinalFemininePrepositional = SpelloutCardinalFemininePrepositional()
+
+        val spelloutCardinalPluralPrepositional = SpelloutCardinalPluralPrepositional()
+
+        val fractionsFemininePrepositional = FractionsFemininePrepositional()
+
         val spelloutCardinalMasculineLocative = SpelloutCardinalMasculineLocative()
 
         val spelloutCardinalNeuterLocative = SpelloutCardinalNeuterLocative()
@@ -59,7 +69,15 @@ open class RBNFRu(val language: Language = Language.ru) : RBNF {
 
         val spelloutCardinalPluralLocative = SpelloutCardinalPluralLocative()
 
-        val fractionsFeminineLocative = FractionsFeminineLocative()
+        val spelloutCardinalMasculineInstrumental = SpelloutCardinalMasculineInstrumental()
+
+        val spelloutCardinalNeuterInstrumental = SpelloutCardinalNeuterInstrumental()
+
+        val spelloutCardinalFeminineInstrumental = SpelloutCardinalFeminineInstrumental()
+
+        val spelloutCardinalPluralInstrumental = SpelloutCardinalPluralInstrumental()
+
+        val fractionsFeminineInstrumental = FractionsFeminineInstrumental()
 
         val spelloutCardinalMasculineAblative = SpelloutCardinalMasculineAblative()
 
@@ -68,8 +86,6 @@ open class RBNFRu(val language: Language = Language.ru) : RBNF {
         val spelloutCardinalFeminineAblative = SpelloutCardinalFeminineAblative()
 
         val spelloutCardinalPluralAblative = SpelloutCardinalPluralAblative()
-
-        val fractionsFeminineAblative = FractionsFeminineAblative()
 
         val yj = Yj()
 
@@ -131,6 +147,14 @@ open class RBNFRu(val language: Language = Language.ru) : RBNF {
 
         val spelloutOrdinalPluralAccusative = SpelloutOrdinalPluralAccusative()
 
+        val spelloutOrdinalMasculinePrepositional = SpelloutOrdinalMasculinePrepositional()
+
+        val spelloutOrdinalNeuterPrepositional = SpelloutOrdinalNeuterPrepositional()
+
+        val spelloutOrdinalFemininePrepositional = SpelloutOrdinalFemininePrepositional()
+
+        val spelloutOrdinalPluralPrepositional = SpelloutOrdinalPluralPrepositional()
+
         val spelloutOrdinalMasculineLocative = SpelloutOrdinalMasculineLocative()
 
         val spelloutOrdinalNeuterLocative = SpelloutOrdinalNeuterLocative()
@@ -138,6 +162,14 @@ open class RBNFRu(val language: Language = Language.ru) : RBNF {
         val spelloutOrdinalFeminineLocative = SpelloutOrdinalFeminineLocative()
 
         val spelloutOrdinalPluralLocative = SpelloutOrdinalPluralLocative()
+
+        val spelloutOrdinalMasculineInstrumental = SpelloutOrdinalMasculineInstrumental()
+
+        val spelloutOrdinalNeuterInstrumental = SpelloutOrdinalNeuterInstrumental()
+
+        val spelloutOrdinalFeminineInstrumental = SpelloutOrdinalFeminineInstrumental()
+
+        val spelloutOrdinalPluralInstrumental = SpelloutOrdinalPluralInstrumental()
 
         val spelloutOrdinalMasculineAblative = SpelloutOrdinalMasculineAblative()
 
@@ -680,16 +712,7 @@ open class RBNFRu(val language: Language = Language.ru) : RBNF {
             }
 
             private fun formatImproperFraction(value: Double): String {
-                var result = (if (value in 0.0..1.0) {
-                    ""
-                } else {
-                    spelloutCardinalFeminine.format(kotlin.math.truncate(value).toLong()) + " " + Plurals(
-                        one = "целый",
-                        other = "целых"
-                    ).get(language.pluralFormChooser.pluralForm((kotlin.math.truncate(value).toLong()).toString())) + " "
-                })
-                result += fractionsFeminine.formatF(kotlin.math.abs(value) - kotlin.math.truncate(kotlin.math.abs(value)))
-                return result
+                return spelloutCardinalFeminine.format(value)
             }
         }
 
@@ -1135,16 +1158,7 @@ open class RBNFRu(val language: Language = Language.ru) : RBNF {
             }
 
             private fun formatImproperFraction(value: Double): String {
-                var result = (if (value in 0.0..1.0) {
-                    ""
-                } else {
-                    spelloutCardinalFeminine.format(kotlin.math.truncate(value).toLong()) + " " + Plurals(
-                        one = "целая",
-                        other = "целых"
-                    ).get(language.pluralFormChooser.pluralForm((kotlin.math.truncate(value).toLong()).toString())) + " "
-                })
-                result += fractionsFeminine.formatF(kotlin.math.abs(value) - kotlin.math.truncate(kotlin.math.abs(value)))
-                return result
+                return spelloutCardinalFeminine.format(value)
             }
         }
 
@@ -7269,7 +7283,7 @@ open class RBNFRu(val language: Language = Language.ru) : RBNF {
             }
         }
 
-        private inner class SpelloutCardinalMasculineLocative : NumberFormatter {
+        private inner class SpelloutCardinalMasculinePrepositional : NumberFormatter {
             override fun format(value: Double): String {
                 if (value < 0L) {
                     return "минус " + format(kotlin.math.abs(value))
@@ -7393,7 +7407,7 @@ open class RBNFRu(val language: Language = Language.ru) : RBNF {
                     }
 
                     in 200L..999L -> {
-                        var result = spelloutCardinalFeminineLocative.format((value) / 100)
+                        var result = spelloutCardinalFemininePrepositional.format((value) / 100)
                         result += "стах"
                         result += (if ((value) % 100 == 0L) {
                             ""
@@ -7404,7 +7418,7 @@ open class RBNFRu(val language: Language = Language.ru) : RBNF {
                     }
 
                     in 1000L..999999L -> {
-                        var result = spelloutCardinalFeminineLocative.format((value) / 1000)
+                        var result = spelloutCardinalFemininePrepositional.format((value) / 1000)
                         result += " "
                         result += Plurals(one = "тысяче", other = "тысячах").get(language.pluralFormChooser.pluralForm(((value) / 1000).toString()))
                         result += (if ((value) % 1000 == 0L) {
@@ -7472,7 +7486,7 @@ open class RBNFRu(val language: Language = Language.ru) : RBNF {
                             secondary_grouping = 3,
                             symbols = language.numbers.symbols
                         ).format(value) else {
-                            throw UnsupportedOperationException("spelloutCardinalMasculineLocative only supports numbers >= 0")
+                            throw UnsupportedOperationException("spelloutCardinalMasculinePrepositional only supports numbers >= 0")
                         }
                     }
                 }
@@ -7628,7 +7642,7 @@ open class RBNFRu(val language: Language = Language.ru) : RBNF {
                     }
 
                     200L -> {
-                        var result = spelloutCardinalFeminineLocative.format((value * 200).toLong())
+                        var result = spelloutCardinalFemininePrepositional.format((value * 200).toLong())
                         result += "стах"
                         result += (if (value * 200 == 1.0) {
                             ""
@@ -7639,7 +7653,7 @@ open class RBNFRu(val language: Language = Language.ru) : RBNF {
                     }
 
                     1000L -> {
-                        var result = spelloutCardinalFeminineLocative.format((value * 1000).toLong())
+                        var result = spelloutCardinalFemininePrepositional.format((value * 1000).toLong())
                         result += " "
                         result += Plurals(one = "тысяче", other = "тысячах").get(language.pluralFormChooser.pluralForm(((value * 1000).toLong()).toString()))
                         result += (if (value * 1000 == 1.0) {
@@ -7715,17 +7729,17 @@ open class RBNFRu(val language: Language = Language.ru) : RBNF {
                 var result = (if (value in 0.0..1.0) {
                     ""
                 } else {
-                    spelloutCardinalFeminineLocative.format(kotlin.math.truncate(value).toLong()) + " " + Plurals(
+                    spelloutCardinalFemininePrepositional.format(kotlin.math.truncate(value).toLong()) + " " + Plurals(
                         one = "целой",
                         other = "целых"
                     ).get(language.pluralFormChooser.pluralForm((kotlin.math.truncate(value).toLong()).toString())) + " "
                 })
-                result += fractionsFeminineLocative.formatF(kotlin.math.abs(value) - kotlin.math.truncate(kotlin.math.abs(value)))
+                result += fractionsFemininePrepositional.formatF(kotlin.math.abs(value) - kotlin.math.truncate(kotlin.math.abs(value)))
                 return result
             }
         }
 
-        private inner class SpelloutCardinalNeuterLocative : NumberFormatter {
+        private inner class SpelloutCardinalNeuterPrepositional : NumberFormatter {
             override fun format(value: Double): String {
                 if (value < 0L) {
                     return "минус " + format(kotlin.math.abs(value))
@@ -7740,7 +7754,7 @@ open class RBNFRu(val language: Language = Language.ru) : RBNF {
                 return when (value) {
                     0L -> "нуле"
                     1L -> "одном"
-                    in 2L..19L -> spelloutCardinalMasculineLocative.format(value)
+                    in 2L..19L -> spelloutCardinalMasculinePrepositional.format(value)
                     in 20L..29L -> {
                         var result = "двадцати"
                         result += (if ((value) % 10 == 0L) {
@@ -7832,7 +7846,7 @@ open class RBNFRu(val language: Language = Language.ru) : RBNF {
                     }
 
                     in 200L..999L -> {
-                        var result = spelloutCardinalFeminineLocative.format((value) / 100)
+                        var result = spelloutCardinalFemininePrepositional.format((value) / 100)
                         result += "стах"
                         result += (if ((value) % 100 == 0L) {
                             ""
@@ -7843,7 +7857,7 @@ open class RBNFRu(val language: Language = Language.ru) : RBNF {
                     }
 
                     in 1000L..999999L -> {
-                        var result = spelloutCardinalFeminineLocative.format((value) / 1000)
+                        var result = spelloutCardinalFemininePrepositional.format((value) / 1000)
                         result += " "
                         result += Plurals(one = "тысяче", other = "тысячах").get(language.pluralFormChooser.pluralForm(((value) / 1000).toString()))
                         result += (if ((value) % 1000 == 0L) {
@@ -7855,7 +7869,7 @@ open class RBNFRu(val language: Language = Language.ru) : RBNF {
                     }
 
                     in 1000000L..999999999L -> {
-                        var result = spelloutCardinalMasculineLocative.format((value) / 1000000)
+                        var result = spelloutCardinalMasculinePrepositional.format((value) / 1000000)
                         result += " "
                         result += Plurals(one = "миллионе", other = "миллионах").get(language.pluralFormChooser.pluralForm(((value) / 1000000).toString()))
                         result += (if ((value) % 1000000 == 0L) {
@@ -7867,7 +7881,7 @@ open class RBNFRu(val language: Language = Language.ru) : RBNF {
                     }
 
                     in 1000000000L..999999999999L -> {
-                        var result = spelloutCardinalMasculineLocative.format((value) / 1000000000)
+                        var result = spelloutCardinalMasculinePrepositional.format((value) / 1000000000)
                         result += " "
                         result += Plurals(one = "миллиарде", other = "миллиардах").get(language.pluralFormChooser.pluralForm(((value) / 1000000000).toString()))
                         result += (if ((value) % 1000000000 == 0L) {
@@ -7879,7 +7893,7 @@ open class RBNFRu(val language: Language = Language.ru) : RBNF {
                     }
 
                     in 1000000000000L..999999999999999L -> {
-                        var result = spelloutCardinalMasculineLocative.format((value) / 1000000000000)
+                        var result = spelloutCardinalMasculinePrepositional.format((value) / 1000000000000)
                         result += " "
                         result += Plurals(one = "триллионе", other = "триллионах").get(language.pluralFormChooser.pluralForm(((value) / 1000000000000).toString()))
                         result += (if ((value) % 1000000000000 == 0L) {
@@ -7891,7 +7905,7 @@ open class RBNFRu(val language: Language = Language.ru) : RBNF {
                     }
 
                     in 1000000000000000L..999999999999999999L -> {
-                        var result = spelloutCardinalMasculineLocative.format((value) / 1000000000000000)
+                        var result = spelloutCardinalMasculinePrepositional.format((value) / 1000000000000000)
                         result += " "
                         result += Plurals(one = "квадриллионе", other = "квадриллионах").get(language.pluralFormChooser.pluralForm(((value) / 1000000000000000).toString()))
                         result += (if ((value) % 1000000000000000 == 0L) {
@@ -7911,7 +7925,7 @@ open class RBNFRu(val language: Language = Language.ru) : RBNF {
                             secondary_grouping = 3,
                             symbols = language.numbers.symbols
                         ).format(value) else {
-                            throw UnsupportedOperationException("spelloutCardinalNeuterLocative only supports numbers >= 0")
+                            throw UnsupportedOperationException("spelloutCardinalNeuterPrepositional only supports numbers >= 0")
                         }
                     }
                 }
@@ -7923,7 +7937,7 @@ open class RBNFRu(val language: Language = Language.ru) : RBNF {
                 )!!) {
                     0L -> "нуле"
                     1L -> "одном"
-                    2L -> spelloutCardinalMasculineLocative.format(value)
+                    2L -> spelloutCardinalMasculinePrepositional.format(value)
                     20L -> {
                         var result = "двадцати"
                         result += (if (value * 20 == 1.0) {
@@ -8015,7 +8029,7 @@ open class RBNFRu(val language: Language = Language.ru) : RBNF {
                     }
 
                     200L -> {
-                        var result = spelloutCardinalFeminineLocative.format((value * 200).toLong())
+                        var result = spelloutCardinalFemininePrepositional.format((value * 200).toLong())
                         result += "стах"
                         result += (if (value * 200 == 1.0) {
                             ""
@@ -8026,7 +8040,7 @@ open class RBNFRu(val language: Language = Language.ru) : RBNF {
                     }
 
                     1000L -> {
-                        var result = spelloutCardinalFeminineLocative.format((value * 1000).toLong())
+                        var result = spelloutCardinalFemininePrepositional.format((value * 1000).toLong())
                         result += " "
                         result += Plurals(one = "тысяче", other = "тысячах").get(language.pluralFormChooser.pluralForm(((value * 1000).toLong()).toString()))
                         result += (if (value * 1000 == 1.0) {
@@ -8038,7 +8052,7 @@ open class RBNFRu(val language: Language = Language.ru) : RBNF {
                     }
 
                     1000000L -> {
-                        var result = spelloutCardinalMasculineLocative.format((value * 1000000).toLong())
+                        var result = spelloutCardinalMasculinePrepositional.format((value * 1000000).toLong())
                         result += " "
                         result += Plurals(one = "миллионе", other = "миллионах").get(language.pluralFormChooser.pluralForm(((value * 1000000).toLong()).toString()))
                         result += (if (value * 1000000 == 1.0) {
@@ -8050,7 +8064,7 @@ open class RBNFRu(val language: Language = Language.ru) : RBNF {
                     }
 
                     1000000000L -> {
-                        var result = spelloutCardinalMasculineLocative.format((value * 1000000000).toLong())
+                        var result = spelloutCardinalMasculinePrepositional.format((value * 1000000000).toLong())
                         result += " "
                         result += Plurals(one = "миллиарде", other = "миллиардах").get(language.pluralFormChooser.pluralForm(((value * 1000000000).toLong()).toString()))
                         result += (if (value * 1000000000 == 1.0) {
@@ -8062,7 +8076,7 @@ open class RBNFRu(val language: Language = Language.ru) : RBNF {
                     }
 
                     1000000000000L -> {
-                        var result = spelloutCardinalMasculineLocative.format((value * 1000000000000).toLong())
+                        var result = spelloutCardinalMasculinePrepositional.format((value * 1000000000000).toLong())
                         result += " "
                         result += Plurals(one = "триллионе", other = "триллионах").get(language.pluralFormChooser.pluralForm(((value * 1000000000000).toLong()).toString()))
                         result += (if (value * 1000000000000 == 1.0) {
@@ -8074,7 +8088,7 @@ open class RBNFRu(val language: Language = Language.ru) : RBNF {
                     }
 
                     1000000000000000L -> {
-                        var result = spelloutCardinalMasculineLocative.format((value * 1000000000000000).toLong())
+                        var result = spelloutCardinalMasculinePrepositional.format((value * 1000000000000000).toLong())
                         result += " "
                         result += Plurals(one = "квадриллионе", other = "квадриллионах").get(language.pluralFormChooser.pluralForm(((value * 1000000000000000).toLong()).toString()))
                         result += (if (value * 1000000000000000 == 1.0) {
@@ -8102,17 +8116,17 @@ open class RBNFRu(val language: Language = Language.ru) : RBNF {
                 var result = (if (value in 0.0..1.0) {
                     ""
                 } else {
-                    spelloutCardinalFeminineLocative.format(kotlin.math.truncate(value).toLong()) + " " + Plurals(
+                    spelloutCardinalFemininePrepositional.format(kotlin.math.truncate(value).toLong()) + " " + Plurals(
                         one = "целой",
                         other = "целых"
                     ).get(language.pluralFormChooser.pluralForm((kotlin.math.truncate(value).toLong()).toString())) + " "
                 })
-                result += fractionsFeminineLocative.formatF(kotlin.math.abs(value) - kotlin.math.truncate(kotlin.math.abs(value)))
+                result += fractionsFemininePrepositional.formatF(kotlin.math.abs(value) - kotlin.math.truncate(kotlin.math.abs(value)))
                 return result
             }
         }
 
-        private inner class SpelloutCardinalFeminineLocative : NumberFormatter {
+        private inner class SpelloutCardinalFemininePrepositional : NumberFormatter {
             override fun format(value: Double): String {
                 if (value < 0L) {
                     return "минус " + format(kotlin.math.abs(value))
@@ -8127,7 +8141,7 @@ open class RBNFRu(val language: Language = Language.ru) : RBNF {
                 return when (value) {
                     0L -> "нуле"
                     1L -> "одной"
-                    in 2L..19L -> spelloutCardinalMasculineLocative.format(value)
+                    in 2L..19L -> spelloutCardinalMasculinePrepositional.format(value)
                     in 20L..29L -> {
                         var result = "двадцати"
                         result += (if ((value) % 10 == 0L) {
@@ -8242,7 +8256,7 @@ open class RBNFRu(val language: Language = Language.ru) : RBNF {
                     }
 
                     in 1000000L..999999999L -> {
-                        var result = spelloutCardinalMasculineLocative.format((value) / 1000000)
+                        var result = spelloutCardinalMasculinePrepositional.format((value) / 1000000)
                         result += " "
                         result += Plurals(one = "миллионе", other = "миллионах").get(language.pluralFormChooser.pluralForm(((value) / 1000000).toString()))
                         result += (if ((value) % 1000000 == 0L) {
@@ -8254,7 +8268,7 @@ open class RBNFRu(val language: Language = Language.ru) : RBNF {
                     }
 
                     in 1000000000L..999999999999L -> {
-                        var result = spelloutCardinalMasculineLocative.format((value) / 1000000000)
+                        var result = spelloutCardinalMasculinePrepositional.format((value) / 1000000000)
                         result += " "
                         result += Plurals(one = "миллиарде", other = "миллиардах").get(language.pluralFormChooser.pluralForm(((value) / 1000000000).toString()))
                         result += (if ((value) % 1000000000 == 0L) {
@@ -8266,7 +8280,7 @@ open class RBNFRu(val language: Language = Language.ru) : RBNF {
                     }
 
                     in 1000000000000L..999999999999999L -> {
-                        var result = spelloutCardinalMasculineLocative.format((value) / 1000000000000)
+                        var result = spelloutCardinalMasculinePrepositional.format((value) / 1000000000000)
                         result += " "
                         result += Plurals(one = "триллионе", other = "триллионах").get(language.pluralFormChooser.pluralForm(((value) / 1000000000000).toString()))
                         result += (if ((value) % 1000000000000 == 0L) {
@@ -8278,7 +8292,7 @@ open class RBNFRu(val language: Language = Language.ru) : RBNF {
                     }
 
                     in 1000000000000000L..999999999999999999L -> {
-                        var result = spelloutCardinalMasculineLocative.format((value) / 1000000000000000)
+                        var result = spelloutCardinalMasculinePrepositional.format((value) / 1000000000000000)
                         result += " "
                         result += Plurals(one = "квадриллионе", other = "квадриллионах").get(language.pluralFormChooser.pluralForm(((value) / 1000000000000000).toString()))
                         result += (if ((value) % 1000000000000000 == 0L) {
@@ -8298,7 +8312,7 @@ open class RBNFRu(val language: Language = Language.ru) : RBNF {
                             secondary_grouping = 3,
                             symbols = language.numbers.symbols
                         ).format(value) else {
-                            throw UnsupportedOperationException("spelloutCardinalFeminineLocative only supports numbers >= 0")
+                            throw UnsupportedOperationException("spelloutCardinalFemininePrepositional only supports numbers >= 0")
                         }
                     }
                 }
@@ -8310,7 +8324,7 @@ open class RBNFRu(val language: Language = Language.ru) : RBNF {
                 )!!) {
                     0L -> "нуле"
                     1L -> "одной"
-                    2L -> spelloutCardinalMasculineLocative.format(value)
+                    2L -> spelloutCardinalMasculinePrepositional.format(value)
                     20L -> {
                         var result = "двадцати"
                         result += (if (value * 20 == 1.0) {
@@ -8425,7 +8439,7 @@ open class RBNFRu(val language: Language = Language.ru) : RBNF {
                     }
 
                     1000000L -> {
-                        var result = spelloutCardinalMasculineLocative.format((value * 1000000).toLong())
+                        var result = spelloutCardinalMasculinePrepositional.format((value * 1000000).toLong())
                         result += " "
                         result += Plurals(one = "миллионе", other = "миллионах").get(language.pluralFormChooser.pluralForm(((value * 1000000).toLong()).toString()))
                         result += (if (value * 1000000 == 1.0) {
@@ -8437,7 +8451,7 @@ open class RBNFRu(val language: Language = Language.ru) : RBNF {
                     }
 
                     1000000000L -> {
-                        var result = spelloutCardinalMasculineLocative.format((value * 1000000000).toLong())
+                        var result = spelloutCardinalMasculinePrepositional.format((value * 1000000000).toLong())
                         result += " "
                         result += Plurals(one = "миллиарде", other = "миллиардах").get(language.pluralFormChooser.pluralForm(((value * 1000000000).toLong()).toString()))
                         result += (if (value * 1000000000 == 1.0) {
@@ -8449,7 +8463,7 @@ open class RBNFRu(val language: Language = Language.ru) : RBNF {
                     }
 
                     1000000000000L -> {
-                        var result = spelloutCardinalMasculineLocative.format((value * 1000000000000).toLong())
+                        var result = spelloutCardinalMasculinePrepositional.format((value * 1000000000000).toLong())
                         result += " "
                         result += Plurals(one = "триллионе", other = "триллионах").get(language.pluralFormChooser.pluralForm(((value * 1000000000000).toLong()).toString()))
                         result += (if (value * 1000000000000 == 1.0) {
@@ -8461,7 +8475,7 @@ open class RBNFRu(val language: Language = Language.ru) : RBNF {
                     }
 
                     1000000000000000L -> {
-                        var result = spelloutCardinalMasculineLocative.format((value * 1000000000000000).toLong())
+                        var result = spelloutCardinalMasculinePrepositional.format((value * 1000000000000000).toLong())
                         result += " "
                         result += Plurals(one = "квадриллионе", other = "квадриллионах").get(language.pluralFormChooser.pluralForm(((value * 1000000000000000).toLong()).toString()))
                         result += (if (value * 1000000000000000 == 1.0) {
@@ -8495,12 +8509,12 @@ open class RBNFRu(val language: Language = Language.ru) : RBNF {
                         )
                     ) + " "
                 })
-                result += fractionsFeminineLocative.formatF(kotlin.math.abs(value) - kotlin.math.truncate(kotlin.math.abs(value)))
+                result += fractionsFemininePrepositional.formatF(kotlin.math.abs(value) - kotlin.math.truncate(kotlin.math.abs(value)))
                 return result
             }
         }
 
-        private inner class SpelloutCardinalPluralLocative : NumberFormatter {
+        private inner class SpelloutCardinalPluralPrepositional : NumberFormatter {
             override fun format(value: Double): String {
                 if (value < 0L) {
                     return "минус " + format(kotlin.math.abs(value))
@@ -8515,7 +8529,7 @@ open class RBNFRu(val language: Language = Language.ru) : RBNF {
                 return when (value) {
                     0L -> "нуле"
                     1L -> "одних"
-                    in 2L..19L -> spelloutCardinalMasculineLocative.format(value)
+                    in 2L..19L -> spelloutCardinalMasculinePrepositional.format(value)
                     in 20L..29L -> {
                         var result = "двадцати"
                         result += (if ((value) % 10 == 0L) {
@@ -8607,7 +8621,7 @@ open class RBNFRu(val language: Language = Language.ru) : RBNF {
                     }
 
                     in 200L..999L -> {
-                        var result = spelloutCardinalFeminineLocative.format((value) / 100)
+                        var result = spelloutCardinalFemininePrepositional.format((value) / 100)
                         result += "стах"
                         result += (if ((value) % 100 == 0L) {
                             ""
@@ -8618,7 +8632,7 @@ open class RBNFRu(val language: Language = Language.ru) : RBNF {
                     }
 
                     in 1000L..999999L -> {
-                        var result = spelloutCardinalFeminineLocative.format((value) / 1000)
+                        var result = spelloutCardinalFemininePrepositional.format((value) / 1000)
                         result += " "
                         result += Plurals(one = "тысяче", other = "тысячах").get(language.pluralFormChooser.pluralForm(((value) / 1000).toString()))
                         result += (if ((value) % 1000 == 0L) {
@@ -8630,7 +8644,7 @@ open class RBNFRu(val language: Language = Language.ru) : RBNF {
                     }
 
                     in 1000000L..999999999L -> {
-                        var result = spelloutCardinalMasculineLocative.format((value) / 1000000)
+                        var result = spelloutCardinalMasculinePrepositional.format((value) / 1000000)
                         result += " "
                         result += Plurals(one = "миллионе", other = "миллионах").get(language.pluralFormChooser.pluralForm(((value) / 1000000).toString()))
                         result += (if ((value) % 1000000 == 0L) {
@@ -8642,7 +8656,7 @@ open class RBNFRu(val language: Language = Language.ru) : RBNF {
                     }
 
                     in 1000000000L..999999999999L -> {
-                        var result = spelloutCardinalMasculineLocative.format((value) / 1000000000)
+                        var result = spelloutCardinalMasculinePrepositional.format((value) / 1000000000)
                         result += " "
                         result += Plurals(one = "миллиарде", other = "миллиардах").get(language.pluralFormChooser.pluralForm(((value) / 1000000000).toString()))
                         result += (if ((value) % 1000000000 == 0L) {
@@ -8654,7 +8668,7 @@ open class RBNFRu(val language: Language = Language.ru) : RBNF {
                     }
 
                     in 1000000000000L..999999999999999L -> {
-                        var result = spelloutCardinalMasculineLocative.format((value) / 1000000000000)
+                        var result = spelloutCardinalMasculinePrepositional.format((value) / 1000000000000)
                         result += " "
                         result += Plurals(one = "триллионе", other = "триллионах").get(language.pluralFormChooser.pluralForm(((value) / 1000000000000).toString()))
                         result += (if ((value) % 1000000000000 == 0L) {
@@ -8666,7 +8680,7 @@ open class RBNFRu(val language: Language = Language.ru) : RBNF {
                     }
 
                     in 1000000000000000L..999999999999999999L -> {
-                        var result = spelloutCardinalMasculineLocative.format((value) / 1000000000000000)
+                        var result = spelloutCardinalMasculinePrepositional.format((value) / 1000000000000000)
                         result += " "
                         result += Plurals(one = "квадриллионе", other = "квадриллионах").get(language.pluralFormChooser.pluralForm(((value) / 1000000000000000).toString()))
                         result += (if ((value) % 1000000000000000 == 0L) {
@@ -8686,7 +8700,7 @@ open class RBNFRu(val language: Language = Language.ru) : RBNF {
                             secondary_grouping = 3,
                             symbols = language.numbers.symbols
                         ).format(value) else {
-                            throw UnsupportedOperationException("spelloutCardinalPluralLocative only supports numbers >= 0")
+                            throw UnsupportedOperationException("spelloutCardinalPluralPrepositional only supports numbers >= 0")
                         }
                     }
                 }
@@ -8698,7 +8712,7 @@ open class RBNFRu(val language: Language = Language.ru) : RBNF {
                 )!!) {
                     0L -> "нуле"
                     1L -> "одних"
-                    2L -> spelloutCardinalMasculineLocative.format(value)
+                    2L -> spelloutCardinalMasculinePrepositional.format(value)
                     20L -> {
                         var result = "двадцати"
                         result += (if (value * 20 == 1.0) {
@@ -8790,7 +8804,7 @@ open class RBNFRu(val language: Language = Language.ru) : RBNF {
                     }
 
                     200L -> {
-                        var result = spelloutCardinalFeminineLocative.format((value * 200).toLong())
+                        var result = spelloutCardinalFemininePrepositional.format((value * 200).toLong())
                         result += "стах"
                         result += (if (value * 200 == 1.0) {
                             ""
@@ -8801,7 +8815,7 @@ open class RBNFRu(val language: Language = Language.ru) : RBNF {
                     }
 
                     1000L -> {
-                        var result = spelloutCardinalFeminineLocative.format((value * 1000).toLong())
+                        var result = spelloutCardinalFemininePrepositional.format((value * 1000).toLong())
                         result += " "
                         result += Plurals(one = "тысяче", other = "тысячах").get(language.pluralFormChooser.pluralForm(((value * 1000).toLong()).toString()))
                         result += (if (value * 1000 == 1.0) {
@@ -8813,7 +8827,7 @@ open class RBNFRu(val language: Language = Language.ru) : RBNF {
                     }
 
                     1000000L -> {
-                        var result = spelloutCardinalMasculineLocative.format((value * 1000000).toLong())
+                        var result = spelloutCardinalMasculinePrepositional.format((value * 1000000).toLong())
                         result += " "
                         result += Plurals(one = "миллионе", other = "миллионах").get(language.pluralFormChooser.pluralForm(((value * 1000000).toLong()).toString()))
                         result += (if (value * 1000000 == 1.0) {
@@ -8825,7 +8839,7 @@ open class RBNFRu(val language: Language = Language.ru) : RBNF {
                     }
 
                     1000000000L -> {
-                        var result = spelloutCardinalMasculineLocative.format((value * 1000000000).toLong())
+                        var result = spelloutCardinalMasculinePrepositional.format((value * 1000000000).toLong())
                         result += " "
                         result += Plurals(one = "миллиарде", other = "миллиардах").get(language.pluralFormChooser.pluralForm(((value * 1000000000).toLong()).toString()))
                         result += (if (value * 1000000000 == 1.0) {
@@ -8837,7 +8851,7 @@ open class RBNFRu(val language: Language = Language.ru) : RBNF {
                     }
 
                     1000000000000L -> {
-                        var result = spelloutCardinalMasculineLocative.format((value * 1000000000000).toLong())
+                        var result = spelloutCardinalMasculinePrepositional.format((value * 1000000000000).toLong())
                         result += " "
                         result += Plurals(one = "триллионе", other = "триллионах").get(language.pluralFormChooser.pluralForm(((value * 1000000000000).toLong()).toString()))
                         result += (if (value * 1000000000000 == 1.0) {
@@ -8849,7 +8863,7 @@ open class RBNFRu(val language: Language = Language.ru) : RBNF {
                     }
 
                     1000000000000000L -> {
-                        var result = spelloutCardinalMasculineLocative.format((value * 1000000000000000).toLong())
+                        var result = spelloutCardinalMasculinePrepositional.format((value * 1000000000000000).toLong())
                         result += " "
                         result += Plurals(one = "квадриллионе", other = "квадриллионах").get(language.pluralFormChooser.pluralForm(((value * 1000000000000000).toLong()).toString()))
                         result += (if (value * 1000000000000000 == 1.0) {
@@ -8878,63 +8892,62 @@ open class RBNFRu(val language: Language = Language.ru) : RBNF {
             }
         }
 
-        private inner class FractionsFeminineLocative : NumberFormatter {
+        private inner class FractionsFemininePrepositional : NumberFormatter {
             override fun format(value: Double): String {
                 return when (value.roundToLong()) {
-                    in 10L..99L -> spelloutCardinalFeminineLocative.format((value).toLong() / 10) + " " + Plurals(
+                    in 10L..99L -> spelloutCardinalFemininePrepositional.format((value).toLong() / 10) + " " + Plurals(
                         one = "десятой",
                         other = "десятых"
                     ).get(language.pluralFormChooser.pluralForm(((value).toLong() / 10).toString()))
 
-                    in 100L..999L -> spelloutCardinalFeminineLocative.format((value).toLong() / 100) + " " + Plurals(
+                    in 100L..999L -> spelloutCardinalFemininePrepositional.format((value).toLong() / 100) + " " + Plurals(
                         one = "сотой",
                         other = "сотых"
                     ).get(language.pluralFormChooser.pluralForm(((value).toLong() / 100).toString()))
 
-                    in 1000L..9999L -> spelloutCardinalFeminineLocative.format((value).toLong() / 1000) + " " + Plurals(one = "тысячной", other = "тысячных").get(
-                        language.pluralFormChooser.pluralForm(
-                            ((value).toLong() / 1000).toString()
-                        )
-                    )
+                    in 1000L..9999L -> spelloutCardinalFemininePrepositional.format((value).toLong() / 1000) + " " + Plurals(
+                        one = "тысячной",
+                        other = "тысячных"
+                    ).get(language.pluralFormChooser.pluralForm(((value).toLong() / 1000).toString()))
 
-                    in 10000L..99999L -> spelloutCardinalFeminineLocative.format((value).toLong() / 10000) + " " + Plurals(
+                    in 10000L..99999L -> spelloutCardinalFemininePrepositional.format((value).toLong() / 10000) + " " + Plurals(
                         one = "десятитысячной",
                         other = "десятитысячных"
                     ).get(language.pluralFormChooser.pluralForm(((value).toLong() / 10000).toString()))
 
-                    in 100000L..999999L -> spelloutCardinalFeminineLocative.format((value).toLong() / 100000) + " " + Plurals(
+                    in 100000L..999999L -> spelloutCardinalFemininePrepositional.format((value).toLong() / 100000) + " " + Plurals(
                         one = "стотысячной",
                         other = "стотысячных"
                     ).get(language.pluralFormChooser.pluralForm(((value).toLong() / 100000).toString()))
 
-                    in 1000000L..9999999L -> spelloutCardinalFeminineLocative.format((value).toLong() / 1000000) + " " + Plurals(
+                    in 1000000L..9999999L -> spelloutCardinalFemininePrepositional.format((value).toLong() / 1000000) + " " + Plurals(
                         one = "миллионной",
                         other = "миллионных"
                     ).get(language.pluralFormChooser.pluralForm(((value).toLong() / 1000000).toString()))
 
-                    in 10000000L..99999999L -> spelloutCardinalFeminineLocative.format((value).toLong() / 10000000) + " " + Plurals(
-                        one = "десятимиллионной",
-                        other = "десятимиллионных"
-                    ).get(language.pluralFormChooser.pluralForm(((value).toLong() / 10000000).toString()))
+                    in 10000000L..99999999L -> spelloutCardinalFemininePrepositional.format((value).toLong() / 10000000) + " " + Plurals(one = "десятимиллионной", other = "десятимиллионных").get(
+                        language.pluralFormChooser.pluralForm(((value).toLong() / 10000000).toString())
+                    )
 
-                    in 100000000L..999999999L -> spelloutCardinalFeminineLocative.format((value).toLong() / 100000000) + " " + Plurals(
+                    in 100000000L..999999999L -> spelloutCardinalFemininePrepositional.format((value).toLong() / 100000000) + " " + Plurals(
                         one = "стомиллионной",
                         other = "стомиллионных"
                     ).get(language.pluralFormChooser.pluralForm(((value).toLong() / 100000000).toString()))
 
-                    in 1000000000L..9999999999L -> spelloutCardinalFeminineLocative.format((value).toLong() / 1000000000) + " " + Plurals(
+                    in 1000000000L..9999999999L -> spelloutCardinalFemininePrepositional.format((value).toLong() / 1000000000) + " " + Plurals(
                         one = "миллиардной",
                         other = "миллиардных"
                     ).get(language.pluralFormChooser.pluralForm(((value).toLong() / 1000000000).toString()))
 
-                    in 10000000000L..99999999999L -> spelloutCardinalFeminineLocative.format((value).toLong() / 10000000000) + " " + Plurals(
+                    in 10000000000L..99999999999L -> spelloutCardinalFemininePrepositional.format((value).toLong() / 10000000000) + " " + Plurals(
                         one = "десятимиллиардной",
                         other = "десятимиллиардных"
                     ).get(language.pluralFormChooser.pluralForm(((value).toLong() / 10000000000).toString()))
 
-                    in 100000000000L..999999999999L -> spelloutCardinalFeminineLocative.format((value).toLong() / 100000000000) + " " + Plurals(one = "стомиллиардной", other = "стомиллиардных").get(
-                        language.pluralFormChooser.pluralForm(((value).toLong() / 100000000000).toString())
-                    )
+                    in 100000000000L..999999999999L -> spelloutCardinalFemininePrepositional.format((value).toLong() / 100000000000) + " " + Plurals(
+                        one = "стомиллиардной",
+                        other = "стомиллиардных"
+                    ).get(language.pluralFormChooser.pluralForm(((value).toLong() / 100000000000).toString()))
 
                     else -> {
                         if (value >= 1000000000000.0) DecimalNumberFormatter(
@@ -8945,7 +8958,7 @@ open class RBNFRu(val language: Language = Language.ru) : RBNF {
                             secondary_grouping = 0,
                             symbols = language.numbers.symbols
                         ).format((value).toLong() / 1000000000000) else {
-                            throw UnsupportedOperationException("fractionsFeminineLocative only supports numbers >= 10")
+                            throw UnsupportedOperationException("fractionsFemininePrepositional only supports numbers >= 10")
                         }
                     }
                 }
@@ -8953,60 +8966,58 @@ open class RBNFRu(val language: Language = Language.ru) : RBNF {
 
             override fun format(value: Long): String {
                 return when (value) {
-                    in 10L..99L -> spelloutCardinalFeminineLocative.format((value) / 10) + " " + Plurals(
+                    in 10L..99L -> spelloutCardinalFemininePrepositional.format((value) / 10) + " " + Plurals(
                         one = "десятой",
                         other = "десятых"
                     ).get(language.pluralFormChooser.pluralForm(((value) / 10).toString()))
 
-                    in 100L..999L -> spelloutCardinalFeminineLocative.format((value) / 100) + " " + Plurals(
+                    in 100L..999L -> spelloutCardinalFemininePrepositional.format((value) / 100) + " " + Plurals(
                         one = "сотой",
                         other = "сотых"
                     ).get(language.pluralFormChooser.pluralForm(((value) / 100).toString()))
 
-                    in 1000L..9999L -> spelloutCardinalFeminineLocative.format((value) / 1000) + " " + Plurals(
+                    in 1000L..9999L -> spelloutCardinalFemininePrepositional.format((value) / 1000) + " " + Plurals(
                         one = "тысячной",
                         other = "тысячных"
                     ).get(language.pluralFormChooser.pluralForm(((value) / 1000).toString()))
 
-                    in 10000L..99999L -> spelloutCardinalFeminineLocative.format((value) / 10000) + " " + Plurals(
+                    in 10000L..99999L -> spelloutCardinalFemininePrepositional.format((value) / 10000) + " " + Plurals(
                         one = "десятитысячной",
                         other = "десятитысячных"
                     ).get(language.pluralFormChooser.pluralForm(((value) / 10000).toString()))
 
-                    in 100000L..999999L -> spelloutCardinalFeminineLocative.format((value) / 100000) + " " + Plurals(
+                    in 100000L..999999L -> spelloutCardinalFemininePrepositional.format((value) / 100000) + " " + Plurals(
                         one = "стотысячной",
                         other = "стотысячных"
                     ).get(language.pluralFormChooser.pluralForm(((value) / 100000).toString()))
 
-                    in 1000000L..9999999L -> spelloutCardinalFeminineLocative.format((value) / 1000000) + " " + Plurals(
+                    in 1000000L..9999999L -> spelloutCardinalFemininePrepositional.format((value) / 1000000) + " " + Plurals(
                         one = "миллионной",
                         other = "миллионных"
                     ).get(language.pluralFormChooser.pluralForm(((value) / 1000000).toString()))
 
-                    in 10000000L..99999999L -> spelloutCardinalFeminineLocative.format((value) / 10000000) + " " + Plurals(
+                    in 10000000L..99999999L -> spelloutCardinalFemininePrepositional.format((value) / 10000000) + " " + Plurals(
                         one = "десятимиллионной",
                         other = "десятимиллионных"
                     ).get(language.pluralFormChooser.pluralForm(((value) / 10000000).toString()))
 
-                    in 100000000L..999999999L -> spelloutCardinalFeminineLocative.format((value) / 100000000) + " " + Plurals(
+                    in 100000000L..999999999L -> spelloutCardinalFemininePrepositional.format((value) / 100000000) + " " + Plurals(
                         one = "стомиллионной",
                         other = "стомиллионных"
                     ).get(language.pluralFormChooser.pluralForm(((value) / 100000000).toString()))
 
-                    in 1000000000L..9999999999L -> spelloutCardinalFeminineLocative.format((value) / 1000000000) + " " + Plurals(
+                    in 1000000000L..9999999999L -> spelloutCardinalFemininePrepositional.format((value) / 1000000000) + " " + Plurals(
                         one = "миллиардной",
                         other = "миллиардных"
                     ).get(language.pluralFormChooser.pluralForm(((value) / 1000000000).toString()))
 
-                    in 10000000000L..99999999999L -> spelloutCardinalFeminineLocative.format((value) / 10000000000) + " " + Plurals(
-                        one = "десятимиллиардной",
-                        other = "десятимиллиардных"
-                    ).get(language.pluralFormChooser.pluralForm(((value) / 10000000000).toString()))
+                    in 10000000000L..99999999999L -> spelloutCardinalFemininePrepositional.format((value) / 10000000000) + " " + Plurals(one = "десятимиллиардной", other = "десятимиллиардных").get(
+                        language.pluralFormChooser.pluralForm(((value) / 10000000000).toString())
+                    )
 
-                    in 100000000000L..999999999999L -> spelloutCardinalFeminineLocative.format((value) / 100000000000) + " " + Plurals(
-                        one = "стомиллиардной",
-                        other = "стомиллиардных"
-                    ).get(language.pluralFormChooser.pluralForm(((value) / 100000000000).toString()))
+                    in 100000000000L..999999999999L -> spelloutCardinalFemininePrepositional.format((value) / 100000000000) + " " + Plurals(one = "стомиллиардной", other = "стомиллиардных").get(
+                        language.pluralFormChooser.pluralForm(((value) / 100000000000).toString())
+                    )
 
                     else -> {
                         if (value >= 1000000000000L) DecimalNumberFormatter(
@@ -9017,7 +9028,7 @@ open class RBNFRu(val language: Language = Language.ru) : RBNF {
                             secondary_grouping = 0,
                             symbols = language.numbers.symbols
                         ).format((value) / 1000000000000) else {
-                            throw UnsupportedOperationException("fractionsFeminineLocative only supports numbers >= 10")
+                            throw UnsupportedOperationException("fractionsFemininePrepositional only supports numbers >= 10")
                         }
                     }
                 }
@@ -9025,59 +9036,57 @@ open class RBNFRu(val language: Language = Language.ru) : RBNF {
 
             fun formatF(value: Double): String {
                 return when (listOf<Long>(10, 100, 1000, 10000, 100000, 1000000, 10000000, 100000000, 1000000000, 10000000000, 100000000000, 1000000000000).bestDenominatorOrNull(value)!!) {
-                    10L -> spelloutCardinalFeminineLocative.format((value * 10).toLong()) + " " + Plurals(
+                    10L -> spelloutCardinalFemininePrepositional.format((value * 10).toLong()) + " " + Plurals(
                         one = "десятой",
                         other = "десятых"
                     ).get(language.pluralFormChooser.pluralForm(((value * 10).toLong()).toString()))
 
-                    100L -> spelloutCardinalFeminineLocative.format((value * 100).toLong()) + " " + Plurals(
+                    100L -> spelloutCardinalFemininePrepositional.format((value * 100).toLong()) + " " + Plurals(
                         one = "сотой",
                         other = "сотых"
                     ).get(language.pluralFormChooser.pluralForm(((value * 100).toLong()).toString()))
 
-                    1000L -> spelloutCardinalFeminineLocative.format((value * 1000).toLong()) + " " + Plurals(
+                    1000L -> spelloutCardinalFemininePrepositional.format((value * 1000).toLong()) + " " + Plurals(
                         one = "тысячной",
                         other = "тысячных"
                     ).get(language.pluralFormChooser.pluralForm(((value * 1000).toLong()).toString()))
 
-                    10000L -> spelloutCardinalFeminineLocative.format((value * 10000).toLong()) + " " + Plurals(
+                    10000L -> spelloutCardinalFemininePrepositional.format((value * 10000).toLong()) + " " + Plurals(
                         one = "десятитысячной",
                         other = "десятитысячных"
                     ).get(language.pluralFormChooser.pluralForm(((value * 10000).toLong()).toString()))
 
-                    100000L -> spelloutCardinalFeminineLocative.format((value * 100000).toLong()) + " " + Plurals(one = "стотысячной", other = "стотысячных").get(
-                        language.pluralFormChooser.pluralForm(
-                            ((value * 100000).toLong()).toString()
-                        )
-                    )
+                    100000L -> spelloutCardinalFemininePrepositional.format((value * 100000).toLong()) + " " + Plurals(
+                        one = "стотысячной",
+                        other = "стотысячных"
+                    ).get(language.pluralFormChooser.pluralForm(((value * 100000).toLong()).toString()))
 
-                    1000000L -> spelloutCardinalFeminineLocative.format((value * 1000000).toLong()) + " " + Plurals(one = "миллионной", other = "миллионных").get(
-                        language.pluralFormChooser.pluralForm(
-                            ((value * 1000000).toLong()).toString()
-                        )
-                    )
+                    1000000L -> spelloutCardinalFemininePrepositional.format((value * 1000000).toLong()) + " " + Plurals(
+                        one = "миллионной",
+                        other = "миллионных"
+                    ).get(language.pluralFormChooser.pluralForm(((value * 1000000).toLong()).toString()))
 
-                    10000000L -> spelloutCardinalFeminineLocative.format((value * 10000000).toLong()) + " " + Plurals(
+                    10000000L -> spelloutCardinalFemininePrepositional.format((value * 10000000).toLong()) + " " + Plurals(
                         one = "десятимиллионной",
                         other = "десятимиллионных"
                     ).get(language.pluralFormChooser.pluralForm(((value * 10000000).toLong()).toString()))
 
-                    100000000L -> spelloutCardinalFeminineLocative.format((value * 100000000).toLong()) + " " + Plurals(
+                    100000000L -> spelloutCardinalFemininePrepositional.format((value * 100000000).toLong()) + " " + Plurals(
                         one = "стомиллионной",
                         other = "стомиллионных"
                     ).get(language.pluralFormChooser.pluralForm(((value * 100000000).toLong()).toString()))
 
-                    1000000000L -> spelloutCardinalFeminineLocative.format((value * 1000000000).toLong()) + " " + Plurals(
+                    1000000000L -> spelloutCardinalFemininePrepositional.format((value * 1000000000).toLong()) + " " + Plurals(
                         one = "миллиардной",
                         other = "миллиардных"
                     ).get(language.pluralFormChooser.pluralForm(((value * 1000000000).toLong()).toString()))
 
-                    10000000000L -> spelloutCardinalFeminineLocative.format((value * 10000000000).toLong()) + " " + Plurals(
+                    10000000000L -> spelloutCardinalFemininePrepositional.format((value * 10000000000).toLong()) + " " + Plurals(
                         one = "десятимиллиардной",
                         other = "десятимиллиардных"
                     ).get(language.pluralFormChooser.pluralForm(((value * 10000000000).toLong()).toString()))
 
-                    100000000000L -> spelloutCardinalFeminineLocative.format((value * 100000000000).toLong()) + " " + Plurals(
+                    100000000000L -> spelloutCardinalFemininePrepositional.format((value * 100000000000).toLong()) + " " + Plurals(
                         one = "стомиллиардной",
                         other = "стомиллиардных"
                     ).get(language.pluralFormChooser.pluralForm(((value * 100000000000).toLong()).toString()))
@@ -9096,7 +9105,83 @@ open class RBNFRu(val language: Language = Language.ru) : RBNF {
             }
         }
 
-        private inner class SpelloutCardinalMasculineAblative : NumberFormatter {
+        private inner class SpelloutCardinalMasculineLocative : NumberFormatter {
+            override fun format(value: Double): String {
+                return if (value >= 0.0) spelloutCardinalMasculinePrepositional.format(value) else {
+                    throw UnsupportedOperationException("spelloutCardinalMasculineLocative only supports numbers >= 0")
+                }
+            }
+
+            override fun format(value: Long): String {
+                return spelloutCardinalMasculinePrepositional.format(value)
+            }
+
+            fun formatF(value: Double): String {
+                return when (listOf<Long>(0).bestDenominatorOrNull(value)!!) {
+                    0L -> spelloutCardinalMasculinePrepositional.format(value)
+                    else -> throw IllegalStateException("It should not happen")
+                }
+            }
+        }
+
+        private inner class SpelloutCardinalNeuterLocative : NumberFormatter {
+            override fun format(value: Double): String {
+                return if (value >= 0.0) spelloutCardinalNeuterPrepositional.format(value) else {
+                    throw UnsupportedOperationException("spelloutCardinalNeuterLocative only supports numbers >= 0")
+                }
+            }
+
+            override fun format(value: Long): String {
+                return spelloutCardinalNeuterPrepositional.format(value)
+            }
+
+            fun formatF(value: Double): String {
+                return when (listOf<Long>(0).bestDenominatorOrNull(value)!!) {
+                    0L -> spelloutCardinalNeuterPrepositional.format(value)
+                    else -> throw IllegalStateException("It should not happen")
+                }
+            }
+        }
+
+        private inner class SpelloutCardinalFeminineLocative : NumberFormatter {
+            override fun format(value: Double): String {
+                return if (value >= 0.0) spelloutCardinalFemininePrepositional.format(value) else {
+                    throw UnsupportedOperationException("spelloutCardinalFeminineLocative only supports numbers >= 0")
+                }
+            }
+
+            override fun format(value: Long): String {
+                return spelloutCardinalFemininePrepositional.format(value)
+            }
+
+            fun formatF(value: Double): String {
+                return when (listOf<Long>(0).bestDenominatorOrNull(value)!!) {
+                    0L -> spelloutCardinalFemininePrepositional.format(value)
+                    else -> throw IllegalStateException("It should not happen")
+                }
+            }
+        }
+
+        private inner class SpelloutCardinalPluralLocative : NumberFormatter {
+            override fun format(value: Double): String {
+                return if (value >= 0.0) spelloutCardinalPluralPrepositional.format(value) else {
+                    throw UnsupportedOperationException("spelloutCardinalPluralLocative only supports numbers >= 0")
+                }
+            }
+
+            override fun format(value: Long): String {
+                return spelloutCardinalPluralPrepositional.format(value)
+            }
+
+            fun formatF(value: Double): String {
+                return when (listOf<Long>(0).bestDenominatorOrNull(value)!!) {
+                    0L -> spelloutCardinalPluralPrepositional.format(value)
+                    else -> throw IllegalStateException("It should not happen")
+                }
+            }
+        }
+
+        private inner class SpelloutCardinalMasculineInstrumental : NumberFormatter {
             override fun format(value: Double): String {
                 if (value < 0L) {
                     return "минус " + format(kotlin.math.abs(value))
@@ -9220,7 +9305,7 @@ open class RBNFRu(val language: Language = Language.ru) : RBNF {
                     }
 
                     in 200L..999L -> {
-                        var result = spelloutCardinalFeminineAblative.format((value) / 100)
+                        var result = spelloutCardinalFeminineInstrumental.format((value) / 100)
                         result += "стами"
                         result += (if ((value) % 100 == 0L) {
                             ""
@@ -9231,7 +9316,7 @@ open class RBNFRu(val language: Language = Language.ru) : RBNF {
                     }
 
                     in 1000L..999999L -> {
-                        var result = spelloutCardinalFeminineAblative.format((value) / 1000)
+                        var result = spelloutCardinalFeminineInstrumental.format((value) / 1000)
                         result += " "
                         result += Plurals(one = "тысячей", other = "тысячами").get(language.pluralFormChooser.pluralForm(((value) / 1000).toString()))
                         result += (if ((value) % 1000 == 0L) {
@@ -9299,7 +9384,7 @@ open class RBNFRu(val language: Language = Language.ru) : RBNF {
                             secondary_grouping = 3,
                             symbols = language.numbers.symbols
                         ).format(value) else {
-                            throw UnsupportedOperationException("spelloutCardinalMasculineAblative only supports numbers >= 0")
+                            throw UnsupportedOperationException("spelloutCardinalMasculineInstrumental only supports numbers >= 0")
                         }
                     }
                 }
@@ -9455,7 +9540,7 @@ open class RBNFRu(val language: Language = Language.ru) : RBNF {
                     }
 
                     200L -> {
-                        var result = spelloutCardinalFeminineAblative.format((value * 200).toLong())
+                        var result = spelloutCardinalFeminineInstrumental.format((value * 200).toLong())
                         result += "стами"
                         result += (if (value * 200 == 1.0) {
                             ""
@@ -9466,7 +9551,7 @@ open class RBNFRu(val language: Language = Language.ru) : RBNF {
                     }
 
                     1000L -> {
-                        var result = spelloutCardinalFeminineAblative.format((value * 1000).toLong())
+                        var result = spelloutCardinalFeminineInstrumental.format((value * 1000).toLong())
                         result += " "
                         result += Plurals(one = "тысячей", other = "тысячами").get(language.pluralFormChooser.pluralForm(((value * 1000).toLong()).toString()))
                         result += (if (value * 1000 == 1.0) {
@@ -9542,36 +9627,36 @@ open class RBNFRu(val language: Language = Language.ru) : RBNF {
                 var result = (if (value in 0.0..1.0) {
                     ""
                 } else {
-                    spelloutCardinalFeminineAblative.format(kotlin.math.truncate(value).toLong()) + " " + Plurals(
+                    spelloutCardinalFeminineInstrumental.format(kotlin.math.truncate(value).toLong()) + " " + Plurals(
                         one = "целой",
                         other = "целыми"
                     ).get(language.pluralFormChooser.pluralForm((kotlin.math.truncate(value).toLong()).toString())) + " "
                 })
-                result += fractionsFeminineAblative.formatF(kotlin.math.abs(value) - kotlin.math.truncate(kotlin.math.abs(value)))
+                result += fractionsFeminineInstrumental.formatF(kotlin.math.abs(value) - kotlin.math.truncate(kotlin.math.abs(value)))
                 return result
             }
         }
 
-        private inner class SpelloutCardinalNeuterAblative : NumberFormatter {
+        private inner class SpelloutCardinalNeuterInstrumental : NumberFormatter {
             override fun format(value: Double): String {
-                return if (value >= 0.0) spelloutCardinalMasculineAblative.format(value) else {
-                    throw UnsupportedOperationException("spelloutCardinalNeuterAblative only supports numbers >= 0")
+                return if (value >= 0.0) spelloutCardinalMasculineInstrumental.format(value) else {
+                    throw UnsupportedOperationException("spelloutCardinalNeuterInstrumental only supports numbers >= 0")
                 }
             }
 
             override fun format(value: Long): String {
-                return spelloutCardinalMasculineAblative.format(value)
+                return spelloutCardinalMasculineInstrumental.format(value)
             }
 
             fun formatF(value: Double): String {
                 return when (listOf<Long>(0).bestDenominatorOrNull(value)!!) {
-                    0L -> spelloutCardinalMasculineAblative.format(value)
+                    0L -> spelloutCardinalMasculineInstrumental.format(value)
                     else -> throw IllegalStateException("It should not happen")
                 }
             }
         }
 
-        private inner class SpelloutCardinalFeminineAblative : NumberFormatter {
+        private inner class SpelloutCardinalFeminineInstrumental : NumberFormatter {
             override fun format(value: Double): String {
                 if (value < 0L) {
                     return "минус " + format(kotlin.math.abs(value))
@@ -9586,7 +9671,7 @@ open class RBNFRu(val language: Language = Language.ru) : RBNF {
                 return when (value) {
                     0L -> "нулем"
                     1L -> "одной"
-                    in 2L..19L -> spelloutCardinalMasculineAblative.format(value)
+                    in 2L..19L -> spelloutCardinalMasculineInstrumental.format(value)
                     in 20L..29L -> {
                         var result = "двадцатью"
                         result += (if ((value) % 10 == 0L) {
@@ -9701,7 +9786,7 @@ open class RBNFRu(val language: Language = Language.ru) : RBNF {
                     }
 
                     in 1000000L..999999999L -> {
-                        var result = spelloutCardinalMasculineAblative.format((value) / 1000000)
+                        var result = spelloutCardinalMasculineInstrumental.format((value) / 1000000)
                         result += " "
                         result += Plurals(one = "миллионом", other = "миллионами").get(language.pluralFormChooser.pluralForm(((value) / 1000000).toString()))
                         result += (if ((value) % 1000000 == 0L) {
@@ -9713,7 +9798,7 @@ open class RBNFRu(val language: Language = Language.ru) : RBNF {
                     }
 
                     in 1000000000L..999999999999L -> {
-                        var result = spelloutCardinalMasculineAblative.format((value) / 1000000000)
+                        var result = spelloutCardinalMasculineInstrumental.format((value) / 1000000000)
                         result += " "
                         result += Plurals(one = "миллиардом", other = "миллиардами").get(language.pluralFormChooser.pluralForm(((value) / 1000000000).toString()))
                         result += (if ((value) % 1000000000 == 0L) {
@@ -9725,7 +9810,7 @@ open class RBNFRu(val language: Language = Language.ru) : RBNF {
                     }
 
                     in 1000000000000L..999999999999999L -> {
-                        var result = spelloutCardinalMasculineAblative.format((value) / 1000000000000)
+                        var result = spelloutCardinalMasculineInstrumental.format((value) / 1000000000000)
                         result += " "
                         result += Plurals(one = "триллионом", other = "триллионами").get(language.pluralFormChooser.pluralForm(((value) / 1000000000000).toString()))
                         result += (if ((value) % 1000000000000 == 0L) {
@@ -9737,7 +9822,7 @@ open class RBNFRu(val language: Language = Language.ru) : RBNF {
                     }
 
                     in 1000000000000000L..999999999999999999L -> {
-                        var result = spelloutCardinalMasculineAblative.format((value) / 1000000000000000)
+                        var result = spelloutCardinalMasculineInstrumental.format((value) / 1000000000000000)
                         result += " "
                         result += Plurals(one = "квадриллионом", other = "квадриллионами").get(language.pluralFormChooser.pluralForm(((value) / 1000000000000000).toString()))
                         result += (if ((value) % 1000000000000000 == 0L) {
@@ -9757,7 +9842,7 @@ open class RBNFRu(val language: Language = Language.ru) : RBNF {
                             secondary_grouping = 3,
                             symbols = language.numbers.symbols
                         ).format(value) else {
-                            throw UnsupportedOperationException("spelloutCardinalFeminineAblative only supports numbers >= 0")
+                            throw UnsupportedOperationException("spelloutCardinalFeminineInstrumental only supports numbers >= 0")
                         }
                     }
                 }
@@ -9769,7 +9854,7 @@ open class RBNFRu(val language: Language = Language.ru) : RBNF {
                 )!!) {
                     0L -> "нулем"
                     1L -> "одной"
-                    2L -> spelloutCardinalMasculineAblative.format(value)
+                    2L -> spelloutCardinalMasculineInstrumental.format(value)
                     20L -> {
                         var result = "двадцатью"
                         result += (if (value * 20 == 1.0) {
@@ -9884,7 +9969,7 @@ open class RBNFRu(val language: Language = Language.ru) : RBNF {
                     }
 
                     1000000L -> {
-                        var result = spelloutCardinalMasculineAblative.format((value * 1000000).toLong())
+                        var result = spelloutCardinalMasculineInstrumental.format((value * 1000000).toLong())
                         result += " "
                         result += Plurals(one = "миллионом", other = "миллионами").get(language.pluralFormChooser.pluralForm(((value * 1000000).toLong()).toString()))
                         result += (if (value * 1000000 == 1.0) {
@@ -9896,7 +9981,7 @@ open class RBNFRu(val language: Language = Language.ru) : RBNF {
                     }
 
                     1000000000L -> {
-                        var result = spelloutCardinalMasculineAblative.format((value * 1000000000).toLong())
+                        var result = spelloutCardinalMasculineInstrumental.format((value * 1000000000).toLong())
                         result += " "
                         result += Plurals(one = "миллиардом", other = "миллиардами").get(language.pluralFormChooser.pluralForm(((value * 1000000000).toLong()).toString()))
                         result += (if (value * 1000000000 == 1.0) {
@@ -9908,7 +9993,7 @@ open class RBNFRu(val language: Language = Language.ru) : RBNF {
                     }
 
                     1000000000000L -> {
-                        var result = spelloutCardinalMasculineAblative.format((value * 1000000000000).toLong())
+                        var result = spelloutCardinalMasculineInstrumental.format((value * 1000000000000).toLong())
                         result += " "
                         result += Plurals(one = "триллионом", other = "триллионами").get(language.pluralFormChooser.pluralForm(((value * 1000000000000).toLong()).toString()))
                         result += (if (value * 1000000000000 == 1.0) {
@@ -9920,7 +10005,7 @@ open class RBNFRu(val language: Language = Language.ru) : RBNF {
                     }
 
                     1000000000000000L -> {
-                        var result = spelloutCardinalMasculineAblative.format((value * 1000000000000000).toLong())
+                        var result = spelloutCardinalMasculineInstrumental.format((value * 1000000000000000).toLong())
                         result += " "
                         result += Plurals(one = "квадриллионом", other = "квадриллионами").get(language.pluralFormChooser.pluralForm(((value * 1000000000000000).toLong()).toString()))
                         result += (if (value * 1000000000000000 == 1.0) {
@@ -9954,12 +10039,12 @@ open class RBNFRu(val language: Language = Language.ru) : RBNF {
                         )
                     ) + " "
                 })
-                result += fractionsFeminineAblative.formatF(kotlin.math.abs(value) - kotlin.math.truncate(kotlin.math.abs(value)))
+                result += fractionsFeminineInstrumental.formatF(kotlin.math.abs(value) - kotlin.math.truncate(kotlin.math.abs(value)))
                 return result
             }
         }
 
-        private inner class SpelloutCardinalPluralAblative : NumberFormatter {
+        private inner class SpelloutCardinalPluralInstrumental : NumberFormatter {
             override fun format(value: Double): String {
                 if (value < 0L) {
                     return "минус " + format(kotlin.math.abs(value))
@@ -9974,7 +10059,7 @@ open class RBNFRu(val language: Language = Language.ru) : RBNF {
                 return when (value) {
                     0L -> "нулем"
                     1L -> "одними"
-                    in 2L..19L -> spelloutCardinalMasculineAblative.format(value)
+                    in 2L..19L -> spelloutCardinalMasculineInstrumental.format(value)
                     in 20L..29L -> {
                         var result = "двадцатью"
                         result += (if ((value) % 10 == 0L) {
@@ -10066,7 +10151,7 @@ open class RBNFRu(val language: Language = Language.ru) : RBNF {
                     }
 
                     in 200L..999L -> {
-                        var result = spelloutCardinalFeminineAblative.format((value) / 100)
+                        var result = spelloutCardinalFeminineInstrumental.format((value) / 100)
                         result += "стами"
                         result += (if ((value) % 100 == 0L) {
                             ""
@@ -10077,7 +10162,7 @@ open class RBNFRu(val language: Language = Language.ru) : RBNF {
                     }
 
                     in 1000L..999999L -> {
-                        var result = spelloutCardinalFeminineAblative.format((value) / 1000)
+                        var result = spelloutCardinalFeminineInstrumental.format((value) / 1000)
                         result += " "
                         result += Plurals(one = "тысячей", other = "тысячами").get(language.pluralFormChooser.pluralForm(((value) / 1000).toString()))
                         result += (if ((value) % 1000 == 0L) {
@@ -10089,7 +10174,7 @@ open class RBNFRu(val language: Language = Language.ru) : RBNF {
                     }
 
                     in 1000000L..999999999L -> {
-                        var result = spelloutCardinalMasculineAblative.format((value) / 1000000)
+                        var result = spelloutCardinalMasculineInstrumental.format((value) / 1000000)
                         result += " "
                         result += Plurals(one = "миллионом", other = "миллионами").get(language.pluralFormChooser.pluralForm(((value) / 1000000).toString()))
                         result += (if ((value) % 1000000 == 0L) {
@@ -10101,7 +10186,7 @@ open class RBNFRu(val language: Language = Language.ru) : RBNF {
                     }
 
                     in 1000000000L..999999999999L -> {
-                        var result = spelloutCardinalMasculineAblative.format((value) / 1000000000)
+                        var result = spelloutCardinalMasculineInstrumental.format((value) / 1000000000)
                         result += " "
                         result += Plurals(one = "миллиардом", other = "миллиардами").get(language.pluralFormChooser.pluralForm(((value) / 1000000000).toString()))
                         result += (if ((value) % 1000000000 == 0L) {
@@ -10113,7 +10198,7 @@ open class RBNFRu(val language: Language = Language.ru) : RBNF {
                     }
 
                     in 1000000000000L..999999999999999L -> {
-                        var result = spelloutCardinalMasculineAblative.format((value) / 1000000000000)
+                        var result = spelloutCardinalMasculineInstrumental.format((value) / 1000000000000)
                         result += " "
                         result += Plurals(one = "триллионом", other = "триллионами").get(language.pluralFormChooser.pluralForm(((value) / 1000000000000).toString()))
                         result += (if ((value) % 1000000000000 == 0L) {
@@ -10125,7 +10210,7 @@ open class RBNFRu(val language: Language = Language.ru) : RBNF {
                     }
 
                     in 1000000000000000L..999999999999999999L -> {
-                        var result = spelloutCardinalMasculineAblative.format((value) / 1000000000000000)
+                        var result = spelloutCardinalMasculineInstrumental.format((value) / 1000000000000000)
                         result += " "
                         result += Plurals(one = "квадриллионом", other = "квадриллионами").get(language.pluralFormChooser.pluralForm(((value) / 1000000000000000).toString()))
                         result += (if ((value) % 1000000000000000 == 0L) {
@@ -10145,7 +10230,7 @@ open class RBNFRu(val language: Language = Language.ru) : RBNF {
                             secondary_grouping = 3,
                             symbols = language.numbers.symbols
                         ).format(value) else {
-                            throw UnsupportedOperationException("spelloutCardinalPluralAblative only supports numbers >= 0")
+                            throw UnsupportedOperationException("spelloutCardinalPluralInstrumental only supports numbers >= 0")
                         }
                     }
                 }
@@ -10157,7 +10242,7 @@ open class RBNFRu(val language: Language = Language.ru) : RBNF {
                 )!!) {
                     0L -> "нулем"
                     1L -> "одними"
-                    2L -> spelloutCardinalMasculineAblative.format(value)
+                    2L -> spelloutCardinalMasculineInstrumental.format(value)
                     20L -> {
                         var result = "двадцатью"
                         result += (if (value * 20 == 1.0) {
@@ -10249,7 +10334,7 @@ open class RBNFRu(val language: Language = Language.ru) : RBNF {
                     }
 
                     200L -> {
-                        var result = spelloutCardinalFeminineAblative.format((value * 200).toLong())
+                        var result = spelloutCardinalFeminineInstrumental.format((value * 200).toLong())
                         result += "стами"
                         result += (if (value * 200 == 1.0) {
                             ""
@@ -10260,7 +10345,7 @@ open class RBNFRu(val language: Language = Language.ru) : RBNF {
                     }
 
                     1000L -> {
-                        var result = spelloutCardinalFeminineAblative.format((value * 1000).toLong())
+                        var result = spelloutCardinalFeminineInstrumental.format((value * 1000).toLong())
                         result += " "
                         result += Plurals(one = "тысячей", other = "тысячами").get(language.pluralFormChooser.pluralForm(((value * 1000).toLong()).toString()))
                         result += (if (value * 1000 == 1.0) {
@@ -10272,7 +10357,7 @@ open class RBNFRu(val language: Language = Language.ru) : RBNF {
                     }
 
                     1000000L -> {
-                        var result = spelloutCardinalMasculineAblative.format((value * 1000000).toLong())
+                        var result = spelloutCardinalMasculineInstrumental.format((value * 1000000).toLong())
                         result += " "
                         result += Plurals(one = "миллионом", other = "миллионами").get(language.pluralFormChooser.pluralForm(((value * 1000000).toLong()).toString()))
                         result += (if (value * 1000000 == 1.0) {
@@ -10284,7 +10369,7 @@ open class RBNFRu(val language: Language = Language.ru) : RBNF {
                     }
 
                     1000000000L -> {
-                        var result = spelloutCardinalMasculineAblative.format((value * 1000000000).toLong())
+                        var result = spelloutCardinalMasculineInstrumental.format((value * 1000000000).toLong())
                         result += " "
                         result += Plurals(one = "миллиардом", other = "миллиардами").get(language.pluralFormChooser.pluralForm(((value * 1000000000).toLong()).toString()))
                         result += (if (value * 1000000000 == 1.0) {
@@ -10296,7 +10381,7 @@ open class RBNFRu(val language: Language = Language.ru) : RBNF {
                     }
 
                     1000000000000L -> {
-                        var result = spelloutCardinalMasculineAblative.format((value * 1000000000000).toLong())
+                        var result = spelloutCardinalMasculineInstrumental.format((value * 1000000000000).toLong())
                         result += " "
                         result += Plurals(one = "триллионом", other = "триллионами").get(language.pluralFormChooser.pluralForm(((value * 1000000000000).toLong()).toString()))
                         result += (if (value * 1000000000000 == 1.0) {
@@ -10308,7 +10393,7 @@ open class RBNFRu(val language: Language = Language.ru) : RBNF {
                     }
 
                     1000000000000000L -> {
-                        var result = spelloutCardinalMasculineAblative.format((value * 1000000000000000).toLong())
+                        var result = spelloutCardinalMasculineInstrumental.format((value * 1000000000000000).toLong())
                         result += " "
                         result += Plurals(one = "квадриллионом", other = "квадриллионами").get(language.pluralFormChooser.pluralForm(((value * 1000000000000000).toLong()).toString()))
                         result += (if (value * 1000000000000000 == 1.0) {
@@ -10337,62 +10422,62 @@ open class RBNFRu(val language: Language = Language.ru) : RBNF {
             }
         }
 
-        private inner class FractionsFeminineAblative : NumberFormatter {
+        private inner class FractionsFeminineInstrumental : NumberFormatter {
             override fun format(value: Double): String {
                 return when (value.roundToLong()) {
-                    in 10L..99L -> spelloutCardinalFeminineAblative.format((value).toLong() / 10) + " " + Plurals(
+                    in 10L..99L -> spelloutCardinalFeminineInstrumental.format((value).toLong() / 10) + " " + Plurals(
                         one = "десятой",
                         other = "десятыми"
                     ).get(language.pluralFormChooser.pluralForm(((value).toLong() / 10).toString()))
 
-                    in 100L..999L -> spelloutCardinalFeminineAblative.format((value).toLong() / 100) + " " + Plurals(
+                    in 100L..999L -> spelloutCardinalFeminineInstrumental.format((value).toLong() / 100) + " " + Plurals(
                         one = "сотой",
                         other = "сотыми"
                     ).get(language.pluralFormChooser.pluralForm(((value).toLong() / 100).toString()))
 
-                    in 1000L..9999L -> spelloutCardinalFeminineAblative.format((value).toLong() / 1000) + " " + Plurals(
+                    in 1000L..9999L -> spelloutCardinalFeminineInstrumental.format((value).toLong() / 1000) + " " + Plurals(
                         one = "тысячной",
                         other = "тысячными"
                     ).get(language.pluralFormChooser.pluralForm(((value).toLong() / 1000).toString()))
 
-                    in 10000L..99999L -> spelloutCardinalFeminineAblative.format((value).toLong() / 10000) + " " + Plurals(
+                    in 10000L..99999L -> spelloutCardinalFeminineInstrumental.format((value).toLong() / 10000) + " " + Plurals(
                         one = "десятитысячной",
                         other = "десятитысячными"
                     ).get(language.pluralFormChooser.pluralForm(((value).toLong() / 10000).toString()))
 
-                    in 100000L..999999L -> spelloutCardinalFeminineAblative.format((value).toLong() / 100000) + " " + Plurals(
+                    in 100000L..999999L -> spelloutCardinalFeminineInstrumental.format((value).toLong() / 100000) + " " + Plurals(
                         one = "стотысячной",
                         other = "стотысячными"
                     ).get(language.pluralFormChooser.pluralForm(((value).toLong() / 100000).toString()))
 
-                    in 1000000L..9999999L -> spelloutCardinalFeminineAblative.format((value).toLong() / 1000000) + " " + Plurals(
+                    in 1000000L..9999999L -> spelloutCardinalFeminineInstrumental.format((value).toLong() / 1000000) + " " + Plurals(
                         one = "миллионной",
                         other = "миллионными"
                     ).get(language.pluralFormChooser.pluralForm(((value).toLong() / 1000000).toString()))
 
-                    in 10000000L..99999999L -> spelloutCardinalFeminineAblative.format((value).toLong() / 10000000) + " " + Plurals(
-                        one = "десятимиллионной",
-                        other = "десятимиллионными"
-                    ).get(language.pluralFormChooser.pluralForm(((value).toLong() / 10000000).toString()))
+                    in 10000000L..99999999L -> spelloutCardinalFeminineInstrumental.format((value).toLong() / 10000000) + " " + Plurals(one = "десятимиллионной", other = "десятимиллионными").get(
+                        language.pluralFormChooser.pluralForm(((value).toLong() / 10000000).toString())
+                    )
 
-                    in 100000000L..999999999L -> spelloutCardinalFeminineAblative.format((value).toLong() / 100000000) + " " + Plurals(
+                    in 100000000L..999999999L -> spelloutCardinalFeminineInstrumental.format((value).toLong() / 100000000) + " " + Plurals(
                         one = "стомиллионной",
                         other = "стомиллионными"
                     ).get(language.pluralFormChooser.pluralForm(((value).toLong() / 100000000).toString()))
 
-                    in 1000000000L..9999999999L -> spelloutCardinalFeminineAblative.format((value).toLong() / 1000000000) + " " + Plurals(
+                    in 1000000000L..9999999999L -> spelloutCardinalFeminineInstrumental.format((value).toLong() / 1000000000) + " " + Plurals(
                         one = "миллиардной",
                         other = "миллиардными"
                     ).get(language.pluralFormChooser.pluralForm(((value).toLong() / 1000000000).toString()))
 
-                    in 10000000000L..99999999999L -> spelloutCardinalFeminineAblative.format((value).toLong() / 10000000000) + " " + Plurals(
+                    in 10000000000L..99999999999L -> spelloutCardinalFeminineInstrumental.format((value).toLong() / 10000000000) + " " + Plurals(
                         one = "десятимиллиардной",
                         other = "десятимиллиардными"
                     ).get(language.pluralFormChooser.pluralForm(((value).toLong() / 10000000000).toString()))
 
-                    in 100000000000L..999999999999L -> spelloutCardinalFeminineAblative.format((value).toLong() / 100000000000) + " " + Plurals(one = "стомиллиардной", other = "стомиллиардными").get(
-                        language.pluralFormChooser.pluralForm(((value).toLong() / 100000000000).toString())
-                    )
+                    in 100000000000L..999999999999L -> spelloutCardinalFeminineInstrumental.format((value).toLong() / 100000000000) + " " + Plurals(
+                        one = "стомиллиардной",
+                        other = "стомиллиардными"
+                    ).get(language.pluralFormChooser.pluralForm(((value).toLong() / 100000000000).toString()))
 
                     else -> {
                         if (value >= 1000000000000.0) DecimalNumberFormatter(
@@ -10403,7 +10488,7 @@ open class RBNFRu(val language: Language = Language.ru) : RBNF {
                             secondary_grouping = 0,
                             symbols = language.numbers.symbols
                         ).format((value).toLong() / 1000000000000) else {
-                            throw UnsupportedOperationException("fractionsFeminineAblative only supports numbers >= 10")
+                            throw UnsupportedOperationException("fractionsFeminineInstrumental only supports numbers >= 10")
                         }
                     }
                 }
@@ -10411,59 +10496,58 @@ open class RBNFRu(val language: Language = Language.ru) : RBNF {
 
             override fun format(value: Long): String {
                 return when (value) {
-                    in 10L..99L -> spelloutCardinalFeminineAblative.format((value) / 10) + " " + Plurals(
+                    in 10L..99L -> spelloutCardinalFeminineInstrumental.format((value) / 10) + " " + Plurals(
                         one = "десятой",
                         other = "десятыми"
                     ).get(language.pluralFormChooser.pluralForm(((value) / 10).toString()))
 
-                    in 100L..999L -> spelloutCardinalFeminineAblative.format((value) / 100) + " " + Plurals(
+                    in 100L..999L -> spelloutCardinalFeminineInstrumental.format((value) / 100) + " " + Plurals(
                         one = "сотой",
                         other = "сотыми"
                     ).get(language.pluralFormChooser.pluralForm(((value) / 100).toString()))
 
-                    in 1000L..9999L -> spelloutCardinalFeminineAblative.format((value) / 1000) + " " + Plurals(
+                    in 1000L..9999L -> spelloutCardinalFeminineInstrumental.format((value) / 1000) + " " + Plurals(
                         one = "тысячной",
                         other = "тысячными"
                     ).get(language.pluralFormChooser.pluralForm(((value) / 1000).toString()))
 
-                    in 10000L..99999L -> spelloutCardinalFeminineAblative.format((value) / 10000) + " " + Plurals(
+                    in 10000L..99999L -> spelloutCardinalFeminineInstrumental.format((value) / 10000) + " " + Plurals(
                         one = "десятитысячной",
                         other = "десятитысячными"
                     ).get(language.pluralFormChooser.pluralForm(((value) / 10000).toString()))
 
-                    in 100000L..999999L -> spelloutCardinalFeminineAblative.format((value) / 100000) + " " + Plurals(
+                    in 100000L..999999L -> spelloutCardinalFeminineInstrumental.format((value) / 100000) + " " + Plurals(
                         one = "стотысячной",
                         other = "стотысячными"
                     ).get(language.pluralFormChooser.pluralForm(((value) / 100000).toString()))
 
-                    in 1000000L..9999999L -> spelloutCardinalFeminineAblative.format((value) / 1000000) + " " + Plurals(
+                    in 1000000L..9999999L -> spelloutCardinalFeminineInstrumental.format((value) / 1000000) + " " + Plurals(
                         one = "миллионной",
                         other = "миллионными"
                     ).get(language.pluralFormChooser.pluralForm(((value) / 1000000).toString()))
 
-                    in 10000000L..99999999L -> spelloutCardinalFeminineAblative.format((value) / 10000000) + " " + Plurals(
+                    in 10000000L..99999999L -> spelloutCardinalFeminineInstrumental.format((value) / 10000000) + " " + Plurals(
                         one = "десятимиллионной",
                         other = "десятимиллионными"
                     ).get(language.pluralFormChooser.pluralForm(((value) / 10000000).toString()))
 
-                    in 100000000L..999999999L -> spelloutCardinalFeminineAblative.format((value) / 100000000) + " " + Plurals(
+                    in 100000000L..999999999L -> spelloutCardinalFeminineInstrumental.format((value) / 100000000) + " " + Plurals(
                         one = "стомиллионной",
                         other = "стомиллионными"
                     ).get(language.pluralFormChooser.pluralForm(((value) / 100000000).toString()))
 
-                    in 1000000000L..9999999999L -> spelloutCardinalFeminineAblative.format((value) / 1000000000) + " " + Plurals(
+                    in 1000000000L..9999999999L -> spelloutCardinalFeminineInstrumental.format((value) / 1000000000) + " " + Plurals(
                         one = "миллиардной",
                         other = "миллиардными"
                     ).get(language.pluralFormChooser.pluralForm(((value) / 1000000000).toString()))
 
-                    in 10000000000L..99999999999L -> spelloutCardinalFeminineAblative.format((value) / 10000000000) + " " + Plurals(one = "десятимиллиардной", other = "десятимиллиардными").get(
+                    in 10000000000L..99999999999L -> spelloutCardinalFeminineInstrumental.format((value) / 10000000000) + " " + Plurals(one = "десятимиллиардной", other = "десятимиллиардными").get(
                         language.pluralFormChooser.pluralForm(((value) / 10000000000).toString())
                     )
 
-                    in 100000000000L..999999999999L -> spelloutCardinalFeminineAblative.format((value) / 100000000000) + " " + Plurals(
-                        one = "стомиллиардной",
-                        other = "стомиллиардными"
-                    ).get(language.pluralFormChooser.pluralForm(((value) / 100000000000).toString()))
+                    in 100000000000L..999999999999L -> spelloutCardinalFeminineInstrumental.format((value) / 100000000000) + " " + Plurals(one = "стомиллиардной", other = "стомиллиардными").get(
+                        language.pluralFormChooser.pluralForm(((value) / 100000000000).toString())
+                    )
 
                     else -> {
                         if (value >= 1000000000000L) DecimalNumberFormatter(
@@ -10474,7 +10558,7 @@ open class RBNFRu(val language: Language = Language.ru) : RBNF {
                             secondary_grouping = 0,
                             symbols = language.numbers.symbols
                         ).format((value) / 1000000000000) else {
-                            throw UnsupportedOperationException("fractionsFeminineAblative only supports numbers >= 10")
+                            throw UnsupportedOperationException("fractionsFeminineInstrumental only supports numbers >= 10")
                         }
                     }
                 }
@@ -10482,57 +10566,57 @@ open class RBNFRu(val language: Language = Language.ru) : RBNF {
 
             fun formatF(value: Double): String {
                 return when (listOf<Long>(10, 100, 1000, 10000, 100000, 1000000, 10000000, 100000000, 1000000000, 10000000000, 100000000000, 1000000000000).bestDenominatorOrNull(value)!!) {
-                    10L -> spelloutCardinalFeminineAblative.format((value * 10).toLong()) + " " + Plurals(
+                    10L -> spelloutCardinalFeminineInstrumental.format((value * 10).toLong()) + " " + Plurals(
                         one = "десятой",
                         other = "десятыми"
                     ).get(language.pluralFormChooser.pluralForm(((value * 10).toLong()).toString()))
 
-                    100L -> spelloutCardinalFeminineAblative.format((value * 100).toLong()) + " " + Plurals(
+                    100L -> spelloutCardinalFeminineInstrumental.format((value * 100).toLong()) + " " + Plurals(
                         one = "сотой",
                         other = "сотыми"
                     ).get(language.pluralFormChooser.pluralForm(((value * 100).toLong()).toString()))
 
-                    1000L -> spelloutCardinalFeminineAblative.format((value * 1000).toLong()) + " " + Plurals(
+                    1000L -> spelloutCardinalFeminineInstrumental.format((value * 1000).toLong()) + " " + Plurals(
                         one = "тысячной",
                         other = "тысячными"
                     ).get(language.pluralFormChooser.pluralForm(((value * 1000).toLong()).toString()))
 
-                    10000L -> spelloutCardinalFeminineAblative.format((value * 10000).toLong()) + " " + Plurals(
+                    10000L -> spelloutCardinalFeminineInstrumental.format((value * 10000).toLong()) + " " + Plurals(
                         one = "десятитысячной",
                         other = "десятитысячными"
                     ).get(language.pluralFormChooser.pluralForm(((value * 10000).toLong()).toString()))
 
-                    100000L -> spelloutCardinalFeminineAblative.format((value * 100000).toLong()) + " " + Plurals(
+                    100000L -> spelloutCardinalFeminineInstrumental.format((value * 100000).toLong()) + " " + Plurals(
                         one = "стотысячной",
                         other = "стотысячными"
                     ).get(language.pluralFormChooser.pluralForm(((value * 100000).toLong()).toString()))
 
-                    1000000L -> spelloutCardinalFeminineAblative.format((value * 1000000).toLong()) + " " + Plurals(
+                    1000000L -> spelloutCardinalFeminineInstrumental.format((value * 1000000).toLong()) + " " + Plurals(
                         one = "миллионной",
                         other = "миллионными"
                     ).get(language.pluralFormChooser.pluralForm(((value * 1000000).toLong()).toString()))
 
-                    10000000L -> spelloutCardinalFeminineAblative.format((value * 10000000).toLong()) + " " + Plurals(
+                    10000000L -> spelloutCardinalFeminineInstrumental.format((value * 10000000).toLong()) + " " + Plurals(
                         one = "десятимиллионной",
                         other = "десятимиллионными"
                     ).get(language.pluralFormChooser.pluralForm(((value * 10000000).toLong()).toString()))
 
-                    100000000L -> spelloutCardinalFeminineAblative.format((value * 100000000).toLong()) + " " + Plurals(
+                    100000000L -> spelloutCardinalFeminineInstrumental.format((value * 100000000).toLong()) + " " + Plurals(
                         one = "стомиллионной",
                         other = "стомиллионными"
                     ).get(language.pluralFormChooser.pluralForm(((value * 100000000).toLong()).toString()))
 
-                    1000000000L -> spelloutCardinalFeminineAblative.format((value * 1000000000).toLong()) + " " + Plurals(
+                    1000000000L -> spelloutCardinalFeminineInstrumental.format((value * 1000000000).toLong()) + " " + Plurals(
                         one = "миллиардной",
                         other = "миллиардными"
                     ).get(language.pluralFormChooser.pluralForm(((value * 1000000000).toLong()).toString()))
 
-                    10000000000L -> spelloutCardinalFeminineAblative.format((value * 10000000000).toLong()) + " " + Plurals(
+                    10000000000L -> spelloutCardinalFeminineInstrumental.format((value * 10000000000).toLong()) + " " + Plurals(
                         one = "десятимиллиардной",
                         other = "десятимиллиардными"
                     ).get(language.pluralFormChooser.pluralForm(((value * 10000000000).toLong()).toString()))
 
-                    100000000000L -> spelloutCardinalFeminineAblative.format((value * 100000000000).toLong()) + " " + Plurals(
+                    100000000000L -> spelloutCardinalFeminineInstrumental.format((value * 100000000000).toLong()) + " " + Plurals(
                         one = "стомиллиардной",
                         other = "стомиллиардными"
                     ).get(language.pluralFormChooser.pluralForm(((value * 100000000000).toLong()).toString()))
@@ -10546,6 +10630,82 @@ open class RBNFRu(val language: Language = Language.ru) : RBNF {
                         symbols = language.numbers.symbols
                     ).format((value * 1000000000000).toLong())
 
+                    else -> throw IllegalStateException("It should not happen")
+                }
+            }
+        }
+
+        private inner class SpelloutCardinalMasculineAblative : NumberFormatter {
+            override fun format(value: Double): String {
+                return if (value >= 0.0) spelloutCardinalMasculineInstrumental.format(value) else {
+                    throw UnsupportedOperationException("spelloutCardinalMasculineAblative only supports numbers >= 0")
+                }
+            }
+
+            override fun format(value: Long): String {
+                return spelloutCardinalMasculineInstrumental.format(value)
+            }
+
+            fun formatF(value: Double): String {
+                return when (listOf<Long>(0).bestDenominatorOrNull(value)!!) {
+                    0L -> spelloutCardinalMasculineInstrumental.format(value)
+                    else -> throw IllegalStateException("It should not happen")
+                }
+            }
+        }
+
+        private inner class SpelloutCardinalNeuterAblative : NumberFormatter {
+            override fun format(value: Double): String {
+                return if (value >= 0.0) spelloutCardinalNeuterInstrumental.format(value) else {
+                    throw UnsupportedOperationException("spelloutCardinalNeuterAblative only supports numbers >= 0")
+                }
+            }
+
+            override fun format(value: Long): String {
+                return spelloutCardinalNeuterInstrumental.format(value)
+            }
+
+            fun formatF(value: Double): String {
+                return when (listOf<Long>(0).bestDenominatorOrNull(value)!!) {
+                    0L -> spelloutCardinalNeuterInstrumental.format(value)
+                    else -> throw IllegalStateException("It should not happen")
+                }
+            }
+        }
+
+        private inner class SpelloutCardinalFeminineAblative : NumberFormatter {
+            override fun format(value: Double): String {
+                return if (value >= 0.0) spelloutCardinalFeminineInstrumental.format(value) else {
+                    throw UnsupportedOperationException("spelloutCardinalFeminineAblative only supports numbers >= 0")
+                }
+            }
+
+            override fun format(value: Long): String {
+                return spelloutCardinalFeminineInstrumental.format(value)
+            }
+
+            fun formatF(value: Double): String {
+                return when (listOf<Long>(0).bestDenominatorOrNull(value)!!) {
+                    0L -> spelloutCardinalFeminineInstrumental.format(value)
+                    else -> throw IllegalStateException("It should not happen")
+                }
+            }
+        }
+
+        private inner class SpelloutCardinalPluralAblative : NumberFormatter {
+            override fun format(value: Double): String {
+                return if (value >= 0.0) spelloutCardinalPluralInstrumental.format(value) else {
+                    throw UnsupportedOperationException("spelloutCardinalPluralAblative only supports numbers >= 0")
+                }
+            }
+
+            override fun format(value: Long): String {
+                return spelloutCardinalPluralInstrumental.format(value)
+            }
+
+            fun formatF(value: Double): String {
+                return when (listOf<Long>(0).bestDenominatorOrNull(value)!!) {
+                    0L -> spelloutCardinalPluralInstrumental.format(value)
                     else -> throw IllegalStateException("It should not happen")
                 }
             }
@@ -13854,7 +14014,7 @@ open class RBNFRu(val language: Language = Language.ru) : RBNF {
             }
         }
 
-        private inner class SpelloutOrdinalMasculineLocative : NumberFormatter {
+        private inner class SpelloutOrdinalMasculinePrepositional : NumberFormatter {
             override fun format(value: Double): String {
                 if (value < 0L) {
                     return "минус " + format(kotlin.math.abs(value))
@@ -13977,7 +14137,7 @@ open class RBNFRu(val language: Language = Language.ru) : RBNF {
                             secondary_grouping = 0,
                             symbols = language.numbers.symbols
                         ).format(value) + "-м" else {
-                            throw UnsupportedOperationException("spelloutOrdinalMasculineLocative only supports numbers >= 0")
+                            throw UnsupportedOperationException("spelloutOrdinalMasculinePrepositional only supports numbers >= 0")
                         }
                     }
                 }
@@ -14149,20 +14309,96 @@ open class RBNFRu(val language: Language = Language.ru) : RBNF {
             }
         }
 
+        private inner class SpelloutOrdinalNeuterPrepositional : NumberFormatter {
+            override fun format(value: Double): String {
+                return if (value >= 0.0) spelloutOrdinalMasculinePrepositional.format(value) else {
+                    throw UnsupportedOperationException("spelloutOrdinalNeuterPrepositional only supports numbers >= 0")
+                }
+            }
+
+            override fun format(value: Long): String {
+                return spelloutOrdinalMasculinePrepositional.format(value)
+            }
+
+            fun formatF(value: Double): String {
+                return when (listOf<Long>(0).bestDenominatorOrNull(value)!!) {
+                    0L -> spelloutOrdinalMasculinePrepositional.format(value)
+                    else -> throw IllegalStateException("It should not happen")
+                }
+            }
+        }
+
+        private inner class SpelloutOrdinalFemininePrepositional : NumberFormatter {
+            override fun format(value: Double): String {
+                return if (value >= 0.0) spelloutOrdinalFeminineGenitive.format(value) else {
+                    throw UnsupportedOperationException("spelloutOrdinalFemininePrepositional only supports numbers >= 0")
+                }
+            }
+
+            override fun format(value: Long): String {
+                return spelloutOrdinalFeminineGenitive.format(value)
+            }
+
+            fun formatF(value: Double): String {
+                return when (listOf<Long>(0).bestDenominatorOrNull(value)!!) {
+                    0L -> spelloutOrdinalFeminineGenitive.format(value)
+                    else -> throw IllegalStateException("It should not happen")
+                }
+            }
+        }
+
+        private inner class SpelloutOrdinalPluralPrepositional : NumberFormatter {
+            override fun format(value: Double): String {
+                return if (value >= 0.0) spelloutOrdinalPluralGenitive.format(value) else {
+                    throw UnsupportedOperationException("spelloutOrdinalPluralPrepositional only supports numbers >= 0")
+                }
+            }
+
+            override fun format(value: Long): String {
+                return spelloutOrdinalPluralGenitive.format(value)
+            }
+
+            fun formatF(value: Double): String {
+                return when (listOf<Long>(0).bestDenominatorOrNull(value)!!) {
+                    0L -> spelloutOrdinalPluralGenitive.format(value)
+                    else -> throw IllegalStateException("It should not happen")
+                }
+            }
+        }
+
+        private inner class SpelloutOrdinalMasculineLocative : NumberFormatter {
+            override fun format(value: Double): String {
+                return if (value >= 0.0) spelloutOrdinalMasculinePrepositional.format(value) else {
+                    throw UnsupportedOperationException("spelloutOrdinalMasculineLocative only supports numbers >= 0")
+                }
+            }
+
+            override fun format(value: Long): String {
+                return spelloutOrdinalMasculinePrepositional.format(value)
+            }
+
+            fun formatF(value: Double): String {
+                return when (listOf<Long>(0).bestDenominatorOrNull(value)!!) {
+                    0L -> spelloutOrdinalMasculinePrepositional.format(value)
+                    else -> throw IllegalStateException("It should not happen")
+                }
+            }
+        }
+
         private inner class SpelloutOrdinalNeuterLocative : NumberFormatter {
             override fun format(value: Double): String {
-                return if (value >= 0.0) spelloutOrdinalMasculineLocative.format(value) else {
+                return if (value >= 0.0) spelloutOrdinalMasculinePrepositional.format(value) else {
                     throw UnsupportedOperationException("spelloutOrdinalNeuterLocative only supports numbers >= 0")
                 }
             }
 
             override fun format(value: Long): String {
-                return spelloutOrdinalMasculineLocative.format(value)
+                return spelloutOrdinalMasculinePrepositional.format(value)
             }
 
             fun formatF(value: Double): String {
                 return when (listOf<Long>(0).bestDenominatorOrNull(value)!!) {
-                    0L -> spelloutOrdinalMasculineLocative.format(value)
+                    0L -> spelloutOrdinalMasculinePrepositional.format(value)
                     else -> throw IllegalStateException("It should not happen")
                 }
             }
@@ -14206,7 +14442,7 @@ open class RBNFRu(val language: Language = Language.ru) : RBNF {
             }
         }
 
-        private inner class SpelloutOrdinalMasculineAblative : NumberFormatter {
+        private inner class SpelloutOrdinalMasculineInstrumental : NumberFormatter {
             override fun format(value: Double): String {
                 if (value < 0L) {
                     return "минус " + format(kotlin.math.abs(value))
@@ -14329,7 +14565,7 @@ open class RBNFRu(val language: Language = Language.ru) : RBNF {
                             secondary_grouping = 0,
                             symbols = language.numbers.symbols
                         ).format(value) + "-м" else {
-                            throw UnsupportedOperationException("spelloutOrdinalMasculineAblative only supports numbers >= 0")
+                            throw UnsupportedOperationException("spelloutOrdinalMasculineInstrumental only supports numbers >= 0")
                         }
                     }
                 }
@@ -14501,29 +14737,29 @@ open class RBNFRu(val language: Language = Language.ru) : RBNF {
             }
         }
 
-        private inner class SpelloutOrdinalNeuterAblative : NumberFormatter {
+        private inner class SpelloutOrdinalNeuterInstrumental : NumberFormatter {
             override fun format(value: Double): String {
-                return if (value >= 0.0) spelloutOrdinalMasculineAblative.format(value) else {
-                    throw UnsupportedOperationException("spelloutOrdinalNeuterAblative only supports numbers >= 0")
+                return if (value >= 0.0) spelloutOrdinalMasculineInstrumental.format(value) else {
+                    throw UnsupportedOperationException("spelloutOrdinalNeuterInstrumental only supports numbers >= 0")
                 }
             }
 
             override fun format(value: Long): String {
-                return spelloutOrdinalMasculineAblative.format(value)
+                return spelloutOrdinalMasculineInstrumental.format(value)
             }
 
             fun formatF(value: Double): String {
                 return when (listOf<Long>(0).bestDenominatorOrNull(value)!!) {
-                    0L -> spelloutOrdinalMasculineAblative.format(value)
+                    0L -> spelloutOrdinalMasculineInstrumental.format(value)
                     else -> throw IllegalStateException("It should not happen")
                 }
             }
         }
 
-        private inner class SpelloutOrdinalFeminineAblative : NumberFormatter {
+        private inner class SpelloutOrdinalFeminineInstrumental : NumberFormatter {
             override fun format(value: Double): String {
                 return if (value >= 0.0) spelloutOrdinalFeminineGenitive.format(value) else {
-                    throw UnsupportedOperationException("spelloutOrdinalFeminineAblative only supports numbers >= 0")
+                    throw UnsupportedOperationException("spelloutOrdinalFeminineInstrumental only supports numbers >= 0")
                 }
             }
 
@@ -14539,7 +14775,7 @@ open class RBNFRu(val language: Language = Language.ru) : RBNF {
             }
         }
 
-        private inner class SpelloutOrdinalPluralAblative : NumberFormatter {
+        private inner class SpelloutOrdinalPluralInstrumental : NumberFormatter {
             override fun format(value: Double): String {
                 if (value < 0L) {
                     return "минус " + format(kotlin.math.abs(value))
@@ -14662,7 +14898,7 @@ open class RBNFRu(val language: Language = Language.ru) : RBNF {
                             secondary_grouping = 0,
                             symbols = language.numbers.symbols
                         ).format(value) + "-ми" else {
-                            throw UnsupportedOperationException("spelloutOrdinalPluralAblative only supports numbers >= 0")
+                            throw UnsupportedOperationException("spelloutOrdinalPluralInstrumental only supports numbers >= 0")
                         }
                     }
                 }
@@ -14834,6 +15070,82 @@ open class RBNFRu(val language: Language = Language.ru) : RBNF {
             }
         }
 
+        private inner class SpelloutOrdinalMasculineAblative : NumberFormatter {
+            override fun format(value: Double): String {
+                return if (value >= 0.0) spelloutOrdinalMasculineInstrumental.format(value) else {
+                    throw UnsupportedOperationException("spelloutOrdinalMasculineAblative only supports numbers >= 0")
+                }
+            }
+
+            override fun format(value: Long): String {
+                return spelloutOrdinalMasculineInstrumental.format(value)
+            }
+
+            fun formatF(value: Double): String {
+                return when (listOf<Long>(0).bestDenominatorOrNull(value)!!) {
+                    0L -> spelloutOrdinalMasculineInstrumental.format(value)
+                    else -> throw IllegalStateException("It should not happen")
+                }
+            }
+        }
+
+        private inner class SpelloutOrdinalNeuterAblative : NumberFormatter {
+            override fun format(value: Double): String {
+                return if (value >= 0.0) spelloutOrdinalMasculineInstrumental.format(value) else {
+                    throw UnsupportedOperationException("spelloutOrdinalNeuterAblative only supports numbers >= 0")
+                }
+            }
+
+            override fun format(value: Long): String {
+                return spelloutOrdinalMasculineInstrumental.format(value)
+            }
+
+            fun formatF(value: Double): String {
+                return when (listOf<Long>(0).bestDenominatorOrNull(value)!!) {
+                    0L -> spelloutOrdinalMasculineInstrumental.format(value)
+                    else -> throw IllegalStateException("It should not happen")
+                }
+            }
+        }
+
+        private inner class SpelloutOrdinalFeminineAblative : NumberFormatter {
+            override fun format(value: Double): String {
+                return if (value >= 0.0) spelloutOrdinalFeminineGenitive.format(value) else {
+                    throw UnsupportedOperationException("spelloutOrdinalFeminineAblative only supports numbers >= 0")
+                }
+            }
+
+            override fun format(value: Long): String {
+                return spelloutOrdinalFeminineGenitive.format(value)
+            }
+
+            fun formatF(value: Double): String {
+                return when (listOf<Long>(0).bestDenominatorOrNull(value)!!) {
+                    0L -> spelloutOrdinalFeminineGenitive.format(value)
+                    else -> throw IllegalStateException("It should not happen")
+                }
+            }
+        }
+
+        private inner class SpelloutOrdinalPluralAblative : NumberFormatter {
+            override fun format(value: Double): String {
+                return if (value >= 0.0) spelloutOrdinalPluralInstrumental.format(value) else {
+                    throw UnsupportedOperationException("spelloutOrdinalPluralAblative only supports numbers >= 0")
+                }
+            }
+
+            override fun format(value: Long): String {
+                return spelloutOrdinalPluralInstrumental.format(value)
+            }
+
+            fun formatF(value: Double): String {
+                return when (listOf<Long>(0).bestDenominatorOrNull(value)!!) {
+                    0L -> spelloutOrdinalPluralInstrumental.format(value)
+                    else -> throw IllegalStateException("It should not happen")
+                }
+            }
+        }
+
     }
 
     private val spelloutRules = SpelloutRules()
@@ -14873,6 +15185,14 @@ open class RBNFRu(val language: Language = Language.ru) : RBNF {
 
         val digitsOrdinalPluralAccusative = DigitsOrdinalPluralAccusative()
 
+        val digitsOrdinalMasculinePrepositional = DigitsOrdinalMasculinePrepositional()
+
+        val digitsOrdinalNeuterPrepositional = DigitsOrdinalNeuterPrepositional()
+
+        val digitsOrdinalFemininePrepositional = DigitsOrdinalFemininePrepositional()
+
+        val digitsOrdinalPluralPrepositional = DigitsOrdinalPluralPrepositional()
+
         val digitsOrdinalMasculineLocative = DigitsOrdinalMasculineLocative()
 
         val digitsOrdinalNeuterLocative = DigitsOrdinalNeuterLocative()
@@ -14880,6 +15200,14 @@ open class RBNFRu(val language: Language = Language.ru) : RBNF {
         val digitsOrdinalFeminineLocative = DigitsOrdinalFeminineLocative()
 
         val digitsOrdinalPluralLocative = DigitsOrdinalPluralLocative()
+
+        val digitsOrdinalMasculineInstrumental = DigitsOrdinalMasculineInstrumental()
+
+        val digitsOrdinalNeuterInstrumental = DigitsOrdinalNeuterInstrumental()
+
+        val digitsOrdinalFeminineInstrumental = DigitsOrdinalFeminineInstrumental()
+
+        val digitsOrdinalPluralInstrumental = DigitsOrdinalPluralInstrumental()
 
         val digitsOrdinalMasculineAblative = DigitsOrdinalMasculineAblative()
 
@@ -15714,7 +16042,7 @@ open class RBNFRu(val language: Language = Language.ru) : RBNF {
             }
         }
 
-        private inner class DigitsOrdinalMasculineLocative : NumberFormatter {
+        private inner class DigitsOrdinalMasculinePrepositional : NumberFormatter {
             override fun format(value: Double): String {
                 if (value < 0L) {
                     return "−" + format(kotlin.math.abs(value))
@@ -15727,7 +16055,7 @@ open class RBNFRu(val language: Language = Language.ru) : RBNF {
                     secondary_grouping = 3,
                     symbols = language.numbers.symbols
                 ).format(value) + "-м" else {
-                    throw UnsupportedOperationException("digitsOrdinalMasculineLocative only supports numbers >= 0")
+                    throw UnsupportedOperationException("digitsOrdinalMasculinePrepositional only supports numbers >= 0")
                 }
             }
 
@@ -15743,7 +16071,7 @@ open class RBNFRu(val language: Language = Language.ru) : RBNF {
                     secondary_grouping = 3,
                     symbols = language.numbers.symbols
                 ).format(value) + "-м" else {
-                    throw UnsupportedOperationException("digitsOrdinalMasculineLocative only supports numbers >= 0")
+                    throw UnsupportedOperationException("digitsOrdinalMasculinePrepositional only supports numbers >= 0")
                 }
             }
 
@@ -15763,7 +16091,7 @@ open class RBNFRu(val language: Language = Language.ru) : RBNF {
             }
         }
 
-        private inner class DigitsOrdinalNeuterLocative : NumberFormatter {
+        private inner class DigitsOrdinalNeuterPrepositional : NumberFormatter {
             override fun format(value: Double): String {
                 if (value < 0L) {
                     return "−" + format(kotlin.math.abs(value))
@@ -15776,7 +16104,7 @@ open class RBNFRu(val language: Language = Language.ru) : RBNF {
                     secondary_grouping = 3,
                     symbols = language.numbers.symbols
                 ).format(value) + "-м" else {
-                    throw UnsupportedOperationException("digitsOrdinalNeuterLocative only supports numbers >= 0")
+                    throw UnsupportedOperationException("digitsOrdinalNeuterPrepositional only supports numbers >= 0")
                 }
             }
 
@@ -15792,7 +16120,7 @@ open class RBNFRu(val language: Language = Language.ru) : RBNF {
                     secondary_grouping = 3,
                     symbols = language.numbers.symbols
                 ).format(value) + "-м" else {
-                    throw UnsupportedOperationException("digitsOrdinalNeuterLocative only supports numbers >= 0")
+                    throw UnsupportedOperationException("digitsOrdinalNeuterPrepositional only supports numbers >= 0")
                 }
             }
 
@@ -15812,7 +16140,7 @@ open class RBNFRu(val language: Language = Language.ru) : RBNF {
             }
         }
 
-        private inner class DigitsOrdinalFeminineLocative : NumberFormatter {
+        private inner class DigitsOrdinalFemininePrepositional : NumberFormatter {
             override fun format(value: Double): String {
                 if (value < 0L) {
                     return "−" + format(kotlin.math.abs(value))
@@ -15825,7 +16153,7 @@ open class RBNFRu(val language: Language = Language.ru) : RBNF {
                     secondary_grouping = 3,
                     symbols = language.numbers.symbols
                 ).format(value) + "-й" else {
-                    throw UnsupportedOperationException("digitsOrdinalFeminineLocative only supports numbers >= 0")
+                    throw UnsupportedOperationException("digitsOrdinalFemininePrepositional only supports numbers >= 0")
                 }
             }
 
@@ -15841,7 +16169,7 @@ open class RBNFRu(val language: Language = Language.ru) : RBNF {
                     secondary_grouping = 3,
                     symbols = language.numbers.symbols
                 ).format(value) + "-й" else {
-                    throw UnsupportedOperationException("digitsOrdinalFeminineLocative only supports numbers >= 0")
+                    throw UnsupportedOperationException("digitsOrdinalFemininePrepositional only supports numbers >= 0")
                 }
             }
 
@@ -15861,7 +16189,7 @@ open class RBNFRu(val language: Language = Language.ru) : RBNF {
             }
         }
 
-        private inner class DigitsOrdinalPluralLocative : NumberFormatter {
+        private inner class DigitsOrdinalPluralPrepositional : NumberFormatter {
             override fun format(value: Double): String {
                 if (value < 0L) {
                     return "−" + format(kotlin.math.abs(value))
@@ -15874,7 +16202,7 @@ open class RBNFRu(val language: Language = Language.ru) : RBNF {
                     secondary_grouping = 3,
                     symbols = language.numbers.symbols
                 ).format(value) + "-х" else {
-                    throw UnsupportedOperationException("digitsOrdinalPluralLocative only supports numbers >= 0")
+                    throw UnsupportedOperationException("digitsOrdinalPluralPrepositional only supports numbers >= 0")
                 }
             }
 
@@ -15890,7 +16218,7 @@ open class RBNFRu(val language: Language = Language.ru) : RBNF {
                     secondary_grouping = 3,
                     symbols = language.numbers.symbols
                 ).format(value) + "-х" else {
-                    throw UnsupportedOperationException("digitsOrdinalPluralLocative only supports numbers >= 0")
+                    throw UnsupportedOperationException("digitsOrdinalPluralPrepositional only supports numbers >= 0")
                 }
             }
 
@@ -15910,7 +16238,83 @@ open class RBNFRu(val language: Language = Language.ru) : RBNF {
             }
         }
 
-        private inner class DigitsOrdinalMasculineAblative : NumberFormatter {
+        private inner class DigitsOrdinalMasculineLocative : NumberFormatter {
+            override fun format(value: Double): String {
+                return if (value >= 0.0) digitsOrdinalMasculinePrepositional.format(value) else {
+                    throw UnsupportedOperationException("digitsOrdinalMasculineLocative only supports numbers >= 0")
+                }
+            }
+
+            override fun format(value: Long): String {
+                return digitsOrdinalMasculinePrepositional.format(value)
+            }
+
+            fun formatF(value: Double): String {
+                return when (listOf<Long>(0).bestDenominatorOrNull(value)!!) {
+                    0L -> digitsOrdinalMasculinePrepositional.format(value)
+                    else -> throw IllegalStateException("It should not happen")
+                }
+            }
+        }
+
+        private inner class DigitsOrdinalNeuterLocative : NumberFormatter {
+            override fun format(value: Double): String {
+                return if (value >= 0.0) digitsOrdinalNeuterPrepositional.format(value) else {
+                    throw UnsupportedOperationException("digitsOrdinalNeuterLocative only supports numbers >= 0")
+                }
+            }
+
+            override fun format(value: Long): String {
+                return digitsOrdinalNeuterPrepositional.format(value)
+            }
+
+            fun formatF(value: Double): String {
+                return when (listOf<Long>(0).bestDenominatorOrNull(value)!!) {
+                    0L -> digitsOrdinalNeuterPrepositional.format(value)
+                    else -> throw IllegalStateException("It should not happen")
+                }
+            }
+        }
+
+        private inner class DigitsOrdinalFeminineLocative : NumberFormatter {
+            override fun format(value: Double): String {
+                return if (value >= 0.0) digitsOrdinalFemininePrepositional.format(value) else {
+                    throw UnsupportedOperationException("digitsOrdinalFeminineLocative only supports numbers >= 0")
+                }
+            }
+
+            override fun format(value: Long): String {
+                return digitsOrdinalFemininePrepositional.format(value)
+            }
+
+            fun formatF(value: Double): String {
+                return when (listOf<Long>(0).bestDenominatorOrNull(value)!!) {
+                    0L -> digitsOrdinalFemininePrepositional.format(value)
+                    else -> throw IllegalStateException("It should not happen")
+                }
+            }
+        }
+
+        private inner class DigitsOrdinalPluralLocative : NumberFormatter {
+            override fun format(value: Double): String {
+                return if (value >= 0.0) digitsOrdinalPluralPrepositional.format(value) else {
+                    throw UnsupportedOperationException("digitsOrdinalPluralLocative only supports numbers >= 0")
+                }
+            }
+
+            override fun format(value: Long): String {
+                return digitsOrdinalPluralPrepositional.format(value)
+            }
+
+            fun formatF(value: Double): String {
+                return when (listOf<Long>(0).bestDenominatorOrNull(value)!!) {
+                    0L -> digitsOrdinalPluralPrepositional.format(value)
+                    else -> throw IllegalStateException("It should not happen")
+                }
+            }
+        }
+
+        private inner class DigitsOrdinalMasculineInstrumental : NumberFormatter {
             override fun format(value: Double): String {
                 if (value < 0L) {
                     return "−" + format(kotlin.math.abs(value))
@@ -15923,7 +16327,7 @@ open class RBNFRu(val language: Language = Language.ru) : RBNF {
                     secondary_grouping = 3,
                     symbols = language.numbers.symbols
                 ).format(value) + "-м" else {
-                    throw UnsupportedOperationException("digitsOrdinalMasculineAblative only supports numbers >= 0")
+                    throw UnsupportedOperationException("digitsOrdinalMasculineInstrumental only supports numbers >= 0")
                 }
             }
 
@@ -15939,7 +16343,7 @@ open class RBNFRu(val language: Language = Language.ru) : RBNF {
                     secondary_grouping = 3,
                     symbols = language.numbers.symbols
                 ).format(value) + "-м" else {
-                    throw UnsupportedOperationException("digitsOrdinalMasculineAblative only supports numbers >= 0")
+                    throw UnsupportedOperationException("digitsOrdinalMasculineInstrumental only supports numbers >= 0")
                 }
             }
 
@@ -15959,7 +16363,7 @@ open class RBNFRu(val language: Language = Language.ru) : RBNF {
             }
         }
 
-        private inner class DigitsOrdinalNeuterAblative : NumberFormatter {
+        private inner class DigitsOrdinalNeuterInstrumental : NumberFormatter {
             override fun format(value: Double): String {
                 if (value < 0L) {
                     return "−" + format(kotlin.math.abs(value))
@@ -15972,7 +16376,7 @@ open class RBNFRu(val language: Language = Language.ru) : RBNF {
                     secondary_grouping = 3,
                     symbols = language.numbers.symbols
                 ).format(value) + "-м" else {
-                    throw UnsupportedOperationException("digitsOrdinalNeuterAblative only supports numbers >= 0")
+                    throw UnsupportedOperationException("digitsOrdinalNeuterInstrumental only supports numbers >= 0")
                 }
             }
 
@@ -15988,7 +16392,7 @@ open class RBNFRu(val language: Language = Language.ru) : RBNF {
                     secondary_grouping = 3,
                     symbols = language.numbers.symbols
                 ).format(value) + "-м" else {
-                    throw UnsupportedOperationException("digitsOrdinalNeuterAblative only supports numbers >= 0")
+                    throw UnsupportedOperationException("digitsOrdinalNeuterInstrumental only supports numbers >= 0")
                 }
             }
 
@@ -16008,7 +16412,7 @@ open class RBNFRu(val language: Language = Language.ru) : RBNF {
             }
         }
 
-        private inner class DigitsOrdinalFeminineAblative : NumberFormatter {
+        private inner class DigitsOrdinalFeminineInstrumental : NumberFormatter {
             override fun format(value: Double): String {
                 if (value < 0L) {
                     return "−" + format(kotlin.math.abs(value))
@@ -16021,7 +16425,7 @@ open class RBNFRu(val language: Language = Language.ru) : RBNF {
                     secondary_grouping = 3,
                     symbols = language.numbers.symbols
                 ).format(value) + "-й" else {
-                    throw UnsupportedOperationException("digitsOrdinalFeminineAblative only supports numbers >= 0")
+                    throw UnsupportedOperationException("digitsOrdinalFeminineInstrumental only supports numbers >= 0")
                 }
             }
 
@@ -16037,7 +16441,7 @@ open class RBNFRu(val language: Language = Language.ru) : RBNF {
                     secondary_grouping = 3,
                     symbols = language.numbers.symbols
                 ).format(value) + "-й" else {
-                    throw UnsupportedOperationException("digitsOrdinalFeminineAblative only supports numbers >= 0")
+                    throw UnsupportedOperationException("digitsOrdinalFeminineInstrumental only supports numbers >= 0")
                 }
             }
 
@@ -16057,7 +16461,7 @@ open class RBNFRu(val language: Language = Language.ru) : RBNF {
             }
         }
 
-        private inner class DigitsOrdinalPluralAblative : NumberFormatter {
+        private inner class DigitsOrdinalPluralInstrumental : NumberFormatter {
             override fun format(value: Double): String {
                 if (value < 0L) {
                     return "−" + format(kotlin.math.abs(value))
@@ -16070,7 +16474,7 @@ open class RBNFRu(val language: Language = Language.ru) : RBNF {
                     secondary_grouping = 3,
                     symbols = language.numbers.symbols
                 ).format(value) + "-ми" else {
-                    throw UnsupportedOperationException("digitsOrdinalPluralAblative only supports numbers >= 0")
+                    throw UnsupportedOperationException("digitsOrdinalPluralInstrumental only supports numbers >= 0")
                 }
             }
 
@@ -16086,7 +16490,7 @@ open class RBNFRu(val language: Language = Language.ru) : RBNF {
                     secondary_grouping = 3,
                     symbols = language.numbers.symbols
                 ).format(value) + "-ми" else {
-                    throw UnsupportedOperationException("digitsOrdinalPluralAblative only supports numbers >= 0")
+                    throw UnsupportedOperationException("digitsOrdinalPluralInstrumental only supports numbers >= 0")
                 }
             }
 
@@ -16101,6 +16505,82 @@ open class RBNFRu(val language: Language = Language.ru) : RBNF {
                         symbols = language.numbers.symbols
                     ).format(value) + "-ми"
 
+                    else -> throw IllegalStateException("It should not happen")
+                }
+            }
+        }
+
+        private inner class DigitsOrdinalMasculineAblative : NumberFormatter {
+            override fun format(value: Double): String {
+                return if (value >= 0.0) digitsOrdinalMasculineInstrumental.format(value) else {
+                    throw UnsupportedOperationException("digitsOrdinalMasculineAblative only supports numbers >= 0")
+                }
+            }
+
+            override fun format(value: Long): String {
+                return digitsOrdinalMasculineInstrumental.format(value)
+            }
+
+            fun formatF(value: Double): String {
+                return when (listOf<Long>(0).bestDenominatorOrNull(value)!!) {
+                    0L -> digitsOrdinalMasculineInstrumental.format(value)
+                    else -> throw IllegalStateException("It should not happen")
+                }
+            }
+        }
+
+        private inner class DigitsOrdinalNeuterAblative : NumberFormatter {
+            override fun format(value: Double): String {
+                return if (value >= 0.0) digitsOrdinalNeuterInstrumental.format(value) else {
+                    throw UnsupportedOperationException("digitsOrdinalNeuterAblative only supports numbers >= 0")
+                }
+            }
+
+            override fun format(value: Long): String {
+                return digitsOrdinalNeuterInstrumental.format(value)
+            }
+
+            fun formatF(value: Double): String {
+                return when (listOf<Long>(0).bestDenominatorOrNull(value)!!) {
+                    0L -> digitsOrdinalNeuterInstrumental.format(value)
+                    else -> throw IllegalStateException("It should not happen")
+                }
+            }
+        }
+
+        private inner class DigitsOrdinalFeminineAblative : NumberFormatter {
+            override fun format(value: Double): String {
+                return if (value >= 0.0) digitsOrdinalFeminineInstrumental.format(value) else {
+                    throw UnsupportedOperationException("digitsOrdinalFeminineAblative only supports numbers >= 0")
+                }
+            }
+
+            override fun format(value: Long): String {
+                return digitsOrdinalFeminineInstrumental.format(value)
+            }
+
+            fun formatF(value: Double): String {
+                return when (listOf<Long>(0).bestDenominatorOrNull(value)!!) {
+                    0L -> digitsOrdinalFeminineInstrumental.format(value)
+                    else -> throw IllegalStateException("It should not happen")
+                }
+            }
+        }
+
+        private inner class DigitsOrdinalPluralAblative : NumberFormatter {
+            override fun format(value: Double): String {
+                return if (value >= 0.0) digitsOrdinalPluralInstrumental.format(value) else {
+                    throw UnsupportedOperationException("digitsOrdinalPluralAblative only supports numbers >= 0")
+                }
+            }
+
+            override fun format(value: Long): String {
+                return digitsOrdinalPluralInstrumental.format(value)
+            }
+
+            fun formatF(value: Double): String {
+                return when (listOf<Long>(0).bestDenominatorOrNull(value)!!) {
+                    0L -> digitsOrdinalPluralInstrumental.format(value)
                     else -> throw IllegalStateException("It should not happen")
                 }
             }
@@ -16145,6 +16625,14 @@ open class RBNFRu(val language: Language = Language.ru) : RBNF {
         get() = spelloutRules.spelloutCardinalFeminineAccusative
     open val spelloutCardinalPluralAccusative: NumberFormatter
         get() = spelloutRules.spelloutCardinalPluralAccusative
+    open val spelloutCardinalMasculinePrepositional: NumberFormatter
+        get() = spelloutRules.spelloutCardinalMasculinePrepositional
+    open val spelloutCardinalNeuterPrepositional: NumberFormatter
+        get() = spelloutRules.spelloutCardinalNeuterPrepositional
+    open val spelloutCardinalFemininePrepositional: NumberFormatter
+        get() = spelloutRules.spelloutCardinalFemininePrepositional
+    open val spelloutCardinalPluralPrepositional: NumberFormatter
+        get() = spelloutRules.spelloutCardinalPluralPrepositional
     open val spelloutCardinalMasculineLocative: NumberFormatter
         get() = spelloutRules.spelloutCardinalMasculineLocative
     open val spelloutCardinalNeuterLocative: NumberFormatter
@@ -16153,6 +16641,14 @@ open class RBNFRu(val language: Language = Language.ru) : RBNF {
         get() = spelloutRules.spelloutCardinalFeminineLocative
     open val spelloutCardinalPluralLocative: NumberFormatter
         get() = spelloutRules.spelloutCardinalPluralLocative
+    open val spelloutCardinalMasculineInstrumental: NumberFormatter
+        get() = spelloutRules.spelloutCardinalMasculineInstrumental
+    open val spelloutCardinalNeuterInstrumental: NumberFormatter
+        get() = spelloutRules.spelloutCardinalNeuterInstrumental
+    open val spelloutCardinalFeminineInstrumental: NumberFormatter
+        get() = spelloutRules.spelloutCardinalFeminineInstrumental
+    open val spelloutCardinalPluralInstrumental: NumberFormatter
+        get() = spelloutRules.spelloutCardinalPluralInstrumental
     open val spelloutCardinalMasculineAblative: NumberFormatter
         get() = spelloutRules.spelloutCardinalMasculineAblative
     open val spelloutCardinalNeuterAblative: NumberFormatter
@@ -16193,6 +16689,14 @@ open class RBNFRu(val language: Language = Language.ru) : RBNF {
         get() = spelloutRules.spelloutOrdinalFeminineAccusative
     open val spelloutOrdinalPluralAccusative: NumberFormatter
         get() = spelloutRules.spelloutOrdinalPluralAccusative
+    open val spelloutOrdinalMasculinePrepositional: NumberFormatter
+        get() = spelloutRules.spelloutOrdinalMasculinePrepositional
+    open val spelloutOrdinalNeuterPrepositional: NumberFormatter
+        get() = spelloutRules.spelloutOrdinalNeuterPrepositional
+    open val spelloutOrdinalFemininePrepositional: NumberFormatter
+        get() = spelloutRules.spelloutOrdinalFemininePrepositional
+    open val spelloutOrdinalPluralPrepositional: NumberFormatter
+        get() = spelloutRules.spelloutOrdinalPluralPrepositional
     open val spelloutOrdinalMasculineLocative: NumberFormatter
         get() = spelloutRules.spelloutOrdinalMasculineLocative
     open val spelloutOrdinalNeuterLocative: NumberFormatter
@@ -16201,6 +16705,14 @@ open class RBNFRu(val language: Language = Language.ru) : RBNF {
         get() = spelloutRules.spelloutOrdinalFeminineLocative
     open val spelloutOrdinalPluralLocative: NumberFormatter
         get() = spelloutRules.spelloutOrdinalPluralLocative
+    open val spelloutOrdinalMasculineInstrumental: NumberFormatter
+        get() = spelloutRules.spelloutOrdinalMasculineInstrumental
+    open val spelloutOrdinalNeuterInstrumental: NumberFormatter
+        get() = spelloutRules.spelloutOrdinalNeuterInstrumental
+    open val spelloutOrdinalFeminineInstrumental: NumberFormatter
+        get() = spelloutRules.spelloutOrdinalFeminineInstrumental
+    open val spelloutOrdinalPluralInstrumental: NumberFormatter
+        get() = spelloutRules.spelloutOrdinalPluralInstrumental
     open val spelloutOrdinalMasculineAblative: NumberFormatter
         get() = spelloutRules.spelloutOrdinalMasculineAblative
     open val spelloutOrdinalNeuterAblative: NumberFormatter
@@ -16243,6 +16755,14 @@ open class RBNFRu(val language: Language = Language.ru) : RBNF {
         get() = ordinalRules.digitsOrdinalFeminineAccusative
     open val digitsOrdinalPluralAccusative: NumberFormatter
         get() = ordinalRules.digitsOrdinalPluralAccusative
+    open val digitsOrdinalMasculinePrepositional: NumberFormatter
+        get() = ordinalRules.digitsOrdinalMasculinePrepositional
+    open val digitsOrdinalNeuterPrepositional: NumberFormatter
+        get() = ordinalRules.digitsOrdinalNeuterPrepositional
+    open val digitsOrdinalFemininePrepositional: NumberFormatter
+        get() = ordinalRules.digitsOrdinalFemininePrepositional
+    open val digitsOrdinalPluralPrepositional: NumberFormatter
+        get() = ordinalRules.digitsOrdinalPluralPrepositional
     open val digitsOrdinalMasculineLocative: NumberFormatter
         get() = ordinalRules.digitsOrdinalMasculineLocative
     open val digitsOrdinalNeuterLocative: NumberFormatter
@@ -16251,6 +16771,14 @@ open class RBNFRu(val language: Language = Language.ru) : RBNF {
         get() = ordinalRules.digitsOrdinalFeminineLocative
     open val digitsOrdinalPluralLocative: NumberFormatter
         get() = ordinalRules.digitsOrdinalPluralLocative
+    open val digitsOrdinalMasculineInstrumental: NumberFormatter
+        get() = ordinalRules.digitsOrdinalMasculineInstrumental
+    open val digitsOrdinalNeuterInstrumental: NumberFormatter
+        get() = ordinalRules.digitsOrdinalNeuterInstrumental
+    open val digitsOrdinalFeminineInstrumental: NumberFormatter
+        get() = ordinalRules.digitsOrdinalFeminineInstrumental
+    open val digitsOrdinalPluralInstrumental: NumberFormatter
+        get() = ordinalRules.digitsOrdinalPluralInstrumental
     open val digitsOrdinalMasculineAblative: NumberFormatter
         get() = ordinalRules.digitsOrdinalMasculineAblative
     open val digitsOrdinalNeuterAblative: NumberFormatter
@@ -16259,40 +16787,55 @@ open class RBNFRu(val language: Language = Language.ru) : RBNF {
         get() = ordinalRules.digitsOrdinalFeminineAblative
     open val digitsOrdinalPluralAblative: NumberFormatter
         get() = ordinalRules.digitsOrdinalPluralAblative
-    override val spelloutOrdinal: NumberFormatter
-        get() = TODO("spelloutOrdinal is not available for ru")
     override val spelloutCardinal: NumberFormatter
         get() = TODO("spelloutCardinal is not available for ru")
+    override val spelloutOrdinal: NumberFormatter
+        get() = TODO("spelloutOrdinal is not available for ru")
 
-    fun spelloutCardinalFor(gender: Gender, case: Case): NumberFormatter {
+    override fun spelloutNumberingFor(gender: Gender, case: Case): NumberFormatter {
+        return spelloutNumbering
+
+    }
+
+    fun spelloutNumberingFor(): NumberFormatter {
+        return spelloutNumberingFor(Gender.Neuter, Case.Nominative)
+    }
+
+    override fun spelloutCardinalFor(gender: Gender, case: Case): NumberFormatter {
         return when (gender) {
             Gender.Neuter -> when (case) {
                 Case.Nominative -> spelloutCardinalNeuter
                 Case.Locative -> spelloutCardinalNeuterLocative
-                Case.Dative -> spelloutCardinalNeuterDative
                 Case.Genitive -> spelloutCardinalNeuterGenitive
-                Case.Ablative -> spelloutCardinalNeuterAblative
                 Case.Accusative -> spelloutCardinalNeuterAccusative
+                Case.Prepositional -> spelloutCardinalNeuterPrepositional
+                Case.Ablative -> spelloutCardinalNeuterAblative
+                Case.Instrumental -> spelloutCardinalNeuterInstrumental
+                Case.Dative -> spelloutCardinalNeuterDative
                 else -> TODO("ru does not support $case case")
             }
 
             Gender.Masculine -> when (case) {
                 Case.Nominative -> spelloutCardinalMasculine
                 Case.Locative -> spelloutCardinalMasculineLocative
-                Case.Dative -> spelloutCardinalMasculineDative
                 Case.Genitive -> spelloutCardinalMasculineGenitive
-                Case.Ablative -> spelloutCardinalMasculineAblative
                 Case.Accusative -> spelloutCardinalMasculineAccusative
+                Case.Prepositional -> spelloutCardinalMasculinePrepositional
+                Case.Ablative -> spelloutCardinalMasculineAblative
+                Case.Instrumental -> spelloutCardinalMasculineInstrumental
+                Case.Dative -> spelloutCardinalMasculineDative
                 else -> TODO("ru does not support $case case")
             }
 
             Gender.Feminine -> when (case) {
                 Case.Nominative -> spelloutCardinalFeminine
                 Case.Locative -> spelloutCardinalFeminineLocative
-                Case.Dative -> spelloutCardinalFeminineDative
                 Case.Genitive -> spelloutCardinalFeminineGenitive
-                Case.Ablative -> spelloutCardinalFeminineAblative
                 Case.Accusative -> spelloutCardinalFeminineAccusative
+                Case.Prepositional -> spelloutCardinalFemininePrepositional
+                Case.Ablative -> spelloutCardinalFeminineAblative
+                Case.Instrumental -> spelloutCardinalFeminineInstrumental
+                Case.Dative -> spelloutCardinalFeminineDative
                 else -> TODO("ru does not support $case case")
             }
 
@@ -16301,35 +16844,41 @@ open class RBNFRu(val language: Language = Language.ru) : RBNF {
 
     }
 
-    fun spelloutOrdinalFor(gender: Gender, case: Case): NumberFormatter {
+    override fun spelloutOrdinalFor(gender: Gender, case: Case): NumberFormatter {
         return when (gender) {
             Gender.Neuter -> when (case) {
                 Case.Nominative -> spelloutOrdinalNeuter
                 Case.Locative -> spelloutOrdinalNeuterLocative
-                Case.Dative -> spelloutOrdinalNeuterDative
                 Case.Genitive -> spelloutOrdinalNeuterGenitive
-                Case.Ablative -> spelloutOrdinalNeuterAblative
                 Case.Accusative -> spelloutOrdinalNeuterAccusative
+                Case.Prepositional -> spelloutOrdinalNeuterPrepositional
+                Case.Ablative -> spelloutOrdinalNeuterAblative
+                Case.Instrumental -> spelloutOrdinalNeuterInstrumental
+                Case.Dative -> spelloutOrdinalNeuterDative
                 else -> TODO("ru does not support $case case")
             }
 
             Gender.Masculine -> when (case) {
                 Case.Nominative -> spelloutOrdinalMasculine
                 Case.Locative -> spelloutOrdinalMasculineLocative
-                Case.Dative -> spelloutOrdinalMasculineDative
                 Case.Genitive -> spelloutOrdinalMasculineGenitive
-                Case.Ablative -> spelloutOrdinalMasculineAblative
                 Case.Accusative -> spelloutOrdinalMasculineAccusative
+                Case.Prepositional -> spelloutOrdinalMasculinePrepositional
+                Case.Ablative -> spelloutOrdinalMasculineAblative
+                Case.Instrumental -> spelloutOrdinalMasculineInstrumental
+                Case.Dative -> spelloutOrdinalMasculineDative
                 else -> TODO("ru does not support $case case")
             }
 
             Gender.Feminine -> when (case) {
                 Case.Nominative -> spelloutOrdinalFeminine
                 Case.Locative -> spelloutOrdinalFeminineLocative
-                Case.Dative -> spelloutOrdinalFeminineDative
                 Case.Genitive -> spelloutOrdinalFeminineGenitive
-                Case.Ablative -> spelloutOrdinalFeminineAblative
                 Case.Accusative -> spelloutOrdinalFeminineAccusative
+                Case.Prepositional -> spelloutOrdinalFemininePrepositional
+                Case.Ablative -> spelloutOrdinalFeminineAblative
+                Case.Instrumental -> spelloutOrdinalFeminineInstrumental
+                Case.Dative -> spelloutOrdinalFeminineDative
                 else -> TODO("ru does not support $case case")
             }
 
@@ -16340,38 +16889,48 @@ open class RBNFRu(val language: Language = Language.ru) : RBNF {
 
     fun digitsOrdinalFor(gender: Gender, case: Case): NumberFormatter {
         return when (gender) {
-            Gender.Neuter -> when (case) {
-                Case.Nominative -> digitsOrdinalNeuter
-                Case.Locative -> digitsOrdinalNeuterLocative
-                Case.Dative -> digitsOrdinalNeuterDative
-                Case.Genitive -> digitsOrdinalNeuterGenitive
-                Case.Ablative -> digitsOrdinalNeuterAblative
-                Case.Accusative -> digitsOrdinalNeuterAccusative
+            Gender.Feminine -> when (case) {
+                Case.Nominative -> digitsOrdinalFeminine
+                Case.Locative -> digitsOrdinalFeminineLocative
+                Case.Genitive -> digitsOrdinalFeminineGenitive
+                Case.Accusative -> digitsOrdinalFeminineAccusative
+                Case.Prepositional -> digitsOrdinalFemininePrepositional
+                Case.Ablative -> digitsOrdinalFeminineAblative
+                Case.Instrumental -> digitsOrdinalFeminineInstrumental
+                Case.Dative -> digitsOrdinalFeminineDative
                 else -> TODO("ru does not support $case case")
             }
 
             Gender.Masculine -> when (case) {
                 Case.Nominative -> digitsOrdinalMasculine
                 Case.Locative -> digitsOrdinalMasculineLocative
-                Case.Dative -> digitsOrdinalMasculineDative
                 Case.Genitive -> digitsOrdinalMasculineGenitive
-                Case.Ablative -> digitsOrdinalMasculineAblative
                 Case.Accusative -> digitsOrdinalMasculineAccusative
+                Case.Prepositional -> digitsOrdinalMasculinePrepositional
+                Case.Ablative -> digitsOrdinalMasculineAblative
+                Case.Instrumental -> digitsOrdinalMasculineInstrumental
+                Case.Dative -> digitsOrdinalMasculineDative
                 else -> TODO("ru does not support $case case")
             }
 
-            Gender.Feminine -> when (case) {
-                Case.Nominative -> digitsOrdinalFeminine
-                Case.Locative -> digitsOrdinalFeminineLocative
-                Case.Dative -> digitsOrdinalFeminineDative
-                Case.Genitive -> digitsOrdinalFeminineGenitive
-                Case.Ablative -> digitsOrdinalFeminineAblative
-                Case.Accusative -> digitsOrdinalFeminineAccusative
+            Gender.Neuter -> when (case) {
+                Case.Nominative -> digitsOrdinalNeuter
+                Case.Locative -> digitsOrdinalNeuterLocative
+                Case.Genitive -> digitsOrdinalNeuterGenitive
+                Case.Accusative -> digitsOrdinalNeuterAccusative
+                Case.Prepositional -> digitsOrdinalNeuterPrepositional
+                Case.Ablative -> digitsOrdinalNeuterAblative
+                Case.Instrumental -> digitsOrdinalNeuterInstrumental
+                Case.Dative -> digitsOrdinalNeuterDative
                 else -> TODO("ru does not support $case case")
             }
 
             else -> TODO("ru does not support $gender gender")
         }
 
+    }
+
+    override fun spelloutNumberingYearFor(gender: Gender, case: Case): NumberFormatter {
+        TODO("spelloutNumberingYear is not available for ru")
     }
 }

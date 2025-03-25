@@ -1,11 +1,9 @@
 package info.leonenko.i18n.languages
-
 import info.leonenko.i18n.Language
 
 val Language.Companion.id_ID
     get() = languageId_ID
 private val languageId_ID = LanguageId_ID()
-
 class LanguageId_ID internal constructor() : LanguageId() {
     override val code: String = "id_ID"
     override val script: String? = null

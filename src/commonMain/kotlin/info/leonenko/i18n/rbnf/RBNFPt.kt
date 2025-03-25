@@ -1956,35 +1956,60 @@ open class RBNFPt(val language: Language = Language.pt) : RBNF {
         get() = ordinalRules.digitsOrdinalFeminine
     open val digitsOrdinal: NumberFormatter
         get() = ordinalRules.digitsOrdinal
-    override val spelloutOrdinal: NumberFormatter
-        get() = TODO("spelloutOrdinal is not available for pt")
     override val spelloutCardinal: NumberFormatter
         get() = TODO("spelloutCardinal is not available for pt")
+    override val spelloutOrdinal: NumberFormatter
+        get() = TODO("spelloutOrdinal is not available for pt")
+
+    override fun spelloutNumberingFor(gender: Gender, case: Case): NumberFormatter {
+        return spelloutNumbering
+
+    }
+
+    fun spelloutNumberingFor(): NumberFormatter {
+        return spelloutNumberingFor(Gender.Neuter, Case.Nominative)
+    }
+
+    override fun spelloutCardinalFor(gender: Gender, case: Case): NumberFormatter {
+        return when (gender) {
+            Gender.Feminine -> spelloutCardinalFeminine
+            Gender.Masculine -> spelloutCardinalMasculine
+            else -> TODO("pt does not support $gender gender")
+        }
+
+    }
 
     fun spelloutCardinalFor(gender: Gender): NumberFormatter {
+        return spelloutCardinalFor(gender, Case.Nominative)
+    }
+
+    override fun spelloutOrdinalFor(gender: Gender, case: Case): NumberFormatter {
         return when (gender) {
-            Gender.Masculine -> spelloutCardinalMasculine
-            Gender.Feminine -> spelloutCardinalFeminine
+            Gender.Feminine -> spelloutOrdinalFeminine
+            Gender.Masculine -> spelloutOrdinalMasculine
             else -> TODO("pt does not support $gender gender")
         }
 
     }
 
     fun spelloutOrdinalFor(gender: Gender): NumberFormatter {
+        return spelloutOrdinalFor(gender, Case.Nominative)
+    }
+
+    fun digitsOrdinalFor(gender: Gender, case: Case): NumberFormatter {
         return when (gender) {
-            Gender.Masculine -> spelloutOrdinalMasculine
-            Gender.Feminine -> spelloutOrdinalFeminine
+            Gender.Feminine -> digitsOrdinalFeminine
+            Gender.Masculine -> digitsOrdinalMasculine
             else -> TODO("pt does not support $gender gender")
         }
 
     }
 
     fun digitsOrdinalFor(gender: Gender): NumberFormatter {
-        return when (gender) {
-            Gender.Masculine -> digitsOrdinalMasculine
-            Gender.Feminine -> digitsOrdinalFeminine
-            else -> TODO("pt does not support $gender gender")
-        }
+        return digitsOrdinalFor(gender, Case.Nominative)
+    }
 
+    override fun spelloutNumberingYearFor(gender: Gender, case: Case): NumberFormatter {
+        TODO("spelloutNumberingYear is not available for pt")
     }
 }

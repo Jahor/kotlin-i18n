@@ -5,7 +5,6 @@ import info.leonenko.i18n.*
 val Language.Companion.es_PR
     get() = languageEs_PR
 private val languageEs_PR = LanguageEs_PR()
-
 class LanguageEs_PR internal constructor() : LanguageEs() {
     override val code: String = "es_PR"
     override val script: String? = null

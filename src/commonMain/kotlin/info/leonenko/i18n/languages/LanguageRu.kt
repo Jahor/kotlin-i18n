@@ -6,7 +6,6 @@ import info.leonenko.i18n.rbnf.RBNFRu
 val Language.Companion.ru
     get() = languageRu
 private val languageRu = LanguageRu()
-
 open class LanguageRu internal constructor() : Language {
     override val code: String = "ru"
     override val language: String = "ru"
@@ -1259,7 +1258,7 @@ open class LanguageRu internal constructor() : Language {
         override val concentrationPermille
             get() = MultiLengthGenderedPattern(
                 long = GenderedPattern(
-                    gender = Gender.Feminine,
+                    gender = Gender.Neuter,
                     cases = Cases(
                         nominative = PluralPattern(
                             Plurals(
@@ -1397,12 +1396,53 @@ open class LanguageRu internal constructor() : Language {
         override val concentrationMilligramOfglucosePerDeciliter
             get() = MultiLengthGenderedPattern(
                 long = GenderedPattern(
+                    gender = Gender.Masculine,
                     cases = Cases(
                         nominative = PluralPattern(
                             Plurals(
                                 one = "{0} миллиграмм на децилитр",
                                 few = "{0} миллиграмма на децилитр",
                                 many = "{0} миллиграммов на децилитр",
+                                other = "{0} миллиграмма на децилитр",
+                            )
+                        ),
+                        accusative = PluralPattern(
+                            Plurals(
+                                one = "{0} миллиграмм на децилитр",
+                                few = "{0} миллиграмма на децилитр",
+                                many = "{0} миллиграммов на децилитр",
+                                other = "{0} миллиграмма на децилитр",
+                            )
+                        ),
+                        dative = PluralPattern(
+                            Plurals(
+                                one = "{0} миллиграмму на децилитр",
+                                few = "{0} миллиграммам на децилитр",
+                                many = "{0} миллиграммам на децилитр",
+                                other = "{0} миллиграмма на децилитр",
+                            )
+                        ),
+                        genitive = PluralPattern(
+                            Plurals(
+                                one = "{0} миллиграмма на децилитр",
+                                few = "{0} миллиграммов на децилитр",
+                                many = "{0} миллиграммов на децилитр",
+                                other = "{0} миллиграмма на децилитр",
+                            )
+                        ),
+                        instrumental = PluralPattern(
+                            Plurals(
+                                one = "{0} миллиграммом на децилитр",
+                                few = "{0} миллиграммами на децилитр",
+                                many = "{0} миллиграммами на децилитр",
+                                other = "{0} миллиграмма на децилитр",
+                            )
+                        ),
+                        prepositional = PluralPattern(
+                            Plurals(
+                                one = "{0} миллиграмме на децилитр",
+                                few = "{0} миллиграммах на децилитр",
+                                many = "{0} миллиграммах на децилитр",
                                 other = "{0} миллиграмма на децилитр",
                             )
                         ),
@@ -1489,8 +1529,62 @@ open class LanguageRu internal constructor() : Language {
                     )
                 ),
             )
-        override val concentrationItemPerCubicMeter: MultiLengthGenderedPattern
-            get() = TODO("ItemPerCubicMeter formatter is not implemented yet for ru")
+        override val concentrationPortionPer1e9
+            get() = MultiLengthGenderedPattern(
+                long = GenderedPattern(
+                    gender = Gender.Feminine,
+                    cases = Cases(
+                        nominative = PluralPattern(
+                            Plurals(
+                                one = "{0} миллиардная доля",
+                                few = "{0} миллиардные доли",
+                                many = "{0} миллиардных долей",
+                                other = "{0} миллиардной доли",
+                            )
+                        ),
+                        accusative = PluralPattern(
+                            Plurals(
+                                one = "{0} миллиардную долю",
+                                few = "{0} миллиардные доли",
+                                many = "{0} миллиардных долей",
+                                other = "{0} миллиардной доли",
+                            )
+                        ),
+                        dative = PluralPattern(
+                            Plurals(
+                                one = "{0} миллиардной доле",
+                                few = "{0} миллиардным долям",
+                                many = "{0} миллиардным долям",
+                                other = "{0} миллиардной доли",
+                            )
+                        ),
+                        genitive = PluralPattern(
+                            Plurals(
+                                one = "{0} миллиардной доли",
+                                few = "{0} миллиардных долей",
+                                many = "{0} миллиардных долей",
+                                other = "{0} миллиардной доли",
+                            )
+                        ),
+                        instrumental = PluralPattern(
+                            Plurals(
+                                one = "{0} миллиардной долей",
+                                few = "{0} миллиардными долями",
+                                many = "{0} миллиардными долями",
+                                other = "{0} миллиардной доли",
+                            )
+                        ),
+                        prepositional = PluralPattern(
+                            Plurals(
+                                one = "{0} миллиардной доле",
+                                few = "{0} миллиардных долях",
+                                many = "{0} миллиардных долях",
+                                other = "{0} миллиардной доли",
+                            )
+                        ),
+                    )
+                ),
+            )
         override val concentrationItem
             get() = MultiLengthGenderedPattern(
                 long = GenderedPattern(
@@ -2611,7 +2705,7 @@ open class LanguageRu internal constructor() : Language {
                     )
                 ),
             )
-        override val digitalByte
+        override val digitalByteUnit
             get() = MultiLengthGenderedPattern(
                 long = GenderedPattern(
                     gender = Gender.Masculine,
@@ -3723,6 +3817,86 @@ open class LanguageRu internal constructor() : Language {
                     )
                 ),
             )
+        override val durationNight
+            get() = MultiLengthGenderedPattern(
+                long = GenderedPattern(
+                    gender = Gender.Feminine,
+                    cases = Cases(
+                        nominative = PluralPattern(
+                            Plurals(
+                                one = "{0} ночь",
+                                few = "{0} ночи",
+                                many = "{0} ночей",
+                                other = "{0} ночи",
+                            )
+                        ),
+                        accusative = PluralPattern(
+                            Plurals(
+                                one = "{0} ночь",
+                                few = "{0} ночи",
+                                many = "{0} ночей",
+                                other = "{0} ночи",
+                            )
+                        ),
+                        dative = PluralPattern(
+                            Plurals(
+                                one = "{0} ночи",
+                                few = "{0} ночам",
+                                many = "{0} ночам",
+                                other = "{0} ночи",
+                            )
+                        ),
+                        genitive = PluralPattern(
+                            Plurals(
+                                one = "{0} ночи",
+                                few = "{0} ночей",
+                                many = "{0} ночей",
+                                other = "{0} ночи",
+                            )
+                        ),
+                        instrumental = PluralPattern(
+                            Plurals(
+                                one = "{0} ночью",
+                                few = "{0} ночами",
+                                many = "{0} ночами",
+                                other = "{0} ночи",
+                            )
+                        ),
+                        prepositional = PluralPattern(
+                            Plurals(
+                                one = "{0} ночи",
+                                few = "{0} ночах",
+                                many = "{0} ночах",
+                                other = "{0} ночи",
+                            )
+                        ),
+                    )
+                ),
+                short = GenderedPattern(
+                    cases = Cases(
+                        nominative = PluralPattern(
+                            Plurals(
+                                one = "{0} ноч.",
+                                few = "{0} ноч.",
+                                many = "{0} ноч.",
+                                other = "{0} ноч.",
+                            )
+                        ),
+                    )
+                ),
+                narrow = GenderedPattern(
+                    cases = Cases(
+                        nominative = PluralPattern(
+                            Plurals(
+                                one = "{0} ноч.",
+                                few = "{0} ноч.",
+                                many = "{0} ноч.",
+                                other = "{0} ноч.",
+                            )
+                        ),
+                    )
+                ),
+            )
         override val electricAmpere
             get() = MultiLengthGenderedPattern(
                 long = GenderedPattern(
@@ -4057,7 +4231,7 @@ open class LanguageRu internal constructor() : Language {
                                 one = "{0} килокалории",
                                 few = "{0} килокалориях",
                                 many = "{0} килокалориях",
-                                other = "{0} килокалориях",
+                                other = "{0} килокалории",
                             )
                         ),
                     )
@@ -6495,12 +6669,53 @@ open class LanguageRu internal constructor() : Language {
         override val lengthPoint
             get() = MultiLengthGenderedPattern(
                 long = GenderedPattern(
+                    gender = Gender.Masculine,
                     cases = Cases(
                         nominative = PluralPattern(
                             Plurals(
                                 one = "{0} пункт",
                                 few = "{0} пункта",
                                 many = "{0} пунктов",
+                                other = "{0} пункта",
+                            )
+                        ),
+                        accusative = PluralPattern(
+                            Plurals(
+                                one = "{0} пункт",
+                                few = "{0} пункта",
+                                many = "{0} пунктов",
+                                other = "{0} пункта",
+                            )
+                        ),
+                        dative = PluralPattern(
+                            Plurals(
+                                one = "{0} пункту",
+                                few = "{0} пунктам",
+                                many = "{0} пунктам",
+                                other = "{0} пункта",
+                            )
+                        ),
+                        genitive = PluralPattern(
+                            Plurals(
+                                one = "{0} пункта",
+                                few = "{0} пунктов",
+                                many = "{0} пунктов",
+                                other = "{0} пункта",
+                            )
+                        ),
+                        instrumental = PluralPattern(
+                            Plurals(
+                                one = "{0} пунктом",
+                                few = "{0} пунктами",
+                                many = "{0} пунктами",
+                                other = "{0} пункта",
+                            )
+                        ),
+                        prepositional = PluralPattern(
+                            Plurals(
+                                one = "{0} пункте",
+                                few = "{0} пунктах",
+                                many = "{0} пунктах",
                                 other = "{0} пункта",
                             )
                         ),
@@ -8184,12 +8399,53 @@ open class LanguageRu internal constructor() : Language {
         override val pressureMillimeterOfhg
             get() = MultiLengthGenderedPattern(
                 long = GenderedPattern(
+                    gender = Gender.Masculine,
                     cases = Cases(
                         nominative = PluralPattern(
                             Plurals(
                                 one = "{0} миллиметр ртутного столба",
                                 few = "{0} миллиметра ртутного столба",
                                 many = "{0} миллиметров ртутного столба",
+                                other = "{0} миллиметра ртутного столба",
+                            )
+                        ),
+                        accusative = PluralPattern(
+                            Plurals(
+                                one = "{0} миллиметр ртутного столба",
+                                few = "{0} миллиметра ртутного столба",
+                                many = "{0} миллиметров ртутного столба",
+                                other = "{0} миллиметра ртутного столба",
+                            )
+                        ),
+                        dative = PluralPattern(
+                            Plurals(
+                                one = "{0} миллиметру ртутного столба",
+                                few = "{0} миллиметрам ртутного столба",
+                                many = "{0} миллиметрам ртутного столба",
+                                other = "{0} миллиметра ртутного столба",
+                            )
+                        ),
+                        genitive = PluralPattern(
+                            Plurals(
+                                one = "{0} миллиметра ртутного столба",
+                                few = "{0} миллиметров ртутного столба",
+                                many = "{0} миллиметров ртутного столба",
+                                other = "{0} миллиметра ртутного столба",
+                            )
+                        ),
+                        instrumental = PluralPattern(
+                            Plurals(
+                                one = "{0} миллиметром ртутного столба",
+                                few = "{0} миллиметрами ртутного столба",
+                                many = "{0} миллиметрами ртутного столба",
+                                other = "{0} миллиметра ртутного столба",
+                            )
+                        ),
+                        prepositional = PluralPattern(
+                            Plurals(
+                                one = "{0} миллиметре ртутного столба",
+                                few = "{0} миллиметрах ртутного столба",
+                                many = "{0} миллиметрах ртутного столба",
                                 other = "{0} миллиметра ртутного столба",
                             )
                         ),
@@ -9032,6 +9288,8 @@ open class LanguageRu internal constructor() : Language {
                     )
                 ),
             )
+        override val speedLightSpeed: MultiLengthGenderedPattern
+            get() = TODO("LightSpeed formatter is not implemented yet for ru")
         override val temperatureGeneric
             get() = MultiLengthGenderedPattern(
                 long = GenderedPattern(

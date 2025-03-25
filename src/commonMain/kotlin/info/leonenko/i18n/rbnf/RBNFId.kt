@@ -67,7 +67,7 @@ open class RBNFId(val language: Language = Language.id) : RBNF {
                     return "negatif " + format(kotlin.math.abs(value))
                 }
                 return when (value) {
-                    0L -> "kosong"
+                    0L -> "nol"
                     1L -> "satu"
                     2L -> "dua"
                     3L -> "tiga"
@@ -193,7 +193,10 @@ open class RBNFId(val language: Language = Language.id) : RBNF {
             }
 
             private fun formatImproperFraction(value: Double): String {
-                return format(kotlin.math.truncate(value).toLong()) + " titik " + formatFractionalPartByDigit(kotlin.math.abs(value) - kotlin.math.truncate(kotlin.math.abs(value)), " ")
+                return when (language.numbers.symbols.decimalSymbol) {
+                    "," -> format(kotlin.math.truncate(value).toLong()) + " koma " + formatFractionalPartByDigit(kotlin.math.abs(value) - kotlin.math.truncate(kotlin.math.abs(value)), " ")
+                    else -> format(kotlin.math.truncate(value).toLong()) + " titik " + formatFractionalPartByDigit(kotlin.math.abs(value) - kotlin.math.truncate(kotlin.math.abs(value)), " ")
+                }
             }
         }
 
@@ -209,14 +212,22 @@ open class RBNFId(val language: Language = Language.id) : RBNF {
                 if (value < 0L) {
                     return "negatif " + format(kotlin.math.abs(value))
                 }
-                return if (value >= 0L) "ke" + spelloutCardinal.format(value) else {
-                    throw UnsupportedOperationException("spelloutOrdinal only supports numbers >= 0")
+                return when (value) {
+                    0L -> "ke" + spelloutCardinal.format(value)
+                    1L -> "pertama"
+                    else -> {
+                        if (value >= 2L) "ke" + spelloutCardinal.format(value) else {
+                            throw UnsupportedOperationException("spelloutOrdinal only supports numbers >= 0")
+                        }
+                    }
                 }
             }
 
             fun formatF(value: Double): String {
-                return when (listOf<Long>(0).bestDenominatorOrNull(value)!!) {
+                return when (listOf<Long>(0, 1, 2).bestDenominatorOrNull(value)!!) {
                     0L -> "ke" + spelloutCardinal.format(value)
+                    1L -> "pertama"
+                    2L -> "ke" + spelloutCardinal.format(value)
                     else -> throw IllegalStateException("It should not happen")
                 }
             }
@@ -294,4 +305,44 @@ open class RBNFId(val language: Language = Language.id) : RBNF {
         get() = spelloutRules.spelloutOrdinal
     open val digitsOrdinal: NumberFormatter
         get() = ordinalRules.digitsOrdinal
+
+    override fun spelloutNumberingFor(gender: Gender, case: Case): NumberFormatter {
+        return spelloutNumbering
+
+    }
+
+    fun spelloutNumberingFor(): NumberFormatter {
+        return spelloutNumberingFor(Gender.Neuter, Case.Nominative)
+    }
+
+    override fun spelloutCardinalFor(gender: Gender, case: Case): NumberFormatter {
+        return spelloutCardinal
+
+    }
+
+    fun spelloutCardinalFor(): NumberFormatter {
+        return spelloutCardinalFor(Gender.Neuter, Case.Nominative)
+    }
+
+    override fun spelloutOrdinalFor(gender: Gender, case: Case): NumberFormatter {
+        return spelloutOrdinal
+
+    }
+
+    fun spelloutOrdinalFor(): NumberFormatter {
+        return spelloutOrdinalFor(Gender.Neuter, Case.Nominative)
+    }
+
+    fun digitsOrdinalFor(gender: Gender, case: Case): NumberFormatter {
+        return digitsOrdinal
+
+    }
+
+    fun digitsOrdinalFor(): NumberFormatter {
+        return digitsOrdinalFor(Gender.Neuter, Case.Nominative)
+    }
+
+    override fun spelloutNumberingYearFor(gender: Gender, case: Case): NumberFormatter {
+        TODO("spelloutNumberingYear is not available for id")
+    }
 }

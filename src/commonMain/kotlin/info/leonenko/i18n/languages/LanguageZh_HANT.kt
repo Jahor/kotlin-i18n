@@ -5,7 +5,6 @@ import info.leonenko.i18n.*
 val Language.Companion.zh_HANT
     get() = languageZh_HANT
 private val languageZh_HANT = LanguageZh_HANT()
-
 open class LanguageZh_HANT internal constructor() : LanguageZh() {
     override val code: String = "zh#Hant"
     override val script: String = "Hant"
@@ -388,7 +387,7 @@ open class LanguageZh_HANT internal constructor() : LanguageZh() {
                     cases = Cases(
                         nominative = PluralPattern(
                             Plurals(
-                                other = "{0}in²",
+                                other = "{0}平方英寸",
                             )
                         ),
                     )
@@ -517,6 +516,28 @@ open class LanguageZh_HANT internal constructor() : LanguageZh() {
                         nominative = PluralPattern(
                             Plurals(
                                 other = "{0}毫莫耳/公升",
+                            )
+                        ),
+                    )
+                ),
+            )
+        override val concentrationPortionPer1e9
+            get() = MultiLengthGenderedPattern(
+                base = super.concentrationPortionPer1e9,
+                long = GenderedPattern(
+                    cases = Cases(
+                        nominative = PluralPattern(
+                            Plurals(
+                                other = "{0} 十億分點濃度",
+                            )
+                        ),
+                    )
+                ),
+                narrow = GenderedPattern(
+                    cases = Cases(
+                        nominative = PluralPattern(
+                            Plurals(
+                                other = "{0}ppb",
                             )
                         ),
                     )
@@ -807,9 +828,9 @@ open class LanguageZh_HANT internal constructor() : LanguageZh() {
                     )
                 ),
             )
-        override val digitalByte
+        override val digitalByteUnit
             get() = MultiLengthGenderedPattern(
-                base = super.digitalByte,
+                base = super.digitalByteUnit,
                 narrow = GenderedPattern(
                     cases = Cases(
                         nominative = PluralPattern(
@@ -1024,6 +1045,37 @@ open class LanguageZh_HANT internal constructor() : LanguageZh() {
                         nominative = PluralPattern(
                             Plurals(
                                 other = "{0}ns",
+                            )
+                        ),
+                    )
+                ),
+            )
+        override val durationNight
+            get() = MultiLengthGenderedPattern(
+                base = super.durationNight,
+                long = GenderedPattern(
+                    cases = Cases(
+                        nominative = PluralPattern(
+                            Plurals(
+                                other = "{0} 夜",
+                            )
+                        ),
+                    )
+                ),
+                short = GenderedPattern(
+                    cases = Cases(
+                        nominative = PluralPattern(
+                            Plurals(
+                                other = "{0} 夜",
+                            )
+                        ),
+                    )
+                ),
+                narrow = GenderedPattern(
+                    cases = Cases(
+                        nominative = PluralPattern(
+                            Plurals(
+                                other = "{0}夜",
                             )
                         ),
                     )
@@ -1718,7 +1770,7 @@ open class LanguageZh_HANT internal constructor() : LanguageZh() {
                     cases = Cases(
                         nominative = PluralPattern(
                             Plurals(
-                                other = "{0}dm",
+                                other = "{0}公寸",
                             )
                         ),
                     )
@@ -1806,7 +1858,7 @@ open class LanguageZh_HANT internal constructor() : LanguageZh() {
                     cases = Cases(
                         nominative = PluralPattern(
                             Plurals(
-                                other = "{0}nm",
+                                other = "{0}奈米",
                             )
                         ),
                     )
@@ -1956,7 +2008,7 @@ open class LanguageZh_HANT internal constructor() : LanguageZh() {
                     cases = Cases(
                         nominative = PluralPattern(
                             Plurals(
-                                other = "{0}pc",
+                                other = "{0}秒差距",
                             )
                         ),
                     )
@@ -2000,7 +2052,7 @@ open class LanguageZh_HANT internal constructor() : LanguageZh() {
                     cases = Cases(
                         nominative = PluralPattern(
                             Plurals(
-                                other = "{0}au",
+                                other = "{0}天文單位",
                             )
                         ),
                     )
@@ -2075,11 +2127,20 @@ open class LanguageZh_HANT internal constructor() : LanguageZh() {
         override val lengthMileScandinavian
             get() = MultiLengthGenderedPattern(
                 base = super.lengthMileScandinavian,
+                long = GenderedPattern(
+                    cases = Cases(
+                        nominative = PluralPattern(
+                            Plurals(
+                                other = "{0} 斯堪地那維亞里",
+                            )
+                        ),
+                    )
+                ),
                 short = GenderedPattern(
                     cases = Cases(
                         nominative = PluralPattern(
                             Plurals(
-                                other = "{0} 斯堪地那維亞英里",
+                                other = "{0} 斯堪地那維亞里",
                             )
                         ),
                     )

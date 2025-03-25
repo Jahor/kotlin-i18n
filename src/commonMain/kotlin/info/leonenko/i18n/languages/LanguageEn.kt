@@ -6,7 +6,6 @@ import info.leonenko.i18n.rbnf.RBNFEn
 val Language.Companion.en
     get() = languageEn
 private val languageEn = LanguageEn()
-
 open class LanguageEn internal constructor() : Language {
     override val code: String = "en"
     override val language: String = "en"
@@ -839,8 +838,39 @@ open class LanguageEn internal constructor() : Language {
                     )
                 ),
             )
-        override val concentrationItemPerCubicMeter: MultiLengthGenderedPattern
-            get() = TODO("ItemPerCubicMeter formatter is not implemented yet for en")
+        override val concentrationPortionPer1e9
+            get() = MultiLengthGenderedPattern(
+                long = GenderedPattern(
+                    cases = Cases(
+                        nominative = PluralPattern(
+                            Plurals(
+                                one = "{0} part per billion",
+                                other = "{0} parts per billion",
+                            )
+                        ),
+                    )
+                ),
+                short = GenderedPattern(
+                    cases = Cases(
+                        nominative = PluralPattern(
+                            Plurals(
+                                one = "{0} ppb",
+                                other = "{0} ppb",
+                            )
+                        ),
+                    )
+                ),
+                narrow = GenderedPattern(
+                    cases = Cases(
+                        nominative = PluralPattern(
+                            Plurals(
+                                one = "{0}ppb",
+                                other = "{0}ppb",
+                            )
+                        ),
+                    )
+                ),
+            )
         override val concentrationItem
             get() = MultiLengthGenderedPattern(
                 long = GenderedPattern(
@@ -1336,7 +1366,7 @@ open class LanguageEn internal constructor() : Language {
                     )
                 ),
             )
-        override val digitalByte
+        override val digitalByteUnit
             get() = MultiLengthGenderedPattern(
                 long = GenderedPattern(
                     cases = Cases(
@@ -1826,6 +1856,39 @@ open class LanguageEn internal constructor() : Language {
                             Plurals(
                                 one = "{0}ns",
                                 other = "{0}ns",
+                            )
+                        ),
+                    )
+                ),
+            )
+        override val durationNight
+            get() = MultiLengthGenderedPattern(
+                long = GenderedPattern(
+                    cases = Cases(
+                        nominative = PluralPattern(
+                            Plurals(
+                                one = "{0} night",
+                                other = "{0} nights",
+                            )
+                        ),
+                    )
+                ),
+                short = GenderedPattern(
+                    cases = Cases(
+                        nominative = PluralPattern(
+                            Plurals(
+                                one = "{0} night",
+                                other = "{0} nights",
+                            )
+                        ),
+                    )
+                ),
+                narrow = GenderedPattern(
+                    cases = Cases(
+                        nominative = PluralPattern(
+                            Plurals(
+                                one = "{0}night",
+                                other = "{0}nights",
                             )
                         ),
                     )
@@ -4849,6 +4912,39 @@ open class LanguageEn internal constructor() : Language {
                             Plurals(
                                 one = "B{0}",
                                 other = "B{0}",
+                            )
+                        ),
+                    )
+                ),
+            )
+        override val speedLightSpeed
+            get() = MultiLengthGenderedPattern(
+                long = GenderedPattern(
+                    cases = Cases(
+                        nominative = PluralPattern(
+                            Plurals(
+                                one = "{0} light",
+                                other = "{0} light",
+                            )
+                        ),
+                    )
+                ),
+                short = GenderedPattern(
+                    cases = Cases(
+                        nominative = PluralPattern(
+                            Plurals(
+                                one = "{0} light",
+                                other = "{0} light",
+                            )
+                        ),
+                    )
+                ),
+                narrow = GenderedPattern(
+                    cases = Cases(
+                        nominative = PluralPattern(
+                            Plurals(
+                                one = "{0}light",
+                                other = "{0}light",
                             )
                         ),
                     )

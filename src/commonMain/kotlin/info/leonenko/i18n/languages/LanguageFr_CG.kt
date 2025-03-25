@@ -1,11 +1,9 @@
 package info.leonenko.i18n.languages
-
 import info.leonenko.i18n.Language
 
 val Language.Companion.fr_CG
     get() = languageFr_CG
 private val languageFr_CG = LanguageFr_CG()
-
 class LanguageFr_CG internal constructor() : LanguageFr() {
     override val code: String = "fr_CG"
     override val script: String? = null

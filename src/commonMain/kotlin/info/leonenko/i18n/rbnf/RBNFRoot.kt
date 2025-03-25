@@ -1740,19 +1740,19 @@ open class RBNFRoot(val language: Language = Language.root) : RBNF {
                     in 1001L..1999L -> if ((value) % 1000 == 0L) {
                         "אלף"
                     } else
-                        hebrewThousands.format((value) / 1000) + (if ((value) % 1000 == 0L) "" else format(value % 1000))
+                    hebrewThousands.format((value) / 1000) + (if ((value) % 1000 == 0L) "" else format(value % 1000))
 
                     2000L -> "אלפיים"
                     in 2001L..2999L -> if ((value) % 1000 == 0L) {
                         "אלפיים"
                     } else
-                        hebrewThousands.format((value) / 1000) + (if ((value) % 1000 == 0L) "" else format(value % 1000))
+                    hebrewThousands.format((value) / 1000) + (if ((value) % 1000 == 0L) "" else format(value % 1000))
 
                     3000L -> format((value) / 1000) + " אלפים"
                     in 3001L..999999L -> if ((value) % 1000 == 0L) {
                         format((value) / 1000) + " אלפים"
                     } else
-                        hebrewThousands.format((value) / 1000) + (if ((value) % 1000 == 0L) "" else format(value % 1000))
+                    hebrewThousands.format((value) / 1000) + (if ((value) % 1000 == 0L) "" else format(value % 1000))
 
                     1000000L -> "אלף אלפים"
                     else -> {
@@ -2551,7 +2551,7 @@ open class RBNFRoot(val language: Language = Language.root) : RBNF {
                 return if (value >= 0.0) DecimalNumberFormatter(
                     min_integer = 1,
                     min_decimal = 0,
-                    max_decimal = 0,
+                    max_decimal = 2,
                     primary_grouping = 3,
                     secondary_grouping = 3,
                     symbols = language.numbers.symbols
@@ -2564,7 +2564,7 @@ open class RBNFRoot(val language: Language = Language.root) : RBNF {
                 return if (value >= 0L) DecimalNumberFormatter(
                     min_integer = 1,
                     min_decimal = 0,
-                    max_decimal = 0,
+                    max_decimal = 2,
                     primary_grouping = 3,
                     secondary_grouping = 3,
                     symbols = language.numbers.symbols
@@ -2575,7 +2575,7 @@ open class RBNFRoot(val language: Language = Language.root) : RBNF {
 
             fun formatF(value: Double): String {
                 return when (listOf<Long>(0).bestDenominatorOrNull(value)!!) {
-                    0L -> DecimalNumberFormatter(min_integer = 1, min_decimal = 0, max_decimal = 0, primary_grouping = 3, secondary_grouping = 3, symbols = language.numbers.symbols).format(value)
+                    0L -> DecimalNumberFormatter(min_integer = 1, min_decimal = 0, max_decimal = 2, primary_grouping = 3, secondary_grouping = 3, symbols = language.numbers.symbols).format(value)
                     else -> throw IllegalStateException("It should not happen")
                 }
             }
@@ -2856,4 +2856,20 @@ open class RBNFRoot(val language: Language = Language.root) : RBNF {
         get() = spelloutRules.spelloutCardinal
     override val spelloutOrdinal: NumberFormatter
         get() = spelloutRules.spelloutOrdinal
+
+    override fun spelloutNumberingFor(gender: Gender, case: Case): NumberFormatter {
+        TODO("Not yet implemented")
+    }
+
+    override fun spelloutCardinalFor(gender: Gender, case: Case): NumberFormatter {
+        TODO("Not yet implemented")
+    }
+
+    override fun spelloutOrdinalFor(gender: Gender, case: Case): NumberFormatter {
+        TODO("Not yet implemented")
+    }
+
+    override fun spelloutNumberingYearFor(gender: Gender, case: Case): NumberFormatter {
+        TODO("Not yet implemented")
+    }
 }

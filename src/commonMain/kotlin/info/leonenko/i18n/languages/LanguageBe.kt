@@ -6,7 +6,6 @@ import info.leonenko.i18n.rbnf.RBNFBe
 val Language.Companion.be
     get() = languageBe
 private val languageBe = LanguageBe()
-
 open class LanguageBe internal constructor() : Language {
     override val code: String = "be"
     override val language: String = "be"
@@ -221,8 +220,8 @@ open class LanguageBe internal constructor() : Language {
                     )
                 ),
             )
-        override val concentrationItemPerCubicMeter: MultiLengthGenderedPattern
-            get() = TODO("ItemPerCubicMeter formatter is not implemented yet for be")
+        override val concentrationPortionPer1e9: MultiLengthGenderedPattern
+            get() = TODO("PortionPer1e9 formatter is not implemented yet for be")
         override val concentrationItem: MultiLengthGenderedPattern
             get() = TODO("Item formatter is not implemented yet for be")
         override val concentrationMole
@@ -417,8 +416,8 @@ open class LanguageBe internal constructor() : Language {
                     )
                 ),
             )
-        override val digitalByte: MultiLengthGenderedPattern
-            get() = TODO("Byte formatter is not implemented yet for be")
+        override val digitalByteUnit: MultiLengthGenderedPattern
+            get() = TODO("ByteUnit formatter is not implemented yet for be")
         override val digitalBit: MultiLengthGenderedPattern
             get() = TODO("Bit formatter is not implemented yet for be")
         override val durationCentury
@@ -673,6 +672,8 @@ open class LanguageBe internal constructor() : Language {
                     )
                 ),
             )
+        override val durationNight: MultiLengthGenderedPattern
+            get() = TODO("Night formatter is not implemented yet for be")
         override val electricAmpere
             get() = MultiLengthGenderedPattern(
                 long = GenderedPattern(
@@ -1776,6 +1777,8 @@ open class LanguageBe internal constructor() : Language {
             get() = TODO("Knot formatter is not implemented yet for be")
         override val speedBeaufort: MultiLengthGenderedPattern
             get() = TODO("Beaufort formatter is not implemented yet for be")
+        override val speedLightSpeed: MultiLengthGenderedPattern
+            get() = TODO("LightSpeed formatter is not implemented yet for be")
         override val temperatureGeneric: MultiLengthGenderedPattern
             get() = TODO("Generic formatter is not implemented yet for be")
         override val temperatureCelsius: MultiLengthGenderedPattern

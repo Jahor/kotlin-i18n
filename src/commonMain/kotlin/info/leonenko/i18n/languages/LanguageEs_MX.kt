@@ -5,7 +5,6 @@ import info.leonenko.i18n.*
 val Language.Companion.es_MX
     get() = languageEs_MX
 private val languageEs_MX = LanguageEs_MX()
-
 class LanguageEs_MX internal constructor() : LanguageEs() {
     override val code: String = "es_MX"
     override val script: String? = null
@@ -132,9 +131,9 @@ class LanguageEs_MX internal constructor() : LanguageEs() {
                     )
                 ),
             )
-        override val digitalByte
+        override val digitalByteUnit
             get() = MultiLengthGenderedPattern(
-                base = super.digitalByte,
+                base = super.digitalByteUnit,
                 short = GenderedPattern(
                     cases = Cases(
                         nominative = PluralPattern(

@@ -22,7 +22,6 @@ interface Angle : MeasurementUnit, Comparable<Angle> {
     class Serializer : CustomSerializer()
     open class CustomSerializer(val decoders: Map<String, (MeasurementUnitValue) -> Angle> = emptyMap()) : KSerializer<Angle> {
         private val delegateSerializer = MapSerializer(String.serializer(), MeasurementUnitValue.serializer())
-
         @OptIn(ExperimentalSerializationApi::class)
         override val descriptor: SerialDescriptor = SerialDescriptor("Angle", delegateSerializer.descriptor)
         override fun deserialize(decoder: Decoder): Angle {
@@ -85,34 +84,34 @@ interface Angle : MeasurementUnit, Comparable<Angle> {
     fun abs(): Angle
 
 
-    operator fun times(other: kotlin.Byte): Angle
-    operator fun div(other: kotlin.Byte): Angle
-    operator fun rem(other: kotlin.Byte): Angle
+    operator fun times(other: Byte): Angle
+    operator fun div(other: Byte): Angle
+    operator fun rem(other: Byte): Angle
 
 
-    operator fun times(other: kotlin.Short): Angle
-    operator fun div(other: kotlin.Short): Angle
-    operator fun rem(other: kotlin.Short): Angle
+    operator fun times(other: Short): Angle
+    operator fun div(other: Short): Angle
+    operator fun rem(other: Short): Angle
 
 
-    operator fun times(other: kotlin.Int): Angle
-    operator fun div(other: kotlin.Int): Angle
-    operator fun rem(other: kotlin.Int): Angle
+    operator fun times(other: Int): Angle
+    operator fun div(other: Int): Angle
+    operator fun rem(other: Int): Angle
 
 
-    operator fun times(other: kotlin.Long): Angle
-    operator fun div(other: kotlin.Long): Angle
-    operator fun rem(other: kotlin.Long): Angle
+    operator fun times(other: Long): Angle
+    operator fun div(other: Long): Angle
+    operator fun rem(other: Long): Angle
 
 
-    operator fun times(other: kotlin.Float): Angle
-    operator fun div(other: kotlin.Float): Angle
-    operator fun rem(other: kotlin.Float): Angle
+    operator fun times(other: Float): Angle
+    operator fun div(other: Float): Angle
+    operator fun rem(other: Float): Angle
 
 
-    operator fun times(other: kotlin.Double): Angle
-    operator fun div(other: kotlin.Double): Angle
-    operator fun rem(other: kotlin.Double): Angle
+    operator fun times(other: Double): Angle
+    operator fun div(other: Double): Angle
+    operator fun rem(other: Double): Angle
 
 }
 
@@ -132,40 +131,40 @@ data class Revolution(override val value: MeasurementUnitValue) : Angle {
     operator fun plus(other: Revolution): Revolution = Revolution(this.value + other.value)
     operator fun minus(other: Revolution): Revolution = Revolution(this.value - other.value)
 
-    constructor(value: kotlin.Byte) : this(value.toMeasurementUnitValue())
+    constructor(value: Byte) : this(value.toMeasurementUnitValue())
 
-    override operator fun times(other: kotlin.Byte): Revolution = Revolution(this.value.times(other))
-    override operator fun div(other: kotlin.Byte): Revolution = Revolution(this.value.div(other))
-    override operator fun rem(other: kotlin.Byte): Revolution = Revolution(this.value.rem(other))
+    override operator fun times(other: Byte): Revolution = Revolution(this.value.times(other))
+    override operator fun div(other: Byte): Revolution = Revolution(this.value.div(other))
+    override operator fun rem(other: Byte): Revolution = Revolution(this.value.rem(other))
 
-    constructor(value: kotlin.Short) : this(value.toMeasurementUnitValue())
+    constructor(value: Short) : this(value.toMeasurementUnitValue())
 
-    override operator fun times(other: kotlin.Short): Revolution = Revolution(this.value.times(other))
-    override operator fun div(other: kotlin.Short): Revolution = Revolution(this.value.div(other))
-    override operator fun rem(other: kotlin.Short): Revolution = Revolution(this.value.rem(other))
+    override operator fun times(other: Short): Revolution = Revolution(this.value.times(other))
+    override operator fun div(other: Short): Revolution = Revolution(this.value.div(other))
+    override operator fun rem(other: Short): Revolution = Revolution(this.value.rem(other))
 
-    constructor(value: kotlin.Int) : this(value.toMeasurementUnitValue())
+    constructor(value: Int) : this(value.toMeasurementUnitValue())
 
-    override operator fun times(other: kotlin.Int): Revolution = Revolution(this.value.times(other))
-    override operator fun div(other: kotlin.Int): Revolution = Revolution(this.value.div(other))
-    override operator fun rem(other: kotlin.Int): Revolution = Revolution(this.value.rem(other))
+    override operator fun times(other: Int): Revolution = Revolution(this.value.times(other))
+    override operator fun div(other: Int): Revolution = Revolution(this.value.div(other))
+    override operator fun rem(other: Int): Revolution = Revolution(this.value.rem(other))
 
-    constructor(value: kotlin.Long) : this(value.toMeasurementUnitValue())
+    constructor(value: Long) : this(value.toMeasurementUnitValue())
 
-    override operator fun times(other: kotlin.Long): Revolution = Revolution(this.value.times(other))
-    override operator fun div(other: kotlin.Long): Revolution = Revolution(this.value.div(other))
-    override operator fun rem(other: kotlin.Long): Revolution = Revolution(this.value.rem(other))
+    override operator fun times(other: Long): Revolution = Revolution(this.value.times(other))
+    override operator fun div(other: Long): Revolution = Revolution(this.value.div(other))
+    override operator fun rem(other: Long): Revolution = Revolution(this.value.rem(other))
 
-    constructor(value: kotlin.Float) : this(value.toMeasurementUnitValue())
+    constructor(value: Float) : this(value.toMeasurementUnitValue())
 
-    override operator fun times(other: kotlin.Float): Revolution = Revolution(this.value.times(other))
-    override operator fun div(other: kotlin.Float): Revolution = Revolution(this.value.div(other))
-    override operator fun rem(other: kotlin.Float): Revolution = Revolution(this.value.rem(other))
+    override operator fun times(other: Float): Revolution = Revolution(this.value.times(other))
+    override operator fun div(other: Float): Revolution = Revolution(this.value.div(other))
+    override operator fun rem(other: Float): Revolution = Revolution(this.value.rem(other))
 
 
-    override operator fun times(other: kotlin.Double): Revolution = Revolution(this.value.times(other))
-    override operator fun div(other: kotlin.Double): Revolution = Revolution(this.value.div(other))
-    override operator fun rem(other: kotlin.Double): Revolution = Revolution(this.value.rem(other))
+    override operator fun times(other: Double): Revolution = Revolution(this.value.times(other))
+    override operator fun div(other: Double): Revolution = Revolution(this.value.div(other))
+    override operator fun rem(other: Double): Revolution = Revolution(this.value.rem(other))
 
 
     override operator fun unaryMinus(): Revolution = Revolution(-value)
@@ -190,27 +189,27 @@ data class Revolution(override val value: MeasurementUnitValue) : Angle {
 
 }
 
-val kotlin.Byte.revolution
+val Byte.revolution
     get() = Revolution(this)
 
 
-val kotlin.Short.revolution
+val Short.revolution
     get() = Revolution(this)
 
 
-val kotlin.Int.revolution
+val Int.revolution
     get() = Revolution(this)
 
 
-val kotlin.Long.revolution
+val Long.revolution
     get() = Revolution(this)
 
 
-val kotlin.Float.revolution
+val Float.revolution
     get() = Revolution(this)
 
 
-val kotlin.Double.revolution
+val Double.revolution
     get() = Revolution(this)
 
 
@@ -230,40 +229,40 @@ data class Radian(override val value: MeasurementUnitValue) : Angle {
     operator fun plus(other: Radian): Radian = Radian(this.value + other.value)
     operator fun minus(other: Radian): Radian = Radian(this.value - other.value)
 
-    constructor(value: kotlin.Byte) : this(value.toMeasurementUnitValue())
+    constructor(value: Byte) : this(value.toMeasurementUnitValue())
 
-    override operator fun times(other: kotlin.Byte): Radian = Radian(this.value.times(other))
-    override operator fun div(other: kotlin.Byte): Radian = Radian(this.value.div(other))
-    override operator fun rem(other: kotlin.Byte): Radian = Radian(this.value.rem(other))
+    override operator fun times(other: Byte): Radian = Radian(this.value.times(other))
+    override operator fun div(other: Byte): Radian = Radian(this.value.div(other))
+    override operator fun rem(other: Byte): Radian = Radian(this.value.rem(other))
 
-    constructor(value: kotlin.Short) : this(value.toMeasurementUnitValue())
+    constructor(value: Short) : this(value.toMeasurementUnitValue())
 
-    override operator fun times(other: kotlin.Short): Radian = Radian(this.value.times(other))
-    override operator fun div(other: kotlin.Short): Radian = Radian(this.value.div(other))
-    override operator fun rem(other: kotlin.Short): Radian = Radian(this.value.rem(other))
+    override operator fun times(other: Short): Radian = Radian(this.value.times(other))
+    override operator fun div(other: Short): Radian = Radian(this.value.div(other))
+    override operator fun rem(other: Short): Radian = Radian(this.value.rem(other))
 
-    constructor(value: kotlin.Int) : this(value.toMeasurementUnitValue())
+    constructor(value: Int) : this(value.toMeasurementUnitValue())
 
-    override operator fun times(other: kotlin.Int): Radian = Radian(this.value.times(other))
-    override operator fun div(other: kotlin.Int): Radian = Radian(this.value.div(other))
-    override operator fun rem(other: kotlin.Int): Radian = Radian(this.value.rem(other))
+    override operator fun times(other: Int): Radian = Radian(this.value.times(other))
+    override operator fun div(other: Int): Radian = Radian(this.value.div(other))
+    override operator fun rem(other: Int): Radian = Radian(this.value.rem(other))
 
-    constructor(value: kotlin.Long) : this(value.toMeasurementUnitValue())
+    constructor(value: Long) : this(value.toMeasurementUnitValue())
 
-    override operator fun times(other: kotlin.Long): Radian = Radian(this.value.times(other))
-    override operator fun div(other: kotlin.Long): Radian = Radian(this.value.div(other))
-    override operator fun rem(other: kotlin.Long): Radian = Radian(this.value.rem(other))
+    override operator fun times(other: Long): Radian = Radian(this.value.times(other))
+    override operator fun div(other: Long): Radian = Radian(this.value.div(other))
+    override operator fun rem(other: Long): Radian = Radian(this.value.rem(other))
 
-    constructor(value: kotlin.Float) : this(value.toMeasurementUnitValue())
+    constructor(value: Float) : this(value.toMeasurementUnitValue())
 
-    override operator fun times(other: kotlin.Float): Radian = Radian(this.value.times(other))
-    override operator fun div(other: kotlin.Float): Radian = Radian(this.value.div(other))
-    override operator fun rem(other: kotlin.Float): Radian = Radian(this.value.rem(other))
+    override operator fun times(other: Float): Radian = Radian(this.value.times(other))
+    override operator fun div(other: Float): Radian = Radian(this.value.div(other))
+    override operator fun rem(other: Float): Radian = Radian(this.value.rem(other))
 
 
-    override operator fun times(other: kotlin.Double): Radian = Radian(this.value.times(other))
-    override operator fun div(other: kotlin.Double): Radian = Radian(this.value.div(other))
-    override operator fun rem(other: kotlin.Double): Radian = Radian(this.value.rem(other))
+    override operator fun times(other: Double): Radian = Radian(this.value.times(other))
+    override operator fun div(other: Double): Radian = Radian(this.value.div(other))
+    override operator fun rem(other: Double): Radian = Radian(this.value.rem(other))
 
 
     override operator fun unaryMinus(): Radian = Radian(-value)
@@ -288,27 +287,27 @@ data class Radian(override val value: MeasurementUnitValue) : Angle {
 
 }
 
-val kotlin.Byte.radian
+val Byte.radian
     get() = Radian(this)
 
 
-val kotlin.Short.radian
+val Short.radian
     get() = Radian(this)
 
 
-val kotlin.Int.radian
+val Int.radian
     get() = Radian(this)
 
 
-val kotlin.Long.radian
+val Long.radian
     get() = Radian(this)
 
 
-val kotlin.Float.radian
+val Float.radian
     get() = Radian(this)
 
 
-val kotlin.Double.radian
+val Double.radian
     get() = Radian(this)
 
 
@@ -328,40 +327,40 @@ data class Degree(override val value: MeasurementUnitValue) : Angle {
     operator fun plus(other: Degree): Degree = Degree(this.value + other.value)
     operator fun minus(other: Degree): Degree = Degree(this.value - other.value)
 
-    constructor(value: kotlin.Byte) : this(value.toMeasurementUnitValue())
+    constructor(value: Byte) : this(value.toMeasurementUnitValue())
 
-    override operator fun times(other: kotlin.Byte): Degree = Degree(this.value.times(other))
-    override operator fun div(other: kotlin.Byte): Degree = Degree(this.value.div(other))
-    override operator fun rem(other: kotlin.Byte): Degree = Degree(this.value.rem(other))
+    override operator fun times(other: Byte): Degree = Degree(this.value.times(other))
+    override operator fun div(other: Byte): Degree = Degree(this.value.div(other))
+    override operator fun rem(other: Byte): Degree = Degree(this.value.rem(other))
 
-    constructor(value: kotlin.Short) : this(value.toMeasurementUnitValue())
+    constructor(value: Short) : this(value.toMeasurementUnitValue())
 
-    override operator fun times(other: kotlin.Short): Degree = Degree(this.value.times(other))
-    override operator fun div(other: kotlin.Short): Degree = Degree(this.value.div(other))
-    override operator fun rem(other: kotlin.Short): Degree = Degree(this.value.rem(other))
+    override operator fun times(other: Short): Degree = Degree(this.value.times(other))
+    override operator fun div(other: Short): Degree = Degree(this.value.div(other))
+    override operator fun rem(other: Short): Degree = Degree(this.value.rem(other))
 
-    constructor(value: kotlin.Int) : this(value.toMeasurementUnitValue())
+    constructor(value: Int) : this(value.toMeasurementUnitValue())
 
-    override operator fun times(other: kotlin.Int): Degree = Degree(this.value.times(other))
-    override operator fun div(other: kotlin.Int): Degree = Degree(this.value.div(other))
-    override operator fun rem(other: kotlin.Int): Degree = Degree(this.value.rem(other))
+    override operator fun times(other: Int): Degree = Degree(this.value.times(other))
+    override operator fun div(other: Int): Degree = Degree(this.value.div(other))
+    override operator fun rem(other: Int): Degree = Degree(this.value.rem(other))
 
-    constructor(value: kotlin.Long) : this(value.toMeasurementUnitValue())
+    constructor(value: Long) : this(value.toMeasurementUnitValue())
 
-    override operator fun times(other: kotlin.Long): Degree = Degree(this.value.times(other))
-    override operator fun div(other: kotlin.Long): Degree = Degree(this.value.div(other))
-    override operator fun rem(other: kotlin.Long): Degree = Degree(this.value.rem(other))
+    override operator fun times(other: Long): Degree = Degree(this.value.times(other))
+    override operator fun div(other: Long): Degree = Degree(this.value.div(other))
+    override operator fun rem(other: Long): Degree = Degree(this.value.rem(other))
 
-    constructor(value: kotlin.Float) : this(value.toMeasurementUnitValue())
+    constructor(value: Float) : this(value.toMeasurementUnitValue())
 
-    override operator fun times(other: kotlin.Float): Degree = Degree(this.value.times(other))
-    override operator fun div(other: kotlin.Float): Degree = Degree(this.value.div(other))
-    override operator fun rem(other: kotlin.Float): Degree = Degree(this.value.rem(other))
+    override operator fun times(other: Float): Degree = Degree(this.value.times(other))
+    override operator fun div(other: Float): Degree = Degree(this.value.div(other))
+    override operator fun rem(other: Float): Degree = Degree(this.value.rem(other))
 
 
-    override operator fun times(other: kotlin.Double): Degree = Degree(this.value.times(other))
-    override operator fun div(other: kotlin.Double): Degree = Degree(this.value.div(other))
-    override operator fun rem(other: kotlin.Double): Degree = Degree(this.value.rem(other))
+    override operator fun times(other: Double): Degree = Degree(this.value.times(other))
+    override operator fun div(other: Double): Degree = Degree(this.value.div(other))
+    override operator fun rem(other: Double): Degree = Degree(this.value.rem(other))
 
 
     override operator fun unaryMinus(): Degree = Degree(-value)
@@ -386,27 +385,27 @@ data class Degree(override val value: MeasurementUnitValue) : Angle {
 
 }
 
-val kotlin.Byte.degree
+val Byte.degree
     get() = Degree(this)
 
 
-val kotlin.Short.degree
+val Short.degree
     get() = Degree(this)
 
 
-val kotlin.Int.degree
+val Int.degree
     get() = Degree(this)
 
 
-val kotlin.Long.degree
+val Long.degree
     get() = Degree(this)
 
 
-val kotlin.Float.degree
+val Float.degree
     get() = Degree(this)
 
 
-val kotlin.Double.degree
+val Double.degree
     get() = Degree(this)
 
 
@@ -426,40 +425,40 @@ data class ArcMinute(override val value: MeasurementUnitValue) : Angle {
     operator fun plus(other: ArcMinute): ArcMinute = ArcMinute(this.value + other.value)
     operator fun minus(other: ArcMinute): ArcMinute = ArcMinute(this.value - other.value)
 
-    constructor(value: kotlin.Byte) : this(value.toMeasurementUnitValue())
+    constructor(value: Byte) : this(value.toMeasurementUnitValue())
 
-    override operator fun times(other: kotlin.Byte): ArcMinute = ArcMinute(this.value.times(other))
-    override operator fun div(other: kotlin.Byte): ArcMinute = ArcMinute(this.value.div(other))
-    override operator fun rem(other: kotlin.Byte): ArcMinute = ArcMinute(this.value.rem(other))
+    override operator fun times(other: Byte): ArcMinute = ArcMinute(this.value.times(other))
+    override operator fun div(other: Byte): ArcMinute = ArcMinute(this.value.div(other))
+    override operator fun rem(other: Byte): ArcMinute = ArcMinute(this.value.rem(other))
 
-    constructor(value: kotlin.Short) : this(value.toMeasurementUnitValue())
+    constructor(value: Short) : this(value.toMeasurementUnitValue())
 
-    override operator fun times(other: kotlin.Short): ArcMinute = ArcMinute(this.value.times(other))
-    override operator fun div(other: kotlin.Short): ArcMinute = ArcMinute(this.value.div(other))
-    override operator fun rem(other: kotlin.Short): ArcMinute = ArcMinute(this.value.rem(other))
+    override operator fun times(other: Short): ArcMinute = ArcMinute(this.value.times(other))
+    override operator fun div(other: Short): ArcMinute = ArcMinute(this.value.div(other))
+    override operator fun rem(other: Short): ArcMinute = ArcMinute(this.value.rem(other))
 
-    constructor(value: kotlin.Int) : this(value.toMeasurementUnitValue())
+    constructor(value: Int) : this(value.toMeasurementUnitValue())
 
-    override operator fun times(other: kotlin.Int): ArcMinute = ArcMinute(this.value.times(other))
-    override operator fun div(other: kotlin.Int): ArcMinute = ArcMinute(this.value.div(other))
-    override operator fun rem(other: kotlin.Int): ArcMinute = ArcMinute(this.value.rem(other))
+    override operator fun times(other: Int): ArcMinute = ArcMinute(this.value.times(other))
+    override operator fun div(other: Int): ArcMinute = ArcMinute(this.value.div(other))
+    override operator fun rem(other: Int): ArcMinute = ArcMinute(this.value.rem(other))
 
-    constructor(value: kotlin.Long) : this(value.toMeasurementUnitValue())
+    constructor(value: Long) : this(value.toMeasurementUnitValue())
 
-    override operator fun times(other: kotlin.Long): ArcMinute = ArcMinute(this.value.times(other))
-    override operator fun div(other: kotlin.Long): ArcMinute = ArcMinute(this.value.div(other))
-    override operator fun rem(other: kotlin.Long): ArcMinute = ArcMinute(this.value.rem(other))
+    override operator fun times(other: Long): ArcMinute = ArcMinute(this.value.times(other))
+    override operator fun div(other: Long): ArcMinute = ArcMinute(this.value.div(other))
+    override operator fun rem(other: Long): ArcMinute = ArcMinute(this.value.rem(other))
 
-    constructor(value: kotlin.Float) : this(value.toMeasurementUnitValue())
+    constructor(value: Float) : this(value.toMeasurementUnitValue())
 
-    override operator fun times(other: kotlin.Float): ArcMinute = ArcMinute(this.value.times(other))
-    override operator fun div(other: kotlin.Float): ArcMinute = ArcMinute(this.value.div(other))
-    override operator fun rem(other: kotlin.Float): ArcMinute = ArcMinute(this.value.rem(other))
+    override operator fun times(other: Float): ArcMinute = ArcMinute(this.value.times(other))
+    override operator fun div(other: Float): ArcMinute = ArcMinute(this.value.div(other))
+    override operator fun rem(other: Float): ArcMinute = ArcMinute(this.value.rem(other))
 
 
-    override operator fun times(other: kotlin.Double): ArcMinute = ArcMinute(this.value.times(other))
-    override operator fun div(other: kotlin.Double): ArcMinute = ArcMinute(this.value.div(other))
-    override operator fun rem(other: kotlin.Double): ArcMinute = ArcMinute(this.value.rem(other))
+    override operator fun times(other: Double): ArcMinute = ArcMinute(this.value.times(other))
+    override operator fun div(other: Double): ArcMinute = ArcMinute(this.value.div(other))
+    override operator fun rem(other: Double): ArcMinute = ArcMinute(this.value.rem(other))
 
 
     override operator fun unaryMinus(): ArcMinute = ArcMinute(-value)
@@ -484,27 +483,27 @@ data class ArcMinute(override val value: MeasurementUnitValue) : Angle {
 
 }
 
-val kotlin.Byte.arcMinute
+val Byte.arcMinute
     get() = ArcMinute(this)
 
 
-val kotlin.Short.arcMinute
+val Short.arcMinute
     get() = ArcMinute(this)
 
 
-val kotlin.Int.arcMinute
+val Int.arcMinute
     get() = ArcMinute(this)
 
 
-val kotlin.Long.arcMinute
+val Long.arcMinute
     get() = ArcMinute(this)
 
 
-val kotlin.Float.arcMinute
+val Float.arcMinute
     get() = ArcMinute(this)
 
 
-val kotlin.Double.arcMinute
+val Double.arcMinute
     get() = ArcMinute(this)
 
 
@@ -524,40 +523,40 @@ data class ArcSecond(override val value: MeasurementUnitValue) : Angle {
     operator fun plus(other: ArcSecond): ArcSecond = ArcSecond(this.value + other.value)
     operator fun minus(other: ArcSecond): ArcSecond = ArcSecond(this.value - other.value)
 
-    constructor(value: kotlin.Byte) : this(value.toMeasurementUnitValue())
+    constructor(value: Byte) : this(value.toMeasurementUnitValue())
 
-    override operator fun times(other: kotlin.Byte): ArcSecond = ArcSecond(this.value.times(other))
-    override operator fun div(other: kotlin.Byte): ArcSecond = ArcSecond(this.value.div(other))
-    override operator fun rem(other: kotlin.Byte): ArcSecond = ArcSecond(this.value.rem(other))
+    override operator fun times(other: Byte): ArcSecond = ArcSecond(this.value.times(other))
+    override operator fun div(other: Byte): ArcSecond = ArcSecond(this.value.div(other))
+    override operator fun rem(other: Byte): ArcSecond = ArcSecond(this.value.rem(other))
 
-    constructor(value: kotlin.Short) : this(value.toMeasurementUnitValue())
+    constructor(value: Short) : this(value.toMeasurementUnitValue())
 
-    override operator fun times(other: kotlin.Short): ArcSecond = ArcSecond(this.value.times(other))
-    override operator fun div(other: kotlin.Short): ArcSecond = ArcSecond(this.value.div(other))
-    override operator fun rem(other: kotlin.Short): ArcSecond = ArcSecond(this.value.rem(other))
+    override operator fun times(other: Short): ArcSecond = ArcSecond(this.value.times(other))
+    override operator fun div(other: Short): ArcSecond = ArcSecond(this.value.div(other))
+    override operator fun rem(other: Short): ArcSecond = ArcSecond(this.value.rem(other))
 
-    constructor(value: kotlin.Int) : this(value.toMeasurementUnitValue())
+    constructor(value: Int) : this(value.toMeasurementUnitValue())
 
-    override operator fun times(other: kotlin.Int): ArcSecond = ArcSecond(this.value.times(other))
-    override operator fun div(other: kotlin.Int): ArcSecond = ArcSecond(this.value.div(other))
-    override operator fun rem(other: kotlin.Int): ArcSecond = ArcSecond(this.value.rem(other))
+    override operator fun times(other: Int): ArcSecond = ArcSecond(this.value.times(other))
+    override operator fun div(other: Int): ArcSecond = ArcSecond(this.value.div(other))
+    override operator fun rem(other: Int): ArcSecond = ArcSecond(this.value.rem(other))
 
-    constructor(value: kotlin.Long) : this(value.toMeasurementUnitValue())
+    constructor(value: Long) : this(value.toMeasurementUnitValue())
 
-    override operator fun times(other: kotlin.Long): ArcSecond = ArcSecond(this.value.times(other))
-    override operator fun div(other: kotlin.Long): ArcSecond = ArcSecond(this.value.div(other))
-    override operator fun rem(other: kotlin.Long): ArcSecond = ArcSecond(this.value.rem(other))
+    override operator fun times(other: Long): ArcSecond = ArcSecond(this.value.times(other))
+    override operator fun div(other: Long): ArcSecond = ArcSecond(this.value.div(other))
+    override operator fun rem(other: Long): ArcSecond = ArcSecond(this.value.rem(other))
 
-    constructor(value: kotlin.Float) : this(value.toMeasurementUnitValue())
+    constructor(value: Float) : this(value.toMeasurementUnitValue())
 
-    override operator fun times(other: kotlin.Float): ArcSecond = ArcSecond(this.value.times(other))
-    override operator fun div(other: kotlin.Float): ArcSecond = ArcSecond(this.value.div(other))
-    override operator fun rem(other: kotlin.Float): ArcSecond = ArcSecond(this.value.rem(other))
+    override operator fun times(other: Float): ArcSecond = ArcSecond(this.value.times(other))
+    override operator fun div(other: Float): ArcSecond = ArcSecond(this.value.div(other))
+    override operator fun rem(other: Float): ArcSecond = ArcSecond(this.value.rem(other))
 
 
-    override operator fun times(other: kotlin.Double): ArcSecond = ArcSecond(this.value.times(other))
-    override operator fun div(other: kotlin.Double): ArcSecond = ArcSecond(this.value.div(other))
-    override operator fun rem(other: kotlin.Double): ArcSecond = ArcSecond(this.value.rem(other))
+    override operator fun times(other: Double): ArcSecond = ArcSecond(this.value.times(other))
+    override operator fun div(other: Double): ArcSecond = ArcSecond(this.value.div(other))
+    override operator fun rem(other: Double): ArcSecond = ArcSecond(this.value.rem(other))
 
 
     override operator fun unaryMinus(): ArcSecond = ArcSecond(-value)
@@ -582,26 +581,26 @@ data class ArcSecond(override val value: MeasurementUnitValue) : Angle {
 
 }
 
-val kotlin.Byte.arcSecond
+val Byte.arcSecond
     get() = ArcSecond(this)
 
 
-val kotlin.Short.arcSecond
+val Short.arcSecond
     get() = ArcSecond(this)
 
 
-val kotlin.Int.arcSecond
+val Int.arcSecond
     get() = ArcSecond(this)
 
 
-val kotlin.Long.arcSecond
+val Long.arcSecond
     get() = ArcSecond(this)
 
 
-val kotlin.Float.arcSecond
+val Float.arcSecond
     get() = ArcSecond(this)
 
 
-val kotlin.Double.arcSecond
+val Double.arcSecond
     get() = ArcSecond(this)
                             

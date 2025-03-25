@@ -1,7 +1,5 @@
 package info.leonenko.i18n.units
-
 import info.leonenko.i18n.MultiLengthGenderedPattern
-
 interface MeasurementUnitLanguage {
     val accelerationGForce: MultiLengthGenderedPattern
     val accelerationMeterPerSquareSecond: MultiLengthGenderedPattern
@@ -28,7 +26,7 @@ interface MeasurementUnitLanguage {
     val concentrationAPortion: MultiLengthGenderedPattern
     val concentrationMilligramOfglucosePerDeciliter: MultiLengthGenderedPattern
     val concentrationMillimolePerLiter: MultiLengthGenderedPattern
-    val concentrationItemPerCubicMeter: MultiLengthGenderedPattern
+    val concentrationPortionPer1e9: MultiLengthGenderedPattern
     val concentrationItem: MultiLengthGenderedPattern
     val concentrationMole: MultiLengthGenderedPattern
     val consumptionLiterPerKilometer: MultiLengthGenderedPattern
@@ -44,7 +42,7 @@ interface MeasurementUnitLanguage {
     val digitalMegabit: MultiLengthGenderedPattern
     val digitalKilobyte: MultiLengthGenderedPattern
     val digitalKilobit: MultiLengthGenderedPattern
-    val digitalByte: MultiLengthGenderedPattern
+    val digitalByteUnit: MultiLengthGenderedPattern
     val digitalBit: MultiLengthGenderedPattern
     val durationCentury: MultiLengthGenderedPattern
     val durationDecade: MultiLengthGenderedPattern
@@ -59,6 +57,7 @@ interface MeasurementUnitLanguage {
     val durationMillisecond: MultiLengthGenderedPattern
     val durationMicrosecond: MultiLengthGenderedPattern
     val durationNanosecond: MultiLengthGenderedPattern
+    val durationNight: MultiLengthGenderedPattern
     val electricAmpere: MultiLengthGenderedPattern
     val electricMilliampere: MultiLengthGenderedPattern
     val electricOhm: MultiLengthGenderedPattern
@@ -160,6 +159,7 @@ interface MeasurementUnitLanguage {
     val speedMilePerHour: MultiLengthGenderedPattern
     val speedKnot: MultiLengthGenderedPattern
     val speedBeaufort: MultiLengthGenderedPattern
+    val speedLightSpeed: MultiLengthGenderedPattern
     val temperatureGeneric: MultiLengthGenderedPattern
     val temperatureCelsius: MultiLengthGenderedPattern
     val temperatureFahrenheit: MultiLengthGenderedPattern

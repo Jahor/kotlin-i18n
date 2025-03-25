@@ -1,11 +1,9 @@
 package info.leonenko.i18n.languages
-
 import info.leonenko.i18n.Language
 
 val Language.Companion.be_BY
     get() = languageBe_BY
 private val languageBe_BY = LanguageBe_BY()
-
 class LanguageBe_BY internal constructor() : LanguageBe() {
     override val code: String = "be_BY"
     override val script: String? = null

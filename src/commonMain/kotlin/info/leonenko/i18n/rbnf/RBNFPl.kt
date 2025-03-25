@@ -3103,45 +3103,62 @@ open class RBNFPl(val language: Language = Language.pl) : RBNF {
         get() = spelloutRules.spelloutCardinalFeminineLocative
     open val spelloutCardinalNeuterLocative: NumberFormatter
         get() = spelloutRules.spelloutCardinalNeuterLocative
-    override val spelloutOrdinal: NumberFormatter
-        get() = TODO("spelloutOrdinal is not available for pl")
     override val spelloutCardinal: NumberFormatter
         get() = TODO("spelloutCardinal is not available for pl")
+    override val spelloutOrdinal: NumberFormatter
+        get() = TODO("spelloutOrdinal is not available for pl")
 
-    fun spelloutCardinalFor(gender: Gender, case: Case): NumberFormatter {
+    override fun spelloutNumberingFor(gender: Gender, case: Case): NumberFormatter {
+        return spelloutNumbering
+
+    }
+
+    fun spelloutNumberingFor(): NumberFormatter {
+        return spelloutNumberingFor(Gender.Neuter, Case.Nominative)
+    }
+
+    override fun spelloutCardinalFor(gender: Gender, case: Case): NumberFormatter {
         return when (gender) {
-            Gender.Neuter -> when (case) {
-                Case.Nominative -> spelloutCardinalNeuter
-                Case.Locative -> spelloutCardinalNeuterLocative
-                Case.Dative -> spelloutCardinalNeuterDative
-                Case.Genitive -> spelloutCardinalNeuterGenitive
-                Case.Accusative -> spelloutCardinalNeuterAccusative
-                Case.Instrumental -> spelloutCardinalNeuterInstrumental
+            Gender.Feminine -> when (case) {
+                Case.Nominative -> spelloutCardinalFeminine
+                Case.Genitive -> spelloutCardinalFeminineGenitive
+                Case.Locative -> spelloutCardinalFeminineLocative
+                Case.Accusative -> spelloutCardinalFeminineAccusative
+                Case.Instrumental -> spelloutCardinalFeminineInstrumental
+                Case.Dative -> spelloutCardinalFeminineDative
                 else -> TODO("pl does not support $case case")
             }
 
             Gender.Masculine -> when (case) {
                 Case.Nominative -> spelloutCardinalMasculine
-                Case.Locative -> spelloutCardinalMasculineLocative
-                Case.Dative -> spelloutCardinalMasculineDative
                 Case.Genitive -> spelloutCardinalMasculineGenitive
+                Case.Locative -> spelloutCardinalMasculineLocative
                 Case.Accusative -> spelloutCardinalMasculineAccusative
                 Case.Instrumental -> spelloutCardinalMasculineInstrumental
+                Case.Dative -> spelloutCardinalMasculineDative
                 else -> TODO("pl does not support $case case")
             }
 
-            Gender.Feminine -> when (case) {
-                Case.Nominative -> spelloutCardinalFeminine
-                Case.Locative -> spelloutCardinalFeminineLocative
-                Case.Dative -> spelloutCardinalFeminineDative
-                Case.Genitive -> spelloutCardinalFeminineGenitive
-                Case.Accusative -> spelloutCardinalFeminineAccusative
-                Case.Instrumental -> spelloutCardinalFeminineInstrumental
+            Gender.Neuter -> when (case) {
+                Case.Nominative -> spelloutCardinalNeuter
+                Case.Genitive -> spelloutCardinalNeuterGenitive
+                Case.Locative -> spelloutCardinalNeuterLocative
+                Case.Accusative -> spelloutCardinalNeuterAccusative
+                Case.Instrumental -> spelloutCardinalNeuterInstrumental
+                Case.Dative -> spelloutCardinalNeuterDative
                 else -> TODO("pl does not support $case case")
             }
 
             else -> TODO("pl does not support $gender gender")
         }
 
+    }
+
+    override fun spelloutOrdinalFor(gender: Gender, case: Case): NumberFormatter {
+        TODO("spelloutOrdinal is not available for pl")
+    }
+
+    override fun spelloutNumberingYearFor(gender: Gender, case: Case): NumberFormatter {
+        TODO("spelloutNumberingYear is not available for pl")
     }
 }

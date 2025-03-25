@@ -2600,13 +2600,39 @@ open class RBNFDe(val language: Language = Language.de) : RBNF {
     override val spelloutCardinal: NumberFormatter
         get() = TODO("spelloutCardinal is not available for de")
 
-    fun spelloutCardinalFor(gender: Gender): NumberFormatter {
+    override fun spelloutNumberingFor(gender: Gender, case: Case): NumberFormatter {
+        return spelloutNumbering
+
+    }
+
+    fun spelloutNumberingFor(): NumberFormatter {
+        return spelloutNumberingFor(Gender.Neuter, Case.Nominative)
+    }
+
+    override fun spelloutCardinalFor(gender: Gender, case: Case): NumberFormatter {
         return when (gender) {
-            Gender.Neuter -> spelloutCardinalNeuter
-            Gender.Masculine -> spelloutCardinalMasculine
             Gender.Feminine -> spelloutCardinalFeminine
+            Gender.Masculine -> spelloutCardinalMasculine
+            Gender.Neuter -> spelloutCardinalNeuter
             else -> TODO("de does not support $gender gender")
         }
 
+    }
+
+    fun spelloutCardinalFor(gender: Gender): NumberFormatter {
+        return spelloutCardinalFor(gender, Case.Nominative)
+    }
+
+    override fun spelloutOrdinalFor(gender: Gender, case: Case): NumberFormatter {
+        return spelloutOrdinal
+
+    }
+
+    fun spelloutOrdinalFor(): NumberFormatter {
+        return spelloutOrdinalFor(Gender.Neuter, Case.Nominative)
+    }
+
+    override fun spelloutNumberingYearFor(gender: Gender, case: Case): NumberFormatter {
+        TODO("spelloutNumberingYear is not available for de")
     }
 }

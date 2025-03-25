@@ -22,7 +22,6 @@ interface Typewidth : MeasurementUnit, Comparable<Typewidth> {
     class Serializer : CustomSerializer()
     open class CustomSerializer(val decoders: Map<String, (MeasurementUnitValue) -> Typewidth> = emptyMap()) : KSerializer<Typewidth> {
         private val delegateSerializer = MapSerializer(String.serializer(), MeasurementUnitValue.serializer())
-
         @OptIn(ExperimentalSerializationApi::class)
         override val descriptor: SerialDescriptor = SerialDescriptor("Typewidth", delegateSerializer.descriptor)
         override fun deserialize(decoder: Decoder): Typewidth {
@@ -66,34 +65,34 @@ interface Typewidth : MeasurementUnit, Comparable<Typewidth> {
     fun abs(): Typewidth
 
 
-    operator fun times(other: kotlin.Byte): Typewidth
-    operator fun div(other: kotlin.Byte): Typewidth
-    operator fun rem(other: kotlin.Byte): Typewidth
+    operator fun times(other: Byte): Typewidth
+    operator fun div(other: Byte): Typewidth
+    operator fun rem(other: Byte): Typewidth
 
 
-    operator fun times(other: kotlin.Short): Typewidth
-    operator fun div(other: kotlin.Short): Typewidth
-    operator fun rem(other: kotlin.Short): Typewidth
+    operator fun times(other: Short): Typewidth
+    operator fun div(other: Short): Typewidth
+    operator fun rem(other: Short): Typewidth
 
 
-    operator fun times(other: kotlin.Int): Typewidth
-    operator fun div(other: kotlin.Int): Typewidth
-    operator fun rem(other: kotlin.Int): Typewidth
+    operator fun times(other: Int): Typewidth
+    operator fun div(other: Int): Typewidth
+    operator fun rem(other: Int): Typewidth
 
 
-    operator fun times(other: kotlin.Long): Typewidth
-    operator fun div(other: kotlin.Long): Typewidth
-    operator fun rem(other: kotlin.Long): Typewidth
+    operator fun times(other: Long): Typewidth
+    operator fun div(other: Long): Typewidth
+    operator fun rem(other: Long): Typewidth
 
 
-    operator fun times(other: kotlin.Float): Typewidth
-    operator fun div(other: kotlin.Float): Typewidth
-    operator fun rem(other: kotlin.Float): Typewidth
+    operator fun times(other: Float): Typewidth
+    operator fun div(other: Float): Typewidth
+    operator fun rem(other: Float): Typewidth
 
 
-    operator fun times(other: kotlin.Double): Typewidth
-    operator fun div(other: kotlin.Double): Typewidth
-    operator fun rem(other: kotlin.Double): Typewidth
+    operator fun times(other: Double): Typewidth
+    operator fun div(other: Double): Typewidth
+    operator fun rem(other: Double): Typewidth
 
 }
 
@@ -113,40 +112,40 @@ data class Em(override val value: MeasurementUnitValue) : Typewidth {
     operator fun plus(other: Em): Em = Em(this.value + other.value)
     operator fun minus(other: Em): Em = Em(this.value - other.value)
 
-    constructor(value: kotlin.Byte) : this(value.toMeasurementUnitValue())
+    constructor(value: Byte) : this(value.toMeasurementUnitValue())
 
-    override operator fun times(other: kotlin.Byte): Em = Em(this.value.times(other))
-    override operator fun div(other: kotlin.Byte): Em = Em(this.value.div(other))
-    override operator fun rem(other: kotlin.Byte): Em = Em(this.value.rem(other))
+    override operator fun times(other: Byte): Em = Em(this.value.times(other))
+    override operator fun div(other: Byte): Em = Em(this.value.div(other))
+    override operator fun rem(other: Byte): Em = Em(this.value.rem(other))
 
-    constructor(value: kotlin.Short) : this(value.toMeasurementUnitValue())
+    constructor(value: Short) : this(value.toMeasurementUnitValue())
 
-    override operator fun times(other: kotlin.Short): Em = Em(this.value.times(other))
-    override operator fun div(other: kotlin.Short): Em = Em(this.value.div(other))
-    override operator fun rem(other: kotlin.Short): Em = Em(this.value.rem(other))
+    override operator fun times(other: Short): Em = Em(this.value.times(other))
+    override operator fun div(other: Short): Em = Em(this.value.div(other))
+    override operator fun rem(other: Short): Em = Em(this.value.rem(other))
 
-    constructor(value: kotlin.Int) : this(value.toMeasurementUnitValue())
+    constructor(value: Int) : this(value.toMeasurementUnitValue())
 
-    override operator fun times(other: kotlin.Int): Em = Em(this.value.times(other))
-    override operator fun div(other: kotlin.Int): Em = Em(this.value.div(other))
-    override operator fun rem(other: kotlin.Int): Em = Em(this.value.rem(other))
+    override operator fun times(other: Int): Em = Em(this.value.times(other))
+    override operator fun div(other: Int): Em = Em(this.value.div(other))
+    override operator fun rem(other: Int): Em = Em(this.value.rem(other))
 
-    constructor(value: kotlin.Long) : this(value.toMeasurementUnitValue())
+    constructor(value: Long) : this(value.toMeasurementUnitValue())
 
-    override operator fun times(other: kotlin.Long): Em = Em(this.value.times(other))
-    override operator fun div(other: kotlin.Long): Em = Em(this.value.div(other))
-    override operator fun rem(other: kotlin.Long): Em = Em(this.value.rem(other))
+    override operator fun times(other: Long): Em = Em(this.value.times(other))
+    override operator fun div(other: Long): Em = Em(this.value.div(other))
+    override operator fun rem(other: Long): Em = Em(this.value.rem(other))
 
-    constructor(value: kotlin.Float) : this(value.toMeasurementUnitValue())
+    constructor(value: Float) : this(value.toMeasurementUnitValue())
 
-    override operator fun times(other: kotlin.Float): Em = Em(this.value.times(other))
-    override operator fun div(other: kotlin.Float): Em = Em(this.value.div(other))
-    override operator fun rem(other: kotlin.Float): Em = Em(this.value.rem(other))
+    override operator fun times(other: Float): Em = Em(this.value.times(other))
+    override operator fun div(other: Float): Em = Em(this.value.div(other))
+    override operator fun rem(other: Float): Em = Em(this.value.rem(other))
 
 
-    override operator fun times(other: kotlin.Double): Em = Em(this.value.times(other))
-    override operator fun div(other: kotlin.Double): Em = Em(this.value.div(other))
-    override operator fun rem(other: kotlin.Double): Em = Em(this.value.rem(other))
+    override operator fun times(other: Double): Em = Em(this.value.times(other))
+    override operator fun div(other: Double): Em = Em(this.value.div(other))
+    override operator fun rem(other: Double): Em = Em(this.value.rem(other))
 
 
     override operator fun unaryMinus(): Em = Em(-value)
@@ -171,26 +170,26 @@ data class Em(override val value: MeasurementUnitValue) : Typewidth {
 
 }
 
-val kotlin.Byte.em
+val Byte.em
     get() = Em(this)
 
 
-val kotlin.Short.em
+val Short.em
     get() = Em(this)
 
 
-val kotlin.Int.em
+val Int.em
     get() = Em(this)
 
 
-val kotlin.Long.em
+val Long.em
     get() = Em(this)
 
 
-val kotlin.Float.em
+val Float.em
     get() = Em(this)
 
 
-val kotlin.Double.em
+val Double.em
     get() = Em(this)
                             

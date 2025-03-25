@@ -22,7 +22,6 @@ interface Duration : MeasurementUnit, Comparable<Duration> {
     class Serializer : CustomSerializer()
     open class CustomSerializer(val decoders: Map<String, (MeasurementUnitValue) -> Duration> = emptyMap()) : KSerializer<Duration> {
         private val delegateSerializer = MapSerializer(String.serializer(), MeasurementUnitValue.serializer())
-
         @OptIn(ExperimentalSerializationApi::class)
         override val descriptor: SerialDescriptor = SerialDescriptor("Duration", delegateSerializer.descriptor)
         override fun deserialize(decoder: Decoder): Duration {
@@ -100,34 +99,34 @@ interface Duration : MeasurementUnit, Comparable<Duration> {
     fun abs(): Duration
 
 
-    operator fun times(other: kotlin.Byte): Duration
-    operator fun div(other: kotlin.Byte): Duration
-    operator fun rem(other: kotlin.Byte): Duration
+    operator fun times(other: Byte): Duration
+    operator fun div(other: Byte): Duration
+    operator fun rem(other: Byte): Duration
 
 
-    operator fun times(other: kotlin.Short): Duration
-    operator fun div(other: kotlin.Short): Duration
-    operator fun rem(other: kotlin.Short): Duration
+    operator fun times(other: Short): Duration
+    operator fun div(other: Short): Duration
+    operator fun rem(other: Short): Duration
 
 
-    operator fun times(other: kotlin.Int): Duration
-    operator fun div(other: kotlin.Int): Duration
-    operator fun rem(other: kotlin.Int): Duration
+    operator fun times(other: Int): Duration
+    operator fun div(other: Int): Duration
+    operator fun rem(other: Int): Duration
 
 
-    operator fun times(other: kotlin.Long): Duration
-    operator fun div(other: kotlin.Long): Duration
-    operator fun rem(other: kotlin.Long): Duration
+    operator fun times(other: Long): Duration
+    operator fun div(other: Long): Duration
+    operator fun rem(other: Long): Duration
 
 
-    operator fun times(other: kotlin.Float): Duration
-    operator fun div(other: kotlin.Float): Duration
-    operator fun rem(other: kotlin.Float): Duration
+    operator fun times(other: Float): Duration
+    operator fun div(other: Float): Duration
+    operator fun rem(other: Float): Duration
 
 
-    operator fun times(other: kotlin.Double): Duration
-    operator fun div(other: kotlin.Double): Duration
-    operator fun rem(other: kotlin.Double): Duration
+    operator fun times(other: Double): Duration
+    operator fun div(other: Double): Duration
+    operator fun rem(other: Double): Duration
 
 }
 
@@ -147,40 +146,40 @@ data class Week(override val value: MeasurementUnitValue) : Duration {
     operator fun plus(other: Week): Week = Week(this.value + other.value)
     operator fun minus(other: Week): Week = Week(this.value - other.value)
 
-    constructor(value: kotlin.Byte) : this(value.toMeasurementUnitValue())
+    constructor(value: Byte) : this(value.toMeasurementUnitValue())
 
-    override operator fun times(other: kotlin.Byte): Week = Week(this.value.times(other))
-    override operator fun div(other: kotlin.Byte): Week = Week(this.value.div(other))
-    override operator fun rem(other: kotlin.Byte): Week = Week(this.value.rem(other))
+    override operator fun times(other: Byte): Week = Week(this.value.times(other))
+    override operator fun div(other: Byte): Week = Week(this.value.div(other))
+    override operator fun rem(other: Byte): Week = Week(this.value.rem(other))
 
-    constructor(value: kotlin.Short) : this(value.toMeasurementUnitValue())
+    constructor(value: Short) : this(value.toMeasurementUnitValue())
 
-    override operator fun times(other: kotlin.Short): Week = Week(this.value.times(other))
-    override operator fun div(other: kotlin.Short): Week = Week(this.value.div(other))
-    override operator fun rem(other: kotlin.Short): Week = Week(this.value.rem(other))
+    override operator fun times(other: Short): Week = Week(this.value.times(other))
+    override operator fun div(other: Short): Week = Week(this.value.div(other))
+    override operator fun rem(other: Short): Week = Week(this.value.rem(other))
 
-    constructor(value: kotlin.Int) : this(value.toMeasurementUnitValue())
+    constructor(value: Int) : this(value.toMeasurementUnitValue())
 
-    override operator fun times(other: kotlin.Int): Week = Week(this.value.times(other))
-    override operator fun div(other: kotlin.Int): Week = Week(this.value.div(other))
-    override operator fun rem(other: kotlin.Int): Week = Week(this.value.rem(other))
+    override operator fun times(other: Int): Week = Week(this.value.times(other))
+    override operator fun div(other: Int): Week = Week(this.value.div(other))
+    override operator fun rem(other: Int): Week = Week(this.value.rem(other))
 
-    constructor(value: kotlin.Long) : this(value.toMeasurementUnitValue())
+    constructor(value: Long) : this(value.toMeasurementUnitValue())
 
-    override operator fun times(other: kotlin.Long): Week = Week(this.value.times(other))
-    override operator fun div(other: kotlin.Long): Week = Week(this.value.div(other))
-    override operator fun rem(other: kotlin.Long): Week = Week(this.value.rem(other))
+    override operator fun times(other: Long): Week = Week(this.value.times(other))
+    override operator fun div(other: Long): Week = Week(this.value.div(other))
+    override operator fun rem(other: Long): Week = Week(this.value.rem(other))
 
-    constructor(value: kotlin.Float) : this(value.toMeasurementUnitValue())
+    constructor(value: Float) : this(value.toMeasurementUnitValue())
 
-    override operator fun times(other: kotlin.Float): Week = Week(this.value.times(other))
-    override operator fun div(other: kotlin.Float): Week = Week(this.value.div(other))
-    override operator fun rem(other: kotlin.Float): Week = Week(this.value.rem(other))
+    override operator fun times(other: Float): Week = Week(this.value.times(other))
+    override operator fun div(other: Float): Week = Week(this.value.div(other))
+    override operator fun rem(other: Float): Week = Week(this.value.rem(other))
 
 
-    override operator fun times(other: kotlin.Double): Week = Week(this.value.times(other))
-    override operator fun div(other: kotlin.Double): Week = Week(this.value.div(other))
-    override operator fun rem(other: kotlin.Double): Week = Week(this.value.rem(other))
+    override operator fun times(other: Double): Week = Week(this.value.times(other))
+    override operator fun div(other: Double): Week = Week(this.value.div(other))
+    override operator fun rem(other: Double): Week = Week(this.value.rem(other))
 
 
     override operator fun unaryMinus(): Week = Week(-value)
@@ -205,27 +204,27 @@ data class Week(override val value: MeasurementUnitValue) : Duration {
 
 }
 
-val kotlin.Byte.week
+val Byte.week
     get() = Week(this)
 
 
-val kotlin.Short.week
+val Short.week
     get() = Week(this)
 
 
-val kotlin.Int.week
+val Int.week
     get() = Week(this)
 
 
-val kotlin.Long.week
+val Long.week
     get() = Week(this)
 
 
-val kotlin.Float.week
+val Float.week
     get() = Week(this)
 
 
-val kotlin.Double.week
+val Double.week
     get() = Week(this)
 
 
@@ -245,40 +244,40 @@ data class Day(override val value: MeasurementUnitValue) : Duration {
     operator fun plus(other: Day): Day = Day(this.value + other.value)
     operator fun minus(other: Day): Day = Day(this.value - other.value)
 
-    constructor(value: kotlin.Byte) : this(value.toMeasurementUnitValue())
+    constructor(value: Byte) : this(value.toMeasurementUnitValue())
 
-    override operator fun times(other: kotlin.Byte): Day = Day(this.value.times(other))
-    override operator fun div(other: kotlin.Byte): Day = Day(this.value.div(other))
-    override operator fun rem(other: kotlin.Byte): Day = Day(this.value.rem(other))
+    override operator fun times(other: Byte): Day = Day(this.value.times(other))
+    override operator fun div(other: Byte): Day = Day(this.value.div(other))
+    override operator fun rem(other: Byte): Day = Day(this.value.rem(other))
 
-    constructor(value: kotlin.Short) : this(value.toMeasurementUnitValue())
+    constructor(value: Short) : this(value.toMeasurementUnitValue())
 
-    override operator fun times(other: kotlin.Short): Day = Day(this.value.times(other))
-    override operator fun div(other: kotlin.Short): Day = Day(this.value.div(other))
-    override operator fun rem(other: kotlin.Short): Day = Day(this.value.rem(other))
+    override operator fun times(other: Short): Day = Day(this.value.times(other))
+    override operator fun div(other: Short): Day = Day(this.value.div(other))
+    override operator fun rem(other: Short): Day = Day(this.value.rem(other))
 
-    constructor(value: kotlin.Int) : this(value.toMeasurementUnitValue())
+    constructor(value: Int) : this(value.toMeasurementUnitValue())
 
-    override operator fun times(other: kotlin.Int): Day = Day(this.value.times(other))
-    override operator fun div(other: kotlin.Int): Day = Day(this.value.div(other))
-    override operator fun rem(other: kotlin.Int): Day = Day(this.value.rem(other))
+    override operator fun times(other: Int): Day = Day(this.value.times(other))
+    override operator fun div(other: Int): Day = Day(this.value.div(other))
+    override operator fun rem(other: Int): Day = Day(this.value.rem(other))
 
-    constructor(value: kotlin.Long) : this(value.toMeasurementUnitValue())
+    constructor(value: Long) : this(value.toMeasurementUnitValue())
 
-    override operator fun times(other: kotlin.Long): Day = Day(this.value.times(other))
-    override operator fun div(other: kotlin.Long): Day = Day(this.value.div(other))
-    override operator fun rem(other: kotlin.Long): Day = Day(this.value.rem(other))
+    override operator fun times(other: Long): Day = Day(this.value.times(other))
+    override operator fun div(other: Long): Day = Day(this.value.div(other))
+    override operator fun rem(other: Long): Day = Day(this.value.rem(other))
 
-    constructor(value: kotlin.Float) : this(value.toMeasurementUnitValue())
+    constructor(value: Float) : this(value.toMeasurementUnitValue())
 
-    override operator fun times(other: kotlin.Float): Day = Day(this.value.times(other))
-    override operator fun div(other: kotlin.Float): Day = Day(this.value.div(other))
-    override operator fun rem(other: kotlin.Float): Day = Day(this.value.rem(other))
+    override operator fun times(other: Float): Day = Day(this.value.times(other))
+    override operator fun div(other: Float): Day = Day(this.value.div(other))
+    override operator fun rem(other: Float): Day = Day(this.value.rem(other))
 
 
-    override operator fun times(other: kotlin.Double): Day = Day(this.value.times(other))
-    override operator fun div(other: kotlin.Double): Day = Day(this.value.div(other))
-    override operator fun rem(other: kotlin.Double): Day = Day(this.value.rem(other))
+    override operator fun times(other: Double): Day = Day(this.value.times(other))
+    override operator fun div(other: Double): Day = Day(this.value.div(other))
+    override operator fun rem(other: Double): Day = Day(this.value.rem(other))
 
 
     override operator fun unaryMinus(): Day = Day(-value)
@@ -303,27 +302,27 @@ data class Day(override val value: MeasurementUnitValue) : Duration {
 
 }
 
-val kotlin.Byte.day
+val Byte.day
     get() = Day(this)
 
 
-val kotlin.Short.day
+val Short.day
     get() = Day(this)
 
 
-val kotlin.Int.day
+val Int.day
     get() = Day(this)
 
 
-val kotlin.Long.day
+val Long.day
     get() = Day(this)
 
 
-val kotlin.Float.day
+val Float.day
     get() = Day(this)
 
 
-val kotlin.Double.day
+val Double.day
     get() = Day(this)
 
 
@@ -343,40 +342,40 @@ data class Hour(override val value: MeasurementUnitValue) : Duration {
     operator fun plus(other: Hour): Hour = Hour(this.value + other.value)
     operator fun minus(other: Hour): Hour = Hour(this.value - other.value)
 
-    constructor(value: kotlin.Byte) : this(value.toMeasurementUnitValue())
+    constructor(value: Byte) : this(value.toMeasurementUnitValue())
 
-    override operator fun times(other: kotlin.Byte): Hour = Hour(this.value.times(other))
-    override operator fun div(other: kotlin.Byte): Hour = Hour(this.value.div(other))
-    override operator fun rem(other: kotlin.Byte): Hour = Hour(this.value.rem(other))
+    override operator fun times(other: Byte): Hour = Hour(this.value.times(other))
+    override operator fun div(other: Byte): Hour = Hour(this.value.div(other))
+    override operator fun rem(other: Byte): Hour = Hour(this.value.rem(other))
 
-    constructor(value: kotlin.Short) : this(value.toMeasurementUnitValue())
+    constructor(value: Short) : this(value.toMeasurementUnitValue())
 
-    override operator fun times(other: kotlin.Short): Hour = Hour(this.value.times(other))
-    override operator fun div(other: kotlin.Short): Hour = Hour(this.value.div(other))
-    override operator fun rem(other: kotlin.Short): Hour = Hour(this.value.rem(other))
+    override operator fun times(other: Short): Hour = Hour(this.value.times(other))
+    override operator fun div(other: Short): Hour = Hour(this.value.div(other))
+    override operator fun rem(other: Short): Hour = Hour(this.value.rem(other))
 
-    constructor(value: kotlin.Int) : this(value.toMeasurementUnitValue())
+    constructor(value: Int) : this(value.toMeasurementUnitValue())
 
-    override operator fun times(other: kotlin.Int): Hour = Hour(this.value.times(other))
-    override operator fun div(other: kotlin.Int): Hour = Hour(this.value.div(other))
-    override operator fun rem(other: kotlin.Int): Hour = Hour(this.value.rem(other))
+    override operator fun times(other: Int): Hour = Hour(this.value.times(other))
+    override operator fun div(other: Int): Hour = Hour(this.value.div(other))
+    override operator fun rem(other: Int): Hour = Hour(this.value.rem(other))
 
-    constructor(value: kotlin.Long) : this(value.toMeasurementUnitValue())
+    constructor(value: Long) : this(value.toMeasurementUnitValue())
 
-    override operator fun times(other: kotlin.Long): Hour = Hour(this.value.times(other))
-    override operator fun div(other: kotlin.Long): Hour = Hour(this.value.div(other))
-    override operator fun rem(other: kotlin.Long): Hour = Hour(this.value.rem(other))
+    override operator fun times(other: Long): Hour = Hour(this.value.times(other))
+    override operator fun div(other: Long): Hour = Hour(this.value.div(other))
+    override operator fun rem(other: Long): Hour = Hour(this.value.rem(other))
 
-    constructor(value: kotlin.Float) : this(value.toMeasurementUnitValue())
+    constructor(value: Float) : this(value.toMeasurementUnitValue())
 
-    override operator fun times(other: kotlin.Float): Hour = Hour(this.value.times(other))
-    override operator fun div(other: kotlin.Float): Hour = Hour(this.value.div(other))
-    override operator fun rem(other: kotlin.Float): Hour = Hour(this.value.rem(other))
+    override operator fun times(other: Float): Hour = Hour(this.value.times(other))
+    override operator fun div(other: Float): Hour = Hour(this.value.div(other))
+    override operator fun rem(other: Float): Hour = Hour(this.value.rem(other))
 
 
-    override operator fun times(other: kotlin.Double): Hour = Hour(this.value.times(other))
-    override operator fun div(other: kotlin.Double): Hour = Hour(this.value.div(other))
-    override operator fun rem(other: kotlin.Double): Hour = Hour(this.value.rem(other))
+    override operator fun times(other: Double): Hour = Hour(this.value.times(other))
+    override operator fun div(other: Double): Hour = Hour(this.value.div(other))
+    override operator fun rem(other: Double): Hour = Hour(this.value.rem(other))
 
 
     override operator fun unaryMinus(): Hour = Hour(-value)
@@ -401,27 +400,27 @@ data class Hour(override val value: MeasurementUnitValue) : Duration {
 
 }
 
-val kotlin.Byte.hour
+val Byte.hour
     get() = Hour(this)
 
 
-val kotlin.Short.hour
+val Short.hour
     get() = Hour(this)
 
 
-val kotlin.Int.hour
+val Int.hour
     get() = Hour(this)
 
 
-val kotlin.Long.hour
+val Long.hour
     get() = Hour(this)
 
 
-val kotlin.Float.hour
+val Float.hour
     get() = Hour(this)
 
 
-val kotlin.Double.hour
+val Double.hour
     get() = Hour(this)
 
 
@@ -441,40 +440,40 @@ data class Minute(override val value: MeasurementUnitValue) : Duration {
     operator fun plus(other: Minute): Minute = Minute(this.value + other.value)
     operator fun minus(other: Minute): Minute = Minute(this.value - other.value)
 
-    constructor(value: kotlin.Byte) : this(value.toMeasurementUnitValue())
+    constructor(value: Byte) : this(value.toMeasurementUnitValue())
 
-    override operator fun times(other: kotlin.Byte): Minute = Minute(this.value.times(other))
-    override operator fun div(other: kotlin.Byte): Minute = Minute(this.value.div(other))
-    override operator fun rem(other: kotlin.Byte): Minute = Minute(this.value.rem(other))
+    override operator fun times(other: Byte): Minute = Minute(this.value.times(other))
+    override operator fun div(other: Byte): Minute = Minute(this.value.div(other))
+    override operator fun rem(other: Byte): Minute = Minute(this.value.rem(other))
 
-    constructor(value: kotlin.Short) : this(value.toMeasurementUnitValue())
+    constructor(value: Short) : this(value.toMeasurementUnitValue())
 
-    override operator fun times(other: kotlin.Short): Minute = Minute(this.value.times(other))
-    override operator fun div(other: kotlin.Short): Minute = Minute(this.value.div(other))
-    override operator fun rem(other: kotlin.Short): Minute = Minute(this.value.rem(other))
+    override operator fun times(other: Short): Minute = Minute(this.value.times(other))
+    override operator fun div(other: Short): Minute = Minute(this.value.div(other))
+    override operator fun rem(other: Short): Minute = Minute(this.value.rem(other))
 
-    constructor(value: kotlin.Int) : this(value.toMeasurementUnitValue())
+    constructor(value: Int) : this(value.toMeasurementUnitValue())
 
-    override operator fun times(other: kotlin.Int): Minute = Minute(this.value.times(other))
-    override operator fun div(other: kotlin.Int): Minute = Minute(this.value.div(other))
-    override operator fun rem(other: kotlin.Int): Minute = Minute(this.value.rem(other))
+    override operator fun times(other: Int): Minute = Minute(this.value.times(other))
+    override operator fun div(other: Int): Minute = Minute(this.value.div(other))
+    override operator fun rem(other: Int): Minute = Minute(this.value.rem(other))
 
-    constructor(value: kotlin.Long) : this(value.toMeasurementUnitValue())
+    constructor(value: Long) : this(value.toMeasurementUnitValue())
 
-    override operator fun times(other: kotlin.Long): Minute = Minute(this.value.times(other))
-    override operator fun div(other: kotlin.Long): Minute = Minute(this.value.div(other))
-    override operator fun rem(other: kotlin.Long): Minute = Minute(this.value.rem(other))
+    override operator fun times(other: Long): Minute = Minute(this.value.times(other))
+    override operator fun div(other: Long): Minute = Minute(this.value.div(other))
+    override operator fun rem(other: Long): Minute = Minute(this.value.rem(other))
 
-    constructor(value: kotlin.Float) : this(value.toMeasurementUnitValue())
+    constructor(value: Float) : this(value.toMeasurementUnitValue())
 
-    override operator fun times(other: kotlin.Float): Minute = Minute(this.value.times(other))
-    override operator fun div(other: kotlin.Float): Minute = Minute(this.value.div(other))
-    override operator fun rem(other: kotlin.Float): Minute = Minute(this.value.rem(other))
+    override operator fun times(other: Float): Minute = Minute(this.value.times(other))
+    override operator fun div(other: Float): Minute = Minute(this.value.div(other))
+    override operator fun rem(other: Float): Minute = Minute(this.value.rem(other))
 
 
-    override operator fun times(other: kotlin.Double): Minute = Minute(this.value.times(other))
-    override operator fun div(other: kotlin.Double): Minute = Minute(this.value.div(other))
-    override operator fun rem(other: kotlin.Double): Minute = Minute(this.value.rem(other))
+    override operator fun times(other: Double): Minute = Minute(this.value.times(other))
+    override operator fun div(other: Double): Minute = Minute(this.value.div(other))
+    override operator fun rem(other: Double): Minute = Minute(this.value.rem(other))
 
 
     override operator fun unaryMinus(): Minute = Minute(-value)
@@ -499,27 +498,27 @@ data class Minute(override val value: MeasurementUnitValue) : Duration {
 
 }
 
-val kotlin.Byte.minute
+val Byte.minute
     get() = Minute(this)
 
 
-val kotlin.Short.minute
+val Short.minute
     get() = Minute(this)
 
 
-val kotlin.Int.minute
+val Int.minute
     get() = Minute(this)
 
 
-val kotlin.Long.minute
+val Long.minute
     get() = Minute(this)
 
 
-val kotlin.Float.minute
+val Float.minute
     get() = Minute(this)
 
 
-val kotlin.Double.minute
+val Double.minute
     get() = Minute(this)
 
 
@@ -539,40 +538,40 @@ data class Second(override val value: MeasurementUnitValue) : Duration {
     operator fun plus(other: Second): Second = Second(this.value + other.value)
     operator fun minus(other: Second): Second = Second(this.value - other.value)
 
-    constructor(value: kotlin.Byte) : this(value.toMeasurementUnitValue())
+    constructor(value: Byte) : this(value.toMeasurementUnitValue())
 
-    override operator fun times(other: kotlin.Byte): Second = Second(this.value.times(other))
-    override operator fun div(other: kotlin.Byte): Second = Second(this.value.div(other))
-    override operator fun rem(other: kotlin.Byte): Second = Second(this.value.rem(other))
+    override operator fun times(other: Byte): Second = Second(this.value.times(other))
+    override operator fun div(other: Byte): Second = Second(this.value.div(other))
+    override operator fun rem(other: Byte): Second = Second(this.value.rem(other))
 
-    constructor(value: kotlin.Short) : this(value.toMeasurementUnitValue())
+    constructor(value: Short) : this(value.toMeasurementUnitValue())
 
-    override operator fun times(other: kotlin.Short): Second = Second(this.value.times(other))
-    override operator fun div(other: kotlin.Short): Second = Second(this.value.div(other))
-    override operator fun rem(other: kotlin.Short): Second = Second(this.value.rem(other))
+    override operator fun times(other: Short): Second = Second(this.value.times(other))
+    override operator fun div(other: Short): Second = Second(this.value.div(other))
+    override operator fun rem(other: Short): Second = Second(this.value.rem(other))
 
-    constructor(value: kotlin.Int) : this(value.toMeasurementUnitValue())
+    constructor(value: Int) : this(value.toMeasurementUnitValue())
 
-    override operator fun times(other: kotlin.Int): Second = Second(this.value.times(other))
-    override operator fun div(other: kotlin.Int): Second = Second(this.value.div(other))
-    override operator fun rem(other: kotlin.Int): Second = Second(this.value.rem(other))
+    override operator fun times(other: Int): Second = Second(this.value.times(other))
+    override operator fun div(other: Int): Second = Second(this.value.div(other))
+    override operator fun rem(other: Int): Second = Second(this.value.rem(other))
 
-    constructor(value: kotlin.Long) : this(value.toMeasurementUnitValue())
+    constructor(value: Long) : this(value.toMeasurementUnitValue())
 
-    override operator fun times(other: kotlin.Long): Second = Second(this.value.times(other))
-    override operator fun div(other: kotlin.Long): Second = Second(this.value.div(other))
-    override operator fun rem(other: kotlin.Long): Second = Second(this.value.rem(other))
+    override operator fun times(other: Long): Second = Second(this.value.times(other))
+    override operator fun div(other: Long): Second = Second(this.value.div(other))
+    override operator fun rem(other: Long): Second = Second(this.value.rem(other))
 
-    constructor(value: kotlin.Float) : this(value.toMeasurementUnitValue())
+    constructor(value: Float) : this(value.toMeasurementUnitValue())
 
-    override operator fun times(other: kotlin.Float): Second = Second(this.value.times(other))
-    override operator fun div(other: kotlin.Float): Second = Second(this.value.div(other))
-    override operator fun rem(other: kotlin.Float): Second = Second(this.value.rem(other))
+    override operator fun times(other: Float): Second = Second(this.value.times(other))
+    override operator fun div(other: Float): Second = Second(this.value.div(other))
+    override operator fun rem(other: Float): Second = Second(this.value.rem(other))
 
 
-    override operator fun times(other: kotlin.Double): Second = Second(this.value.times(other))
-    override operator fun div(other: kotlin.Double): Second = Second(this.value.div(other))
-    override operator fun rem(other: kotlin.Double): Second = Second(this.value.rem(other))
+    override operator fun times(other: Double): Second = Second(this.value.times(other))
+    override operator fun div(other: Double): Second = Second(this.value.div(other))
+    override operator fun rem(other: Double): Second = Second(this.value.rem(other))
 
 
     override operator fun unaryMinus(): Second = Second(-value)
@@ -597,27 +596,27 @@ data class Second(override val value: MeasurementUnitValue) : Duration {
 
 }
 
-val kotlin.Byte.second
+val Byte.second
     get() = Second(this)
 
 
-val kotlin.Short.second
+val Short.second
     get() = Second(this)
 
 
-val kotlin.Int.second
+val Int.second
     get() = Second(this)
 
 
-val kotlin.Long.second
+val Long.second
     get() = Second(this)
 
 
-val kotlin.Float.second
+val Float.second
     get() = Second(this)
 
 
-val kotlin.Double.second
+val Double.second
     get() = Second(this)
 
 
@@ -637,40 +636,40 @@ data class Millisecond(override val value: MeasurementUnitValue) : Duration {
     operator fun plus(other: Millisecond): Millisecond = Millisecond(this.value + other.value)
     operator fun minus(other: Millisecond): Millisecond = Millisecond(this.value - other.value)
 
-    constructor(value: kotlin.Byte) : this(value.toMeasurementUnitValue())
+    constructor(value: Byte) : this(value.toMeasurementUnitValue())
 
-    override operator fun times(other: kotlin.Byte): Millisecond = Millisecond(this.value.times(other))
-    override operator fun div(other: kotlin.Byte): Millisecond = Millisecond(this.value.div(other))
-    override operator fun rem(other: kotlin.Byte): Millisecond = Millisecond(this.value.rem(other))
+    override operator fun times(other: Byte): Millisecond = Millisecond(this.value.times(other))
+    override operator fun div(other: Byte): Millisecond = Millisecond(this.value.div(other))
+    override operator fun rem(other: Byte): Millisecond = Millisecond(this.value.rem(other))
 
-    constructor(value: kotlin.Short) : this(value.toMeasurementUnitValue())
+    constructor(value: Short) : this(value.toMeasurementUnitValue())
 
-    override operator fun times(other: kotlin.Short): Millisecond = Millisecond(this.value.times(other))
-    override operator fun div(other: kotlin.Short): Millisecond = Millisecond(this.value.div(other))
-    override operator fun rem(other: kotlin.Short): Millisecond = Millisecond(this.value.rem(other))
+    override operator fun times(other: Short): Millisecond = Millisecond(this.value.times(other))
+    override operator fun div(other: Short): Millisecond = Millisecond(this.value.div(other))
+    override operator fun rem(other: Short): Millisecond = Millisecond(this.value.rem(other))
 
-    constructor(value: kotlin.Int) : this(value.toMeasurementUnitValue())
+    constructor(value: Int) : this(value.toMeasurementUnitValue())
 
-    override operator fun times(other: kotlin.Int): Millisecond = Millisecond(this.value.times(other))
-    override operator fun div(other: kotlin.Int): Millisecond = Millisecond(this.value.div(other))
-    override operator fun rem(other: kotlin.Int): Millisecond = Millisecond(this.value.rem(other))
+    override operator fun times(other: Int): Millisecond = Millisecond(this.value.times(other))
+    override operator fun div(other: Int): Millisecond = Millisecond(this.value.div(other))
+    override operator fun rem(other: Int): Millisecond = Millisecond(this.value.rem(other))
 
-    constructor(value: kotlin.Long) : this(value.toMeasurementUnitValue())
+    constructor(value: Long) : this(value.toMeasurementUnitValue())
 
-    override operator fun times(other: kotlin.Long): Millisecond = Millisecond(this.value.times(other))
-    override operator fun div(other: kotlin.Long): Millisecond = Millisecond(this.value.div(other))
-    override operator fun rem(other: kotlin.Long): Millisecond = Millisecond(this.value.rem(other))
+    override operator fun times(other: Long): Millisecond = Millisecond(this.value.times(other))
+    override operator fun div(other: Long): Millisecond = Millisecond(this.value.div(other))
+    override operator fun rem(other: Long): Millisecond = Millisecond(this.value.rem(other))
 
-    constructor(value: kotlin.Float) : this(value.toMeasurementUnitValue())
+    constructor(value: Float) : this(value.toMeasurementUnitValue())
 
-    override operator fun times(other: kotlin.Float): Millisecond = Millisecond(this.value.times(other))
-    override operator fun div(other: kotlin.Float): Millisecond = Millisecond(this.value.div(other))
-    override operator fun rem(other: kotlin.Float): Millisecond = Millisecond(this.value.rem(other))
+    override operator fun times(other: Float): Millisecond = Millisecond(this.value.times(other))
+    override operator fun div(other: Float): Millisecond = Millisecond(this.value.div(other))
+    override operator fun rem(other: Float): Millisecond = Millisecond(this.value.rem(other))
 
 
-    override operator fun times(other: kotlin.Double): Millisecond = Millisecond(this.value.times(other))
-    override operator fun div(other: kotlin.Double): Millisecond = Millisecond(this.value.div(other))
-    override operator fun rem(other: kotlin.Double): Millisecond = Millisecond(this.value.rem(other))
+    override operator fun times(other: Double): Millisecond = Millisecond(this.value.times(other))
+    override operator fun div(other: Double): Millisecond = Millisecond(this.value.div(other))
+    override operator fun rem(other: Double): Millisecond = Millisecond(this.value.rem(other))
 
 
     override operator fun unaryMinus(): Millisecond = Millisecond(-value)
@@ -695,27 +694,27 @@ data class Millisecond(override val value: MeasurementUnitValue) : Duration {
 
 }
 
-val kotlin.Byte.millisecond
+val Byte.millisecond
     get() = Millisecond(this)
 
 
-val kotlin.Short.millisecond
+val Short.millisecond
     get() = Millisecond(this)
 
 
-val kotlin.Int.millisecond
+val Int.millisecond
     get() = Millisecond(this)
 
 
-val kotlin.Long.millisecond
+val Long.millisecond
     get() = Millisecond(this)
 
 
-val kotlin.Float.millisecond
+val Float.millisecond
     get() = Millisecond(this)
 
 
-val kotlin.Double.millisecond
+val Double.millisecond
     get() = Millisecond(this)
 
 
@@ -735,40 +734,40 @@ data class Microsecond(override val value: MeasurementUnitValue) : Duration {
     operator fun plus(other: Microsecond): Microsecond = Microsecond(this.value + other.value)
     operator fun minus(other: Microsecond): Microsecond = Microsecond(this.value - other.value)
 
-    constructor(value: kotlin.Byte) : this(value.toMeasurementUnitValue())
+    constructor(value: Byte) : this(value.toMeasurementUnitValue())
 
-    override operator fun times(other: kotlin.Byte): Microsecond = Microsecond(this.value.times(other))
-    override operator fun div(other: kotlin.Byte): Microsecond = Microsecond(this.value.div(other))
-    override operator fun rem(other: kotlin.Byte): Microsecond = Microsecond(this.value.rem(other))
+    override operator fun times(other: Byte): Microsecond = Microsecond(this.value.times(other))
+    override operator fun div(other: Byte): Microsecond = Microsecond(this.value.div(other))
+    override operator fun rem(other: Byte): Microsecond = Microsecond(this.value.rem(other))
 
-    constructor(value: kotlin.Short) : this(value.toMeasurementUnitValue())
+    constructor(value: Short) : this(value.toMeasurementUnitValue())
 
-    override operator fun times(other: kotlin.Short): Microsecond = Microsecond(this.value.times(other))
-    override operator fun div(other: kotlin.Short): Microsecond = Microsecond(this.value.div(other))
-    override operator fun rem(other: kotlin.Short): Microsecond = Microsecond(this.value.rem(other))
+    override operator fun times(other: Short): Microsecond = Microsecond(this.value.times(other))
+    override operator fun div(other: Short): Microsecond = Microsecond(this.value.div(other))
+    override operator fun rem(other: Short): Microsecond = Microsecond(this.value.rem(other))
 
-    constructor(value: kotlin.Int) : this(value.toMeasurementUnitValue())
+    constructor(value: Int) : this(value.toMeasurementUnitValue())
 
-    override operator fun times(other: kotlin.Int): Microsecond = Microsecond(this.value.times(other))
-    override operator fun div(other: kotlin.Int): Microsecond = Microsecond(this.value.div(other))
-    override operator fun rem(other: kotlin.Int): Microsecond = Microsecond(this.value.rem(other))
+    override operator fun times(other: Int): Microsecond = Microsecond(this.value.times(other))
+    override operator fun div(other: Int): Microsecond = Microsecond(this.value.div(other))
+    override operator fun rem(other: Int): Microsecond = Microsecond(this.value.rem(other))
 
-    constructor(value: kotlin.Long) : this(value.toMeasurementUnitValue())
+    constructor(value: Long) : this(value.toMeasurementUnitValue())
 
-    override operator fun times(other: kotlin.Long): Microsecond = Microsecond(this.value.times(other))
-    override operator fun div(other: kotlin.Long): Microsecond = Microsecond(this.value.div(other))
-    override operator fun rem(other: kotlin.Long): Microsecond = Microsecond(this.value.rem(other))
+    override operator fun times(other: Long): Microsecond = Microsecond(this.value.times(other))
+    override operator fun div(other: Long): Microsecond = Microsecond(this.value.div(other))
+    override operator fun rem(other: Long): Microsecond = Microsecond(this.value.rem(other))
 
-    constructor(value: kotlin.Float) : this(value.toMeasurementUnitValue())
+    constructor(value: Float) : this(value.toMeasurementUnitValue())
 
-    override operator fun times(other: kotlin.Float): Microsecond = Microsecond(this.value.times(other))
-    override operator fun div(other: kotlin.Float): Microsecond = Microsecond(this.value.div(other))
-    override operator fun rem(other: kotlin.Float): Microsecond = Microsecond(this.value.rem(other))
+    override operator fun times(other: Float): Microsecond = Microsecond(this.value.times(other))
+    override operator fun div(other: Float): Microsecond = Microsecond(this.value.div(other))
+    override operator fun rem(other: Float): Microsecond = Microsecond(this.value.rem(other))
 
 
-    override operator fun times(other: kotlin.Double): Microsecond = Microsecond(this.value.times(other))
-    override operator fun div(other: kotlin.Double): Microsecond = Microsecond(this.value.div(other))
-    override operator fun rem(other: kotlin.Double): Microsecond = Microsecond(this.value.rem(other))
+    override operator fun times(other: Double): Microsecond = Microsecond(this.value.times(other))
+    override operator fun div(other: Double): Microsecond = Microsecond(this.value.div(other))
+    override operator fun rem(other: Double): Microsecond = Microsecond(this.value.rem(other))
 
 
     override operator fun unaryMinus(): Microsecond = Microsecond(-value)
@@ -793,27 +792,27 @@ data class Microsecond(override val value: MeasurementUnitValue) : Duration {
 
 }
 
-val kotlin.Byte.microsecond
+val Byte.microsecond
     get() = Microsecond(this)
 
 
-val kotlin.Short.microsecond
+val Short.microsecond
     get() = Microsecond(this)
 
 
-val kotlin.Int.microsecond
+val Int.microsecond
     get() = Microsecond(this)
 
 
-val kotlin.Long.microsecond
+val Long.microsecond
     get() = Microsecond(this)
 
 
-val kotlin.Float.microsecond
+val Float.microsecond
     get() = Microsecond(this)
 
 
-val kotlin.Double.microsecond
+val Double.microsecond
     get() = Microsecond(this)
 
 
@@ -833,40 +832,40 @@ data class Nanosecond(override val value: MeasurementUnitValue) : Duration {
     operator fun plus(other: Nanosecond): Nanosecond = Nanosecond(this.value + other.value)
     operator fun minus(other: Nanosecond): Nanosecond = Nanosecond(this.value - other.value)
 
-    constructor(value: kotlin.Byte) : this(value.toMeasurementUnitValue())
+    constructor(value: Byte) : this(value.toMeasurementUnitValue())
 
-    override operator fun times(other: kotlin.Byte): Nanosecond = Nanosecond(this.value.times(other))
-    override operator fun div(other: kotlin.Byte): Nanosecond = Nanosecond(this.value.div(other))
-    override operator fun rem(other: kotlin.Byte): Nanosecond = Nanosecond(this.value.rem(other))
+    override operator fun times(other: Byte): Nanosecond = Nanosecond(this.value.times(other))
+    override operator fun div(other: Byte): Nanosecond = Nanosecond(this.value.div(other))
+    override operator fun rem(other: Byte): Nanosecond = Nanosecond(this.value.rem(other))
 
-    constructor(value: kotlin.Short) : this(value.toMeasurementUnitValue())
+    constructor(value: Short) : this(value.toMeasurementUnitValue())
 
-    override operator fun times(other: kotlin.Short): Nanosecond = Nanosecond(this.value.times(other))
-    override operator fun div(other: kotlin.Short): Nanosecond = Nanosecond(this.value.div(other))
-    override operator fun rem(other: kotlin.Short): Nanosecond = Nanosecond(this.value.rem(other))
+    override operator fun times(other: Short): Nanosecond = Nanosecond(this.value.times(other))
+    override operator fun div(other: Short): Nanosecond = Nanosecond(this.value.div(other))
+    override operator fun rem(other: Short): Nanosecond = Nanosecond(this.value.rem(other))
 
-    constructor(value: kotlin.Int) : this(value.toMeasurementUnitValue())
+    constructor(value: Int) : this(value.toMeasurementUnitValue())
 
-    override operator fun times(other: kotlin.Int): Nanosecond = Nanosecond(this.value.times(other))
-    override operator fun div(other: kotlin.Int): Nanosecond = Nanosecond(this.value.div(other))
-    override operator fun rem(other: kotlin.Int): Nanosecond = Nanosecond(this.value.rem(other))
+    override operator fun times(other: Int): Nanosecond = Nanosecond(this.value.times(other))
+    override operator fun div(other: Int): Nanosecond = Nanosecond(this.value.div(other))
+    override operator fun rem(other: Int): Nanosecond = Nanosecond(this.value.rem(other))
 
-    constructor(value: kotlin.Long) : this(value.toMeasurementUnitValue())
+    constructor(value: Long) : this(value.toMeasurementUnitValue())
 
-    override operator fun times(other: kotlin.Long): Nanosecond = Nanosecond(this.value.times(other))
-    override operator fun div(other: kotlin.Long): Nanosecond = Nanosecond(this.value.div(other))
-    override operator fun rem(other: kotlin.Long): Nanosecond = Nanosecond(this.value.rem(other))
+    override operator fun times(other: Long): Nanosecond = Nanosecond(this.value.times(other))
+    override operator fun div(other: Long): Nanosecond = Nanosecond(this.value.div(other))
+    override operator fun rem(other: Long): Nanosecond = Nanosecond(this.value.rem(other))
 
-    constructor(value: kotlin.Float) : this(value.toMeasurementUnitValue())
+    constructor(value: Float) : this(value.toMeasurementUnitValue())
 
-    override operator fun times(other: kotlin.Float): Nanosecond = Nanosecond(this.value.times(other))
-    override operator fun div(other: kotlin.Float): Nanosecond = Nanosecond(this.value.div(other))
-    override operator fun rem(other: kotlin.Float): Nanosecond = Nanosecond(this.value.rem(other))
+    override operator fun times(other: Float): Nanosecond = Nanosecond(this.value.times(other))
+    override operator fun div(other: Float): Nanosecond = Nanosecond(this.value.div(other))
+    override operator fun rem(other: Float): Nanosecond = Nanosecond(this.value.rem(other))
 
 
-    override operator fun times(other: kotlin.Double): Nanosecond = Nanosecond(this.value.times(other))
-    override operator fun div(other: kotlin.Double): Nanosecond = Nanosecond(this.value.div(other))
-    override operator fun rem(other: kotlin.Double): Nanosecond = Nanosecond(this.value.rem(other))
+    override operator fun times(other: Double): Nanosecond = Nanosecond(this.value.times(other))
+    override operator fun div(other: Double): Nanosecond = Nanosecond(this.value.div(other))
+    override operator fun rem(other: Double): Nanosecond = Nanosecond(this.value.rem(other))
 
 
     override operator fun unaryMinus(): Nanosecond = Nanosecond(-value)
@@ -891,26 +890,26 @@ data class Nanosecond(override val value: MeasurementUnitValue) : Duration {
 
 }
 
-val kotlin.Byte.nanosecond
+val Byte.nanosecond
     get() = Nanosecond(this)
 
 
-val kotlin.Short.nanosecond
+val Short.nanosecond
     get() = Nanosecond(this)
 
 
-val kotlin.Int.nanosecond
+val Int.nanosecond
     get() = Nanosecond(this)
 
 
-val kotlin.Long.nanosecond
+val Long.nanosecond
     get() = Nanosecond(this)
 
 
-val kotlin.Float.nanosecond
+val Float.nanosecond
     get() = Nanosecond(this)
 
 
-val kotlin.Double.nanosecond
+val Double.nanosecond
     get() = Nanosecond(this)
                             

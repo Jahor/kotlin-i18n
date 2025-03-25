@@ -204,13 +204,17 @@ private fun Language.Companion.byCodeParts(code: String, parts: List<String>): L
     val possibleCodes = mutableListOf<String>()
 
     Language.languageAliases[language]?.let { possibleCodes.add(it + "_" + country) }
-    Language.territoryAliases[country]?.let { possibleCodes.add(language + "_" + it) }
+    Language.territoryAliases[country]?.let { t -> t.forEach { possibleCodes.add(language + "_" + it) } }
     Language.languageAliases[language]?.let { la -> Language.territoryAliases[country]?.let { possibleCodes.add(la + "_" + it) } }
 
     if (parts.size > 2) {
         val script = parts[2].substring(1)
         Language.scriptAliases[script]?.let { sa -> possibleCodes.addAll(possibleCodes.map { it + (if (it.contains("_")) "_" else "") + "#${sa}" }) }
     }
+
+    possibleCodes.add(code)
+    possibleCodes.add(language + "_" + country)
+    possibleCodes.sortByDescending { it.length }
     for (p in possibleCodes) {
         println("$code Trying $p")
         val l = Language.supported[p]
@@ -218,13 +222,14 @@ private fun Language.Companion.byCodeParts(code: String, parts: List<String>): L
             return l
         }
     }
-    possibleCodes.add(code)
     possibleCodes.add(language)
+
+    val supported = Language.supported.keys.sortedByDescending { it.length }
     for (p in possibleCodes) {
         println("$code Trying $p*")
-        for ((s, l) in Language.supported) {
+        for (s in supported) {
             if (s.startsWith(p)) {
-                return l
+                return Language.supported[s]
             }
         }
     }

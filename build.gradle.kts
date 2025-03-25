@@ -7,15 +7,15 @@ buildscript {
 }
 
 plugins {
-    kotlin("multiplatform") version "2.0.0"
-    id("com.android.library") version "8.2.2"
+    kotlin("multiplatform") version "2.1.10"
+    id("com.android.library") version "8.7.3"
     id("maven-publish")
-    kotlin("plugin.serialization") version "2.0.0"
-    id("co.touchlab.skie") version "0.8.1"
+    kotlin("plugin.serialization") version "2.1.10"
+    id("co.touchlab.skie") version "0.10.1"
 }
 
 group = "info.leonenko"
-version = "1.0.22"
+version = "1.0.26"
 
 val frameworkName = "i18n"
 
@@ -24,8 +24,14 @@ repositories {
     mavenCentral()
 }
 
+skie {
+    analytics {
+        disableUpload.set(true)
+    }
+}
+
 kotlin {
-    jvmToolchain(8)
+    jvmToolchain(11)
     androidTarget()
     jvm()
 
@@ -35,7 +41,7 @@ kotlin {
         iosSimulatorArm64(),
         macosX64(),
         macosArm64(),
-        watchosArm32(),
+//        watchosArm32(),
         watchosArm64(),
         watchosSimulatorArm64(),
         watchosX64(),
@@ -66,23 +72,23 @@ kotlin {
     }
     sourceSets {
         commonMain.dependencies {
-            implementation("org.jetbrains.kotlinx:kotlinx-serialization-core:1.6.3")
+            implementation("org.jetbrains.kotlinx:kotlinx-serialization-core:1.8.0")
         }
         commonTest.dependencies {
             implementation(kotlin("test"))
-            implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:1.6.3")
+            implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:1.8.0")
         }
     }
 }
 
 android {
-    compileSdk = 33
+    compileSdk = 35
     defaultConfig {
         minSdk = 24
     }
     compileOptions {
-        sourceCompatibility = JavaVersion.VERSION_1_8
-        targetCompatibility = JavaVersion.VERSION_1_8
+        sourceCompatibility = JavaVersion.VERSION_11
+        targetCompatibility = JavaVersion.VERSION_11
     }
     namespace = "info.leonenko.i18n"
 }

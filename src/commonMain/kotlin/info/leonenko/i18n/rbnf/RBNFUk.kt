@@ -1743,7 +1743,32 @@ open class RBNFUk(val language: Language = Language.uk) : RBNF {
     private inner class OrdinalRules {
         val digitsOrdinal = DigitsOrdinal()
 
+        val digitsOrdinalMasculine = DigitsOrdinalMasculine()
+
+        val digitsOrdinalNeuter = DigitsOrdinalNeuter()
+
+        val digitsOrdinalFeminine = DigitsOrdinalFeminine()
+
         private inner class DigitsOrdinal : NumberFormatter {
+            override fun format(value: Double): String {
+                return if (value >= 0.0) digitsOrdinalMasculine.format(value) else {
+                    throw UnsupportedOperationException("digitsOrdinal only supports numbers >= 0")
+                }
+            }
+
+            override fun format(value: Long): String {
+                return digitsOrdinalMasculine.format(value)
+            }
+
+            fun formatF(value: Double): String {
+                return when (listOf<Long>(0).bestDenominatorOrNull(value)!!) {
+                    0L -> digitsOrdinalMasculine.format(value)
+                    else -> throw IllegalStateException("It should not happen")
+                }
+            }
+        }
+
+        private inner class DigitsOrdinalMasculine : NumberFormatter {
             override fun format(value: Double): String {
                 if (value < 0L) {
                     return "−" + format(kotlin.math.abs(value))
@@ -1755,8 +1780,8 @@ open class RBNFUk(val language: Language = Language.uk) : RBNF {
                     primary_grouping = 3,
                     secondary_grouping = 3,
                     symbols = language.numbers.symbols
-                ).format(value) else {
-                    throw UnsupportedOperationException("digitsOrdinal only supports numbers >= 0")
+                ).format(value) + "-" + Plurals(few = "ій", other = "ий").get(language.pluralFormChooser.pluralForm(((value).toLong() / 1).toString())) else {
+                    throw UnsupportedOperationException("digitsOrdinalMasculine only supports numbers >= 0")
                 }
             }
 
@@ -1771,14 +1796,120 @@ open class RBNFUk(val language: Language = Language.uk) : RBNF {
                     primary_grouping = 3,
                     secondary_grouping = 3,
                     symbols = language.numbers.symbols
-                ).format(value) else {
-                    throw UnsupportedOperationException("digitsOrdinal only supports numbers >= 0")
+                ).format(value) + "-" + Plurals(few = "ій", other = "ий").get(language.pluralFormChooser.pluralForm(((value) / 1).toString())) else {
+                    throw UnsupportedOperationException("digitsOrdinalMasculine only supports numbers >= 0")
                 }
             }
 
             fun formatF(value: Double): String {
                 return when (listOf<Long>(0).bestDenominatorOrNull(value)!!) {
-                    0L -> DecimalNumberFormatter(min_integer = 1, min_decimal = 0, max_decimal = 0, primary_grouping = 3, secondary_grouping = 3, symbols = language.numbers.symbols).format(value)
+                    0L -> DecimalNumberFormatter(
+                        min_integer = 1,
+                        min_decimal = 0,
+                        max_decimal = 0,
+                        primary_grouping = 3,
+                        secondary_grouping = 3,
+                        symbols = language.numbers.symbols
+                    ).format(value) + "-" + Plurals(few = "ій", other = "ий").get(language.pluralFormChooser.pluralForm(((value * 0).toLong()).toString()))
+
+                    else -> throw IllegalStateException("It should not happen")
+                }
+            }
+        }
+
+        private inner class DigitsOrdinalNeuter : NumberFormatter {
+            override fun format(value: Double): String {
+                if (value < 0L) {
+                    return "−" + format(kotlin.math.abs(value))
+                }
+                return if (value >= 0.0) DecimalNumberFormatter(
+                    min_integer = 1,
+                    min_decimal = 0,
+                    max_decimal = 0,
+                    primary_grouping = 3,
+                    secondary_grouping = 3,
+                    symbols = language.numbers.symbols
+                ).format(value) + "-" + Plurals(few = "є", other = "е").get(language.pluralFormChooser.pluralForm(((value).toLong() / 1).toString())) else {
+                    throw UnsupportedOperationException("digitsOrdinalNeuter only supports numbers >= 0")
+                }
+            }
+
+            override fun format(value: Long): String {
+                if (value < 0L) {
+                    return "−" + format(kotlin.math.abs(value))
+                }
+                return if (value >= 0L) DecimalNumberFormatter(
+                    min_integer = 1,
+                    min_decimal = 0,
+                    max_decimal = 0,
+                    primary_grouping = 3,
+                    secondary_grouping = 3,
+                    symbols = language.numbers.symbols
+                ).format(value) + "-" + Plurals(few = "є", other = "е").get(language.pluralFormChooser.pluralForm(((value) / 1).toString())) else {
+                    throw UnsupportedOperationException("digitsOrdinalNeuter only supports numbers >= 0")
+                }
+            }
+
+            fun formatF(value: Double): String {
+                return when (listOf<Long>(0).bestDenominatorOrNull(value)!!) {
+                    0L -> DecimalNumberFormatter(
+                        min_integer = 1,
+                        min_decimal = 0,
+                        max_decimal = 0,
+                        primary_grouping = 3,
+                        secondary_grouping = 3,
+                        symbols = language.numbers.symbols
+                    ).format(value) + "-" + Plurals(few = "є", other = "е").get(language.pluralFormChooser.pluralForm(((value * 0).toLong()).toString()))
+
+                    else -> throw IllegalStateException("It should not happen")
+                }
+            }
+        }
+
+        private inner class DigitsOrdinalFeminine : NumberFormatter {
+            override fun format(value: Double): String {
+                if (value < 0L) {
+                    return "−" + format(kotlin.math.abs(value))
+                }
+                return if (value >= 0.0) DecimalNumberFormatter(
+                    min_integer = 1,
+                    min_decimal = 0,
+                    max_decimal = 0,
+                    primary_grouping = 3,
+                    secondary_grouping = 3,
+                    symbols = language.numbers.symbols
+                ).format(value) + "-" + Plurals(few = "я", other = "а").get(language.pluralFormChooser.pluralForm(((value).toLong() / 1).toString())) else {
+                    throw UnsupportedOperationException("digitsOrdinalFeminine only supports numbers >= 0")
+                }
+            }
+
+            override fun format(value: Long): String {
+                if (value < 0L) {
+                    return "−" + format(kotlin.math.abs(value))
+                }
+                return if (value >= 0L) DecimalNumberFormatter(
+                    min_integer = 1,
+                    min_decimal = 0,
+                    max_decimal = 0,
+                    primary_grouping = 3,
+                    secondary_grouping = 3,
+                    symbols = language.numbers.symbols
+                ).format(value) + "-" + Plurals(few = "я", other = "а").get(language.pluralFormChooser.pluralForm(((value) / 1).toString())) else {
+                    throw UnsupportedOperationException("digitsOrdinalFeminine only supports numbers >= 0")
+                }
+            }
+
+            fun formatF(value: Double): String {
+                return when (listOf<Long>(0).bestDenominatorOrNull(value)!!) {
+                    0L -> DecimalNumberFormatter(
+                        min_integer = 1,
+                        min_decimal = 0,
+                        max_decimal = 0,
+                        primary_grouping = 3,
+                        secondary_grouping = 3,
+                        symbols = language.numbers.symbols
+                    ).format(value) + "-" + Plurals(few = "я", other = "а").get(language.pluralFormChooser.pluralForm(((value * 0).toLong()).toString()))
+
                     else -> throw IllegalStateException("It should not happen")
                 }
             }
@@ -1799,12 +1930,27 @@ open class RBNFUk(val language: Language = Language.uk) : RBNF {
         get() = spelloutRules.spelloutCardinalFeminine
     open val digitsOrdinal: NumberFormatter
         get() = ordinalRules.digitsOrdinal
-    override val spelloutOrdinal: NumberFormatter
-        get() = TODO("spelloutOrdinal is not available for uk")
+    open val digitsOrdinalMasculine: NumberFormatter
+        get() = ordinalRules.digitsOrdinalMasculine
+    open val digitsOrdinalNeuter: NumberFormatter
+        get() = ordinalRules.digitsOrdinalNeuter
+    open val digitsOrdinalFeminine: NumberFormatter
+        get() = ordinalRules.digitsOrdinalFeminine
     override val spelloutCardinal: NumberFormatter
         get() = TODO("spelloutCardinal is not available for uk")
+    override val spelloutOrdinal: NumberFormatter
+        get() = TODO("spelloutOrdinal is not available for uk")
 
-    fun spelloutCardinalFor(gender: Gender): NumberFormatter {
+    override fun spelloutNumberingFor(gender: Gender, case: Case): NumberFormatter {
+        return spelloutNumbering
+
+    }
+
+    fun spelloutNumberingFor(): NumberFormatter {
+        return spelloutNumberingFor(Gender.Neuter, Case.Nominative)
+    }
+
+    override fun spelloutCardinalFor(gender: Gender, case: Case): NumberFormatter {
         return when (gender) {
             Gender.Neuter -> spelloutCardinalNeuter
             Gender.Masculine -> spelloutCardinalMasculine
@@ -1812,5 +1958,31 @@ open class RBNFUk(val language: Language = Language.uk) : RBNF {
             else -> TODO("uk does not support $gender gender")
         }
 
+    }
+
+    fun spelloutCardinalFor(gender: Gender): NumberFormatter {
+        return spelloutCardinalFor(gender, Case.Nominative)
+    }
+
+    fun digitsOrdinalFor(gender: Gender, case: Case): NumberFormatter {
+        return when (gender) {
+            Gender.Neuter -> digitsOrdinalNeuter
+            Gender.Masculine -> digitsOrdinalMasculine
+            Gender.Feminine -> digitsOrdinalFeminine
+            else -> TODO("uk does not support $gender gender")
+        }
+
+    }
+
+    fun digitsOrdinalFor(gender: Gender): NumberFormatter {
+        return digitsOrdinalFor(gender, Case.Nominative)
+    }
+
+    override fun spelloutOrdinalFor(gender: Gender, case: Case): NumberFormatter {
+        TODO("spelloutOrdinal is not available for uk")
+    }
+
+    override fun spelloutNumberingYearFor(gender: Gender, case: Case): NumberFormatter {
+        TODO("spelloutNumberingYear is not available for uk")
     }
 }

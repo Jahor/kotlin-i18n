@@ -6,7 +6,6 @@ import info.leonenko.i18n.rbnf.RBNFEn_in
 val Language.Companion.en_IN
     get() = languageEn_IN
 private val languageEn_IN = LanguageEn_IN()
-
 class LanguageEn_IN internal constructor() : LanguageEn() {
     override val code: String = "en_IN"
     override val script: String? = null

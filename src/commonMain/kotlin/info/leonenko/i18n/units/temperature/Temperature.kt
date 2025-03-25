@@ -22,7 +22,6 @@ interface Temperature : MeasurementUnit, Comparable<Temperature> {
     class Serializer : CustomSerializer()
     open class CustomSerializer(val decoders: Map<String, (MeasurementUnitValue) -> Temperature> = emptyMap()) : KSerializer<Temperature> {
         private val delegateSerializer = MapSerializer(String.serializer(), MeasurementUnitValue.serializer())
-
         @OptIn(ExperimentalSerializationApi::class)
         override val descriptor: SerialDescriptor = SerialDescriptor("Temperature", delegateSerializer.descriptor)
         override fun deserialize(decoder: Decoder): Temperature {
@@ -78,34 +77,34 @@ interface Temperature : MeasurementUnit, Comparable<Temperature> {
     fun abs(): Temperature
 
 
-    operator fun times(other: kotlin.Byte): Temperature
-    operator fun div(other: kotlin.Byte): Temperature
-    operator fun rem(other: kotlin.Byte): Temperature
+    operator fun times(other: Byte): Temperature
+    operator fun div(other: Byte): Temperature
+    operator fun rem(other: Byte): Temperature
 
 
-    operator fun times(other: kotlin.Short): Temperature
-    operator fun div(other: kotlin.Short): Temperature
-    operator fun rem(other: kotlin.Short): Temperature
+    operator fun times(other: Short): Temperature
+    operator fun div(other: Short): Temperature
+    operator fun rem(other: Short): Temperature
 
 
-    operator fun times(other: kotlin.Int): Temperature
-    operator fun div(other: kotlin.Int): Temperature
-    operator fun rem(other: kotlin.Int): Temperature
+    operator fun times(other: Int): Temperature
+    operator fun div(other: Int): Temperature
+    operator fun rem(other: Int): Temperature
 
 
-    operator fun times(other: kotlin.Long): Temperature
-    operator fun div(other: kotlin.Long): Temperature
-    operator fun rem(other: kotlin.Long): Temperature
+    operator fun times(other: Long): Temperature
+    operator fun div(other: Long): Temperature
+    operator fun rem(other: Long): Temperature
 
 
-    operator fun times(other: kotlin.Float): Temperature
-    operator fun div(other: kotlin.Float): Temperature
-    operator fun rem(other: kotlin.Float): Temperature
+    operator fun times(other: Float): Temperature
+    operator fun div(other: Float): Temperature
+    operator fun rem(other: Float): Temperature
 
 
-    operator fun times(other: kotlin.Double): Temperature
-    operator fun div(other: kotlin.Double): Temperature
-    operator fun rem(other: kotlin.Double): Temperature
+    operator fun times(other: Double): Temperature
+    operator fun div(other: Double): Temperature
+    operator fun rem(other: Double): Temperature
 
 }
 
@@ -125,40 +124,40 @@ data class Generic(override val value: MeasurementUnitValue) : Temperature {
     operator fun plus(other: Generic): Generic = Generic(this.value + other.value)
     operator fun minus(other: Generic): Generic = Generic(this.value - other.value)
 
-    constructor(value: kotlin.Byte) : this(value.toMeasurementUnitValue())
+    constructor(value: Byte) : this(value.toMeasurementUnitValue())
 
-    override operator fun times(other: kotlin.Byte): Generic = Generic(this.value.times(other))
-    override operator fun div(other: kotlin.Byte): Generic = Generic(this.value.div(other))
-    override operator fun rem(other: kotlin.Byte): Generic = Generic(this.value.rem(other))
+    override operator fun times(other: Byte): Generic = Generic(this.value.times(other))
+    override operator fun div(other: Byte): Generic = Generic(this.value.div(other))
+    override operator fun rem(other: Byte): Generic = Generic(this.value.rem(other))
 
-    constructor(value: kotlin.Short) : this(value.toMeasurementUnitValue())
+    constructor(value: Short) : this(value.toMeasurementUnitValue())
 
-    override operator fun times(other: kotlin.Short): Generic = Generic(this.value.times(other))
-    override operator fun div(other: kotlin.Short): Generic = Generic(this.value.div(other))
-    override operator fun rem(other: kotlin.Short): Generic = Generic(this.value.rem(other))
+    override operator fun times(other: Short): Generic = Generic(this.value.times(other))
+    override operator fun div(other: Short): Generic = Generic(this.value.div(other))
+    override operator fun rem(other: Short): Generic = Generic(this.value.rem(other))
 
-    constructor(value: kotlin.Int) : this(value.toMeasurementUnitValue())
+    constructor(value: Int) : this(value.toMeasurementUnitValue())
 
-    override operator fun times(other: kotlin.Int): Generic = Generic(this.value.times(other))
-    override operator fun div(other: kotlin.Int): Generic = Generic(this.value.div(other))
-    override operator fun rem(other: kotlin.Int): Generic = Generic(this.value.rem(other))
+    override operator fun times(other: Int): Generic = Generic(this.value.times(other))
+    override operator fun div(other: Int): Generic = Generic(this.value.div(other))
+    override operator fun rem(other: Int): Generic = Generic(this.value.rem(other))
 
-    constructor(value: kotlin.Long) : this(value.toMeasurementUnitValue())
+    constructor(value: Long) : this(value.toMeasurementUnitValue())
 
-    override operator fun times(other: kotlin.Long): Generic = Generic(this.value.times(other))
-    override operator fun div(other: kotlin.Long): Generic = Generic(this.value.div(other))
-    override operator fun rem(other: kotlin.Long): Generic = Generic(this.value.rem(other))
+    override operator fun times(other: Long): Generic = Generic(this.value.times(other))
+    override operator fun div(other: Long): Generic = Generic(this.value.div(other))
+    override operator fun rem(other: Long): Generic = Generic(this.value.rem(other))
 
-    constructor(value: kotlin.Float) : this(value.toMeasurementUnitValue())
+    constructor(value: Float) : this(value.toMeasurementUnitValue())
 
-    override operator fun times(other: kotlin.Float): Generic = Generic(this.value.times(other))
-    override operator fun div(other: kotlin.Float): Generic = Generic(this.value.div(other))
-    override operator fun rem(other: kotlin.Float): Generic = Generic(this.value.rem(other))
+    override operator fun times(other: Float): Generic = Generic(this.value.times(other))
+    override operator fun div(other: Float): Generic = Generic(this.value.div(other))
+    override operator fun rem(other: Float): Generic = Generic(this.value.rem(other))
 
 
-    override operator fun times(other: kotlin.Double): Generic = Generic(this.value.times(other))
-    override operator fun div(other: kotlin.Double): Generic = Generic(this.value.div(other))
-    override operator fun rem(other: kotlin.Double): Generic = Generic(this.value.rem(other))
+    override operator fun times(other: Double): Generic = Generic(this.value.times(other))
+    override operator fun div(other: Double): Generic = Generic(this.value.div(other))
+    override operator fun rem(other: Double): Generic = Generic(this.value.rem(other))
 
 
     override operator fun unaryMinus(): Generic = Generic(-value)
@@ -183,27 +182,27 @@ data class Generic(override val value: MeasurementUnitValue) : Temperature {
 
 }
 
-val kotlin.Byte.generic
+val Byte.generic
     get() = Generic(this)
 
 
-val kotlin.Short.generic
+val Short.generic
     get() = Generic(this)
 
 
-val kotlin.Int.generic
+val Int.generic
     get() = Generic(this)
 
 
-val kotlin.Long.generic
+val Long.generic
     get() = Generic(this)
 
 
-val kotlin.Float.generic
+val Float.generic
     get() = Generic(this)
 
 
-val kotlin.Double.generic
+val Double.generic
     get() = Generic(this)
 
 
@@ -223,40 +222,40 @@ data class Celsius(override val value: MeasurementUnitValue) : Temperature {
     operator fun plus(other: Celsius): Celsius = Celsius(this.value + other.value)
     operator fun minus(other: Celsius): Celsius = Celsius(this.value - other.value)
 
-    constructor(value: kotlin.Byte) : this(value.toMeasurementUnitValue())
+    constructor(value: Byte) : this(value.toMeasurementUnitValue())
 
-    override operator fun times(other: kotlin.Byte): Celsius = Celsius(this.value.times(other))
-    override operator fun div(other: kotlin.Byte): Celsius = Celsius(this.value.div(other))
-    override operator fun rem(other: kotlin.Byte): Celsius = Celsius(this.value.rem(other))
+    override operator fun times(other: Byte): Celsius = Celsius(this.value.times(other))
+    override operator fun div(other: Byte): Celsius = Celsius(this.value.div(other))
+    override operator fun rem(other: Byte): Celsius = Celsius(this.value.rem(other))
 
-    constructor(value: kotlin.Short) : this(value.toMeasurementUnitValue())
+    constructor(value: Short) : this(value.toMeasurementUnitValue())
 
-    override operator fun times(other: kotlin.Short): Celsius = Celsius(this.value.times(other))
-    override operator fun div(other: kotlin.Short): Celsius = Celsius(this.value.div(other))
-    override operator fun rem(other: kotlin.Short): Celsius = Celsius(this.value.rem(other))
+    override operator fun times(other: Short): Celsius = Celsius(this.value.times(other))
+    override operator fun div(other: Short): Celsius = Celsius(this.value.div(other))
+    override operator fun rem(other: Short): Celsius = Celsius(this.value.rem(other))
 
-    constructor(value: kotlin.Int) : this(value.toMeasurementUnitValue())
+    constructor(value: Int) : this(value.toMeasurementUnitValue())
 
-    override operator fun times(other: kotlin.Int): Celsius = Celsius(this.value.times(other))
-    override operator fun div(other: kotlin.Int): Celsius = Celsius(this.value.div(other))
-    override operator fun rem(other: kotlin.Int): Celsius = Celsius(this.value.rem(other))
+    override operator fun times(other: Int): Celsius = Celsius(this.value.times(other))
+    override operator fun div(other: Int): Celsius = Celsius(this.value.div(other))
+    override operator fun rem(other: Int): Celsius = Celsius(this.value.rem(other))
 
-    constructor(value: kotlin.Long) : this(value.toMeasurementUnitValue())
+    constructor(value: Long) : this(value.toMeasurementUnitValue())
 
-    override operator fun times(other: kotlin.Long): Celsius = Celsius(this.value.times(other))
-    override operator fun div(other: kotlin.Long): Celsius = Celsius(this.value.div(other))
-    override operator fun rem(other: kotlin.Long): Celsius = Celsius(this.value.rem(other))
+    override operator fun times(other: Long): Celsius = Celsius(this.value.times(other))
+    override operator fun div(other: Long): Celsius = Celsius(this.value.div(other))
+    override operator fun rem(other: Long): Celsius = Celsius(this.value.rem(other))
 
-    constructor(value: kotlin.Float) : this(value.toMeasurementUnitValue())
+    constructor(value: Float) : this(value.toMeasurementUnitValue())
 
-    override operator fun times(other: kotlin.Float): Celsius = Celsius(this.value.times(other))
-    override operator fun div(other: kotlin.Float): Celsius = Celsius(this.value.div(other))
-    override operator fun rem(other: kotlin.Float): Celsius = Celsius(this.value.rem(other))
+    override operator fun times(other: Float): Celsius = Celsius(this.value.times(other))
+    override operator fun div(other: Float): Celsius = Celsius(this.value.div(other))
+    override operator fun rem(other: Float): Celsius = Celsius(this.value.rem(other))
 
 
-    override operator fun times(other: kotlin.Double): Celsius = Celsius(this.value.times(other))
-    override operator fun div(other: kotlin.Double): Celsius = Celsius(this.value.div(other))
-    override operator fun rem(other: kotlin.Double): Celsius = Celsius(this.value.rem(other))
+    override operator fun times(other: Double): Celsius = Celsius(this.value.times(other))
+    override operator fun div(other: Double): Celsius = Celsius(this.value.div(other))
+    override operator fun rem(other: Double): Celsius = Celsius(this.value.rem(other))
 
 
     override operator fun unaryMinus(): Celsius = Celsius(-value)
@@ -281,27 +280,27 @@ data class Celsius(override val value: MeasurementUnitValue) : Temperature {
 
 }
 
-val kotlin.Byte.celsius
+val Byte.celsius
     get() = Celsius(this)
 
 
-val kotlin.Short.celsius
+val Short.celsius
     get() = Celsius(this)
 
 
-val kotlin.Int.celsius
+val Int.celsius
     get() = Celsius(this)
 
 
-val kotlin.Long.celsius
+val Long.celsius
     get() = Celsius(this)
 
 
-val kotlin.Float.celsius
+val Float.celsius
     get() = Celsius(this)
 
 
-val kotlin.Double.celsius
+val Double.celsius
     get() = Celsius(this)
 
 
@@ -321,40 +320,40 @@ data class Fahrenheit(override val value: MeasurementUnitValue) : Temperature {
     operator fun plus(other: Fahrenheit): Fahrenheit = Fahrenheit(this.value + other.value)
     operator fun minus(other: Fahrenheit): Fahrenheit = Fahrenheit(this.value - other.value)
 
-    constructor(value: kotlin.Byte) : this(value.toMeasurementUnitValue())
+    constructor(value: Byte) : this(value.toMeasurementUnitValue())
 
-    override operator fun times(other: kotlin.Byte): Fahrenheit = Fahrenheit(this.value.times(other))
-    override operator fun div(other: kotlin.Byte): Fahrenheit = Fahrenheit(this.value.div(other))
-    override operator fun rem(other: kotlin.Byte): Fahrenheit = Fahrenheit(this.value.rem(other))
+    override operator fun times(other: Byte): Fahrenheit = Fahrenheit(this.value.times(other))
+    override operator fun div(other: Byte): Fahrenheit = Fahrenheit(this.value.div(other))
+    override operator fun rem(other: Byte): Fahrenheit = Fahrenheit(this.value.rem(other))
 
-    constructor(value: kotlin.Short) : this(value.toMeasurementUnitValue())
+    constructor(value: Short) : this(value.toMeasurementUnitValue())
 
-    override operator fun times(other: kotlin.Short): Fahrenheit = Fahrenheit(this.value.times(other))
-    override operator fun div(other: kotlin.Short): Fahrenheit = Fahrenheit(this.value.div(other))
-    override operator fun rem(other: kotlin.Short): Fahrenheit = Fahrenheit(this.value.rem(other))
+    override operator fun times(other: Short): Fahrenheit = Fahrenheit(this.value.times(other))
+    override operator fun div(other: Short): Fahrenheit = Fahrenheit(this.value.div(other))
+    override operator fun rem(other: Short): Fahrenheit = Fahrenheit(this.value.rem(other))
 
-    constructor(value: kotlin.Int) : this(value.toMeasurementUnitValue())
+    constructor(value: Int) : this(value.toMeasurementUnitValue())
 
-    override operator fun times(other: kotlin.Int): Fahrenheit = Fahrenheit(this.value.times(other))
-    override operator fun div(other: kotlin.Int): Fahrenheit = Fahrenheit(this.value.div(other))
-    override operator fun rem(other: kotlin.Int): Fahrenheit = Fahrenheit(this.value.rem(other))
+    override operator fun times(other: Int): Fahrenheit = Fahrenheit(this.value.times(other))
+    override operator fun div(other: Int): Fahrenheit = Fahrenheit(this.value.div(other))
+    override operator fun rem(other: Int): Fahrenheit = Fahrenheit(this.value.rem(other))
 
-    constructor(value: kotlin.Long) : this(value.toMeasurementUnitValue())
+    constructor(value: Long) : this(value.toMeasurementUnitValue())
 
-    override operator fun times(other: kotlin.Long): Fahrenheit = Fahrenheit(this.value.times(other))
-    override operator fun div(other: kotlin.Long): Fahrenheit = Fahrenheit(this.value.div(other))
-    override operator fun rem(other: kotlin.Long): Fahrenheit = Fahrenheit(this.value.rem(other))
+    override operator fun times(other: Long): Fahrenheit = Fahrenheit(this.value.times(other))
+    override operator fun div(other: Long): Fahrenheit = Fahrenheit(this.value.div(other))
+    override operator fun rem(other: Long): Fahrenheit = Fahrenheit(this.value.rem(other))
 
-    constructor(value: kotlin.Float) : this(value.toMeasurementUnitValue())
+    constructor(value: Float) : this(value.toMeasurementUnitValue())
 
-    override operator fun times(other: kotlin.Float): Fahrenheit = Fahrenheit(this.value.times(other))
-    override operator fun div(other: kotlin.Float): Fahrenheit = Fahrenheit(this.value.div(other))
-    override operator fun rem(other: kotlin.Float): Fahrenheit = Fahrenheit(this.value.rem(other))
+    override operator fun times(other: Float): Fahrenheit = Fahrenheit(this.value.times(other))
+    override operator fun div(other: Float): Fahrenheit = Fahrenheit(this.value.div(other))
+    override operator fun rem(other: Float): Fahrenheit = Fahrenheit(this.value.rem(other))
 
 
-    override operator fun times(other: kotlin.Double): Fahrenheit = Fahrenheit(this.value.times(other))
-    override operator fun div(other: kotlin.Double): Fahrenheit = Fahrenheit(this.value.div(other))
-    override operator fun rem(other: kotlin.Double): Fahrenheit = Fahrenheit(this.value.rem(other))
+    override operator fun times(other: Double): Fahrenheit = Fahrenheit(this.value.times(other))
+    override operator fun div(other: Double): Fahrenheit = Fahrenheit(this.value.div(other))
+    override operator fun rem(other: Double): Fahrenheit = Fahrenheit(this.value.rem(other))
 
 
     override operator fun unaryMinus(): Fahrenheit = Fahrenheit(-value)
@@ -379,27 +378,27 @@ data class Fahrenheit(override val value: MeasurementUnitValue) : Temperature {
 
 }
 
-val kotlin.Byte.fahrenheit
+val Byte.fahrenheit
     get() = Fahrenheit(this)
 
 
-val kotlin.Short.fahrenheit
+val Short.fahrenheit
     get() = Fahrenheit(this)
 
 
-val kotlin.Int.fahrenheit
+val Int.fahrenheit
     get() = Fahrenheit(this)
 
 
-val kotlin.Long.fahrenheit
+val Long.fahrenheit
     get() = Fahrenheit(this)
 
 
-val kotlin.Float.fahrenheit
+val Float.fahrenheit
     get() = Fahrenheit(this)
 
 
-val kotlin.Double.fahrenheit
+val Double.fahrenheit
     get() = Fahrenheit(this)
 
 
@@ -419,40 +418,40 @@ data class Kelvin(override val value: MeasurementUnitValue) : Temperature {
     operator fun plus(other: Kelvin): Kelvin = Kelvin(this.value + other.value)
     operator fun minus(other: Kelvin): Kelvin = Kelvin(this.value - other.value)
 
-    constructor(value: kotlin.Byte) : this(value.toMeasurementUnitValue())
+    constructor(value: Byte) : this(value.toMeasurementUnitValue())
 
-    override operator fun times(other: kotlin.Byte): Kelvin = Kelvin(this.value.times(other))
-    override operator fun div(other: kotlin.Byte): Kelvin = Kelvin(this.value.div(other))
-    override operator fun rem(other: kotlin.Byte): Kelvin = Kelvin(this.value.rem(other))
+    override operator fun times(other: Byte): Kelvin = Kelvin(this.value.times(other))
+    override operator fun div(other: Byte): Kelvin = Kelvin(this.value.div(other))
+    override operator fun rem(other: Byte): Kelvin = Kelvin(this.value.rem(other))
 
-    constructor(value: kotlin.Short) : this(value.toMeasurementUnitValue())
+    constructor(value: Short) : this(value.toMeasurementUnitValue())
 
-    override operator fun times(other: kotlin.Short): Kelvin = Kelvin(this.value.times(other))
-    override operator fun div(other: kotlin.Short): Kelvin = Kelvin(this.value.div(other))
-    override operator fun rem(other: kotlin.Short): Kelvin = Kelvin(this.value.rem(other))
+    override operator fun times(other: Short): Kelvin = Kelvin(this.value.times(other))
+    override operator fun div(other: Short): Kelvin = Kelvin(this.value.div(other))
+    override operator fun rem(other: Short): Kelvin = Kelvin(this.value.rem(other))
 
-    constructor(value: kotlin.Int) : this(value.toMeasurementUnitValue())
+    constructor(value: Int) : this(value.toMeasurementUnitValue())
 
-    override operator fun times(other: kotlin.Int): Kelvin = Kelvin(this.value.times(other))
-    override operator fun div(other: kotlin.Int): Kelvin = Kelvin(this.value.div(other))
-    override operator fun rem(other: kotlin.Int): Kelvin = Kelvin(this.value.rem(other))
+    override operator fun times(other: Int): Kelvin = Kelvin(this.value.times(other))
+    override operator fun div(other: Int): Kelvin = Kelvin(this.value.div(other))
+    override operator fun rem(other: Int): Kelvin = Kelvin(this.value.rem(other))
 
-    constructor(value: kotlin.Long) : this(value.toMeasurementUnitValue())
+    constructor(value: Long) : this(value.toMeasurementUnitValue())
 
-    override operator fun times(other: kotlin.Long): Kelvin = Kelvin(this.value.times(other))
-    override operator fun div(other: kotlin.Long): Kelvin = Kelvin(this.value.div(other))
-    override operator fun rem(other: kotlin.Long): Kelvin = Kelvin(this.value.rem(other))
+    override operator fun times(other: Long): Kelvin = Kelvin(this.value.times(other))
+    override operator fun div(other: Long): Kelvin = Kelvin(this.value.div(other))
+    override operator fun rem(other: Long): Kelvin = Kelvin(this.value.rem(other))
 
-    constructor(value: kotlin.Float) : this(value.toMeasurementUnitValue())
+    constructor(value: Float) : this(value.toMeasurementUnitValue())
 
-    override operator fun times(other: kotlin.Float): Kelvin = Kelvin(this.value.times(other))
-    override operator fun div(other: kotlin.Float): Kelvin = Kelvin(this.value.div(other))
-    override operator fun rem(other: kotlin.Float): Kelvin = Kelvin(this.value.rem(other))
+    override operator fun times(other: Float): Kelvin = Kelvin(this.value.times(other))
+    override operator fun div(other: Float): Kelvin = Kelvin(this.value.div(other))
+    override operator fun rem(other: Float): Kelvin = Kelvin(this.value.rem(other))
 
 
-    override operator fun times(other: kotlin.Double): Kelvin = Kelvin(this.value.times(other))
-    override operator fun div(other: kotlin.Double): Kelvin = Kelvin(this.value.div(other))
-    override operator fun rem(other: kotlin.Double): Kelvin = Kelvin(this.value.rem(other))
+    override operator fun times(other: Double): Kelvin = Kelvin(this.value.times(other))
+    override operator fun div(other: Double): Kelvin = Kelvin(this.value.div(other))
+    override operator fun rem(other: Double): Kelvin = Kelvin(this.value.rem(other))
 
 
     override operator fun unaryMinus(): Kelvin = Kelvin(-value)
@@ -477,26 +476,26 @@ data class Kelvin(override val value: MeasurementUnitValue) : Temperature {
 
 }
 
-val kotlin.Byte.kelvin
+val Byte.kelvin
     get() = Kelvin(this)
 
 
-val kotlin.Short.kelvin
+val Short.kelvin
     get() = Kelvin(this)
 
 
-val kotlin.Int.kelvin
+val Int.kelvin
     get() = Kelvin(this)
 
 
-val kotlin.Long.kelvin
+val Long.kelvin
     get() = Kelvin(this)
 
 
-val kotlin.Float.kelvin
+val Float.kelvin
     get() = Kelvin(this)
 
 
-val kotlin.Double.kelvin
+val Double.kelvin
     get() = Kelvin(this)
                             

@@ -22,7 +22,6 @@ interface SubstanceAmount : MeasurementUnit, Comparable<SubstanceAmount> {
     class Serializer : CustomSerializer()
     open class CustomSerializer(val decoders: Map<String, (MeasurementUnitValue) -> SubstanceAmount> = emptyMap()) : KSerializer<SubstanceAmount> {
         private val delegateSerializer = MapSerializer(String.serializer(), MeasurementUnitValue.serializer())
-
         @OptIn(ExperimentalSerializationApi::class)
         override val descriptor: SerialDescriptor = SerialDescriptor("SubstanceAmount", delegateSerializer.descriptor)
         override fun deserialize(decoder: Decoder): SubstanceAmount {
@@ -70,34 +69,34 @@ interface SubstanceAmount : MeasurementUnit, Comparable<SubstanceAmount> {
     fun abs(): SubstanceAmount
 
 
-    operator fun times(other: kotlin.Byte): SubstanceAmount
-    operator fun div(other: kotlin.Byte): SubstanceAmount
-    operator fun rem(other: kotlin.Byte): SubstanceAmount
+    operator fun times(other: Byte): SubstanceAmount
+    operator fun div(other: Byte): SubstanceAmount
+    operator fun rem(other: Byte): SubstanceAmount
 
 
-    operator fun times(other: kotlin.Short): SubstanceAmount
-    operator fun div(other: kotlin.Short): SubstanceAmount
-    operator fun rem(other: kotlin.Short): SubstanceAmount
+    operator fun times(other: Short): SubstanceAmount
+    operator fun div(other: Short): SubstanceAmount
+    operator fun rem(other: Short): SubstanceAmount
 
 
-    operator fun times(other: kotlin.Int): SubstanceAmount
-    operator fun div(other: kotlin.Int): SubstanceAmount
-    operator fun rem(other: kotlin.Int): SubstanceAmount
+    operator fun times(other: Int): SubstanceAmount
+    operator fun div(other: Int): SubstanceAmount
+    operator fun rem(other: Int): SubstanceAmount
 
 
-    operator fun times(other: kotlin.Long): SubstanceAmount
-    operator fun div(other: kotlin.Long): SubstanceAmount
-    operator fun rem(other: kotlin.Long): SubstanceAmount
+    operator fun times(other: Long): SubstanceAmount
+    operator fun div(other: Long): SubstanceAmount
+    operator fun rem(other: Long): SubstanceAmount
 
 
-    operator fun times(other: kotlin.Float): SubstanceAmount
-    operator fun div(other: kotlin.Float): SubstanceAmount
-    operator fun rem(other: kotlin.Float): SubstanceAmount
+    operator fun times(other: Float): SubstanceAmount
+    operator fun div(other: Float): SubstanceAmount
+    operator fun rem(other: Float): SubstanceAmount
 
 
-    operator fun times(other: kotlin.Double): SubstanceAmount
-    operator fun div(other: kotlin.Double): SubstanceAmount
-    operator fun rem(other: kotlin.Double): SubstanceAmount
+    operator fun times(other: Double): SubstanceAmount
+    operator fun div(other: Double): SubstanceAmount
+    operator fun rem(other: Double): SubstanceAmount
 
 }
 
@@ -117,40 +116,40 @@ data class Item(override val value: MeasurementUnitValue) : SubstanceAmount {
     operator fun plus(other: Item): Item = Item(this.value + other.value)
     operator fun minus(other: Item): Item = Item(this.value - other.value)
 
-    constructor(value: kotlin.Byte) : this(value.toMeasurementUnitValue())
+    constructor(value: Byte) : this(value.toMeasurementUnitValue())
 
-    override operator fun times(other: kotlin.Byte): Item = Item(this.value.times(other))
-    override operator fun div(other: kotlin.Byte): Item = Item(this.value.div(other))
-    override operator fun rem(other: kotlin.Byte): Item = Item(this.value.rem(other))
+    override operator fun times(other: Byte): Item = Item(this.value.times(other))
+    override operator fun div(other: Byte): Item = Item(this.value.div(other))
+    override operator fun rem(other: Byte): Item = Item(this.value.rem(other))
 
-    constructor(value: kotlin.Short) : this(value.toMeasurementUnitValue())
+    constructor(value: Short) : this(value.toMeasurementUnitValue())
 
-    override operator fun times(other: kotlin.Short): Item = Item(this.value.times(other))
-    override operator fun div(other: kotlin.Short): Item = Item(this.value.div(other))
-    override operator fun rem(other: kotlin.Short): Item = Item(this.value.rem(other))
+    override operator fun times(other: Short): Item = Item(this.value.times(other))
+    override operator fun div(other: Short): Item = Item(this.value.div(other))
+    override operator fun rem(other: Short): Item = Item(this.value.rem(other))
 
-    constructor(value: kotlin.Int) : this(value.toMeasurementUnitValue())
+    constructor(value: Int) : this(value.toMeasurementUnitValue())
 
-    override operator fun times(other: kotlin.Int): Item = Item(this.value.times(other))
-    override operator fun div(other: kotlin.Int): Item = Item(this.value.div(other))
-    override operator fun rem(other: kotlin.Int): Item = Item(this.value.rem(other))
+    override operator fun times(other: Int): Item = Item(this.value.times(other))
+    override operator fun div(other: Int): Item = Item(this.value.div(other))
+    override operator fun rem(other: Int): Item = Item(this.value.rem(other))
 
-    constructor(value: kotlin.Long) : this(value.toMeasurementUnitValue())
+    constructor(value: Long) : this(value.toMeasurementUnitValue())
 
-    override operator fun times(other: kotlin.Long): Item = Item(this.value.times(other))
-    override operator fun div(other: kotlin.Long): Item = Item(this.value.div(other))
-    override operator fun rem(other: kotlin.Long): Item = Item(this.value.rem(other))
+    override operator fun times(other: Long): Item = Item(this.value.times(other))
+    override operator fun div(other: Long): Item = Item(this.value.div(other))
+    override operator fun rem(other: Long): Item = Item(this.value.rem(other))
 
-    constructor(value: kotlin.Float) : this(value.toMeasurementUnitValue())
+    constructor(value: Float) : this(value.toMeasurementUnitValue())
 
-    override operator fun times(other: kotlin.Float): Item = Item(this.value.times(other))
-    override operator fun div(other: kotlin.Float): Item = Item(this.value.div(other))
-    override operator fun rem(other: kotlin.Float): Item = Item(this.value.rem(other))
+    override operator fun times(other: Float): Item = Item(this.value.times(other))
+    override operator fun div(other: Float): Item = Item(this.value.div(other))
+    override operator fun rem(other: Float): Item = Item(this.value.rem(other))
 
 
-    override operator fun times(other: kotlin.Double): Item = Item(this.value.times(other))
-    override operator fun div(other: kotlin.Double): Item = Item(this.value.div(other))
-    override operator fun rem(other: kotlin.Double): Item = Item(this.value.rem(other))
+    override operator fun times(other: Double): Item = Item(this.value.times(other))
+    override operator fun div(other: Double): Item = Item(this.value.div(other))
+    override operator fun rem(other: Double): Item = Item(this.value.rem(other))
 
 
     override operator fun unaryMinus(): Item = Item(-value)
@@ -175,27 +174,27 @@ data class Item(override val value: MeasurementUnitValue) : SubstanceAmount {
 
 }
 
-val kotlin.Byte.item
+val Byte.item
     get() = Item(this)
 
 
-val kotlin.Short.item
+val Short.item
     get() = Item(this)
 
 
-val kotlin.Int.item
+val Int.item
     get() = Item(this)
 
 
-val kotlin.Long.item
+val Long.item
     get() = Item(this)
 
 
-val kotlin.Float.item
+val Float.item
     get() = Item(this)
 
 
-val kotlin.Double.item
+val Double.item
     get() = Item(this)
 
 
@@ -215,40 +214,40 @@ data class Mole(override val value: MeasurementUnitValue) : SubstanceAmount {
     operator fun plus(other: Mole): Mole = Mole(this.value + other.value)
     operator fun minus(other: Mole): Mole = Mole(this.value - other.value)
 
-    constructor(value: kotlin.Byte) : this(value.toMeasurementUnitValue())
+    constructor(value: Byte) : this(value.toMeasurementUnitValue())
 
-    override operator fun times(other: kotlin.Byte): Mole = Mole(this.value.times(other))
-    override operator fun div(other: kotlin.Byte): Mole = Mole(this.value.div(other))
-    override operator fun rem(other: kotlin.Byte): Mole = Mole(this.value.rem(other))
+    override operator fun times(other: Byte): Mole = Mole(this.value.times(other))
+    override operator fun div(other: Byte): Mole = Mole(this.value.div(other))
+    override operator fun rem(other: Byte): Mole = Mole(this.value.rem(other))
 
-    constructor(value: kotlin.Short) : this(value.toMeasurementUnitValue())
+    constructor(value: Short) : this(value.toMeasurementUnitValue())
 
-    override operator fun times(other: kotlin.Short): Mole = Mole(this.value.times(other))
-    override operator fun div(other: kotlin.Short): Mole = Mole(this.value.div(other))
-    override operator fun rem(other: kotlin.Short): Mole = Mole(this.value.rem(other))
+    override operator fun times(other: Short): Mole = Mole(this.value.times(other))
+    override operator fun div(other: Short): Mole = Mole(this.value.div(other))
+    override operator fun rem(other: Short): Mole = Mole(this.value.rem(other))
 
-    constructor(value: kotlin.Int) : this(value.toMeasurementUnitValue())
+    constructor(value: Int) : this(value.toMeasurementUnitValue())
 
-    override operator fun times(other: kotlin.Int): Mole = Mole(this.value.times(other))
-    override operator fun div(other: kotlin.Int): Mole = Mole(this.value.div(other))
-    override operator fun rem(other: kotlin.Int): Mole = Mole(this.value.rem(other))
+    override operator fun times(other: Int): Mole = Mole(this.value.times(other))
+    override operator fun div(other: Int): Mole = Mole(this.value.div(other))
+    override operator fun rem(other: Int): Mole = Mole(this.value.rem(other))
 
-    constructor(value: kotlin.Long) : this(value.toMeasurementUnitValue())
+    constructor(value: Long) : this(value.toMeasurementUnitValue())
 
-    override operator fun times(other: kotlin.Long): Mole = Mole(this.value.times(other))
-    override operator fun div(other: kotlin.Long): Mole = Mole(this.value.div(other))
-    override operator fun rem(other: kotlin.Long): Mole = Mole(this.value.rem(other))
+    override operator fun times(other: Long): Mole = Mole(this.value.times(other))
+    override operator fun div(other: Long): Mole = Mole(this.value.div(other))
+    override operator fun rem(other: Long): Mole = Mole(this.value.rem(other))
 
-    constructor(value: kotlin.Float) : this(value.toMeasurementUnitValue())
+    constructor(value: Float) : this(value.toMeasurementUnitValue())
 
-    override operator fun times(other: kotlin.Float): Mole = Mole(this.value.times(other))
-    override operator fun div(other: kotlin.Float): Mole = Mole(this.value.div(other))
-    override operator fun rem(other: kotlin.Float): Mole = Mole(this.value.rem(other))
+    override operator fun times(other: Float): Mole = Mole(this.value.times(other))
+    override operator fun div(other: Float): Mole = Mole(this.value.div(other))
+    override operator fun rem(other: Float): Mole = Mole(this.value.rem(other))
 
 
-    override operator fun times(other: kotlin.Double): Mole = Mole(this.value.times(other))
-    override operator fun div(other: kotlin.Double): Mole = Mole(this.value.div(other))
-    override operator fun rem(other: kotlin.Double): Mole = Mole(this.value.rem(other))
+    override operator fun times(other: Double): Mole = Mole(this.value.times(other))
+    override operator fun div(other: Double): Mole = Mole(this.value.div(other))
+    override operator fun rem(other: Double): Mole = Mole(this.value.rem(other))
 
 
     override operator fun unaryMinus(): Mole = Mole(-value)
@@ -273,26 +272,26 @@ data class Mole(override val value: MeasurementUnitValue) : SubstanceAmount {
 
 }
 
-val kotlin.Byte.mole
+val Byte.mole
     get() = Mole(this)
 
 
-val kotlin.Short.mole
+val Short.mole
     get() = Mole(this)
 
 
-val kotlin.Int.mole
+val Int.mole
     get() = Mole(this)
 
 
-val kotlin.Long.mole
+val Long.mole
     get() = Mole(this)
 
 
-val kotlin.Float.mole
+val Float.mole
     get() = Mole(this)
 
 
-val kotlin.Double.mole
+val Double.mole
     get() = Mole(this)
                             

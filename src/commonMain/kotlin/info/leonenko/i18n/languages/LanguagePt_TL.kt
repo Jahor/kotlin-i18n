@@ -1,11 +1,9 @@
 package info.leonenko.i18n.languages
-
 import info.leonenko.i18n.Language
 
 val Language.Companion.pt_TL
     get() = languagePt_TL
 private val languagePt_TL = LanguagePt_TL()
-
 class LanguagePt_TL internal constructor() : LanguagePt() {
     override val code: String = "pt_TL"
     override val script: String? = null

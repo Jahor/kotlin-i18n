@@ -1404,4 +1404,44 @@ open class RBNFZh(val language: Language = Language.zh) : RBNF {
         get() = spelloutRules.spelloutOrdinal
     open val digitsOrdinal: NumberFormatter
         get() = ordinalRules.digitsOrdinal
+
+    override fun spelloutNumberingFor(gender: Gender, case: Case): NumberFormatter {
+        return spelloutNumbering
+
+    }
+
+    fun spelloutNumberingFor(): NumberFormatter {
+        return spelloutNumberingFor(Gender.Neuter, Case.Nominative)
+    }
+
+    override fun spelloutCardinalFor(gender: Gender, case: Case): NumberFormatter {
+        return spelloutCardinal
+
+    }
+
+    fun spelloutCardinalFor(): NumberFormatter {
+        return spelloutCardinalFor(Gender.Neuter, Case.Nominative)
+    }
+
+    override fun spelloutOrdinalFor(gender: Gender, case: Case): NumberFormatter {
+        return spelloutOrdinal
+
+    }
+
+    fun spelloutOrdinalFor(): NumberFormatter {
+        return spelloutOrdinalFor(Gender.Neuter, Case.Nominative)
+    }
+
+    fun digitsOrdinalFor(gender: Gender, case: Case): NumberFormatter {
+        return digitsOrdinal
+
+    }
+
+    fun digitsOrdinalFor(): NumberFormatter {
+        return digitsOrdinalFor(Gender.Neuter, Case.Nominative)
+    }
+
+    override fun spelloutNumberingYearFor(gender: Gender, case: Case): NumberFormatter {
+        TODO("spelloutNumberingYear is not available for zh")
+    }
 }

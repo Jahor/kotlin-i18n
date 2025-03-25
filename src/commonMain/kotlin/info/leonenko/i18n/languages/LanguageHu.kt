@@ -6,7 +6,6 @@ import info.leonenko.i18n.rbnf.RBNFHu
 val Language.Companion.hu
     get() = languageHu
 private val languageHu = LanguageHu()
-
 open class LanguageHu internal constructor() : Language {
     override val code: String = "hu"
     override val language: String = "hu"
@@ -760,6 +759,30 @@ open class LanguageHu internal constructor() : Language {
                                 other = "{0} milligramm/deciliter",
                             )
                         ),
+                        accusative = PluralPattern(
+                            Plurals(
+                                one = "{0} milligramm/decilitert",
+                                other = "{0} milligramm/decilitert",
+                            )
+                        ),
+                        instrumental = PluralPattern(
+                            Plurals(
+                                one = "{0} milligramm/deciliterrel",
+                                other = "{0} milligramm/deciliterrel",
+                            )
+                        ),
+                        terminative = PluralPattern(
+                            Plurals(
+                                one = "{0} milligramm/deciliterig",
+                                other = "{0} milligramm/deciliterig",
+                            )
+                        ),
+                        translative = PluralPattern(
+                            Plurals(
+                                one = "{0} milligramm/deciliterré",
+                                other = "{0} milligramm/deciliterré",
+                            )
+                        ),
                     )
                 ),
                 short = GenderedPattern(
@@ -820,8 +843,8 @@ open class LanguageHu internal constructor() : Language {
                     )
                 ),
             )
-        override val concentrationItemPerCubicMeter: MultiLengthGenderedPattern
-            get() = TODO("ItemPerCubicMeter formatter is not implemented yet for hu")
+        override val concentrationPortionPer1e9: MultiLengthGenderedPattern
+            get() = TODO("PortionPer1e9 formatter is not implemented yet for hu")
         override val concentrationItem
             get() = MultiLengthGenderedPattern(
                 long = GenderedPattern(
@@ -1379,7 +1402,7 @@ open class LanguageHu internal constructor() : Language {
                     )
                 ),
             )
-        override val digitalByte
+        override val digitalByteUnit
             get() = MultiLengthGenderedPattern(
                 long = GenderedPattern(
                     cases = Cases(
@@ -2064,6 +2087,63 @@ open class LanguageHu internal constructor() : Language {
                     )
                 ),
             )
+        override val durationNight
+            get() = MultiLengthGenderedPattern(
+                long = GenderedPattern(
+                    cases = Cases(
+                        nominative = PluralPattern(
+                            Plurals(
+                                one = "{0} éjszaka",
+                                other = "{0} éjszaka",
+                            )
+                        ),
+                        accusative = PluralPattern(
+                            Plurals(
+                                one = "{0} éjszakát",
+                                other = "{0} éjszakát",
+                            )
+                        ),
+                        instrumental = PluralPattern(
+                            Plurals(
+                                one = "{0} éjszakával",
+                                other = "{0} éjszakával",
+                            )
+                        ),
+                        terminative = PluralPattern(
+                            Plurals(
+                                one = "{0} éjszakáig",
+                                other = "{0} éjszakáig",
+                            )
+                        ),
+                        translative = PluralPattern(
+                            Plurals(
+                                one = "{0} éjszakává",
+                                other = "{0} éjszakává",
+                            )
+                        ),
+                    )
+                ),
+                short = GenderedPattern(
+                    cases = Cases(
+                        nominative = PluralPattern(
+                            Plurals(
+                                one = "{0} éjszaka",
+                                other = "{0} éjszaka",
+                            )
+                        ),
+                    )
+                ),
+                narrow = GenderedPattern(
+                    cases = Cases(
+                        nominative = PluralPattern(
+                            Plurals(
+                                one = "{0} éjszaka",
+                                other = "{0} éjszaka",
+                            )
+                        ),
+                    )
+                ),
+            )
         override val electricAmpere
             get() = MultiLengthGenderedPattern(
                 long = GenderedPattern(
@@ -2224,6 +2304,30 @@ open class LanguageHu internal constructor() : Language {
                             Plurals(
                                 one = "{0} kilokalória",
                                 other = "{0} kilokalória",
+                            )
+                        ),
+                        accusative = PluralPattern(
+                            Plurals(
+                                one = "{0} kilokalóriát",
+                                other = "{0} kilokalóriát",
+                            )
+                        ),
+                        instrumental = PluralPattern(
+                            Plurals(
+                                one = "{0} kilokalóriával",
+                                other = "{0} kilokalóriával",
+                            )
+                        ),
+                        terminative = PluralPattern(
+                            Plurals(
+                                one = "{0} kilokalóriáig",
+                                other = "{0} kilokalóriáig",
+                            )
+                        ),
+                        translative = PluralPattern(
+                            Plurals(
+                                one = "{0} kilokalóriává",
+                                other = "{0} kilokalóriává",
                             )
                         ),
                     )
@@ -3438,6 +3542,30 @@ open class LanguageHu internal constructor() : Language {
                                 other = "{0} pont",
                             )
                         ),
+                        accusative = PluralPattern(
+                            Plurals(
+                                one = "{0} pontot",
+                                other = "{0} pontot",
+                            )
+                        ),
+                        instrumental = PluralPattern(
+                            Plurals(
+                                one = "{0} ponttal",
+                                other = "{0} ponttal",
+                            )
+                        ),
+                        terminative = PluralPattern(
+                            Plurals(
+                                one = "{0} pontig",
+                                other = "{0} pontig",
+                            )
+                        ),
+                        translative = PluralPattern(
+                            Plurals(
+                                one = "{0} ponttá",
+                                other = "{0} ponttá",
+                            )
+                        ),
                     )
                 ),
             )
@@ -4160,6 +4288,30 @@ open class LanguageHu internal constructor() : Language {
                                 other = "{0} higanymilliméter",
                             )
                         ),
+                        accusative = PluralPattern(
+                            Plurals(
+                                one = "{0} higanymillimétert",
+                                other = "{0} higanymillimétert",
+                            )
+                        ),
+                        instrumental = PluralPattern(
+                            Plurals(
+                                one = "{0} higanymilliméterrel",
+                                other = "{0} higanymilliméterrel",
+                            )
+                        ),
+                        terminative = PluralPattern(
+                            Plurals(
+                                one = "{0} higanymilliméterig",
+                                other = "{0} higanymilliméterig",
+                            )
+                        ),
+                        translative = PluralPattern(
+                            Plurals(
+                                one = "{0} higanymilliméterré",
+                                other = "{0} higanymilliméterré",
+                            )
+                        ),
                     )
                 ),
                 short = GenderedPattern(
@@ -4605,6 +4757,8 @@ open class LanguageHu internal constructor() : Language {
                     )
                 ),
             )
+        override val speedLightSpeed: MultiLengthGenderedPattern
+            get() = TODO("LightSpeed formatter is not implemented yet for hu")
         override val temperatureGeneric
             get() = MultiLengthGenderedPattern(
                 long = GenderedPattern(

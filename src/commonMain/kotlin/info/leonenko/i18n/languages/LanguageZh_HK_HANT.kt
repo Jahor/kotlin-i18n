@@ -5,7 +5,6 @@ import info.leonenko.i18n.*
 val Language.Companion.zh_HK_HANT
     get() = languageZh_HK_HANT
 private val languageZh_HK_HANT = LanguageZh_HK_HANT()
-
 class LanguageZh_HK_HANT internal constructor() : LanguageZh_HANT() {
     override val code: String = "zh_HK_#Hant"
     override val script: String = "Hant"
@@ -273,9 +272,9 @@ class LanguageZh_HK_HANT internal constructor() : LanguageZh_HANT() {
                     )
                 ),
             )
-        override val digitalByte
+        override val digitalByteUnit
             get() = MultiLengthGenderedPattern(
-                base = super.digitalByte,
+                base = super.digitalByteUnit,
                 long = GenderedPattern(
                     cases = Cases(
                         nominative = PluralPattern(
@@ -784,19 +783,6 @@ class LanguageZh_HK_HANT internal constructor() : LanguageZh_HANT() {
                     )
                 ),
             )
-        override val massKilogram
-            get() = MultiLengthGenderedPattern(
-                base = super.massKilogram,
-                narrow = GenderedPattern(
-                    cases = Cases(
-                        nominative = PluralPattern(
-                            Plurals(
-                                other = "{0} 公斤",
-                            )
-                        ),
-                    )
-                ),
-            )
         override val massOunce
             get() = MultiLengthGenderedPattern(
                 base = super.massOunce,
@@ -1085,15 +1071,6 @@ class LanguageZh_HK_HANT internal constructor() : LanguageZh_HANT() {
         override val speedBeaufort
             get() = MultiLengthGenderedPattern(
                 base = super.speedBeaufort,
-                long = GenderedPattern(
-                    cases = Cases(
-                        nominative = PluralPattern(
-                            Plurals(
-                                other = "蒲福氏風級 {0} 級",
-                            )
-                        ),
-                    )
-                ),
                 short = GenderedPattern(
                     cases = Cases(
                         nominative = PluralPattern(
@@ -1108,6 +1085,19 @@ class LanguageZh_HK_HANT internal constructor() : LanguageZh_HANT() {
                         nominative = PluralPattern(
                             Plurals(
                                 other = "蒲福氏風級 {0} 級",
+                            )
+                        ),
+                    )
+                ),
+            )
+        override val speedLightSpeed
+            get() = MultiLengthGenderedPattern(
+                base = super.speedLightSpeed,
+                narrow = GenderedPattern(
+                    cases = Cases(
+                        nominative = PluralPattern(
+                            Plurals(
+                                other = "{0}夜",
                             )
                         ),
                     )

@@ -1,11 +1,9 @@
 package info.leonenko.i18n.languages
-
 import info.leonenko.i18n.Language
 
 val Language.Companion.en_US_DSRT
     get() = languageEn_US_DSRT
 private val languageEn_US_DSRT = LanguageEn_US_DSRT()
-
 class LanguageEn_US_DSRT internal constructor() : LanguageEn_DSRT() {
     override val code: String = "en_US_#Dsrt"
     override val script: String = "Dsrt"

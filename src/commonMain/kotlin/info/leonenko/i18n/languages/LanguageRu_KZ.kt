@@ -1,11 +1,9 @@
 package info.leonenko.i18n.languages
-
 import info.leonenko.i18n.Language
 
 val Language.Companion.ru_KZ
     get() = languageRu_KZ
 private val languageRu_KZ = LanguageRu_KZ()
-
 class LanguageRu_KZ internal constructor() : LanguageRu() {
     override val code: String = "ru_KZ"
     override val script: String? = null

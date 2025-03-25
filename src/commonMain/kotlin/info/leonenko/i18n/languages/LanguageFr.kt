@@ -6,7 +6,6 @@ import info.leonenko.i18n.rbnf.RBNFFr
 val Language.Companion.fr
     get() = languageFr
 private val languageFr = LanguageFr()
-
 open class LanguageFr internal constructor() : Language {
     override val code: String = "fr"
     override val language: String = "fr"
@@ -713,6 +712,7 @@ open class LanguageFr internal constructor() : Language {
         override val concentrationMilligramOfglucosePerDeciliter
             get() = MultiLengthGenderedPattern(
                 long = GenderedPattern(
+                    gender = Gender.Masculine,
                     cases = Cases(
                         nominative = PluralPattern(
                             Plurals(
@@ -777,8 +777,30 @@ open class LanguageFr internal constructor() : Language {
                     )
                 ),
             )
-        override val concentrationItemPerCubicMeter: MultiLengthGenderedPattern
-            get() = TODO("ItemPerCubicMeter formatter is not implemented yet for fr")
+        override val concentrationPortionPer1e9
+            get() = MultiLengthGenderedPattern(
+                long = GenderedPattern(
+                    gender = Gender.Feminine,
+                    cases = Cases(
+                        nominative = PluralPattern(
+                            Plurals(
+                                one = "{0} part par milliard",
+                                other = "{0} parts par milliard",
+                            )
+                        ),
+                    )
+                ),
+                narrow = GenderedPattern(
+                    cases = Cases(
+                        nominative = PluralPattern(
+                            Plurals(
+                                one = "{0}ppb",
+                                other = "{0}ppb",
+                            )
+                        ),
+                    )
+                ),
+            )
         override val concentrationItem
             get() = MultiLengthGenderedPattern(
                 long = GenderedPattern(
@@ -1289,7 +1311,7 @@ open class LanguageFr internal constructor() : Language {
                     )
                 ),
             )
-        override val digitalByte
+        override val digitalByteUnit
             get() = MultiLengthGenderedPattern(
                 long = GenderedPattern(
                     gender = Gender.Masculine,
@@ -1794,6 +1816,40 @@ open class LanguageFr internal constructor() : Language {
                             Plurals(
                                 one = "{0}ns",
                                 other = "{0}ns",
+                            )
+                        ),
+                    )
+                ),
+            )
+        override val durationNight
+            get() = MultiLengthGenderedPattern(
+                long = GenderedPattern(
+                    gender = Gender.Feminine,
+                    cases = Cases(
+                        nominative = PluralPattern(
+                            Plurals(
+                                one = "{0} nuit",
+                                other = "{0} nuits",
+                            )
+                        ),
+                    )
+                ),
+                short = GenderedPattern(
+                    cases = Cases(
+                        nominative = PluralPattern(
+                            Plurals(
+                                one = "{0} nuit",
+                                other = "{0} nuits",
+                            )
+                        ),
+                    )
+                ),
+                narrow = GenderedPattern(
+                    cases = Cases(
+                        nominative = PluralPattern(
+                            Plurals(
+                                one = "{0}nuit",
+                                other = "{0}nuits",
                             )
                         ),
                     )
@@ -3302,6 +3358,7 @@ open class LanguageFr internal constructor() : Language {
         override val lengthPoint
             get() = MultiLengthGenderedPattern(
                 long = GenderedPattern(
+                    gender = Gender.Masculine,
                     cases = Cases(
                         nominative = PluralPattern(
                             Plurals(
@@ -4171,6 +4228,7 @@ open class LanguageFr internal constructor() : Language {
         override val pressureMillimeterOfhg
             get() = MultiLengthGenderedPattern(
                 long = GenderedPattern(
+                    gender = Gender.Masculine,
                     cases = Cases(
                         nominative = PluralPattern(
                             Plurals(
@@ -4641,6 +4699,40 @@ open class LanguageFr internal constructor() : Language {
                             Plurals(
                                 one = "{0}Bft",
                                 other = "{0}Bft",
+                            )
+                        ),
+                    )
+                ),
+            )
+        override val speedLightSpeed
+            get() = MultiLengthGenderedPattern(
+                long = GenderedPattern(
+                    gender = Gender.Feminine,
+                    cases = Cases(
+                        nominative = PluralPattern(
+                            Plurals(
+                                one = "{0} lumière",
+                                other = "{0} lumière",
+                            )
+                        ),
+                    )
+                ),
+                short = GenderedPattern(
+                    cases = Cases(
+                        nominative = PluralPattern(
+                            Plurals(
+                                one = "{0} lumière",
+                                other = "{0} lumière",
+                            )
+                        ),
+                    )
+                ),
+                narrow = GenderedPattern(
+                    cases = Cases(
+                        nominative = PluralPattern(
+                            Plurals(
+                                one = "{0} lumière",
+                                other = "{0} lumière",
                             )
                         ),
                     )

@@ -59,7 +59,7 @@ data class DecimalNumberFormatter(
         }
 
         while (dDigits.lastOrNull() == "0" && dDigits.size > min_decimal) {
-            dDigits.removeLast()
+            dDigits.removeAt(dDigits.size - 1)
         }
         val dS = if (dDigits.isEmpty()) {
             ""

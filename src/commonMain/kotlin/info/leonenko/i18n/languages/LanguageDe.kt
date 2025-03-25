@@ -6,7 +6,6 @@ import info.leonenko.i18n.rbnf.RBNFDe
 val Language.Companion.de
     get() = languageDe
 private val languageDe = LanguageDe()
-
 open class LanguageDe internal constructor() : Language {
     override val code: String = "de"
     override val language: String = "de"
@@ -762,8 +761,27 @@ open class LanguageDe internal constructor() : Language {
         override val concentrationMilligramOfglucosePerDeciliter
             get() = MultiLengthGenderedPattern(
                 long = GenderedPattern(
+                    gender = Gender.Neuter,
                     cases = Cases(
                         nominative = PluralPattern(
+                            Plurals(
+                                one = "{0} Milligramm pro Deziliter",
+                                other = "{0} Milligramm pro Deziliter",
+                            )
+                        ),
+                        accusative = PluralPattern(
+                            Plurals(
+                                one = "{0} Milligramm pro Deziliter",
+                                other = "{0} Milligramm pro Deziliter",
+                            )
+                        ),
+                        dative = PluralPattern(
+                            Plurals(
+                                one = "{0} Milligramm pro Deziliter",
+                                other = "{0} Milligramm pro Deziliter",
+                            )
+                        ),
+                        genitive = PluralPattern(
                             Plurals(
                                 one = "{0} Milligramm pro Deziliter",
                                 other = "{0} Milligramm pro Deziliter",
@@ -844,8 +862,48 @@ open class LanguageDe internal constructor() : Language {
                     )
                 ),
             )
-        override val concentrationItemPerCubicMeter: MultiLengthGenderedPattern
-            get() = TODO("ItemPerCubicMeter formatter is not implemented yet for de")
+        override val concentrationPortionPer1e9
+            get() = MultiLengthGenderedPattern(
+                long = GenderedPattern(
+                    gender = Gender.Neuter,
+                    cases = Cases(
+                        nominative = PluralPattern(
+                            Plurals(
+                                one = "{0} Milliardstel",
+                                other = "{0} Milliardstel",
+                            )
+                        ),
+                        accusative = PluralPattern(
+                            Plurals(
+                                one = "{0} Milliardstel",
+                                other = "{0} Milliardstel",
+                            )
+                        ),
+                        dative = PluralPattern(
+                            Plurals(
+                                one = "{0} Milliardstel",
+                                other = "{0} Milliardsteln",
+                            )
+                        ),
+                        genitive = PluralPattern(
+                            Plurals(
+                                one = "{0} Milliardstels",
+                                other = "{0} Milliardstel",
+                            )
+                        ),
+                    )
+                ),
+                short = GenderedPattern(
+                    cases = Cases(
+                        nominative = PluralPattern(
+                            Plurals(
+                                one = "{0} Milliardstel",
+                                other = "{0} Milliardstel",
+                            )
+                        ),
+                    )
+                ),
+            )
         override val concentrationItem
             get() = MultiLengthGenderedPattern(
                 long = GenderedPattern(
@@ -1446,7 +1504,7 @@ open class LanguageDe internal constructor() : Language {
                     )
                 ),
             )
-        override val digitalByte
+        override val digitalByteUnit
             get() = MultiLengthGenderedPattern(
                 long = GenderedPattern(
                     gender = Gender.Neuter,
@@ -1659,7 +1717,7 @@ open class LanguageDe internal constructor() : Language {
                         ),
                         genitive = PluralPattern(
                             Plurals(
-                                one = "{0} Jahrs",
+                                one = "{0} Jahres",
                                 other = "{0} Jahre",
                             )
                         ),
@@ -2101,6 +2159,58 @@ open class LanguageDe internal constructor() : Language {
                             Plurals(
                                 one = "{0} Nanosekunde",
                                 other = "{0} Nanosekunden",
+                            )
+                        ),
+                    )
+                ),
+            )
+        override val durationNight
+            get() = MultiLengthGenderedPattern(
+                long = GenderedPattern(
+                    gender = Gender.Feminine,
+                    cases = Cases(
+                        nominative = PluralPattern(
+                            Plurals(
+                                one = "{0} Übernachtung",
+                                other = "{0} Übernachtungen",
+                            )
+                        ),
+                        accusative = PluralPattern(
+                            Plurals(
+                                one = "{0} Übernachtung",
+                                other = "{0} Übernachtungen",
+                            )
+                        ),
+                        dative = PluralPattern(
+                            Plurals(
+                                one = "{0} Übernachtung",
+                                other = "{0} Übernachtungen",
+                            )
+                        ),
+                        genitive = PluralPattern(
+                            Plurals(
+                                one = "{0} Übernachtung",
+                                other = "{0} Übernachtungen",
+                            )
+                        ),
+                    )
+                ),
+                short = GenderedPattern(
+                    cases = Cases(
+                        nominative = PluralPattern(
+                            Plurals(
+                                one = "{0} Nacht",
+                                other = "{0} Nächte",
+                            )
+                        ),
+                    )
+                ),
+                narrow = GenderedPattern(
+                    cases = Cases(
+                        nominative = PluralPattern(
+                            Plurals(
+                                one = "{0}Nacht",
+                                other = "{0}Nächte",
                             )
                         ),
                     )
@@ -3651,10 +3761,29 @@ open class LanguageDe internal constructor() : Language {
         override val lengthPoint
             get() = MultiLengthGenderedPattern(
                 long = GenderedPattern(
+                    gender = Gender.Masculine,
                     cases = Cases(
                         nominative = PluralPattern(
                             Plurals(
                                 one = "{0} DTP-Punkt",
+                                other = "{0} DTP-Punkte",
+                            )
+                        ),
+                        accusative = PluralPattern(
+                            Plurals(
+                                one = "{0} DTP-Punkt",
+                                other = "{0} DTP-Punkte",
+                            )
+                        ),
+                        dative = PluralPattern(
+                            Plurals(
+                                one = "{0} DTP-Punkt",
+                                other = "{0} DTP-Punkten",
+                            )
+                        ),
+                        genitive = PluralPattern(
+                            Plurals(
+                                one = "{0} DTP-Punkts",
                                 other = "{0} DTP-Punkte",
                             )
                         ),
@@ -4556,8 +4685,27 @@ open class LanguageDe internal constructor() : Language {
         override val pressureMillimeterOfhg
             get() = MultiLengthGenderedPattern(
                 long = GenderedPattern(
+                    gender = Gender.Masculine,
                     cases = Cases(
                         nominative = PluralPattern(
+                            Plurals(
+                                one = "{0} Millimeter Quecksilbersäule",
+                                other = "{0} Millimeter Quecksilbersäule",
+                            )
+                        ),
+                        accusative = PluralPattern(
+                            Plurals(
+                                one = "{0} Millimeter Quecksilbersäule",
+                                other = "{0} Millimeter Quecksilbersäule",
+                            )
+                        ),
+                        dative = PluralPattern(
+                            Plurals(
+                                one = "{0} Millimeter Quecksilbersäule",
+                                other = "{0} Millimeter Quecksilbersäule",
+                            )
+                        ),
+                        genitive = PluralPattern(
                             Plurals(
                                 one = "{0} Millimeter Quecksilbersäule",
                                 other = "{0} Millimeter Quecksilbersäule",
@@ -4932,8 +5080,27 @@ open class LanguageDe internal constructor() : Language {
         override val speedBeaufort
             get() = MultiLengthGenderedPattern(
                 long = GenderedPattern(
+                    gender = Gender.Neuter,
                     cases = Cases(
                         nominative = PluralPattern(
+                            Plurals(
+                                one = "Beaufort {0}",
+                                other = "Beaufort {0}",
+                            )
+                        ),
+                        accusative = PluralPattern(
+                            Plurals(
+                                one = "Beaufort {0}",
+                                other = "Beaufort {0}",
+                            )
+                        ),
+                        dative = PluralPattern(
+                            Plurals(
+                                one = "Beaufort {0}",
+                                other = "Beaufort {0}",
+                            )
+                        ),
+                        genitive = PluralPattern(
                             Plurals(
                                 one = "Beaufort {0}",
                                 other = "Beaufort {0}",
@@ -4942,6 +5109,8 @@ open class LanguageDe internal constructor() : Language {
                     )
                 ),
             )
+        override val speedLightSpeed: MultiLengthGenderedPattern
+            get() = TODO("LightSpeed formatter is not implemented yet for de")
         override val temperatureGeneric
             get() = MultiLengthGenderedPattern(
                 long = GenderedPattern(

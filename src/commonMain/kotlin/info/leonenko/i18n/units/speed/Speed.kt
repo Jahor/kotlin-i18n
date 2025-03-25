@@ -22,7 +22,6 @@ interface Speed : MeasurementUnit, Comparable<Speed> {
     class Serializer : CustomSerializer()
     open class CustomSerializer(val decoders: Map<String, (MeasurementUnitValue) -> Speed> = emptyMap()) : KSerializer<Speed> {
         private val delegateSerializer = MapSerializer(String.serializer(), MeasurementUnitValue.serializer())
-
         @OptIn(ExperimentalSerializationApi::class)
         override val descriptor: SerialDescriptor = SerialDescriptor("Speed", delegateSerializer.descriptor)
         override fun deserialize(decoder: Decoder): Speed {
@@ -35,6 +34,7 @@ interface Speed : MeasurementUnit, Comparable<Speed> {
                 "mile-per-hour" -> MilePerHour(value)
                 "knot" -> Knot(value)
                 "beaufort" -> Beaufort(value)
+                "light-speed" -> LightSpeed(value)
                 else -> decoders[key]?.let { it(value) } ?: throw SerializationException("Unknown Speed unit $key")
             }
         }
@@ -63,6 +63,10 @@ interface Speed : MeasurementUnit, Comparable<Speed> {
         return Beaufort.fromMeterPerSecond(toMeterPerSecond())
     }
 
+    fun toLightSpeed(): LightSpeed {
+        return LightSpeed.fromMeterPerSecond(toMeterPerSecond())
+    }
+
     companion object {
         val ZERO: Speed = MeterPerSecond(0.0)
 
@@ -85,34 +89,34 @@ interface Speed : MeasurementUnit, Comparable<Speed> {
     fun abs(): Speed
 
 
-    operator fun times(other: kotlin.Byte): Speed
-    operator fun div(other: kotlin.Byte): Speed
-    operator fun rem(other: kotlin.Byte): Speed
+    operator fun times(other: Byte): Speed
+    operator fun div(other: Byte): Speed
+    operator fun rem(other: Byte): Speed
 
 
-    operator fun times(other: kotlin.Short): Speed
-    operator fun div(other: kotlin.Short): Speed
-    operator fun rem(other: kotlin.Short): Speed
+    operator fun times(other: Short): Speed
+    operator fun div(other: Short): Speed
+    operator fun rem(other: Short): Speed
 
 
-    operator fun times(other: kotlin.Int): Speed
-    operator fun div(other: kotlin.Int): Speed
-    operator fun rem(other: kotlin.Int): Speed
+    operator fun times(other: Int): Speed
+    operator fun div(other: Int): Speed
+    operator fun rem(other: Int): Speed
 
 
-    operator fun times(other: kotlin.Long): Speed
-    operator fun div(other: kotlin.Long): Speed
-    operator fun rem(other: kotlin.Long): Speed
+    operator fun times(other: Long): Speed
+    operator fun div(other: Long): Speed
+    operator fun rem(other: Long): Speed
 
 
-    operator fun times(other: kotlin.Float): Speed
-    operator fun div(other: kotlin.Float): Speed
-    operator fun rem(other: kotlin.Float): Speed
+    operator fun times(other: Float): Speed
+    operator fun div(other: Float): Speed
+    operator fun rem(other: Float): Speed
 
 
-    operator fun times(other: kotlin.Double): Speed
-    operator fun div(other: kotlin.Double): Speed
-    operator fun rem(other: kotlin.Double): Speed
+    operator fun times(other: Double): Speed
+    operator fun div(other: Double): Speed
+    operator fun rem(other: Double): Speed
 
 }
 
@@ -132,40 +136,40 @@ data class KilometerPerHour(override val value: MeasurementUnitValue) : Speed {
     operator fun plus(other: KilometerPerHour): KilometerPerHour = KilometerPerHour(this.value + other.value)
     operator fun minus(other: KilometerPerHour): KilometerPerHour = KilometerPerHour(this.value - other.value)
 
-    constructor(value: kotlin.Byte) : this(value.toMeasurementUnitValue())
+    constructor(value: Byte) : this(value.toMeasurementUnitValue())
 
-    override operator fun times(other: kotlin.Byte): KilometerPerHour = KilometerPerHour(this.value.times(other))
-    override operator fun div(other: kotlin.Byte): KilometerPerHour = KilometerPerHour(this.value.div(other))
-    override operator fun rem(other: kotlin.Byte): KilometerPerHour = KilometerPerHour(this.value.rem(other))
+    override operator fun times(other: Byte): KilometerPerHour = KilometerPerHour(this.value.times(other))
+    override operator fun div(other: Byte): KilometerPerHour = KilometerPerHour(this.value.div(other))
+    override operator fun rem(other: Byte): KilometerPerHour = KilometerPerHour(this.value.rem(other))
 
-    constructor(value: kotlin.Short) : this(value.toMeasurementUnitValue())
+    constructor(value: Short) : this(value.toMeasurementUnitValue())
 
-    override operator fun times(other: kotlin.Short): KilometerPerHour = KilometerPerHour(this.value.times(other))
-    override operator fun div(other: kotlin.Short): KilometerPerHour = KilometerPerHour(this.value.div(other))
-    override operator fun rem(other: kotlin.Short): KilometerPerHour = KilometerPerHour(this.value.rem(other))
+    override operator fun times(other: Short): KilometerPerHour = KilometerPerHour(this.value.times(other))
+    override operator fun div(other: Short): KilometerPerHour = KilometerPerHour(this.value.div(other))
+    override operator fun rem(other: Short): KilometerPerHour = KilometerPerHour(this.value.rem(other))
 
-    constructor(value: kotlin.Int) : this(value.toMeasurementUnitValue())
+    constructor(value: Int) : this(value.toMeasurementUnitValue())
 
-    override operator fun times(other: kotlin.Int): KilometerPerHour = KilometerPerHour(this.value.times(other))
-    override operator fun div(other: kotlin.Int): KilometerPerHour = KilometerPerHour(this.value.div(other))
-    override operator fun rem(other: kotlin.Int): KilometerPerHour = KilometerPerHour(this.value.rem(other))
+    override operator fun times(other: Int): KilometerPerHour = KilometerPerHour(this.value.times(other))
+    override operator fun div(other: Int): KilometerPerHour = KilometerPerHour(this.value.div(other))
+    override operator fun rem(other: Int): KilometerPerHour = KilometerPerHour(this.value.rem(other))
 
-    constructor(value: kotlin.Long) : this(value.toMeasurementUnitValue())
+    constructor(value: Long) : this(value.toMeasurementUnitValue())
 
-    override operator fun times(other: kotlin.Long): KilometerPerHour = KilometerPerHour(this.value.times(other))
-    override operator fun div(other: kotlin.Long): KilometerPerHour = KilometerPerHour(this.value.div(other))
-    override operator fun rem(other: kotlin.Long): KilometerPerHour = KilometerPerHour(this.value.rem(other))
+    override operator fun times(other: Long): KilometerPerHour = KilometerPerHour(this.value.times(other))
+    override operator fun div(other: Long): KilometerPerHour = KilometerPerHour(this.value.div(other))
+    override operator fun rem(other: Long): KilometerPerHour = KilometerPerHour(this.value.rem(other))
 
-    constructor(value: kotlin.Float) : this(value.toMeasurementUnitValue())
+    constructor(value: Float) : this(value.toMeasurementUnitValue())
 
-    override operator fun times(other: kotlin.Float): KilometerPerHour = KilometerPerHour(this.value.times(other))
-    override operator fun div(other: kotlin.Float): KilometerPerHour = KilometerPerHour(this.value.div(other))
-    override operator fun rem(other: kotlin.Float): KilometerPerHour = KilometerPerHour(this.value.rem(other))
+    override operator fun times(other: Float): KilometerPerHour = KilometerPerHour(this.value.times(other))
+    override operator fun div(other: Float): KilometerPerHour = KilometerPerHour(this.value.div(other))
+    override operator fun rem(other: Float): KilometerPerHour = KilometerPerHour(this.value.rem(other))
 
 
-    override operator fun times(other: kotlin.Double): KilometerPerHour = KilometerPerHour(this.value.times(other))
-    override operator fun div(other: kotlin.Double): KilometerPerHour = KilometerPerHour(this.value.div(other))
-    override operator fun rem(other: kotlin.Double): KilometerPerHour = KilometerPerHour(this.value.rem(other))
+    override operator fun times(other: Double): KilometerPerHour = KilometerPerHour(this.value.times(other))
+    override operator fun div(other: Double): KilometerPerHour = KilometerPerHour(this.value.div(other))
+    override operator fun rem(other: Double): KilometerPerHour = KilometerPerHour(this.value.rem(other))
 
 
     override operator fun unaryMinus(): KilometerPerHour = KilometerPerHour(-value)
@@ -190,27 +194,27 @@ data class KilometerPerHour(override val value: MeasurementUnitValue) : Speed {
 
 }
 
-val kotlin.Byte.kilometerPerHour
+val Byte.kilometerPerHour
     get() = KilometerPerHour(this)
 
 
-val kotlin.Short.kilometerPerHour
+val Short.kilometerPerHour
     get() = KilometerPerHour(this)
 
 
-val kotlin.Int.kilometerPerHour
+val Int.kilometerPerHour
     get() = KilometerPerHour(this)
 
 
-val kotlin.Long.kilometerPerHour
+val Long.kilometerPerHour
     get() = KilometerPerHour(this)
 
 
-val kotlin.Float.kilometerPerHour
+val Float.kilometerPerHour
     get() = KilometerPerHour(this)
 
 
-val kotlin.Double.kilometerPerHour
+val Double.kilometerPerHour
     get() = KilometerPerHour(this)
 
 
@@ -230,40 +234,40 @@ data class MeterPerSecond(override val value: MeasurementUnitValue) : Speed {
     operator fun plus(other: MeterPerSecond): MeterPerSecond = MeterPerSecond(this.value + other.value)
     operator fun minus(other: MeterPerSecond): MeterPerSecond = MeterPerSecond(this.value - other.value)
 
-    constructor(value: kotlin.Byte) : this(value.toMeasurementUnitValue())
+    constructor(value: Byte) : this(value.toMeasurementUnitValue())
 
-    override operator fun times(other: kotlin.Byte): MeterPerSecond = MeterPerSecond(this.value.times(other))
-    override operator fun div(other: kotlin.Byte): MeterPerSecond = MeterPerSecond(this.value.div(other))
-    override operator fun rem(other: kotlin.Byte): MeterPerSecond = MeterPerSecond(this.value.rem(other))
+    override operator fun times(other: Byte): MeterPerSecond = MeterPerSecond(this.value.times(other))
+    override operator fun div(other: Byte): MeterPerSecond = MeterPerSecond(this.value.div(other))
+    override operator fun rem(other: Byte): MeterPerSecond = MeterPerSecond(this.value.rem(other))
 
-    constructor(value: kotlin.Short) : this(value.toMeasurementUnitValue())
+    constructor(value: Short) : this(value.toMeasurementUnitValue())
 
-    override operator fun times(other: kotlin.Short): MeterPerSecond = MeterPerSecond(this.value.times(other))
-    override operator fun div(other: kotlin.Short): MeterPerSecond = MeterPerSecond(this.value.div(other))
-    override operator fun rem(other: kotlin.Short): MeterPerSecond = MeterPerSecond(this.value.rem(other))
+    override operator fun times(other: Short): MeterPerSecond = MeterPerSecond(this.value.times(other))
+    override operator fun div(other: Short): MeterPerSecond = MeterPerSecond(this.value.div(other))
+    override operator fun rem(other: Short): MeterPerSecond = MeterPerSecond(this.value.rem(other))
 
-    constructor(value: kotlin.Int) : this(value.toMeasurementUnitValue())
+    constructor(value: Int) : this(value.toMeasurementUnitValue())
 
-    override operator fun times(other: kotlin.Int): MeterPerSecond = MeterPerSecond(this.value.times(other))
-    override operator fun div(other: kotlin.Int): MeterPerSecond = MeterPerSecond(this.value.div(other))
-    override operator fun rem(other: kotlin.Int): MeterPerSecond = MeterPerSecond(this.value.rem(other))
+    override operator fun times(other: Int): MeterPerSecond = MeterPerSecond(this.value.times(other))
+    override operator fun div(other: Int): MeterPerSecond = MeterPerSecond(this.value.div(other))
+    override operator fun rem(other: Int): MeterPerSecond = MeterPerSecond(this.value.rem(other))
 
-    constructor(value: kotlin.Long) : this(value.toMeasurementUnitValue())
+    constructor(value: Long) : this(value.toMeasurementUnitValue())
 
-    override operator fun times(other: kotlin.Long): MeterPerSecond = MeterPerSecond(this.value.times(other))
-    override operator fun div(other: kotlin.Long): MeterPerSecond = MeterPerSecond(this.value.div(other))
-    override operator fun rem(other: kotlin.Long): MeterPerSecond = MeterPerSecond(this.value.rem(other))
+    override operator fun times(other: Long): MeterPerSecond = MeterPerSecond(this.value.times(other))
+    override operator fun div(other: Long): MeterPerSecond = MeterPerSecond(this.value.div(other))
+    override operator fun rem(other: Long): MeterPerSecond = MeterPerSecond(this.value.rem(other))
 
-    constructor(value: kotlin.Float) : this(value.toMeasurementUnitValue())
+    constructor(value: Float) : this(value.toMeasurementUnitValue())
 
-    override operator fun times(other: kotlin.Float): MeterPerSecond = MeterPerSecond(this.value.times(other))
-    override operator fun div(other: kotlin.Float): MeterPerSecond = MeterPerSecond(this.value.div(other))
-    override operator fun rem(other: kotlin.Float): MeterPerSecond = MeterPerSecond(this.value.rem(other))
+    override operator fun times(other: Float): MeterPerSecond = MeterPerSecond(this.value.times(other))
+    override operator fun div(other: Float): MeterPerSecond = MeterPerSecond(this.value.div(other))
+    override operator fun rem(other: Float): MeterPerSecond = MeterPerSecond(this.value.rem(other))
 
 
-    override operator fun times(other: kotlin.Double): MeterPerSecond = MeterPerSecond(this.value.times(other))
-    override operator fun div(other: kotlin.Double): MeterPerSecond = MeterPerSecond(this.value.div(other))
-    override operator fun rem(other: kotlin.Double): MeterPerSecond = MeterPerSecond(this.value.rem(other))
+    override operator fun times(other: Double): MeterPerSecond = MeterPerSecond(this.value.times(other))
+    override operator fun div(other: Double): MeterPerSecond = MeterPerSecond(this.value.div(other))
+    override operator fun rem(other: Double): MeterPerSecond = MeterPerSecond(this.value.rem(other))
 
 
     override operator fun unaryMinus(): MeterPerSecond = MeterPerSecond(-value)
@@ -288,27 +292,27 @@ data class MeterPerSecond(override val value: MeasurementUnitValue) : Speed {
 
 }
 
-val kotlin.Byte.meterPerSecond
+val Byte.meterPerSecond
     get() = MeterPerSecond(this)
 
 
-val kotlin.Short.meterPerSecond
+val Short.meterPerSecond
     get() = MeterPerSecond(this)
 
 
-val kotlin.Int.meterPerSecond
+val Int.meterPerSecond
     get() = MeterPerSecond(this)
 
 
-val kotlin.Long.meterPerSecond
+val Long.meterPerSecond
     get() = MeterPerSecond(this)
 
 
-val kotlin.Float.meterPerSecond
+val Float.meterPerSecond
     get() = MeterPerSecond(this)
 
 
-val kotlin.Double.meterPerSecond
+val Double.meterPerSecond
     get() = MeterPerSecond(this)
 
 
@@ -328,40 +332,40 @@ data class MilePerHour(override val value: MeasurementUnitValue) : Speed {
     operator fun plus(other: MilePerHour): MilePerHour = MilePerHour(this.value + other.value)
     operator fun minus(other: MilePerHour): MilePerHour = MilePerHour(this.value - other.value)
 
-    constructor(value: kotlin.Byte) : this(value.toMeasurementUnitValue())
+    constructor(value: Byte) : this(value.toMeasurementUnitValue())
 
-    override operator fun times(other: kotlin.Byte): MilePerHour = MilePerHour(this.value.times(other))
-    override operator fun div(other: kotlin.Byte): MilePerHour = MilePerHour(this.value.div(other))
-    override operator fun rem(other: kotlin.Byte): MilePerHour = MilePerHour(this.value.rem(other))
+    override operator fun times(other: Byte): MilePerHour = MilePerHour(this.value.times(other))
+    override operator fun div(other: Byte): MilePerHour = MilePerHour(this.value.div(other))
+    override operator fun rem(other: Byte): MilePerHour = MilePerHour(this.value.rem(other))
 
-    constructor(value: kotlin.Short) : this(value.toMeasurementUnitValue())
+    constructor(value: Short) : this(value.toMeasurementUnitValue())
 
-    override operator fun times(other: kotlin.Short): MilePerHour = MilePerHour(this.value.times(other))
-    override operator fun div(other: kotlin.Short): MilePerHour = MilePerHour(this.value.div(other))
-    override operator fun rem(other: kotlin.Short): MilePerHour = MilePerHour(this.value.rem(other))
+    override operator fun times(other: Short): MilePerHour = MilePerHour(this.value.times(other))
+    override operator fun div(other: Short): MilePerHour = MilePerHour(this.value.div(other))
+    override operator fun rem(other: Short): MilePerHour = MilePerHour(this.value.rem(other))
 
-    constructor(value: kotlin.Int) : this(value.toMeasurementUnitValue())
+    constructor(value: Int) : this(value.toMeasurementUnitValue())
 
-    override operator fun times(other: kotlin.Int): MilePerHour = MilePerHour(this.value.times(other))
-    override operator fun div(other: kotlin.Int): MilePerHour = MilePerHour(this.value.div(other))
-    override operator fun rem(other: kotlin.Int): MilePerHour = MilePerHour(this.value.rem(other))
+    override operator fun times(other: Int): MilePerHour = MilePerHour(this.value.times(other))
+    override operator fun div(other: Int): MilePerHour = MilePerHour(this.value.div(other))
+    override operator fun rem(other: Int): MilePerHour = MilePerHour(this.value.rem(other))
 
-    constructor(value: kotlin.Long) : this(value.toMeasurementUnitValue())
+    constructor(value: Long) : this(value.toMeasurementUnitValue())
 
-    override operator fun times(other: kotlin.Long): MilePerHour = MilePerHour(this.value.times(other))
-    override operator fun div(other: kotlin.Long): MilePerHour = MilePerHour(this.value.div(other))
-    override operator fun rem(other: kotlin.Long): MilePerHour = MilePerHour(this.value.rem(other))
+    override operator fun times(other: Long): MilePerHour = MilePerHour(this.value.times(other))
+    override operator fun div(other: Long): MilePerHour = MilePerHour(this.value.div(other))
+    override operator fun rem(other: Long): MilePerHour = MilePerHour(this.value.rem(other))
 
-    constructor(value: kotlin.Float) : this(value.toMeasurementUnitValue())
+    constructor(value: Float) : this(value.toMeasurementUnitValue())
 
-    override operator fun times(other: kotlin.Float): MilePerHour = MilePerHour(this.value.times(other))
-    override operator fun div(other: kotlin.Float): MilePerHour = MilePerHour(this.value.div(other))
-    override operator fun rem(other: kotlin.Float): MilePerHour = MilePerHour(this.value.rem(other))
+    override operator fun times(other: Float): MilePerHour = MilePerHour(this.value.times(other))
+    override operator fun div(other: Float): MilePerHour = MilePerHour(this.value.div(other))
+    override operator fun rem(other: Float): MilePerHour = MilePerHour(this.value.rem(other))
 
 
-    override operator fun times(other: kotlin.Double): MilePerHour = MilePerHour(this.value.times(other))
-    override operator fun div(other: kotlin.Double): MilePerHour = MilePerHour(this.value.div(other))
-    override operator fun rem(other: kotlin.Double): MilePerHour = MilePerHour(this.value.rem(other))
+    override operator fun times(other: Double): MilePerHour = MilePerHour(this.value.times(other))
+    override operator fun div(other: Double): MilePerHour = MilePerHour(this.value.div(other))
+    override operator fun rem(other: Double): MilePerHour = MilePerHour(this.value.rem(other))
 
 
     override operator fun unaryMinus(): MilePerHour = MilePerHour(-value)
@@ -386,27 +390,27 @@ data class MilePerHour(override val value: MeasurementUnitValue) : Speed {
 
 }
 
-val kotlin.Byte.milePerHour
+val Byte.milePerHour
     get() = MilePerHour(this)
 
 
-val kotlin.Short.milePerHour
+val Short.milePerHour
     get() = MilePerHour(this)
 
 
-val kotlin.Int.milePerHour
+val Int.milePerHour
     get() = MilePerHour(this)
 
 
-val kotlin.Long.milePerHour
+val Long.milePerHour
     get() = MilePerHour(this)
 
 
-val kotlin.Float.milePerHour
+val Float.milePerHour
     get() = MilePerHour(this)
 
 
-val kotlin.Double.milePerHour
+val Double.milePerHour
     get() = MilePerHour(this)
 
 
@@ -426,40 +430,40 @@ data class Knot(override val value: MeasurementUnitValue) : Speed {
     operator fun plus(other: Knot): Knot = Knot(this.value + other.value)
     operator fun minus(other: Knot): Knot = Knot(this.value - other.value)
 
-    constructor(value: kotlin.Byte) : this(value.toMeasurementUnitValue())
+    constructor(value: Byte) : this(value.toMeasurementUnitValue())
 
-    override operator fun times(other: kotlin.Byte): Knot = Knot(this.value.times(other))
-    override operator fun div(other: kotlin.Byte): Knot = Knot(this.value.div(other))
-    override operator fun rem(other: kotlin.Byte): Knot = Knot(this.value.rem(other))
+    override operator fun times(other: Byte): Knot = Knot(this.value.times(other))
+    override operator fun div(other: Byte): Knot = Knot(this.value.div(other))
+    override operator fun rem(other: Byte): Knot = Knot(this.value.rem(other))
 
-    constructor(value: kotlin.Short) : this(value.toMeasurementUnitValue())
+    constructor(value: Short) : this(value.toMeasurementUnitValue())
 
-    override operator fun times(other: kotlin.Short): Knot = Knot(this.value.times(other))
-    override operator fun div(other: kotlin.Short): Knot = Knot(this.value.div(other))
-    override operator fun rem(other: kotlin.Short): Knot = Knot(this.value.rem(other))
+    override operator fun times(other: Short): Knot = Knot(this.value.times(other))
+    override operator fun div(other: Short): Knot = Knot(this.value.div(other))
+    override operator fun rem(other: Short): Knot = Knot(this.value.rem(other))
 
-    constructor(value: kotlin.Int) : this(value.toMeasurementUnitValue())
+    constructor(value: Int) : this(value.toMeasurementUnitValue())
 
-    override operator fun times(other: kotlin.Int): Knot = Knot(this.value.times(other))
-    override operator fun div(other: kotlin.Int): Knot = Knot(this.value.div(other))
-    override operator fun rem(other: kotlin.Int): Knot = Knot(this.value.rem(other))
+    override operator fun times(other: Int): Knot = Knot(this.value.times(other))
+    override operator fun div(other: Int): Knot = Knot(this.value.div(other))
+    override operator fun rem(other: Int): Knot = Knot(this.value.rem(other))
 
-    constructor(value: kotlin.Long) : this(value.toMeasurementUnitValue())
+    constructor(value: Long) : this(value.toMeasurementUnitValue())
 
-    override operator fun times(other: kotlin.Long): Knot = Knot(this.value.times(other))
-    override operator fun div(other: kotlin.Long): Knot = Knot(this.value.div(other))
-    override operator fun rem(other: kotlin.Long): Knot = Knot(this.value.rem(other))
+    override operator fun times(other: Long): Knot = Knot(this.value.times(other))
+    override operator fun div(other: Long): Knot = Knot(this.value.div(other))
+    override operator fun rem(other: Long): Knot = Knot(this.value.rem(other))
 
-    constructor(value: kotlin.Float) : this(value.toMeasurementUnitValue())
+    constructor(value: Float) : this(value.toMeasurementUnitValue())
 
-    override operator fun times(other: kotlin.Float): Knot = Knot(this.value.times(other))
-    override operator fun div(other: kotlin.Float): Knot = Knot(this.value.div(other))
-    override operator fun rem(other: kotlin.Float): Knot = Knot(this.value.rem(other))
+    override operator fun times(other: Float): Knot = Knot(this.value.times(other))
+    override operator fun div(other: Float): Knot = Knot(this.value.div(other))
+    override operator fun rem(other: Float): Knot = Knot(this.value.rem(other))
 
 
-    override operator fun times(other: kotlin.Double): Knot = Knot(this.value.times(other))
-    override operator fun div(other: kotlin.Double): Knot = Knot(this.value.div(other))
-    override operator fun rem(other: kotlin.Double): Knot = Knot(this.value.rem(other))
+    override operator fun times(other: Double): Knot = Knot(this.value.times(other))
+    override operator fun div(other: Double): Knot = Knot(this.value.div(other))
+    override operator fun rem(other: Double): Knot = Knot(this.value.rem(other))
 
 
     override operator fun unaryMinus(): Knot = Knot(-value)
@@ -484,27 +488,27 @@ data class Knot(override val value: MeasurementUnitValue) : Speed {
 
 }
 
-val kotlin.Byte.knot
+val Byte.knot
     get() = Knot(this)
 
 
-val kotlin.Short.knot
+val Short.knot
     get() = Knot(this)
 
 
-val kotlin.Int.knot
+val Int.knot
     get() = Knot(this)
 
 
-val kotlin.Long.knot
+val Long.knot
     get() = Knot(this)
 
 
-val kotlin.Float.knot
+val Float.knot
     get() = Knot(this)
 
 
-val kotlin.Double.knot
+val Double.knot
     get() = Knot(this)
 
 
@@ -524,40 +528,40 @@ data class Beaufort(override val value: MeasurementUnitValue) : Speed {
     operator fun plus(other: Beaufort): Beaufort = Beaufort(this.value + other.value)
     operator fun minus(other: Beaufort): Beaufort = Beaufort(this.value - other.value)
 
-    constructor(value: kotlin.Byte) : this(value.toMeasurementUnitValue())
+    constructor(value: Byte) : this(value.toMeasurementUnitValue())
 
-    override operator fun times(other: kotlin.Byte): Beaufort = Beaufort(this.value.times(other))
-    override operator fun div(other: kotlin.Byte): Beaufort = Beaufort(this.value.div(other))
-    override operator fun rem(other: kotlin.Byte): Beaufort = Beaufort(this.value.rem(other))
+    override operator fun times(other: Byte): Beaufort = Beaufort(this.value.times(other))
+    override operator fun div(other: Byte): Beaufort = Beaufort(this.value.div(other))
+    override operator fun rem(other: Byte): Beaufort = Beaufort(this.value.rem(other))
 
-    constructor(value: kotlin.Short) : this(value.toMeasurementUnitValue())
+    constructor(value: Short) : this(value.toMeasurementUnitValue())
 
-    override operator fun times(other: kotlin.Short): Beaufort = Beaufort(this.value.times(other))
-    override operator fun div(other: kotlin.Short): Beaufort = Beaufort(this.value.div(other))
-    override operator fun rem(other: kotlin.Short): Beaufort = Beaufort(this.value.rem(other))
+    override operator fun times(other: Short): Beaufort = Beaufort(this.value.times(other))
+    override operator fun div(other: Short): Beaufort = Beaufort(this.value.div(other))
+    override operator fun rem(other: Short): Beaufort = Beaufort(this.value.rem(other))
 
-    constructor(value: kotlin.Int) : this(value.toMeasurementUnitValue())
+    constructor(value: Int) : this(value.toMeasurementUnitValue())
 
-    override operator fun times(other: kotlin.Int): Beaufort = Beaufort(this.value.times(other))
-    override operator fun div(other: kotlin.Int): Beaufort = Beaufort(this.value.div(other))
-    override operator fun rem(other: kotlin.Int): Beaufort = Beaufort(this.value.rem(other))
+    override operator fun times(other: Int): Beaufort = Beaufort(this.value.times(other))
+    override operator fun div(other: Int): Beaufort = Beaufort(this.value.div(other))
+    override operator fun rem(other: Int): Beaufort = Beaufort(this.value.rem(other))
 
-    constructor(value: kotlin.Long) : this(value.toMeasurementUnitValue())
+    constructor(value: Long) : this(value.toMeasurementUnitValue())
 
-    override operator fun times(other: kotlin.Long): Beaufort = Beaufort(this.value.times(other))
-    override operator fun div(other: kotlin.Long): Beaufort = Beaufort(this.value.div(other))
-    override operator fun rem(other: kotlin.Long): Beaufort = Beaufort(this.value.rem(other))
+    override operator fun times(other: Long): Beaufort = Beaufort(this.value.times(other))
+    override operator fun div(other: Long): Beaufort = Beaufort(this.value.div(other))
+    override operator fun rem(other: Long): Beaufort = Beaufort(this.value.rem(other))
 
-    constructor(value: kotlin.Float) : this(value.toMeasurementUnitValue())
+    constructor(value: Float) : this(value.toMeasurementUnitValue())
 
-    override operator fun times(other: kotlin.Float): Beaufort = Beaufort(this.value.times(other))
-    override operator fun div(other: kotlin.Float): Beaufort = Beaufort(this.value.div(other))
-    override operator fun rem(other: kotlin.Float): Beaufort = Beaufort(this.value.rem(other))
+    override operator fun times(other: Float): Beaufort = Beaufort(this.value.times(other))
+    override operator fun div(other: Float): Beaufort = Beaufort(this.value.div(other))
+    override operator fun rem(other: Float): Beaufort = Beaufort(this.value.rem(other))
 
 
-    override operator fun times(other: kotlin.Double): Beaufort = Beaufort(this.value.times(other))
-    override operator fun div(other: kotlin.Double): Beaufort = Beaufort(this.value.div(other))
-    override operator fun rem(other: kotlin.Double): Beaufort = Beaufort(this.value.rem(other))
+    override operator fun times(other: Double): Beaufort = Beaufort(this.value.times(other))
+    override operator fun div(other: Double): Beaufort = Beaufort(this.value.div(other))
+    override operator fun rem(other: Double): Beaufort = Beaufort(this.value.rem(other))
 
 
     override operator fun unaryMinus(): Beaufort = Beaufort(-value)
@@ -582,26 +586,124 @@ data class Beaufort(override val value: MeasurementUnitValue) : Speed {
 
 }
 
-val kotlin.Byte.beaufort
+val Byte.beaufort
     get() = Beaufort(this)
 
 
-val kotlin.Short.beaufort
+val Short.beaufort
     get() = Beaufort(this)
 
 
-val kotlin.Int.beaufort
+val Int.beaufort
     get() = Beaufort(this)
 
 
-val kotlin.Long.beaufort
+val Long.beaufort
     get() = Beaufort(this)
 
 
-val kotlin.Float.beaufort
+val Float.beaufort
     get() = Beaufort(this)
 
 
-val kotlin.Double.beaufort
+val Double.beaufort
     get() = Beaufort(this)
+
+
+data class LightSpeed(override val value: MeasurementUnitValue) : Speed {
+
+    override val unitName: String = "light-speed"
+
+    override fun formatters(language: MeasurementUnitLanguage) = language.speedLightSpeed
+    override fun toMeterPerSecond() = MeterPerSecond(value * (299792458) + 0)
+    override fun toString(): String = toDebugString()
+
+    companion object {
+        val ZERO = LightSpeed(0.0)
+        fun fromMeterPerSecond(value: MeterPerSecond) = LightSpeed((value.value - 0) / (299792458))
+    }
+
+    operator fun plus(other: LightSpeed): LightSpeed = LightSpeed(this.value + other.value)
+    operator fun minus(other: LightSpeed): LightSpeed = LightSpeed(this.value - other.value)
+
+    constructor(value: Byte) : this(value.toMeasurementUnitValue())
+
+    override operator fun times(other: Byte): LightSpeed = LightSpeed(this.value.times(other))
+    override operator fun div(other: Byte): LightSpeed = LightSpeed(this.value.div(other))
+    override operator fun rem(other: Byte): LightSpeed = LightSpeed(this.value.rem(other))
+
+    constructor(value: Short) : this(value.toMeasurementUnitValue())
+
+    override operator fun times(other: Short): LightSpeed = LightSpeed(this.value.times(other))
+    override operator fun div(other: Short): LightSpeed = LightSpeed(this.value.div(other))
+    override operator fun rem(other: Short): LightSpeed = LightSpeed(this.value.rem(other))
+
+    constructor(value: Int) : this(value.toMeasurementUnitValue())
+
+    override operator fun times(other: Int): LightSpeed = LightSpeed(this.value.times(other))
+    override operator fun div(other: Int): LightSpeed = LightSpeed(this.value.div(other))
+    override operator fun rem(other: Int): LightSpeed = LightSpeed(this.value.rem(other))
+
+    constructor(value: Long) : this(value.toMeasurementUnitValue())
+
+    override operator fun times(other: Long): LightSpeed = LightSpeed(this.value.times(other))
+    override operator fun div(other: Long): LightSpeed = LightSpeed(this.value.div(other))
+    override operator fun rem(other: Long): LightSpeed = LightSpeed(this.value.rem(other))
+
+    constructor(value: Float) : this(value.toMeasurementUnitValue())
+
+    override operator fun times(other: Float): LightSpeed = LightSpeed(this.value.times(other))
+    override operator fun div(other: Float): LightSpeed = LightSpeed(this.value.div(other))
+    override operator fun rem(other: Float): LightSpeed = LightSpeed(this.value.rem(other))
+
+
+    override operator fun times(other: Double): LightSpeed = LightSpeed(this.value.times(other))
+    override operator fun div(other: Double): LightSpeed = LightSpeed(this.value.div(other))
+    override operator fun rem(other: Double): LightSpeed = LightSpeed(this.value.rem(other))
+
+
+    override operator fun unaryMinus(): LightSpeed = LightSpeed(-value)
+    override operator fun unaryPlus(): LightSpeed = this
+    override operator fun inc(): LightSpeed = LightSpeed(this.value + 1)
+    override operator fun dec(): LightSpeed = LightSpeed(this.value - 1)
+
+    override fun round(): LightSpeed = LightSpeed(round(this.value))
+    override fun truncate(): LightSpeed = LightSpeed(truncate(this.value))
+    override fun floor(): LightSpeed = LightSpeed(floor(this.value))
+    override fun ceil(): LightSpeed = LightSpeed(ceil(this.value))
+    override fun abs(): LightSpeed = LightSpeed(abs(this.value))
+
+    override fun equals(other: Any?): Boolean = when (other) {
+        is LightSpeed -> this.value == other.value
+        is Speed -> this.toMeterPerSecond().value == other.toMeterPerSecond().value
+        else -> false
+    }
+
+    override fun hashCode(): Int = this.toMeterPerSecond().value.hashCode()
+
+
+}
+
+val Byte.lightSpeed
+    get() = LightSpeed(this)
+
+
+val Short.lightSpeed
+    get() = LightSpeed(this)
+
+
+val Int.lightSpeed
+    get() = LightSpeed(this)
+
+
+val Long.lightSpeed
+    get() = LightSpeed(this)
+
+
+val Float.lightSpeed
+    get() = LightSpeed(this)
+
+
+val Double.lightSpeed
+    get() = LightSpeed(this)
                             

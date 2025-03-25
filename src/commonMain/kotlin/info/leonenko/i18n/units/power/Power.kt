@@ -22,7 +22,6 @@ interface Power : MeasurementUnit, Comparable<Power> {
     class Serializer : CustomSerializer()
     open class CustomSerializer(val decoders: Map<String, (MeasurementUnitValue) -> Power> = emptyMap()) : KSerializer<Power> {
         private val delegateSerializer = MapSerializer(String.serializer(), MeasurementUnitValue.serializer())
-
         @OptIn(ExperimentalSerializationApi::class)
         override val descriptor: SerialDescriptor = SerialDescriptor("Power", delegateSerializer.descriptor)
         override fun deserialize(decoder: Decoder): Power {
@@ -96,34 +95,34 @@ interface Power : MeasurementUnit, Comparable<Power> {
     fun abs(): Power
 
 
-    operator fun times(other: kotlin.Byte): Power
-    operator fun div(other: kotlin.Byte): Power
-    operator fun rem(other: kotlin.Byte): Power
+    operator fun times(other: Byte): Power
+    operator fun div(other: Byte): Power
+    operator fun rem(other: Byte): Power
 
 
-    operator fun times(other: kotlin.Short): Power
-    operator fun div(other: kotlin.Short): Power
-    operator fun rem(other: kotlin.Short): Power
+    operator fun times(other: Short): Power
+    operator fun div(other: Short): Power
+    operator fun rem(other: Short): Power
 
 
-    operator fun times(other: kotlin.Int): Power
-    operator fun div(other: kotlin.Int): Power
-    operator fun rem(other: kotlin.Int): Power
+    operator fun times(other: Int): Power
+    operator fun div(other: Int): Power
+    operator fun rem(other: Int): Power
 
 
-    operator fun times(other: kotlin.Long): Power
-    operator fun div(other: kotlin.Long): Power
-    operator fun rem(other: kotlin.Long): Power
+    operator fun times(other: Long): Power
+    operator fun div(other: Long): Power
+    operator fun rem(other: Long): Power
 
 
-    operator fun times(other: kotlin.Float): Power
-    operator fun div(other: kotlin.Float): Power
-    operator fun rem(other: kotlin.Float): Power
+    operator fun times(other: Float): Power
+    operator fun div(other: Float): Power
+    operator fun rem(other: Float): Power
 
 
-    operator fun times(other: kotlin.Double): Power
-    operator fun div(other: kotlin.Double): Power
-    operator fun rem(other: kotlin.Double): Power
+    operator fun times(other: Double): Power
+    operator fun div(other: Double): Power
+    operator fun rem(other: Double): Power
 
 }
 
@@ -143,40 +142,40 @@ data class Gigawatt(override val value: MeasurementUnitValue) : Power {
     operator fun plus(other: Gigawatt): Gigawatt = Gigawatt(this.value + other.value)
     operator fun minus(other: Gigawatt): Gigawatt = Gigawatt(this.value - other.value)
 
-    constructor(value: kotlin.Byte) : this(value.toMeasurementUnitValue())
+    constructor(value: Byte) : this(value.toMeasurementUnitValue())
 
-    override operator fun times(other: kotlin.Byte): Gigawatt = Gigawatt(this.value.times(other))
-    override operator fun div(other: kotlin.Byte): Gigawatt = Gigawatt(this.value.div(other))
-    override operator fun rem(other: kotlin.Byte): Gigawatt = Gigawatt(this.value.rem(other))
+    override operator fun times(other: Byte): Gigawatt = Gigawatt(this.value.times(other))
+    override operator fun div(other: Byte): Gigawatt = Gigawatt(this.value.div(other))
+    override operator fun rem(other: Byte): Gigawatt = Gigawatt(this.value.rem(other))
 
-    constructor(value: kotlin.Short) : this(value.toMeasurementUnitValue())
+    constructor(value: Short) : this(value.toMeasurementUnitValue())
 
-    override operator fun times(other: kotlin.Short): Gigawatt = Gigawatt(this.value.times(other))
-    override operator fun div(other: kotlin.Short): Gigawatt = Gigawatt(this.value.div(other))
-    override operator fun rem(other: kotlin.Short): Gigawatt = Gigawatt(this.value.rem(other))
+    override operator fun times(other: Short): Gigawatt = Gigawatt(this.value.times(other))
+    override operator fun div(other: Short): Gigawatt = Gigawatt(this.value.div(other))
+    override operator fun rem(other: Short): Gigawatt = Gigawatt(this.value.rem(other))
 
-    constructor(value: kotlin.Int) : this(value.toMeasurementUnitValue())
+    constructor(value: Int) : this(value.toMeasurementUnitValue())
 
-    override operator fun times(other: kotlin.Int): Gigawatt = Gigawatt(this.value.times(other))
-    override operator fun div(other: kotlin.Int): Gigawatt = Gigawatt(this.value.div(other))
-    override operator fun rem(other: kotlin.Int): Gigawatt = Gigawatt(this.value.rem(other))
+    override operator fun times(other: Int): Gigawatt = Gigawatt(this.value.times(other))
+    override operator fun div(other: Int): Gigawatt = Gigawatt(this.value.div(other))
+    override operator fun rem(other: Int): Gigawatt = Gigawatt(this.value.rem(other))
 
-    constructor(value: kotlin.Long) : this(value.toMeasurementUnitValue())
+    constructor(value: Long) : this(value.toMeasurementUnitValue())
 
-    override operator fun times(other: kotlin.Long): Gigawatt = Gigawatt(this.value.times(other))
-    override operator fun div(other: kotlin.Long): Gigawatt = Gigawatt(this.value.div(other))
-    override operator fun rem(other: kotlin.Long): Gigawatt = Gigawatt(this.value.rem(other))
+    override operator fun times(other: Long): Gigawatt = Gigawatt(this.value.times(other))
+    override operator fun div(other: Long): Gigawatt = Gigawatt(this.value.div(other))
+    override operator fun rem(other: Long): Gigawatt = Gigawatt(this.value.rem(other))
 
-    constructor(value: kotlin.Float) : this(value.toMeasurementUnitValue())
+    constructor(value: Float) : this(value.toMeasurementUnitValue())
 
-    override operator fun times(other: kotlin.Float): Gigawatt = Gigawatt(this.value.times(other))
-    override operator fun div(other: kotlin.Float): Gigawatt = Gigawatt(this.value.div(other))
-    override operator fun rem(other: kotlin.Float): Gigawatt = Gigawatt(this.value.rem(other))
+    override operator fun times(other: Float): Gigawatt = Gigawatt(this.value.times(other))
+    override operator fun div(other: Float): Gigawatt = Gigawatt(this.value.div(other))
+    override operator fun rem(other: Float): Gigawatt = Gigawatt(this.value.rem(other))
 
 
-    override operator fun times(other: kotlin.Double): Gigawatt = Gigawatt(this.value.times(other))
-    override operator fun div(other: kotlin.Double): Gigawatt = Gigawatt(this.value.div(other))
-    override operator fun rem(other: kotlin.Double): Gigawatt = Gigawatt(this.value.rem(other))
+    override operator fun times(other: Double): Gigawatt = Gigawatt(this.value.times(other))
+    override operator fun div(other: Double): Gigawatt = Gigawatt(this.value.div(other))
+    override operator fun rem(other: Double): Gigawatt = Gigawatt(this.value.rem(other))
 
 
     override operator fun unaryMinus(): Gigawatt = Gigawatt(-value)
@@ -201,27 +200,27 @@ data class Gigawatt(override val value: MeasurementUnitValue) : Power {
 
 }
 
-val kotlin.Byte.gigawatt
+val Byte.gigawatt
     get() = Gigawatt(this)
 
 
-val kotlin.Short.gigawatt
+val Short.gigawatt
     get() = Gigawatt(this)
 
 
-val kotlin.Int.gigawatt
+val Int.gigawatt
     get() = Gigawatt(this)
 
 
-val kotlin.Long.gigawatt
+val Long.gigawatt
     get() = Gigawatt(this)
 
 
-val kotlin.Float.gigawatt
+val Float.gigawatt
     get() = Gigawatt(this)
 
 
-val kotlin.Double.gigawatt
+val Double.gigawatt
     get() = Gigawatt(this)
 
 
@@ -241,40 +240,40 @@ data class Megawatt(override val value: MeasurementUnitValue) : Power {
     operator fun plus(other: Megawatt): Megawatt = Megawatt(this.value + other.value)
     operator fun minus(other: Megawatt): Megawatt = Megawatt(this.value - other.value)
 
-    constructor(value: kotlin.Byte) : this(value.toMeasurementUnitValue())
+    constructor(value: Byte) : this(value.toMeasurementUnitValue())
 
-    override operator fun times(other: kotlin.Byte): Megawatt = Megawatt(this.value.times(other))
-    override operator fun div(other: kotlin.Byte): Megawatt = Megawatt(this.value.div(other))
-    override operator fun rem(other: kotlin.Byte): Megawatt = Megawatt(this.value.rem(other))
+    override operator fun times(other: Byte): Megawatt = Megawatt(this.value.times(other))
+    override operator fun div(other: Byte): Megawatt = Megawatt(this.value.div(other))
+    override operator fun rem(other: Byte): Megawatt = Megawatt(this.value.rem(other))
 
-    constructor(value: kotlin.Short) : this(value.toMeasurementUnitValue())
+    constructor(value: Short) : this(value.toMeasurementUnitValue())
 
-    override operator fun times(other: kotlin.Short): Megawatt = Megawatt(this.value.times(other))
-    override operator fun div(other: kotlin.Short): Megawatt = Megawatt(this.value.div(other))
-    override operator fun rem(other: kotlin.Short): Megawatt = Megawatt(this.value.rem(other))
+    override operator fun times(other: Short): Megawatt = Megawatt(this.value.times(other))
+    override operator fun div(other: Short): Megawatt = Megawatt(this.value.div(other))
+    override operator fun rem(other: Short): Megawatt = Megawatt(this.value.rem(other))
 
-    constructor(value: kotlin.Int) : this(value.toMeasurementUnitValue())
+    constructor(value: Int) : this(value.toMeasurementUnitValue())
 
-    override operator fun times(other: kotlin.Int): Megawatt = Megawatt(this.value.times(other))
-    override operator fun div(other: kotlin.Int): Megawatt = Megawatt(this.value.div(other))
-    override operator fun rem(other: kotlin.Int): Megawatt = Megawatt(this.value.rem(other))
+    override operator fun times(other: Int): Megawatt = Megawatt(this.value.times(other))
+    override operator fun div(other: Int): Megawatt = Megawatt(this.value.div(other))
+    override operator fun rem(other: Int): Megawatt = Megawatt(this.value.rem(other))
 
-    constructor(value: kotlin.Long) : this(value.toMeasurementUnitValue())
+    constructor(value: Long) : this(value.toMeasurementUnitValue())
 
-    override operator fun times(other: kotlin.Long): Megawatt = Megawatt(this.value.times(other))
-    override operator fun div(other: kotlin.Long): Megawatt = Megawatt(this.value.div(other))
-    override operator fun rem(other: kotlin.Long): Megawatt = Megawatt(this.value.rem(other))
+    override operator fun times(other: Long): Megawatt = Megawatt(this.value.times(other))
+    override operator fun div(other: Long): Megawatt = Megawatt(this.value.div(other))
+    override operator fun rem(other: Long): Megawatt = Megawatt(this.value.rem(other))
 
-    constructor(value: kotlin.Float) : this(value.toMeasurementUnitValue())
+    constructor(value: Float) : this(value.toMeasurementUnitValue())
 
-    override operator fun times(other: kotlin.Float): Megawatt = Megawatt(this.value.times(other))
-    override operator fun div(other: kotlin.Float): Megawatt = Megawatt(this.value.div(other))
-    override operator fun rem(other: kotlin.Float): Megawatt = Megawatt(this.value.rem(other))
+    override operator fun times(other: Float): Megawatt = Megawatt(this.value.times(other))
+    override operator fun div(other: Float): Megawatt = Megawatt(this.value.div(other))
+    override operator fun rem(other: Float): Megawatt = Megawatt(this.value.rem(other))
 
 
-    override operator fun times(other: kotlin.Double): Megawatt = Megawatt(this.value.times(other))
-    override operator fun div(other: kotlin.Double): Megawatt = Megawatt(this.value.div(other))
-    override operator fun rem(other: kotlin.Double): Megawatt = Megawatt(this.value.rem(other))
+    override operator fun times(other: Double): Megawatt = Megawatt(this.value.times(other))
+    override operator fun div(other: Double): Megawatt = Megawatt(this.value.div(other))
+    override operator fun rem(other: Double): Megawatt = Megawatt(this.value.rem(other))
 
 
     override operator fun unaryMinus(): Megawatt = Megawatt(-value)
@@ -299,27 +298,27 @@ data class Megawatt(override val value: MeasurementUnitValue) : Power {
 
 }
 
-val kotlin.Byte.megawatt
+val Byte.megawatt
     get() = Megawatt(this)
 
 
-val kotlin.Short.megawatt
+val Short.megawatt
     get() = Megawatt(this)
 
 
-val kotlin.Int.megawatt
+val Int.megawatt
     get() = Megawatt(this)
 
 
-val kotlin.Long.megawatt
+val Long.megawatt
     get() = Megawatt(this)
 
 
-val kotlin.Float.megawatt
+val Float.megawatt
     get() = Megawatt(this)
 
 
-val kotlin.Double.megawatt
+val Double.megawatt
     get() = Megawatt(this)
 
 
@@ -339,40 +338,40 @@ data class Kilowatt(override val value: MeasurementUnitValue) : Power {
     operator fun plus(other: Kilowatt): Kilowatt = Kilowatt(this.value + other.value)
     operator fun minus(other: Kilowatt): Kilowatt = Kilowatt(this.value - other.value)
 
-    constructor(value: kotlin.Byte) : this(value.toMeasurementUnitValue())
+    constructor(value: Byte) : this(value.toMeasurementUnitValue())
 
-    override operator fun times(other: kotlin.Byte): Kilowatt = Kilowatt(this.value.times(other))
-    override operator fun div(other: kotlin.Byte): Kilowatt = Kilowatt(this.value.div(other))
-    override operator fun rem(other: kotlin.Byte): Kilowatt = Kilowatt(this.value.rem(other))
+    override operator fun times(other: Byte): Kilowatt = Kilowatt(this.value.times(other))
+    override operator fun div(other: Byte): Kilowatt = Kilowatt(this.value.div(other))
+    override operator fun rem(other: Byte): Kilowatt = Kilowatt(this.value.rem(other))
 
-    constructor(value: kotlin.Short) : this(value.toMeasurementUnitValue())
+    constructor(value: Short) : this(value.toMeasurementUnitValue())
 
-    override operator fun times(other: kotlin.Short): Kilowatt = Kilowatt(this.value.times(other))
-    override operator fun div(other: kotlin.Short): Kilowatt = Kilowatt(this.value.div(other))
-    override operator fun rem(other: kotlin.Short): Kilowatt = Kilowatt(this.value.rem(other))
+    override operator fun times(other: Short): Kilowatt = Kilowatt(this.value.times(other))
+    override operator fun div(other: Short): Kilowatt = Kilowatt(this.value.div(other))
+    override operator fun rem(other: Short): Kilowatt = Kilowatt(this.value.rem(other))
 
-    constructor(value: kotlin.Int) : this(value.toMeasurementUnitValue())
+    constructor(value: Int) : this(value.toMeasurementUnitValue())
 
-    override operator fun times(other: kotlin.Int): Kilowatt = Kilowatt(this.value.times(other))
-    override operator fun div(other: kotlin.Int): Kilowatt = Kilowatt(this.value.div(other))
-    override operator fun rem(other: kotlin.Int): Kilowatt = Kilowatt(this.value.rem(other))
+    override operator fun times(other: Int): Kilowatt = Kilowatt(this.value.times(other))
+    override operator fun div(other: Int): Kilowatt = Kilowatt(this.value.div(other))
+    override operator fun rem(other: Int): Kilowatt = Kilowatt(this.value.rem(other))
 
-    constructor(value: kotlin.Long) : this(value.toMeasurementUnitValue())
+    constructor(value: Long) : this(value.toMeasurementUnitValue())
 
-    override operator fun times(other: kotlin.Long): Kilowatt = Kilowatt(this.value.times(other))
-    override operator fun div(other: kotlin.Long): Kilowatt = Kilowatt(this.value.div(other))
-    override operator fun rem(other: kotlin.Long): Kilowatt = Kilowatt(this.value.rem(other))
+    override operator fun times(other: Long): Kilowatt = Kilowatt(this.value.times(other))
+    override operator fun div(other: Long): Kilowatt = Kilowatt(this.value.div(other))
+    override operator fun rem(other: Long): Kilowatt = Kilowatt(this.value.rem(other))
 
-    constructor(value: kotlin.Float) : this(value.toMeasurementUnitValue())
+    constructor(value: Float) : this(value.toMeasurementUnitValue())
 
-    override operator fun times(other: kotlin.Float): Kilowatt = Kilowatt(this.value.times(other))
-    override operator fun div(other: kotlin.Float): Kilowatt = Kilowatt(this.value.div(other))
-    override operator fun rem(other: kotlin.Float): Kilowatt = Kilowatt(this.value.rem(other))
+    override operator fun times(other: Float): Kilowatt = Kilowatt(this.value.times(other))
+    override operator fun div(other: Float): Kilowatt = Kilowatt(this.value.div(other))
+    override operator fun rem(other: Float): Kilowatt = Kilowatt(this.value.rem(other))
 
 
-    override operator fun times(other: kotlin.Double): Kilowatt = Kilowatt(this.value.times(other))
-    override operator fun div(other: kotlin.Double): Kilowatt = Kilowatt(this.value.div(other))
-    override operator fun rem(other: kotlin.Double): Kilowatt = Kilowatt(this.value.rem(other))
+    override operator fun times(other: Double): Kilowatt = Kilowatt(this.value.times(other))
+    override operator fun div(other: Double): Kilowatt = Kilowatt(this.value.div(other))
+    override operator fun rem(other: Double): Kilowatt = Kilowatt(this.value.rem(other))
 
 
     override operator fun unaryMinus(): Kilowatt = Kilowatt(-value)
@@ -397,27 +396,27 @@ data class Kilowatt(override val value: MeasurementUnitValue) : Power {
 
 }
 
-val kotlin.Byte.kilowatt
+val Byte.kilowatt
     get() = Kilowatt(this)
 
 
-val kotlin.Short.kilowatt
+val Short.kilowatt
     get() = Kilowatt(this)
 
 
-val kotlin.Int.kilowatt
+val Int.kilowatt
     get() = Kilowatt(this)
 
 
-val kotlin.Long.kilowatt
+val Long.kilowatt
     get() = Kilowatt(this)
 
 
-val kotlin.Float.kilowatt
+val Float.kilowatt
     get() = Kilowatt(this)
 
 
-val kotlin.Double.kilowatt
+val Double.kilowatt
     get() = Kilowatt(this)
 
 
@@ -437,40 +436,40 @@ data class Watt(override val value: MeasurementUnitValue) : Power {
     operator fun plus(other: Watt): Watt = Watt(this.value + other.value)
     operator fun minus(other: Watt): Watt = Watt(this.value - other.value)
 
-    constructor(value: kotlin.Byte) : this(value.toMeasurementUnitValue())
+    constructor(value: Byte) : this(value.toMeasurementUnitValue())
 
-    override operator fun times(other: kotlin.Byte): Watt = Watt(this.value.times(other))
-    override operator fun div(other: kotlin.Byte): Watt = Watt(this.value.div(other))
-    override operator fun rem(other: kotlin.Byte): Watt = Watt(this.value.rem(other))
+    override operator fun times(other: Byte): Watt = Watt(this.value.times(other))
+    override operator fun div(other: Byte): Watt = Watt(this.value.div(other))
+    override operator fun rem(other: Byte): Watt = Watt(this.value.rem(other))
 
-    constructor(value: kotlin.Short) : this(value.toMeasurementUnitValue())
+    constructor(value: Short) : this(value.toMeasurementUnitValue())
 
-    override operator fun times(other: kotlin.Short): Watt = Watt(this.value.times(other))
-    override operator fun div(other: kotlin.Short): Watt = Watt(this.value.div(other))
-    override operator fun rem(other: kotlin.Short): Watt = Watt(this.value.rem(other))
+    override operator fun times(other: Short): Watt = Watt(this.value.times(other))
+    override operator fun div(other: Short): Watt = Watt(this.value.div(other))
+    override operator fun rem(other: Short): Watt = Watt(this.value.rem(other))
 
-    constructor(value: kotlin.Int) : this(value.toMeasurementUnitValue())
+    constructor(value: Int) : this(value.toMeasurementUnitValue())
 
-    override operator fun times(other: kotlin.Int): Watt = Watt(this.value.times(other))
-    override operator fun div(other: kotlin.Int): Watt = Watt(this.value.div(other))
-    override operator fun rem(other: kotlin.Int): Watt = Watt(this.value.rem(other))
+    override operator fun times(other: Int): Watt = Watt(this.value.times(other))
+    override operator fun div(other: Int): Watt = Watt(this.value.div(other))
+    override operator fun rem(other: Int): Watt = Watt(this.value.rem(other))
 
-    constructor(value: kotlin.Long) : this(value.toMeasurementUnitValue())
+    constructor(value: Long) : this(value.toMeasurementUnitValue())
 
-    override operator fun times(other: kotlin.Long): Watt = Watt(this.value.times(other))
-    override operator fun div(other: kotlin.Long): Watt = Watt(this.value.div(other))
-    override operator fun rem(other: kotlin.Long): Watt = Watt(this.value.rem(other))
+    override operator fun times(other: Long): Watt = Watt(this.value.times(other))
+    override operator fun div(other: Long): Watt = Watt(this.value.div(other))
+    override operator fun rem(other: Long): Watt = Watt(this.value.rem(other))
 
-    constructor(value: kotlin.Float) : this(value.toMeasurementUnitValue())
+    constructor(value: Float) : this(value.toMeasurementUnitValue())
 
-    override operator fun times(other: kotlin.Float): Watt = Watt(this.value.times(other))
-    override operator fun div(other: kotlin.Float): Watt = Watt(this.value.div(other))
-    override operator fun rem(other: kotlin.Float): Watt = Watt(this.value.rem(other))
+    override operator fun times(other: Float): Watt = Watt(this.value.times(other))
+    override operator fun div(other: Float): Watt = Watt(this.value.div(other))
+    override operator fun rem(other: Float): Watt = Watt(this.value.rem(other))
 
 
-    override operator fun times(other: kotlin.Double): Watt = Watt(this.value.times(other))
-    override operator fun div(other: kotlin.Double): Watt = Watt(this.value.div(other))
-    override operator fun rem(other: kotlin.Double): Watt = Watt(this.value.rem(other))
+    override operator fun times(other: Double): Watt = Watt(this.value.times(other))
+    override operator fun div(other: Double): Watt = Watt(this.value.div(other))
+    override operator fun rem(other: Double): Watt = Watt(this.value.rem(other))
 
 
     override operator fun unaryMinus(): Watt = Watt(-value)
@@ -495,27 +494,27 @@ data class Watt(override val value: MeasurementUnitValue) : Power {
 
 }
 
-val kotlin.Byte.watt
+val Byte.watt
     get() = Watt(this)
 
 
-val kotlin.Short.watt
+val Short.watt
     get() = Watt(this)
 
 
-val kotlin.Int.watt
+val Int.watt
     get() = Watt(this)
 
 
-val kotlin.Long.watt
+val Long.watt
     get() = Watt(this)
 
 
-val kotlin.Float.watt
+val Float.watt
     get() = Watt(this)
 
 
-val kotlin.Double.watt
+val Double.watt
     get() = Watt(this)
 
 
@@ -535,40 +534,40 @@ data class Milliwatt(override val value: MeasurementUnitValue) : Power {
     operator fun plus(other: Milliwatt): Milliwatt = Milliwatt(this.value + other.value)
     operator fun minus(other: Milliwatt): Milliwatt = Milliwatt(this.value - other.value)
 
-    constructor(value: kotlin.Byte) : this(value.toMeasurementUnitValue())
+    constructor(value: Byte) : this(value.toMeasurementUnitValue())
 
-    override operator fun times(other: kotlin.Byte): Milliwatt = Milliwatt(this.value.times(other))
-    override operator fun div(other: kotlin.Byte): Milliwatt = Milliwatt(this.value.div(other))
-    override operator fun rem(other: kotlin.Byte): Milliwatt = Milliwatt(this.value.rem(other))
+    override operator fun times(other: Byte): Milliwatt = Milliwatt(this.value.times(other))
+    override operator fun div(other: Byte): Milliwatt = Milliwatt(this.value.div(other))
+    override operator fun rem(other: Byte): Milliwatt = Milliwatt(this.value.rem(other))
 
-    constructor(value: kotlin.Short) : this(value.toMeasurementUnitValue())
+    constructor(value: Short) : this(value.toMeasurementUnitValue())
 
-    override operator fun times(other: kotlin.Short): Milliwatt = Milliwatt(this.value.times(other))
-    override operator fun div(other: kotlin.Short): Milliwatt = Milliwatt(this.value.div(other))
-    override operator fun rem(other: kotlin.Short): Milliwatt = Milliwatt(this.value.rem(other))
+    override operator fun times(other: Short): Milliwatt = Milliwatt(this.value.times(other))
+    override operator fun div(other: Short): Milliwatt = Milliwatt(this.value.div(other))
+    override operator fun rem(other: Short): Milliwatt = Milliwatt(this.value.rem(other))
 
-    constructor(value: kotlin.Int) : this(value.toMeasurementUnitValue())
+    constructor(value: Int) : this(value.toMeasurementUnitValue())
 
-    override operator fun times(other: kotlin.Int): Milliwatt = Milliwatt(this.value.times(other))
-    override operator fun div(other: kotlin.Int): Milliwatt = Milliwatt(this.value.div(other))
-    override operator fun rem(other: kotlin.Int): Milliwatt = Milliwatt(this.value.rem(other))
+    override operator fun times(other: Int): Milliwatt = Milliwatt(this.value.times(other))
+    override operator fun div(other: Int): Milliwatt = Milliwatt(this.value.div(other))
+    override operator fun rem(other: Int): Milliwatt = Milliwatt(this.value.rem(other))
 
-    constructor(value: kotlin.Long) : this(value.toMeasurementUnitValue())
+    constructor(value: Long) : this(value.toMeasurementUnitValue())
 
-    override operator fun times(other: kotlin.Long): Milliwatt = Milliwatt(this.value.times(other))
-    override operator fun div(other: kotlin.Long): Milliwatt = Milliwatt(this.value.div(other))
-    override operator fun rem(other: kotlin.Long): Milliwatt = Milliwatt(this.value.rem(other))
+    override operator fun times(other: Long): Milliwatt = Milliwatt(this.value.times(other))
+    override operator fun div(other: Long): Milliwatt = Milliwatt(this.value.div(other))
+    override operator fun rem(other: Long): Milliwatt = Milliwatt(this.value.rem(other))
 
-    constructor(value: kotlin.Float) : this(value.toMeasurementUnitValue())
+    constructor(value: Float) : this(value.toMeasurementUnitValue())
 
-    override operator fun times(other: kotlin.Float): Milliwatt = Milliwatt(this.value.times(other))
-    override operator fun div(other: kotlin.Float): Milliwatt = Milliwatt(this.value.div(other))
-    override operator fun rem(other: kotlin.Float): Milliwatt = Milliwatt(this.value.rem(other))
+    override operator fun times(other: Float): Milliwatt = Milliwatt(this.value.times(other))
+    override operator fun div(other: Float): Milliwatt = Milliwatt(this.value.div(other))
+    override operator fun rem(other: Float): Milliwatt = Milliwatt(this.value.rem(other))
 
 
-    override operator fun times(other: kotlin.Double): Milliwatt = Milliwatt(this.value.times(other))
-    override operator fun div(other: kotlin.Double): Milliwatt = Milliwatt(this.value.div(other))
-    override operator fun rem(other: kotlin.Double): Milliwatt = Milliwatt(this.value.rem(other))
+    override operator fun times(other: Double): Milliwatt = Milliwatt(this.value.times(other))
+    override operator fun div(other: Double): Milliwatt = Milliwatt(this.value.div(other))
+    override operator fun rem(other: Double): Milliwatt = Milliwatt(this.value.rem(other))
 
 
     override operator fun unaryMinus(): Milliwatt = Milliwatt(-value)
@@ -593,27 +592,27 @@ data class Milliwatt(override val value: MeasurementUnitValue) : Power {
 
 }
 
-val kotlin.Byte.milliwatt
+val Byte.milliwatt
     get() = Milliwatt(this)
 
 
-val kotlin.Short.milliwatt
+val Short.milliwatt
     get() = Milliwatt(this)
 
 
-val kotlin.Int.milliwatt
+val Int.milliwatt
     get() = Milliwatt(this)
 
 
-val kotlin.Long.milliwatt
+val Long.milliwatt
     get() = Milliwatt(this)
 
 
-val kotlin.Float.milliwatt
+val Float.milliwatt
     get() = Milliwatt(this)
 
 
-val kotlin.Double.milliwatt
+val Double.milliwatt
     get() = Milliwatt(this)
 
 
@@ -633,40 +632,40 @@ data class Horsepower(override val value: MeasurementUnitValue) : Power {
     operator fun plus(other: Horsepower): Horsepower = Horsepower(this.value + other.value)
     operator fun minus(other: Horsepower): Horsepower = Horsepower(this.value - other.value)
 
-    constructor(value: kotlin.Byte) : this(value.toMeasurementUnitValue())
+    constructor(value: Byte) : this(value.toMeasurementUnitValue())
 
-    override operator fun times(other: kotlin.Byte): Horsepower = Horsepower(this.value.times(other))
-    override operator fun div(other: kotlin.Byte): Horsepower = Horsepower(this.value.div(other))
-    override operator fun rem(other: kotlin.Byte): Horsepower = Horsepower(this.value.rem(other))
+    override operator fun times(other: Byte): Horsepower = Horsepower(this.value.times(other))
+    override operator fun div(other: Byte): Horsepower = Horsepower(this.value.div(other))
+    override operator fun rem(other: Byte): Horsepower = Horsepower(this.value.rem(other))
 
-    constructor(value: kotlin.Short) : this(value.toMeasurementUnitValue())
+    constructor(value: Short) : this(value.toMeasurementUnitValue())
 
-    override operator fun times(other: kotlin.Short): Horsepower = Horsepower(this.value.times(other))
-    override operator fun div(other: kotlin.Short): Horsepower = Horsepower(this.value.div(other))
-    override operator fun rem(other: kotlin.Short): Horsepower = Horsepower(this.value.rem(other))
+    override operator fun times(other: Short): Horsepower = Horsepower(this.value.times(other))
+    override operator fun div(other: Short): Horsepower = Horsepower(this.value.div(other))
+    override operator fun rem(other: Short): Horsepower = Horsepower(this.value.rem(other))
 
-    constructor(value: kotlin.Int) : this(value.toMeasurementUnitValue())
+    constructor(value: Int) : this(value.toMeasurementUnitValue())
 
-    override operator fun times(other: kotlin.Int): Horsepower = Horsepower(this.value.times(other))
-    override operator fun div(other: kotlin.Int): Horsepower = Horsepower(this.value.div(other))
-    override operator fun rem(other: kotlin.Int): Horsepower = Horsepower(this.value.rem(other))
+    override operator fun times(other: Int): Horsepower = Horsepower(this.value.times(other))
+    override operator fun div(other: Int): Horsepower = Horsepower(this.value.div(other))
+    override operator fun rem(other: Int): Horsepower = Horsepower(this.value.rem(other))
 
-    constructor(value: kotlin.Long) : this(value.toMeasurementUnitValue())
+    constructor(value: Long) : this(value.toMeasurementUnitValue())
 
-    override operator fun times(other: kotlin.Long): Horsepower = Horsepower(this.value.times(other))
-    override operator fun div(other: kotlin.Long): Horsepower = Horsepower(this.value.div(other))
-    override operator fun rem(other: kotlin.Long): Horsepower = Horsepower(this.value.rem(other))
+    override operator fun times(other: Long): Horsepower = Horsepower(this.value.times(other))
+    override operator fun div(other: Long): Horsepower = Horsepower(this.value.div(other))
+    override operator fun rem(other: Long): Horsepower = Horsepower(this.value.rem(other))
 
-    constructor(value: kotlin.Float) : this(value.toMeasurementUnitValue())
+    constructor(value: Float) : this(value.toMeasurementUnitValue())
 
-    override operator fun times(other: kotlin.Float): Horsepower = Horsepower(this.value.times(other))
-    override operator fun div(other: kotlin.Float): Horsepower = Horsepower(this.value.div(other))
-    override operator fun rem(other: kotlin.Float): Horsepower = Horsepower(this.value.rem(other))
+    override operator fun times(other: Float): Horsepower = Horsepower(this.value.times(other))
+    override operator fun div(other: Float): Horsepower = Horsepower(this.value.div(other))
+    override operator fun rem(other: Float): Horsepower = Horsepower(this.value.rem(other))
 
 
-    override operator fun times(other: kotlin.Double): Horsepower = Horsepower(this.value.times(other))
-    override operator fun div(other: kotlin.Double): Horsepower = Horsepower(this.value.div(other))
-    override operator fun rem(other: kotlin.Double): Horsepower = Horsepower(this.value.rem(other))
+    override operator fun times(other: Double): Horsepower = Horsepower(this.value.times(other))
+    override operator fun div(other: Double): Horsepower = Horsepower(this.value.div(other))
+    override operator fun rem(other: Double): Horsepower = Horsepower(this.value.rem(other))
 
 
     override operator fun unaryMinus(): Horsepower = Horsepower(-value)
@@ -691,27 +690,27 @@ data class Horsepower(override val value: MeasurementUnitValue) : Power {
 
 }
 
-val kotlin.Byte.horsepower
+val Byte.horsepower
     get() = Horsepower(this)
 
 
-val kotlin.Short.horsepower
+val Short.horsepower
     get() = Horsepower(this)
 
 
-val kotlin.Int.horsepower
+val Int.horsepower
     get() = Horsepower(this)
 
 
-val kotlin.Long.horsepower
+val Long.horsepower
     get() = Horsepower(this)
 
 
-val kotlin.Float.horsepower
+val Float.horsepower
     get() = Horsepower(this)
 
 
-val kotlin.Double.horsepower
+val Double.horsepower
     get() = Horsepower(this)
 
 
@@ -731,40 +730,40 @@ data class KilogramSquareMeterPerCubicSecond(override val value: MeasurementUnit
     operator fun plus(other: KilogramSquareMeterPerCubicSecond): KilogramSquareMeterPerCubicSecond = KilogramSquareMeterPerCubicSecond(this.value + other.value)
     operator fun minus(other: KilogramSquareMeterPerCubicSecond): KilogramSquareMeterPerCubicSecond = KilogramSquareMeterPerCubicSecond(this.value - other.value)
 
-    constructor(value: kotlin.Byte) : this(value.toMeasurementUnitValue())
+    constructor(value: Byte) : this(value.toMeasurementUnitValue())
 
-    override operator fun times(other: kotlin.Byte): KilogramSquareMeterPerCubicSecond = KilogramSquareMeterPerCubicSecond(this.value.times(other))
-    override operator fun div(other: kotlin.Byte): KilogramSquareMeterPerCubicSecond = KilogramSquareMeterPerCubicSecond(this.value.div(other))
-    override operator fun rem(other: kotlin.Byte): KilogramSquareMeterPerCubicSecond = KilogramSquareMeterPerCubicSecond(this.value.rem(other))
+    override operator fun times(other: Byte): KilogramSquareMeterPerCubicSecond = KilogramSquareMeterPerCubicSecond(this.value.times(other))
+    override operator fun div(other: Byte): KilogramSquareMeterPerCubicSecond = KilogramSquareMeterPerCubicSecond(this.value.div(other))
+    override operator fun rem(other: Byte): KilogramSquareMeterPerCubicSecond = KilogramSquareMeterPerCubicSecond(this.value.rem(other))
 
-    constructor(value: kotlin.Short) : this(value.toMeasurementUnitValue())
+    constructor(value: Short) : this(value.toMeasurementUnitValue())
 
-    override operator fun times(other: kotlin.Short): KilogramSquareMeterPerCubicSecond = KilogramSquareMeterPerCubicSecond(this.value.times(other))
-    override operator fun div(other: kotlin.Short): KilogramSquareMeterPerCubicSecond = KilogramSquareMeterPerCubicSecond(this.value.div(other))
-    override operator fun rem(other: kotlin.Short): KilogramSquareMeterPerCubicSecond = KilogramSquareMeterPerCubicSecond(this.value.rem(other))
+    override operator fun times(other: Short): KilogramSquareMeterPerCubicSecond = KilogramSquareMeterPerCubicSecond(this.value.times(other))
+    override operator fun div(other: Short): KilogramSquareMeterPerCubicSecond = KilogramSquareMeterPerCubicSecond(this.value.div(other))
+    override operator fun rem(other: Short): KilogramSquareMeterPerCubicSecond = KilogramSquareMeterPerCubicSecond(this.value.rem(other))
 
-    constructor(value: kotlin.Int) : this(value.toMeasurementUnitValue())
+    constructor(value: Int) : this(value.toMeasurementUnitValue())
 
-    override operator fun times(other: kotlin.Int): KilogramSquareMeterPerCubicSecond = KilogramSquareMeterPerCubicSecond(this.value.times(other))
-    override operator fun div(other: kotlin.Int): KilogramSquareMeterPerCubicSecond = KilogramSquareMeterPerCubicSecond(this.value.div(other))
-    override operator fun rem(other: kotlin.Int): KilogramSquareMeterPerCubicSecond = KilogramSquareMeterPerCubicSecond(this.value.rem(other))
+    override operator fun times(other: Int): KilogramSquareMeterPerCubicSecond = KilogramSquareMeterPerCubicSecond(this.value.times(other))
+    override operator fun div(other: Int): KilogramSquareMeterPerCubicSecond = KilogramSquareMeterPerCubicSecond(this.value.div(other))
+    override operator fun rem(other: Int): KilogramSquareMeterPerCubicSecond = KilogramSquareMeterPerCubicSecond(this.value.rem(other))
 
-    constructor(value: kotlin.Long) : this(value.toMeasurementUnitValue())
+    constructor(value: Long) : this(value.toMeasurementUnitValue())
 
-    override operator fun times(other: kotlin.Long): KilogramSquareMeterPerCubicSecond = KilogramSquareMeterPerCubicSecond(this.value.times(other))
-    override operator fun div(other: kotlin.Long): KilogramSquareMeterPerCubicSecond = KilogramSquareMeterPerCubicSecond(this.value.div(other))
-    override operator fun rem(other: kotlin.Long): KilogramSquareMeterPerCubicSecond = KilogramSquareMeterPerCubicSecond(this.value.rem(other))
+    override operator fun times(other: Long): KilogramSquareMeterPerCubicSecond = KilogramSquareMeterPerCubicSecond(this.value.times(other))
+    override operator fun div(other: Long): KilogramSquareMeterPerCubicSecond = KilogramSquareMeterPerCubicSecond(this.value.div(other))
+    override operator fun rem(other: Long): KilogramSquareMeterPerCubicSecond = KilogramSquareMeterPerCubicSecond(this.value.rem(other))
 
-    constructor(value: kotlin.Float) : this(value.toMeasurementUnitValue())
+    constructor(value: Float) : this(value.toMeasurementUnitValue())
 
-    override operator fun times(other: kotlin.Float): KilogramSquareMeterPerCubicSecond = KilogramSquareMeterPerCubicSecond(this.value.times(other))
-    override operator fun div(other: kotlin.Float): KilogramSquareMeterPerCubicSecond = KilogramSquareMeterPerCubicSecond(this.value.div(other))
-    override operator fun rem(other: kotlin.Float): KilogramSquareMeterPerCubicSecond = KilogramSquareMeterPerCubicSecond(this.value.rem(other))
+    override operator fun times(other: Float): KilogramSquareMeterPerCubicSecond = KilogramSquareMeterPerCubicSecond(this.value.times(other))
+    override operator fun div(other: Float): KilogramSquareMeterPerCubicSecond = KilogramSquareMeterPerCubicSecond(this.value.div(other))
+    override operator fun rem(other: Float): KilogramSquareMeterPerCubicSecond = KilogramSquareMeterPerCubicSecond(this.value.rem(other))
 
 
-    override operator fun times(other: kotlin.Double): KilogramSquareMeterPerCubicSecond = KilogramSquareMeterPerCubicSecond(this.value.times(other))
-    override operator fun div(other: kotlin.Double): KilogramSquareMeterPerCubicSecond = KilogramSquareMeterPerCubicSecond(this.value.div(other))
-    override operator fun rem(other: kotlin.Double): KilogramSquareMeterPerCubicSecond = KilogramSquareMeterPerCubicSecond(this.value.rem(other))
+    override operator fun times(other: Double): KilogramSquareMeterPerCubicSecond = KilogramSquareMeterPerCubicSecond(this.value.times(other))
+    override operator fun div(other: Double): KilogramSquareMeterPerCubicSecond = KilogramSquareMeterPerCubicSecond(this.value.div(other))
+    override operator fun rem(other: Double): KilogramSquareMeterPerCubicSecond = KilogramSquareMeterPerCubicSecond(this.value.rem(other))
 
 
     override operator fun unaryMinus(): KilogramSquareMeterPerCubicSecond = KilogramSquareMeterPerCubicSecond(-value)
@@ -789,26 +788,26 @@ data class KilogramSquareMeterPerCubicSecond(override val value: MeasurementUnit
 
 }
 
-val kotlin.Byte.kilogramSquareMeterPerCubicSecond
+val Byte.kilogramSquareMeterPerCubicSecond
     get() = KilogramSquareMeterPerCubicSecond(this)
 
 
-val kotlin.Short.kilogramSquareMeterPerCubicSecond
+val Short.kilogramSquareMeterPerCubicSecond
     get() = KilogramSquareMeterPerCubicSecond(this)
 
 
-val kotlin.Int.kilogramSquareMeterPerCubicSecond
+val Int.kilogramSquareMeterPerCubicSecond
     get() = KilogramSquareMeterPerCubicSecond(this)
 
 
-val kotlin.Long.kilogramSquareMeterPerCubicSecond
+val Long.kilogramSquareMeterPerCubicSecond
     get() = KilogramSquareMeterPerCubicSecond(this)
 
 
-val kotlin.Float.kilogramSquareMeterPerCubicSecond
+val Float.kilogramSquareMeterPerCubicSecond
     get() = KilogramSquareMeterPerCubicSecond(this)
 
 
-val kotlin.Double.kilogramSquareMeterPerCubicSecond
+val Double.kilogramSquareMeterPerCubicSecond
     get() = KilogramSquareMeterPerCubicSecond(this)
                             

@@ -22,7 +22,6 @@ interface Graphics : MeasurementUnit, Comparable<Graphics> {
     class Serializer : CustomSerializer()
     open class CustomSerializer(val decoders: Map<String, (MeasurementUnitValue) -> Graphics> = emptyMap()) : KSerializer<Graphics> {
         private val delegateSerializer = MapSerializer(String.serializer(), MeasurementUnitValue.serializer())
-
         @OptIn(ExperimentalSerializationApi::class)
         override val descriptor: SerialDescriptor = SerialDescriptor("Graphics", delegateSerializer.descriptor)
         override fun deserialize(decoder: Decoder): Graphics {
@@ -75,34 +74,34 @@ interface Graphics : MeasurementUnit, Comparable<Graphics> {
     fun abs(): Graphics
 
 
-    operator fun times(other: kotlin.Byte): Graphics
-    operator fun div(other: kotlin.Byte): Graphics
-    operator fun rem(other: kotlin.Byte): Graphics
+    operator fun times(other: Byte): Graphics
+    operator fun div(other: Byte): Graphics
+    operator fun rem(other: Byte): Graphics
 
 
-    operator fun times(other: kotlin.Short): Graphics
-    operator fun div(other: kotlin.Short): Graphics
-    operator fun rem(other: kotlin.Short): Graphics
+    operator fun times(other: Short): Graphics
+    operator fun div(other: Short): Graphics
+    operator fun rem(other: Short): Graphics
 
 
-    operator fun times(other: kotlin.Int): Graphics
-    operator fun div(other: kotlin.Int): Graphics
-    operator fun rem(other: kotlin.Int): Graphics
+    operator fun times(other: Int): Graphics
+    operator fun div(other: Int): Graphics
+    operator fun rem(other: Int): Graphics
 
 
-    operator fun times(other: kotlin.Long): Graphics
-    operator fun div(other: kotlin.Long): Graphics
-    operator fun rem(other: kotlin.Long): Graphics
+    operator fun times(other: Long): Graphics
+    operator fun div(other: Long): Graphics
+    operator fun rem(other: Long): Graphics
 
 
-    operator fun times(other: kotlin.Float): Graphics
-    operator fun div(other: kotlin.Float): Graphics
-    operator fun rem(other: kotlin.Float): Graphics
+    operator fun times(other: Float): Graphics
+    operator fun div(other: Float): Graphics
+    operator fun rem(other: Float): Graphics
 
 
-    operator fun times(other: kotlin.Double): Graphics
-    operator fun div(other: kotlin.Double): Graphics
-    operator fun rem(other: kotlin.Double): Graphics
+    operator fun times(other: Double): Graphics
+    operator fun div(other: Double): Graphics
+    operator fun rem(other: Double): Graphics
 
 }
 
@@ -122,40 +121,40 @@ data class Pixel(override val value: MeasurementUnitValue) : Graphics {
     operator fun plus(other: Pixel): Pixel = Pixel(this.value + other.value)
     operator fun minus(other: Pixel): Pixel = Pixel(this.value - other.value)
 
-    constructor(value: kotlin.Byte) : this(value.toMeasurementUnitValue())
+    constructor(value: Byte) : this(value.toMeasurementUnitValue())
 
-    override operator fun times(other: kotlin.Byte): Pixel = Pixel(this.value.times(other))
-    override operator fun div(other: kotlin.Byte): Pixel = Pixel(this.value.div(other))
-    override operator fun rem(other: kotlin.Byte): Pixel = Pixel(this.value.rem(other))
+    override operator fun times(other: Byte): Pixel = Pixel(this.value.times(other))
+    override operator fun div(other: Byte): Pixel = Pixel(this.value.div(other))
+    override operator fun rem(other: Byte): Pixel = Pixel(this.value.rem(other))
 
-    constructor(value: kotlin.Short) : this(value.toMeasurementUnitValue())
+    constructor(value: Short) : this(value.toMeasurementUnitValue())
 
-    override operator fun times(other: kotlin.Short): Pixel = Pixel(this.value.times(other))
-    override operator fun div(other: kotlin.Short): Pixel = Pixel(this.value.div(other))
-    override operator fun rem(other: kotlin.Short): Pixel = Pixel(this.value.rem(other))
+    override operator fun times(other: Short): Pixel = Pixel(this.value.times(other))
+    override operator fun div(other: Short): Pixel = Pixel(this.value.div(other))
+    override operator fun rem(other: Short): Pixel = Pixel(this.value.rem(other))
 
-    constructor(value: kotlin.Int) : this(value.toMeasurementUnitValue())
+    constructor(value: Int) : this(value.toMeasurementUnitValue())
 
-    override operator fun times(other: kotlin.Int): Pixel = Pixel(this.value.times(other))
-    override operator fun div(other: kotlin.Int): Pixel = Pixel(this.value.div(other))
-    override operator fun rem(other: kotlin.Int): Pixel = Pixel(this.value.rem(other))
+    override operator fun times(other: Int): Pixel = Pixel(this.value.times(other))
+    override operator fun div(other: Int): Pixel = Pixel(this.value.div(other))
+    override operator fun rem(other: Int): Pixel = Pixel(this.value.rem(other))
 
-    constructor(value: kotlin.Long) : this(value.toMeasurementUnitValue())
+    constructor(value: Long) : this(value.toMeasurementUnitValue())
 
-    override operator fun times(other: kotlin.Long): Pixel = Pixel(this.value.times(other))
-    override operator fun div(other: kotlin.Long): Pixel = Pixel(this.value.div(other))
-    override operator fun rem(other: kotlin.Long): Pixel = Pixel(this.value.rem(other))
+    override operator fun times(other: Long): Pixel = Pixel(this.value.times(other))
+    override operator fun div(other: Long): Pixel = Pixel(this.value.div(other))
+    override operator fun rem(other: Long): Pixel = Pixel(this.value.rem(other))
 
-    constructor(value: kotlin.Float) : this(value.toMeasurementUnitValue())
+    constructor(value: Float) : this(value.toMeasurementUnitValue())
 
-    override operator fun times(other: kotlin.Float): Pixel = Pixel(this.value.times(other))
-    override operator fun div(other: kotlin.Float): Pixel = Pixel(this.value.div(other))
-    override operator fun rem(other: kotlin.Float): Pixel = Pixel(this.value.rem(other))
+    override operator fun times(other: Float): Pixel = Pixel(this.value.times(other))
+    override operator fun div(other: Float): Pixel = Pixel(this.value.div(other))
+    override operator fun rem(other: Float): Pixel = Pixel(this.value.rem(other))
 
 
-    override operator fun times(other: kotlin.Double): Pixel = Pixel(this.value.times(other))
-    override operator fun div(other: kotlin.Double): Pixel = Pixel(this.value.div(other))
-    override operator fun rem(other: kotlin.Double): Pixel = Pixel(this.value.rem(other))
+    override operator fun times(other: Double): Pixel = Pixel(this.value.times(other))
+    override operator fun div(other: Double): Pixel = Pixel(this.value.div(other))
+    override operator fun rem(other: Double): Pixel = Pixel(this.value.rem(other))
 
 
     override operator fun unaryMinus(): Pixel = Pixel(-value)
@@ -180,27 +179,27 @@ data class Pixel(override val value: MeasurementUnitValue) : Graphics {
 
 }
 
-val kotlin.Byte.pixel
+val Byte.pixel
     get() = Pixel(this)
 
 
-val kotlin.Short.pixel
+val Short.pixel
     get() = Pixel(this)
 
 
-val kotlin.Int.pixel
+val Int.pixel
     get() = Pixel(this)
 
 
-val kotlin.Long.pixel
+val Long.pixel
     get() = Pixel(this)
 
 
-val kotlin.Float.pixel
+val Float.pixel
     get() = Pixel(this)
 
 
-val kotlin.Double.pixel
+val Double.pixel
     get() = Pixel(this)
 
 
@@ -220,40 +219,40 @@ data class Megapixel(override val value: MeasurementUnitValue) : Graphics {
     operator fun plus(other: Megapixel): Megapixel = Megapixel(this.value + other.value)
     operator fun minus(other: Megapixel): Megapixel = Megapixel(this.value - other.value)
 
-    constructor(value: kotlin.Byte) : this(value.toMeasurementUnitValue())
+    constructor(value: Byte) : this(value.toMeasurementUnitValue())
 
-    override operator fun times(other: kotlin.Byte): Megapixel = Megapixel(this.value.times(other))
-    override operator fun div(other: kotlin.Byte): Megapixel = Megapixel(this.value.div(other))
-    override operator fun rem(other: kotlin.Byte): Megapixel = Megapixel(this.value.rem(other))
+    override operator fun times(other: Byte): Megapixel = Megapixel(this.value.times(other))
+    override operator fun div(other: Byte): Megapixel = Megapixel(this.value.div(other))
+    override operator fun rem(other: Byte): Megapixel = Megapixel(this.value.rem(other))
 
-    constructor(value: kotlin.Short) : this(value.toMeasurementUnitValue())
+    constructor(value: Short) : this(value.toMeasurementUnitValue())
 
-    override operator fun times(other: kotlin.Short): Megapixel = Megapixel(this.value.times(other))
-    override operator fun div(other: kotlin.Short): Megapixel = Megapixel(this.value.div(other))
-    override operator fun rem(other: kotlin.Short): Megapixel = Megapixel(this.value.rem(other))
+    override operator fun times(other: Short): Megapixel = Megapixel(this.value.times(other))
+    override operator fun div(other: Short): Megapixel = Megapixel(this.value.div(other))
+    override operator fun rem(other: Short): Megapixel = Megapixel(this.value.rem(other))
 
-    constructor(value: kotlin.Int) : this(value.toMeasurementUnitValue())
+    constructor(value: Int) : this(value.toMeasurementUnitValue())
 
-    override operator fun times(other: kotlin.Int): Megapixel = Megapixel(this.value.times(other))
-    override operator fun div(other: kotlin.Int): Megapixel = Megapixel(this.value.div(other))
-    override operator fun rem(other: kotlin.Int): Megapixel = Megapixel(this.value.rem(other))
+    override operator fun times(other: Int): Megapixel = Megapixel(this.value.times(other))
+    override operator fun div(other: Int): Megapixel = Megapixel(this.value.div(other))
+    override operator fun rem(other: Int): Megapixel = Megapixel(this.value.rem(other))
 
-    constructor(value: kotlin.Long) : this(value.toMeasurementUnitValue())
+    constructor(value: Long) : this(value.toMeasurementUnitValue())
 
-    override operator fun times(other: kotlin.Long): Megapixel = Megapixel(this.value.times(other))
-    override operator fun div(other: kotlin.Long): Megapixel = Megapixel(this.value.div(other))
-    override operator fun rem(other: kotlin.Long): Megapixel = Megapixel(this.value.rem(other))
+    override operator fun times(other: Long): Megapixel = Megapixel(this.value.times(other))
+    override operator fun div(other: Long): Megapixel = Megapixel(this.value.div(other))
+    override operator fun rem(other: Long): Megapixel = Megapixel(this.value.rem(other))
 
-    constructor(value: kotlin.Float) : this(value.toMeasurementUnitValue())
+    constructor(value: Float) : this(value.toMeasurementUnitValue())
 
-    override operator fun times(other: kotlin.Float): Megapixel = Megapixel(this.value.times(other))
-    override operator fun div(other: kotlin.Float): Megapixel = Megapixel(this.value.div(other))
-    override operator fun rem(other: kotlin.Float): Megapixel = Megapixel(this.value.rem(other))
+    override operator fun times(other: Float): Megapixel = Megapixel(this.value.times(other))
+    override operator fun div(other: Float): Megapixel = Megapixel(this.value.div(other))
+    override operator fun rem(other: Float): Megapixel = Megapixel(this.value.rem(other))
 
 
-    override operator fun times(other: kotlin.Double): Megapixel = Megapixel(this.value.times(other))
-    override operator fun div(other: kotlin.Double): Megapixel = Megapixel(this.value.div(other))
-    override operator fun rem(other: kotlin.Double): Megapixel = Megapixel(this.value.rem(other))
+    override operator fun times(other: Double): Megapixel = Megapixel(this.value.times(other))
+    override operator fun div(other: Double): Megapixel = Megapixel(this.value.div(other))
+    override operator fun rem(other: Double): Megapixel = Megapixel(this.value.rem(other))
 
 
     override operator fun unaryMinus(): Megapixel = Megapixel(-value)
@@ -278,27 +277,27 @@ data class Megapixel(override val value: MeasurementUnitValue) : Graphics {
 
 }
 
-val kotlin.Byte.megapixel
+val Byte.megapixel
     get() = Megapixel(this)
 
 
-val kotlin.Short.megapixel
+val Short.megapixel
     get() = Megapixel(this)
 
 
-val kotlin.Int.megapixel
+val Int.megapixel
     get() = Megapixel(this)
 
 
-val kotlin.Long.megapixel
+val Long.megapixel
     get() = Megapixel(this)
 
 
-val kotlin.Float.megapixel
+val Float.megapixel
     get() = Megapixel(this)
 
 
-val kotlin.Double.megapixel
+val Double.megapixel
     get() = Megapixel(this)
 
 
@@ -318,40 +317,40 @@ data class Dot(override val value: MeasurementUnitValue) : Graphics {
     operator fun plus(other: Dot): Dot = Dot(this.value + other.value)
     operator fun minus(other: Dot): Dot = Dot(this.value - other.value)
 
-    constructor(value: kotlin.Byte) : this(value.toMeasurementUnitValue())
+    constructor(value: Byte) : this(value.toMeasurementUnitValue())
 
-    override operator fun times(other: kotlin.Byte): Dot = Dot(this.value.times(other))
-    override operator fun div(other: kotlin.Byte): Dot = Dot(this.value.div(other))
-    override operator fun rem(other: kotlin.Byte): Dot = Dot(this.value.rem(other))
+    override operator fun times(other: Byte): Dot = Dot(this.value.times(other))
+    override operator fun div(other: Byte): Dot = Dot(this.value.div(other))
+    override operator fun rem(other: Byte): Dot = Dot(this.value.rem(other))
 
-    constructor(value: kotlin.Short) : this(value.toMeasurementUnitValue())
+    constructor(value: Short) : this(value.toMeasurementUnitValue())
 
-    override operator fun times(other: kotlin.Short): Dot = Dot(this.value.times(other))
-    override operator fun div(other: kotlin.Short): Dot = Dot(this.value.div(other))
-    override operator fun rem(other: kotlin.Short): Dot = Dot(this.value.rem(other))
+    override operator fun times(other: Short): Dot = Dot(this.value.times(other))
+    override operator fun div(other: Short): Dot = Dot(this.value.div(other))
+    override operator fun rem(other: Short): Dot = Dot(this.value.rem(other))
 
-    constructor(value: kotlin.Int) : this(value.toMeasurementUnitValue())
+    constructor(value: Int) : this(value.toMeasurementUnitValue())
 
-    override operator fun times(other: kotlin.Int): Dot = Dot(this.value.times(other))
-    override operator fun div(other: kotlin.Int): Dot = Dot(this.value.div(other))
-    override operator fun rem(other: kotlin.Int): Dot = Dot(this.value.rem(other))
+    override operator fun times(other: Int): Dot = Dot(this.value.times(other))
+    override operator fun div(other: Int): Dot = Dot(this.value.div(other))
+    override operator fun rem(other: Int): Dot = Dot(this.value.rem(other))
 
-    constructor(value: kotlin.Long) : this(value.toMeasurementUnitValue())
+    constructor(value: Long) : this(value.toMeasurementUnitValue())
 
-    override operator fun times(other: kotlin.Long): Dot = Dot(this.value.times(other))
-    override operator fun div(other: kotlin.Long): Dot = Dot(this.value.div(other))
-    override operator fun rem(other: kotlin.Long): Dot = Dot(this.value.rem(other))
+    override operator fun times(other: Long): Dot = Dot(this.value.times(other))
+    override operator fun div(other: Long): Dot = Dot(this.value.div(other))
+    override operator fun rem(other: Long): Dot = Dot(this.value.rem(other))
 
-    constructor(value: kotlin.Float) : this(value.toMeasurementUnitValue())
+    constructor(value: Float) : this(value.toMeasurementUnitValue())
 
-    override operator fun times(other: kotlin.Float): Dot = Dot(this.value.times(other))
-    override operator fun div(other: kotlin.Float): Dot = Dot(this.value.div(other))
-    override operator fun rem(other: kotlin.Float): Dot = Dot(this.value.rem(other))
+    override operator fun times(other: Float): Dot = Dot(this.value.times(other))
+    override operator fun div(other: Float): Dot = Dot(this.value.div(other))
+    override operator fun rem(other: Float): Dot = Dot(this.value.rem(other))
 
 
-    override operator fun times(other: kotlin.Double): Dot = Dot(this.value.times(other))
-    override operator fun div(other: kotlin.Double): Dot = Dot(this.value.div(other))
-    override operator fun rem(other: kotlin.Double): Dot = Dot(this.value.rem(other))
+    override operator fun times(other: Double): Dot = Dot(this.value.times(other))
+    override operator fun div(other: Double): Dot = Dot(this.value.div(other))
+    override operator fun rem(other: Double): Dot = Dot(this.value.rem(other))
 
 
     override operator fun unaryMinus(): Dot = Dot(-value)
@@ -376,26 +375,26 @@ data class Dot(override val value: MeasurementUnitValue) : Graphics {
 
 }
 
-val kotlin.Byte.dot
+val Byte.dot
     get() = Dot(this)
 
 
-val kotlin.Short.dot
+val Short.dot
     get() = Dot(this)
 
 
-val kotlin.Int.dot
+val Int.dot
     get() = Dot(this)
 
 
-val kotlin.Long.dot
+val Long.dot
     get() = Dot(this)
 
 
-val kotlin.Float.dot
+val Float.dot
     get() = Dot(this)
 
 
-val kotlin.Double.dot
+val Double.dot
     get() = Dot(this)
                             

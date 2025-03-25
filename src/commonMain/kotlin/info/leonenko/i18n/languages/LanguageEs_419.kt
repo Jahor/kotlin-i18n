@@ -6,7 +6,6 @@ import info.leonenko.i18n.rbnf.RBNFEs_419
 val Language.Companion.es_419
     get() = languageEs_419
 private val languageEs_419 = LanguageEs_419()
-
 class LanguageEs_419 internal constructor() : LanguageEs() {
     override val code: String = "es_419"
     override val script: String? = null
@@ -51,6 +50,20 @@ class LanguageEs_419 internal constructor() : LanguageEs() {
                     )
                 ),
             )
+        override val concentrationPortionPer1e9
+            get() = MultiLengthGenderedPattern(
+                base = super.concentrationPortionPer1e9,
+                long = GenderedPattern(
+                    cases = Cases(
+                        nominative = PluralPattern(
+                            Plurals(
+                                one = "{0} parte por mil millones",
+                                other = "{0} partes por mil millones",
+                            )
+                        ),
+                    )
+                ),
+            )
         override val consumptionMilePerGallonImperial
             get() = MultiLengthGenderedPattern(
                 base = super.consumptionMilePerGallonImperial,
@@ -65,9 +78,9 @@ class LanguageEs_419 internal constructor() : LanguageEs() {
                     )
                 ),
             )
-        override val digitalByte
+        override val digitalByteUnit
             get() = MultiLengthGenderedPattern(
-                base = super.digitalByte,
+                base = super.digitalByteUnit,
                 short = GenderedPattern(
                     cases = Cases(
                         nominative = PluralPattern(
@@ -175,6 +188,20 @@ class LanguageEs_419 internal constructor() : LanguageEs() {
                     )
                 ),
             )
+        override val durationNight
+            get() = MultiLengthGenderedPattern(
+                base = super.durationNight,
+                narrow = GenderedPattern(
+                    cases = Cases(
+                        nominative = PluralPattern(
+                            Plurals(
+                                one = "{0} noche",
+                                other = "{0} noches",
+                            )
+                        ),
+                    )
+                ),
+            )
         override val electricAmpere
             get() = MultiLengthGenderedPattern(
                 base = super.electricAmpere,
@@ -212,20 +239,6 @@ class LanguageEs_419 internal constructor() : LanguageEs() {
                             Plurals(
                                 one = "{0} ohm",
                                 other = "{0} ohms",
-                            )
-                        ),
-                    )
-                ),
-            )
-        override val energyCalorie
-            get() = MultiLengthGenderedPattern(
-                base = super.energyCalorie,
-                narrow = GenderedPattern(
-                    cases = Cases(
-                        nominative = PluralPattern(
-                            Plurals(
-                                one = "{0} cal",
-                                other = "{0}cal",
                             )
                         ),
                     )
@@ -329,7 +342,7 @@ class LanguageEs_419 internal constructor() : LanguageEs() {
                         nominative = PluralPattern(
                             Plurals(
                                 one = "{0}a. l.",
-                                other = "{0}a.a. l.",
+                                other = "{0}aa. l.",
                             )
                         ),
                     )
@@ -344,6 +357,16 @@ class LanguageEs_419 internal constructor() : LanguageEs() {
                             Plurals(
                                 one = "{0} ua",
                                 other = "{0} ua",
+                            )
+                        ),
+                    )
+                ),
+                narrow = GenderedPattern(
+                    cases = Cases(
+                        nominative = PluralPattern(
+                            Plurals(
+                                one = "{0}ua",
+                                other = "{0}ua",
                             )
                         ),
                     )
@@ -435,34 +458,6 @@ class LanguageEs_419 internal constructor() : LanguageEs() {
                     )
                 ),
             )
-        override val massPound
-            get() = MultiLengthGenderedPattern(
-                base = super.massPound,
-                narrow = GenderedPattern(
-                    cases = Cases(
-                        nominative = PluralPattern(
-                            Plurals(
-                                one = "{0} lb",
-                                other = "{0}lb",
-                            )
-                        ),
-                    )
-                ),
-            )
-        override val massOunce
-            get() = MultiLengthGenderedPattern(
-                base = super.massOunce,
-                narrow = GenderedPattern(
-                    cases = Cases(
-                        nominative = PluralPattern(
-                            Plurals(
-                                one = "{0} oz",
-                                other = "{0}oz",
-                            )
-                        ),
-                    )
-                ),
-            )
         override val massOunceTroy
             get() = MultiLengthGenderedPattern(
                 base = super.massOunceTroy,
@@ -530,6 +525,20 @@ class LanguageEs_419 internal constructor() : LanguageEs() {
                             Plurals(
                                 one = "B {0}",
                                 other = "B {0}",
+                            )
+                        ),
+                    )
+                ),
+            )
+        override val speedLightSpeed
+            get() = MultiLengthGenderedPattern(
+                base = super.speedLightSpeed,
+                narrow = GenderedPattern(
+                    cases = Cases(
+                        nominative = PluralPattern(
+                            Plurals(
+                                one = "{0} luz",
+                                other = "{0} luz",
                             )
                         ),
                     )
@@ -690,20 +699,6 @@ class LanguageEs_419 internal constructor() : LanguageEs() {
                             Plurals(
                                 one = "{0}bbl",
                                 other = "{0}bbl",
-                            )
-                        ),
-                    )
-                ),
-            )
-        override val volumeQuartImperial
-            get() = MultiLengthGenderedPattern(
-                base = super.volumeQuartImperial,
-                narrow = GenderedPattern(
-                    cases = Cases(
-                        nominative = PluralPattern(
-                            Plurals(
-                                one = "{0} qt imp.",
-                                other = "{0}qt imp",
                             )
                         ),
                     )

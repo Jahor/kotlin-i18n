@@ -6,7 +6,6 @@ import info.leonenko.i18n.rbnf.RBNFPt_pt
 val Language.Companion.pt_PT
     get() = languagePt_PT
 private val languagePt_PT = LanguagePt_PT()
-
 class LanguagePt_PT internal constructor() : LanguagePt() {
     override val code: String = "pt_PT"
     override val script: String? = null
@@ -166,6 +165,40 @@ class LanguagePt_PT internal constructor() : LanguagePt() {
                     )
                 ),
             )
+        override val concentrationPortionPer1e9
+            get() = MultiLengthGenderedPattern(
+                base = super.concentrationPortionPer1e9,
+                long = GenderedPattern(
+                    cases = Cases(
+                        nominative = PluralPattern(
+                            Plurals(
+                                one = "{0} parte por mil milhões",
+                                other = "{0} partes por mil milhões",
+                            )
+                        ),
+                    )
+                ),
+                short = GenderedPattern(
+                    cases = Cases(
+                        nominative = PluralPattern(
+                            Plurals(
+                                one = "{0} ppmm",
+                                other = "{0} ppmm",
+                            )
+                        ),
+                    )
+                ),
+                narrow = GenderedPattern(
+                    cases = Cases(
+                        nominative = PluralPattern(
+                            Plurals(
+                                one = "{0} ppmm",
+                                other = "{0} ppmm",
+                            )
+                        ),
+                    )
+                ),
+            )
         override val consumptionLiterPerKilometer
             get() = MultiLengthGenderedPattern(
                 base = super.consumptionLiterPerKilometer,
@@ -214,9 +247,9 @@ class LanguagePt_PT internal constructor() : LanguagePt() {
                     )
                 ),
             )
-        override val digitalByte
+        override val digitalByteUnit
             get() = MultiLengthGenderedPattern(
-                base = super.digitalByte,
+                base = super.digitalByteUnit,
                 long = GenderedPattern(
                     cases = Cases(
                         nominative = PluralPattern(
@@ -427,16 +460,6 @@ class LanguagePt_PT internal constructor() : LanguagePt() {
                         ),
                     )
                 ),
-                narrow = GenderedPattern(
-                    cases = Cases(
-                        nominative = PluralPattern(
-                            Plurals(
-                                one = "{0} ppp",
-                                other = "{0} ppp",
-                            )
-                        ),
-                    )
-                ),
             )
         override val lengthKilometer
             get() = MultiLengthGenderedPattern(
@@ -503,6 +526,16 @@ class LanguagePt_PT internal constructor() : LanguagePt() {
                             Plurals(
                                 one = "{0} milha",
                                 other = "{0} milhas",
+                            )
+                        ),
+                    )
+                ),
+                narrow = GenderedPattern(
+                    cases = Cases(
+                        nominative = PluralPattern(
+                            Plurals(
+                                one = "{0} mi",
+                                other = "{0} mi",
                             )
                         ),
                     )
@@ -732,16 +765,6 @@ class LanguagePt_PT internal constructor() : LanguagePt() {
             get() = MultiLengthGenderedPattern(
                 base = super.speedBeaufort,
                 short = GenderedPattern(
-                    cases = Cases(
-                        nominative = PluralPattern(
-                            Plurals(
-                                one = "{0} B",
-                                other = "{0} B",
-                            )
-                        ),
-                    )
-                ),
-                narrow = GenderedPattern(
                     cases = Cases(
                         nominative = PluralPattern(
                             Plurals(

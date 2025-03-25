@@ -27,40 +27,40 @@ data class LiterPerKilometer(override val value: MeasurementUnitValue) : Area {
     operator fun plus(other: LiterPerKilometer): LiterPerKilometer = LiterPerKilometer(this.value + other.value)
     operator fun minus(other: LiterPerKilometer): LiterPerKilometer = LiterPerKilometer(this.value - other.value)
 
-    constructor(value: kotlin.Byte) : this(value.toMeasurementUnitValue())
+    constructor(value: Byte) : this(value.toMeasurementUnitValue())
 
-    override operator fun times(other: kotlin.Byte): LiterPerKilometer = LiterPerKilometer(this.value.times(other))
-    override operator fun div(other: kotlin.Byte): LiterPerKilometer = LiterPerKilometer(this.value.div(other))
-    override operator fun rem(other: kotlin.Byte): LiterPerKilometer = LiterPerKilometer(this.value.rem(other))
+    override operator fun times(other: Byte): LiterPerKilometer = LiterPerKilometer(this.value.times(other))
+    override operator fun div(other: Byte): LiterPerKilometer = LiterPerKilometer(this.value.div(other))
+    override operator fun rem(other: Byte): LiterPerKilometer = LiterPerKilometer(this.value.rem(other))
 
-    constructor(value: kotlin.Short) : this(value.toMeasurementUnitValue())
+    constructor(value: Short) : this(value.toMeasurementUnitValue())
 
-    override operator fun times(other: kotlin.Short): LiterPerKilometer = LiterPerKilometer(this.value.times(other))
-    override operator fun div(other: kotlin.Short): LiterPerKilometer = LiterPerKilometer(this.value.div(other))
-    override operator fun rem(other: kotlin.Short): LiterPerKilometer = LiterPerKilometer(this.value.rem(other))
+    override operator fun times(other: Short): LiterPerKilometer = LiterPerKilometer(this.value.times(other))
+    override operator fun div(other: Short): LiterPerKilometer = LiterPerKilometer(this.value.div(other))
+    override operator fun rem(other: Short): LiterPerKilometer = LiterPerKilometer(this.value.rem(other))
 
-    constructor(value: kotlin.Int) : this(value.toMeasurementUnitValue())
+    constructor(value: Int) : this(value.toMeasurementUnitValue())
 
-    override operator fun times(other: kotlin.Int): LiterPerKilometer = LiterPerKilometer(this.value.times(other))
-    override operator fun div(other: kotlin.Int): LiterPerKilometer = LiterPerKilometer(this.value.div(other))
-    override operator fun rem(other: kotlin.Int): LiterPerKilometer = LiterPerKilometer(this.value.rem(other))
+    override operator fun times(other: Int): LiterPerKilometer = LiterPerKilometer(this.value.times(other))
+    override operator fun div(other: Int): LiterPerKilometer = LiterPerKilometer(this.value.div(other))
+    override operator fun rem(other: Int): LiterPerKilometer = LiterPerKilometer(this.value.rem(other))
 
-    constructor(value: kotlin.Long) : this(value.toMeasurementUnitValue())
+    constructor(value: Long) : this(value.toMeasurementUnitValue())
 
-    override operator fun times(other: kotlin.Long): LiterPerKilometer = LiterPerKilometer(this.value.times(other))
-    override operator fun div(other: kotlin.Long): LiterPerKilometer = LiterPerKilometer(this.value.div(other))
-    override operator fun rem(other: kotlin.Long): LiterPerKilometer = LiterPerKilometer(this.value.rem(other))
+    override operator fun times(other: Long): LiterPerKilometer = LiterPerKilometer(this.value.times(other))
+    override operator fun div(other: Long): LiterPerKilometer = LiterPerKilometer(this.value.div(other))
+    override operator fun rem(other: Long): LiterPerKilometer = LiterPerKilometer(this.value.rem(other))
 
-    constructor(value: kotlin.Float) : this(value.toMeasurementUnitValue())
+    constructor(value: Float) : this(value.toMeasurementUnitValue())
 
-    override operator fun times(other: kotlin.Float): LiterPerKilometer = LiterPerKilometer(this.value.times(other))
-    override operator fun div(other: kotlin.Float): LiterPerKilometer = LiterPerKilometer(this.value.div(other))
-    override operator fun rem(other: kotlin.Float): LiterPerKilometer = LiterPerKilometer(this.value.rem(other))
+    override operator fun times(other: Float): LiterPerKilometer = LiterPerKilometer(this.value.times(other))
+    override operator fun div(other: Float): LiterPerKilometer = LiterPerKilometer(this.value.div(other))
+    override operator fun rem(other: Float): LiterPerKilometer = LiterPerKilometer(this.value.rem(other))
 
 
-    override operator fun times(other: kotlin.Double): LiterPerKilometer = LiterPerKilometer(this.value.times(other))
-    override operator fun div(other: kotlin.Double): LiterPerKilometer = LiterPerKilometer(this.value.div(other))
-    override operator fun rem(other: kotlin.Double): LiterPerKilometer = LiterPerKilometer(this.value.rem(other))
+    override operator fun times(other: Double): LiterPerKilometer = LiterPerKilometer(this.value.times(other))
+    override operator fun div(other: Double): LiterPerKilometer = LiterPerKilometer(this.value.div(other))
+    override operator fun rem(other: Double): LiterPerKilometer = LiterPerKilometer(this.value.rem(other))
 
 
     override operator fun unaryMinus(): LiterPerKilometer = LiterPerKilometer(-value)
@@ -85,27 +85,27 @@ data class LiterPerKilometer(override val value: MeasurementUnitValue) : Area {
 
 }
 
-val kotlin.Byte.literPerKilometer
+val Byte.literPerKilometer
     get() = LiterPerKilometer(this)
 
 
-val kotlin.Short.literPerKilometer
+val Short.literPerKilometer
     get() = LiterPerKilometer(this)
 
 
-val kotlin.Int.literPerKilometer
+val Int.literPerKilometer
     get() = LiterPerKilometer(this)
 
 
-val kotlin.Long.literPerKilometer
+val Long.literPerKilometer
     get() = LiterPerKilometer(this)
 
 
-val kotlin.Float.literPerKilometer
+val Float.literPerKilometer
     get() = LiterPerKilometer(this)
 
 
-val kotlin.Double.literPerKilometer
+val Double.literPerKilometer
     get() = LiterPerKilometer(this)
 
 
@@ -125,40 +125,40 @@ data class LiterPer100Kilometer(override val value: MeasurementUnitValue) : Area
     operator fun plus(other: LiterPer100Kilometer): LiterPer100Kilometer = LiterPer100Kilometer(this.value + other.value)
     operator fun minus(other: LiterPer100Kilometer): LiterPer100Kilometer = LiterPer100Kilometer(this.value - other.value)
 
-    constructor(value: kotlin.Byte) : this(value.toMeasurementUnitValue())
+    constructor(value: Byte) : this(value.toMeasurementUnitValue())
 
-    override operator fun times(other: kotlin.Byte): LiterPer100Kilometer = LiterPer100Kilometer(this.value.times(other))
-    override operator fun div(other: kotlin.Byte): LiterPer100Kilometer = LiterPer100Kilometer(this.value.div(other))
-    override operator fun rem(other: kotlin.Byte): LiterPer100Kilometer = LiterPer100Kilometer(this.value.rem(other))
+    override operator fun times(other: Byte): LiterPer100Kilometer = LiterPer100Kilometer(this.value.times(other))
+    override operator fun div(other: Byte): LiterPer100Kilometer = LiterPer100Kilometer(this.value.div(other))
+    override operator fun rem(other: Byte): LiterPer100Kilometer = LiterPer100Kilometer(this.value.rem(other))
 
-    constructor(value: kotlin.Short) : this(value.toMeasurementUnitValue())
+    constructor(value: Short) : this(value.toMeasurementUnitValue())
 
-    override operator fun times(other: kotlin.Short): LiterPer100Kilometer = LiterPer100Kilometer(this.value.times(other))
-    override operator fun div(other: kotlin.Short): LiterPer100Kilometer = LiterPer100Kilometer(this.value.div(other))
-    override operator fun rem(other: kotlin.Short): LiterPer100Kilometer = LiterPer100Kilometer(this.value.rem(other))
+    override operator fun times(other: Short): LiterPer100Kilometer = LiterPer100Kilometer(this.value.times(other))
+    override operator fun div(other: Short): LiterPer100Kilometer = LiterPer100Kilometer(this.value.div(other))
+    override operator fun rem(other: Short): LiterPer100Kilometer = LiterPer100Kilometer(this.value.rem(other))
 
-    constructor(value: kotlin.Int) : this(value.toMeasurementUnitValue())
+    constructor(value: Int) : this(value.toMeasurementUnitValue())
 
-    override operator fun times(other: kotlin.Int): LiterPer100Kilometer = LiterPer100Kilometer(this.value.times(other))
-    override operator fun div(other: kotlin.Int): LiterPer100Kilometer = LiterPer100Kilometer(this.value.div(other))
-    override operator fun rem(other: kotlin.Int): LiterPer100Kilometer = LiterPer100Kilometer(this.value.rem(other))
+    override operator fun times(other: Int): LiterPer100Kilometer = LiterPer100Kilometer(this.value.times(other))
+    override operator fun div(other: Int): LiterPer100Kilometer = LiterPer100Kilometer(this.value.div(other))
+    override operator fun rem(other: Int): LiterPer100Kilometer = LiterPer100Kilometer(this.value.rem(other))
 
-    constructor(value: kotlin.Long) : this(value.toMeasurementUnitValue())
+    constructor(value: Long) : this(value.toMeasurementUnitValue())
 
-    override operator fun times(other: kotlin.Long): LiterPer100Kilometer = LiterPer100Kilometer(this.value.times(other))
-    override operator fun div(other: kotlin.Long): LiterPer100Kilometer = LiterPer100Kilometer(this.value.div(other))
-    override operator fun rem(other: kotlin.Long): LiterPer100Kilometer = LiterPer100Kilometer(this.value.rem(other))
+    override operator fun times(other: Long): LiterPer100Kilometer = LiterPer100Kilometer(this.value.times(other))
+    override operator fun div(other: Long): LiterPer100Kilometer = LiterPer100Kilometer(this.value.div(other))
+    override operator fun rem(other: Long): LiterPer100Kilometer = LiterPer100Kilometer(this.value.rem(other))
 
-    constructor(value: kotlin.Float) : this(value.toMeasurementUnitValue())
+    constructor(value: Float) : this(value.toMeasurementUnitValue())
 
-    override operator fun times(other: kotlin.Float): LiterPer100Kilometer = LiterPer100Kilometer(this.value.times(other))
-    override operator fun div(other: kotlin.Float): LiterPer100Kilometer = LiterPer100Kilometer(this.value.div(other))
-    override operator fun rem(other: kotlin.Float): LiterPer100Kilometer = LiterPer100Kilometer(this.value.rem(other))
+    override operator fun times(other: Float): LiterPer100Kilometer = LiterPer100Kilometer(this.value.times(other))
+    override operator fun div(other: Float): LiterPer100Kilometer = LiterPer100Kilometer(this.value.div(other))
+    override operator fun rem(other: Float): LiterPer100Kilometer = LiterPer100Kilometer(this.value.rem(other))
 
 
-    override operator fun times(other: kotlin.Double): LiterPer100Kilometer = LiterPer100Kilometer(this.value.times(other))
-    override operator fun div(other: kotlin.Double): LiterPer100Kilometer = LiterPer100Kilometer(this.value.div(other))
-    override operator fun rem(other: kotlin.Double): LiterPer100Kilometer = LiterPer100Kilometer(this.value.rem(other))
+    override operator fun times(other: Double): LiterPer100Kilometer = LiterPer100Kilometer(this.value.times(other))
+    override operator fun div(other: Double): LiterPer100Kilometer = LiterPer100Kilometer(this.value.div(other))
+    override operator fun rem(other: Double): LiterPer100Kilometer = LiterPer100Kilometer(this.value.rem(other))
 
 
     override operator fun unaryMinus(): LiterPer100Kilometer = LiterPer100Kilometer(-value)
@@ -183,27 +183,27 @@ data class LiterPer100Kilometer(override val value: MeasurementUnitValue) : Area
 
 }
 
-val kotlin.Byte.literPer100Kilometer
+val Byte.literPer100Kilometer
     get() = LiterPer100Kilometer(this)
 
 
-val kotlin.Short.literPer100Kilometer
+val Short.literPer100Kilometer
     get() = LiterPer100Kilometer(this)
 
 
-val kotlin.Int.literPer100Kilometer
+val Int.literPer100Kilometer
     get() = LiterPer100Kilometer(this)
 
 
-val kotlin.Long.literPer100Kilometer
+val Long.literPer100Kilometer
     get() = LiterPer100Kilometer(this)
 
 
-val kotlin.Float.literPer100Kilometer
+val Float.literPer100Kilometer
     get() = LiterPer100Kilometer(this)
 
 
-val kotlin.Double.literPer100Kilometer
+val Double.literPer100Kilometer
     get() = LiterPer100Kilometer(this)
 
 
@@ -223,40 +223,40 @@ data class MilePerGallon(override val value: MeasurementUnitValue) : Area {
     operator fun plus(other: MilePerGallon): MilePerGallon = MilePerGallon(this.value + other.value)
     operator fun minus(other: MilePerGallon): MilePerGallon = MilePerGallon(this.value - other.value)
 
-    constructor(value: kotlin.Byte) : this(value.toMeasurementUnitValue())
+    constructor(value: Byte) : this(value.toMeasurementUnitValue())
 
-    override operator fun times(other: kotlin.Byte): MilePerGallon = MilePerGallon(this.value.times(other))
-    override operator fun div(other: kotlin.Byte): MilePerGallon = MilePerGallon(this.value.div(other))
-    override operator fun rem(other: kotlin.Byte): MilePerGallon = MilePerGallon(this.value.rem(other))
+    override operator fun times(other: Byte): MilePerGallon = MilePerGallon(this.value.times(other))
+    override operator fun div(other: Byte): MilePerGallon = MilePerGallon(this.value.div(other))
+    override operator fun rem(other: Byte): MilePerGallon = MilePerGallon(this.value.rem(other))
 
-    constructor(value: kotlin.Short) : this(value.toMeasurementUnitValue())
+    constructor(value: Short) : this(value.toMeasurementUnitValue())
 
-    override operator fun times(other: kotlin.Short): MilePerGallon = MilePerGallon(this.value.times(other))
-    override operator fun div(other: kotlin.Short): MilePerGallon = MilePerGallon(this.value.div(other))
-    override operator fun rem(other: kotlin.Short): MilePerGallon = MilePerGallon(this.value.rem(other))
+    override operator fun times(other: Short): MilePerGallon = MilePerGallon(this.value.times(other))
+    override operator fun div(other: Short): MilePerGallon = MilePerGallon(this.value.div(other))
+    override operator fun rem(other: Short): MilePerGallon = MilePerGallon(this.value.rem(other))
 
-    constructor(value: kotlin.Int) : this(value.toMeasurementUnitValue())
+    constructor(value: Int) : this(value.toMeasurementUnitValue())
 
-    override operator fun times(other: kotlin.Int): MilePerGallon = MilePerGallon(this.value.times(other))
-    override operator fun div(other: kotlin.Int): MilePerGallon = MilePerGallon(this.value.div(other))
-    override operator fun rem(other: kotlin.Int): MilePerGallon = MilePerGallon(this.value.rem(other))
+    override operator fun times(other: Int): MilePerGallon = MilePerGallon(this.value.times(other))
+    override operator fun div(other: Int): MilePerGallon = MilePerGallon(this.value.div(other))
+    override operator fun rem(other: Int): MilePerGallon = MilePerGallon(this.value.rem(other))
 
-    constructor(value: kotlin.Long) : this(value.toMeasurementUnitValue())
+    constructor(value: Long) : this(value.toMeasurementUnitValue())
 
-    override operator fun times(other: kotlin.Long): MilePerGallon = MilePerGallon(this.value.times(other))
-    override operator fun div(other: kotlin.Long): MilePerGallon = MilePerGallon(this.value.div(other))
-    override operator fun rem(other: kotlin.Long): MilePerGallon = MilePerGallon(this.value.rem(other))
+    override operator fun times(other: Long): MilePerGallon = MilePerGallon(this.value.times(other))
+    override operator fun div(other: Long): MilePerGallon = MilePerGallon(this.value.div(other))
+    override operator fun rem(other: Long): MilePerGallon = MilePerGallon(this.value.rem(other))
 
-    constructor(value: kotlin.Float) : this(value.toMeasurementUnitValue())
+    constructor(value: Float) : this(value.toMeasurementUnitValue())
 
-    override operator fun times(other: kotlin.Float): MilePerGallon = MilePerGallon(this.value.times(other))
-    override operator fun div(other: kotlin.Float): MilePerGallon = MilePerGallon(this.value.div(other))
-    override operator fun rem(other: kotlin.Float): MilePerGallon = MilePerGallon(this.value.rem(other))
+    override operator fun times(other: Float): MilePerGallon = MilePerGallon(this.value.times(other))
+    override operator fun div(other: Float): MilePerGallon = MilePerGallon(this.value.div(other))
+    override operator fun rem(other: Float): MilePerGallon = MilePerGallon(this.value.rem(other))
 
 
-    override operator fun times(other: kotlin.Double): MilePerGallon = MilePerGallon(this.value.times(other))
-    override operator fun div(other: kotlin.Double): MilePerGallon = MilePerGallon(this.value.div(other))
-    override operator fun rem(other: kotlin.Double): MilePerGallon = MilePerGallon(this.value.rem(other))
+    override operator fun times(other: Double): MilePerGallon = MilePerGallon(this.value.times(other))
+    override operator fun div(other: Double): MilePerGallon = MilePerGallon(this.value.div(other))
+    override operator fun rem(other: Double): MilePerGallon = MilePerGallon(this.value.rem(other))
 
 
     override operator fun unaryMinus(): MilePerGallon = MilePerGallon(-value)
@@ -281,27 +281,27 @@ data class MilePerGallon(override val value: MeasurementUnitValue) : Area {
 
 }
 
-val kotlin.Byte.milePerGallon
+val Byte.milePerGallon
     get() = MilePerGallon(this)
 
 
-val kotlin.Short.milePerGallon
+val Short.milePerGallon
     get() = MilePerGallon(this)
 
 
-val kotlin.Int.milePerGallon
+val Int.milePerGallon
     get() = MilePerGallon(this)
 
 
-val kotlin.Long.milePerGallon
+val Long.milePerGallon
     get() = MilePerGallon(this)
 
 
-val kotlin.Float.milePerGallon
+val Float.milePerGallon
     get() = MilePerGallon(this)
 
 
-val kotlin.Double.milePerGallon
+val Double.milePerGallon
     get() = MilePerGallon(this)
 
 
@@ -321,40 +321,40 @@ data class MilePerGallonImperial(override val value: MeasurementUnitValue) : Are
     operator fun plus(other: MilePerGallonImperial): MilePerGallonImperial = MilePerGallonImperial(this.value + other.value)
     operator fun minus(other: MilePerGallonImperial): MilePerGallonImperial = MilePerGallonImperial(this.value - other.value)
 
-    constructor(value: kotlin.Byte) : this(value.toMeasurementUnitValue())
+    constructor(value: Byte) : this(value.toMeasurementUnitValue())
 
-    override operator fun times(other: kotlin.Byte): MilePerGallonImperial = MilePerGallonImperial(this.value.times(other))
-    override operator fun div(other: kotlin.Byte): MilePerGallonImperial = MilePerGallonImperial(this.value.div(other))
-    override operator fun rem(other: kotlin.Byte): MilePerGallonImperial = MilePerGallonImperial(this.value.rem(other))
+    override operator fun times(other: Byte): MilePerGallonImperial = MilePerGallonImperial(this.value.times(other))
+    override operator fun div(other: Byte): MilePerGallonImperial = MilePerGallonImperial(this.value.div(other))
+    override operator fun rem(other: Byte): MilePerGallonImperial = MilePerGallonImperial(this.value.rem(other))
 
-    constructor(value: kotlin.Short) : this(value.toMeasurementUnitValue())
+    constructor(value: Short) : this(value.toMeasurementUnitValue())
 
-    override operator fun times(other: kotlin.Short): MilePerGallonImperial = MilePerGallonImperial(this.value.times(other))
-    override operator fun div(other: kotlin.Short): MilePerGallonImperial = MilePerGallonImperial(this.value.div(other))
-    override operator fun rem(other: kotlin.Short): MilePerGallonImperial = MilePerGallonImperial(this.value.rem(other))
+    override operator fun times(other: Short): MilePerGallonImperial = MilePerGallonImperial(this.value.times(other))
+    override operator fun div(other: Short): MilePerGallonImperial = MilePerGallonImperial(this.value.div(other))
+    override operator fun rem(other: Short): MilePerGallonImperial = MilePerGallonImperial(this.value.rem(other))
 
-    constructor(value: kotlin.Int) : this(value.toMeasurementUnitValue())
+    constructor(value: Int) : this(value.toMeasurementUnitValue())
 
-    override operator fun times(other: kotlin.Int): MilePerGallonImperial = MilePerGallonImperial(this.value.times(other))
-    override operator fun div(other: kotlin.Int): MilePerGallonImperial = MilePerGallonImperial(this.value.div(other))
-    override operator fun rem(other: kotlin.Int): MilePerGallonImperial = MilePerGallonImperial(this.value.rem(other))
+    override operator fun times(other: Int): MilePerGallonImperial = MilePerGallonImperial(this.value.times(other))
+    override operator fun div(other: Int): MilePerGallonImperial = MilePerGallonImperial(this.value.div(other))
+    override operator fun rem(other: Int): MilePerGallonImperial = MilePerGallonImperial(this.value.rem(other))
 
-    constructor(value: kotlin.Long) : this(value.toMeasurementUnitValue())
+    constructor(value: Long) : this(value.toMeasurementUnitValue())
 
-    override operator fun times(other: kotlin.Long): MilePerGallonImperial = MilePerGallonImperial(this.value.times(other))
-    override operator fun div(other: kotlin.Long): MilePerGallonImperial = MilePerGallonImperial(this.value.div(other))
-    override operator fun rem(other: kotlin.Long): MilePerGallonImperial = MilePerGallonImperial(this.value.rem(other))
+    override operator fun times(other: Long): MilePerGallonImperial = MilePerGallonImperial(this.value.times(other))
+    override operator fun div(other: Long): MilePerGallonImperial = MilePerGallonImperial(this.value.div(other))
+    override operator fun rem(other: Long): MilePerGallonImperial = MilePerGallonImperial(this.value.rem(other))
 
-    constructor(value: kotlin.Float) : this(value.toMeasurementUnitValue())
+    constructor(value: Float) : this(value.toMeasurementUnitValue())
 
-    override operator fun times(other: kotlin.Float): MilePerGallonImperial = MilePerGallonImperial(this.value.times(other))
-    override operator fun div(other: kotlin.Float): MilePerGallonImperial = MilePerGallonImperial(this.value.div(other))
-    override operator fun rem(other: kotlin.Float): MilePerGallonImperial = MilePerGallonImperial(this.value.rem(other))
+    override operator fun times(other: Float): MilePerGallonImperial = MilePerGallonImperial(this.value.times(other))
+    override operator fun div(other: Float): MilePerGallonImperial = MilePerGallonImperial(this.value.div(other))
+    override operator fun rem(other: Float): MilePerGallonImperial = MilePerGallonImperial(this.value.rem(other))
 
 
-    override operator fun times(other: kotlin.Double): MilePerGallonImperial = MilePerGallonImperial(this.value.times(other))
-    override operator fun div(other: kotlin.Double): MilePerGallonImperial = MilePerGallonImperial(this.value.div(other))
-    override operator fun rem(other: kotlin.Double): MilePerGallonImperial = MilePerGallonImperial(this.value.rem(other))
+    override operator fun times(other: Double): MilePerGallonImperial = MilePerGallonImperial(this.value.times(other))
+    override operator fun div(other: Double): MilePerGallonImperial = MilePerGallonImperial(this.value.div(other))
+    override operator fun rem(other: Double): MilePerGallonImperial = MilePerGallonImperial(this.value.rem(other))
 
 
     override operator fun unaryMinus(): MilePerGallonImperial = MilePerGallonImperial(-value)
@@ -379,26 +379,26 @@ data class MilePerGallonImperial(override val value: MeasurementUnitValue) : Are
 
 }
 
-val kotlin.Byte.milePerGallonImperial
+val Byte.milePerGallonImperial
     get() = MilePerGallonImperial(this)
 
 
-val kotlin.Short.milePerGallonImperial
+val Short.milePerGallonImperial
     get() = MilePerGallonImperial(this)
 
 
-val kotlin.Int.milePerGallonImperial
+val Int.milePerGallonImperial
     get() = MilePerGallonImperial(this)
 
 
-val kotlin.Long.milePerGallonImperial
+val Long.milePerGallonImperial
     get() = MilePerGallonImperial(this)
 
 
-val kotlin.Float.milePerGallonImperial
+val Float.milePerGallonImperial
     get() = MilePerGallonImperial(this)
 
 
-val kotlin.Double.milePerGallonImperial
+val Double.milePerGallonImperial
     get() = MilePerGallonImperial(this)
                             

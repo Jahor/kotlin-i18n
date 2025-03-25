@@ -1,11 +1,9 @@
 package info.leonenko.i18n.languages
-
 import info.leonenko.i18n.Language
 
 val Language.Companion.es_NI
     get() = languageEs_NI
 private val languageEs_NI = LanguageEs_NI()
-
 class LanguageEs_NI internal constructor() : LanguageEs() {
     override val code: String = "es_NI"
     override val script: String? = null

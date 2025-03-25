@@ -1,11 +1,9 @@
 package info.leonenko.i18n.languages
-
 import info.leonenko.i18n.Language
 
 val Language.Companion.en_GB_SHAW
     get() = languageEn_GB_SHAW
 private val languageEn_GB_SHAW = LanguageEn_GB_SHAW()
-
 class LanguageEn_GB_SHAW internal constructor() : LanguageEn_SHAW() {
     override val code: String = "en_GB_#Shaw"
     override val script: String = "Shaw"

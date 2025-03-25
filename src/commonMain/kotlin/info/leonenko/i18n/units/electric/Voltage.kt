@@ -22,7 +22,6 @@ interface Voltage : MeasurementUnit, Comparable<Voltage> {
     class Serializer : CustomSerializer()
     open class CustomSerializer(val decoders: Map<String, (MeasurementUnitValue) -> Voltage> = emptyMap()) : KSerializer<Voltage> {
         private val delegateSerializer = MapSerializer(String.serializer(), MeasurementUnitValue.serializer())
-
         @OptIn(ExperimentalSerializationApi::class)
         override val descriptor: SerialDescriptor = SerialDescriptor("Voltage", delegateSerializer.descriptor)
         override fun deserialize(decoder: Decoder): Voltage {
@@ -71,34 +70,34 @@ interface Voltage : MeasurementUnit, Comparable<Voltage> {
     fun abs(): Voltage
 
 
-    operator fun times(other: kotlin.Byte): Voltage
-    operator fun div(other: kotlin.Byte): Voltage
-    operator fun rem(other: kotlin.Byte): Voltage
+    operator fun times(other: Byte): Voltage
+    operator fun div(other: Byte): Voltage
+    operator fun rem(other: Byte): Voltage
 
 
-    operator fun times(other: kotlin.Short): Voltage
-    operator fun div(other: kotlin.Short): Voltage
-    operator fun rem(other: kotlin.Short): Voltage
+    operator fun times(other: Short): Voltage
+    operator fun div(other: Short): Voltage
+    operator fun rem(other: Short): Voltage
 
 
-    operator fun times(other: kotlin.Int): Voltage
-    operator fun div(other: kotlin.Int): Voltage
-    operator fun rem(other: kotlin.Int): Voltage
+    operator fun times(other: Int): Voltage
+    operator fun div(other: Int): Voltage
+    operator fun rem(other: Int): Voltage
 
 
-    operator fun times(other: kotlin.Long): Voltage
-    operator fun div(other: kotlin.Long): Voltage
-    operator fun rem(other: kotlin.Long): Voltage
+    operator fun times(other: Long): Voltage
+    operator fun div(other: Long): Voltage
+    operator fun rem(other: Long): Voltage
 
 
-    operator fun times(other: kotlin.Float): Voltage
-    operator fun div(other: kotlin.Float): Voltage
-    operator fun rem(other: kotlin.Float): Voltage
+    operator fun times(other: Float): Voltage
+    operator fun div(other: Float): Voltage
+    operator fun rem(other: Float): Voltage
 
 
-    operator fun times(other: kotlin.Double): Voltage
-    operator fun div(other: kotlin.Double): Voltage
-    operator fun rem(other: kotlin.Double): Voltage
+    operator fun times(other: Double): Voltage
+    operator fun div(other: Double): Voltage
+    operator fun rem(other: Double): Voltage
 
 }
 
@@ -118,40 +117,40 @@ data class Volt(override val value: MeasurementUnitValue) : Voltage {
     operator fun plus(other: Volt): Volt = Volt(this.value + other.value)
     operator fun minus(other: Volt): Volt = Volt(this.value - other.value)
 
-    constructor(value: kotlin.Byte) : this(value.toMeasurementUnitValue())
+    constructor(value: Byte) : this(value.toMeasurementUnitValue())
 
-    override operator fun times(other: kotlin.Byte): Volt = Volt(this.value.times(other))
-    override operator fun div(other: kotlin.Byte): Volt = Volt(this.value.div(other))
-    override operator fun rem(other: kotlin.Byte): Volt = Volt(this.value.rem(other))
+    override operator fun times(other: Byte): Volt = Volt(this.value.times(other))
+    override operator fun div(other: Byte): Volt = Volt(this.value.div(other))
+    override operator fun rem(other: Byte): Volt = Volt(this.value.rem(other))
 
-    constructor(value: kotlin.Short) : this(value.toMeasurementUnitValue())
+    constructor(value: Short) : this(value.toMeasurementUnitValue())
 
-    override operator fun times(other: kotlin.Short): Volt = Volt(this.value.times(other))
-    override operator fun div(other: kotlin.Short): Volt = Volt(this.value.div(other))
-    override operator fun rem(other: kotlin.Short): Volt = Volt(this.value.rem(other))
+    override operator fun times(other: Short): Volt = Volt(this.value.times(other))
+    override operator fun div(other: Short): Volt = Volt(this.value.div(other))
+    override operator fun rem(other: Short): Volt = Volt(this.value.rem(other))
 
-    constructor(value: kotlin.Int) : this(value.toMeasurementUnitValue())
+    constructor(value: Int) : this(value.toMeasurementUnitValue())
 
-    override operator fun times(other: kotlin.Int): Volt = Volt(this.value.times(other))
-    override operator fun div(other: kotlin.Int): Volt = Volt(this.value.div(other))
-    override operator fun rem(other: kotlin.Int): Volt = Volt(this.value.rem(other))
+    override operator fun times(other: Int): Volt = Volt(this.value.times(other))
+    override operator fun div(other: Int): Volt = Volt(this.value.div(other))
+    override operator fun rem(other: Int): Volt = Volt(this.value.rem(other))
 
-    constructor(value: kotlin.Long) : this(value.toMeasurementUnitValue())
+    constructor(value: Long) : this(value.toMeasurementUnitValue())
 
-    override operator fun times(other: kotlin.Long): Volt = Volt(this.value.times(other))
-    override operator fun div(other: kotlin.Long): Volt = Volt(this.value.div(other))
-    override operator fun rem(other: kotlin.Long): Volt = Volt(this.value.rem(other))
+    override operator fun times(other: Long): Volt = Volt(this.value.times(other))
+    override operator fun div(other: Long): Volt = Volt(this.value.div(other))
+    override operator fun rem(other: Long): Volt = Volt(this.value.rem(other))
 
-    constructor(value: kotlin.Float) : this(value.toMeasurementUnitValue())
+    constructor(value: Float) : this(value.toMeasurementUnitValue())
 
-    override operator fun times(other: kotlin.Float): Volt = Volt(this.value.times(other))
-    override operator fun div(other: kotlin.Float): Volt = Volt(this.value.div(other))
-    override operator fun rem(other: kotlin.Float): Volt = Volt(this.value.rem(other))
+    override operator fun times(other: Float): Volt = Volt(this.value.times(other))
+    override operator fun div(other: Float): Volt = Volt(this.value.div(other))
+    override operator fun rem(other: Float): Volt = Volt(this.value.rem(other))
 
 
-    override operator fun times(other: kotlin.Double): Volt = Volt(this.value.times(other))
-    override operator fun div(other: kotlin.Double): Volt = Volt(this.value.div(other))
-    override operator fun rem(other: kotlin.Double): Volt = Volt(this.value.rem(other))
+    override operator fun times(other: Double): Volt = Volt(this.value.times(other))
+    override operator fun div(other: Double): Volt = Volt(this.value.div(other))
+    override operator fun rem(other: Double): Volt = Volt(this.value.rem(other))
 
 
     override operator fun unaryMinus(): Volt = Volt(-value)
@@ -176,27 +175,27 @@ data class Volt(override val value: MeasurementUnitValue) : Voltage {
 
 }
 
-val kotlin.Byte.volt
+val Byte.volt
     get() = Volt(this)
 
 
-val kotlin.Short.volt
+val Short.volt
     get() = Volt(this)
 
 
-val kotlin.Int.volt
+val Int.volt
     get() = Volt(this)
 
 
-val kotlin.Long.volt
+val Long.volt
     get() = Volt(this)
 
 
-val kotlin.Float.volt
+val Float.volt
     get() = Volt(this)
 
 
-val kotlin.Double.volt
+val Double.volt
     get() = Volt(this)
 
 
@@ -216,40 +215,40 @@ data class KilogramSquareMeterPerCubicSecondAmpere(override val value: Measureme
     operator fun plus(other: KilogramSquareMeterPerCubicSecondAmpere): KilogramSquareMeterPerCubicSecondAmpere = KilogramSquareMeterPerCubicSecondAmpere(this.value + other.value)
     operator fun minus(other: KilogramSquareMeterPerCubicSecondAmpere): KilogramSquareMeterPerCubicSecondAmpere = KilogramSquareMeterPerCubicSecondAmpere(this.value - other.value)
 
-    constructor(value: kotlin.Byte) : this(value.toMeasurementUnitValue())
+    constructor(value: Byte) : this(value.toMeasurementUnitValue())
 
-    override operator fun times(other: kotlin.Byte): KilogramSquareMeterPerCubicSecondAmpere = KilogramSquareMeterPerCubicSecondAmpere(this.value.times(other))
-    override operator fun div(other: kotlin.Byte): KilogramSquareMeterPerCubicSecondAmpere = KilogramSquareMeterPerCubicSecondAmpere(this.value.div(other))
-    override operator fun rem(other: kotlin.Byte): KilogramSquareMeterPerCubicSecondAmpere = KilogramSquareMeterPerCubicSecondAmpere(this.value.rem(other))
+    override operator fun times(other: Byte): KilogramSquareMeterPerCubicSecondAmpere = KilogramSquareMeterPerCubicSecondAmpere(this.value.times(other))
+    override operator fun div(other: Byte): KilogramSquareMeterPerCubicSecondAmpere = KilogramSquareMeterPerCubicSecondAmpere(this.value.div(other))
+    override operator fun rem(other: Byte): KilogramSquareMeterPerCubicSecondAmpere = KilogramSquareMeterPerCubicSecondAmpere(this.value.rem(other))
 
-    constructor(value: kotlin.Short) : this(value.toMeasurementUnitValue())
+    constructor(value: Short) : this(value.toMeasurementUnitValue())
 
-    override operator fun times(other: kotlin.Short): KilogramSquareMeterPerCubicSecondAmpere = KilogramSquareMeterPerCubicSecondAmpere(this.value.times(other))
-    override operator fun div(other: kotlin.Short): KilogramSquareMeterPerCubicSecondAmpere = KilogramSquareMeterPerCubicSecondAmpere(this.value.div(other))
-    override operator fun rem(other: kotlin.Short): KilogramSquareMeterPerCubicSecondAmpere = KilogramSquareMeterPerCubicSecondAmpere(this.value.rem(other))
+    override operator fun times(other: Short): KilogramSquareMeterPerCubicSecondAmpere = KilogramSquareMeterPerCubicSecondAmpere(this.value.times(other))
+    override operator fun div(other: Short): KilogramSquareMeterPerCubicSecondAmpere = KilogramSquareMeterPerCubicSecondAmpere(this.value.div(other))
+    override operator fun rem(other: Short): KilogramSquareMeterPerCubicSecondAmpere = KilogramSquareMeterPerCubicSecondAmpere(this.value.rem(other))
 
-    constructor(value: kotlin.Int) : this(value.toMeasurementUnitValue())
+    constructor(value: Int) : this(value.toMeasurementUnitValue())
 
-    override operator fun times(other: kotlin.Int): KilogramSquareMeterPerCubicSecondAmpere = KilogramSquareMeterPerCubicSecondAmpere(this.value.times(other))
-    override operator fun div(other: kotlin.Int): KilogramSquareMeterPerCubicSecondAmpere = KilogramSquareMeterPerCubicSecondAmpere(this.value.div(other))
-    override operator fun rem(other: kotlin.Int): KilogramSquareMeterPerCubicSecondAmpere = KilogramSquareMeterPerCubicSecondAmpere(this.value.rem(other))
+    override operator fun times(other: Int): KilogramSquareMeterPerCubicSecondAmpere = KilogramSquareMeterPerCubicSecondAmpere(this.value.times(other))
+    override operator fun div(other: Int): KilogramSquareMeterPerCubicSecondAmpere = KilogramSquareMeterPerCubicSecondAmpere(this.value.div(other))
+    override operator fun rem(other: Int): KilogramSquareMeterPerCubicSecondAmpere = KilogramSquareMeterPerCubicSecondAmpere(this.value.rem(other))
 
-    constructor(value: kotlin.Long) : this(value.toMeasurementUnitValue())
+    constructor(value: Long) : this(value.toMeasurementUnitValue())
 
-    override operator fun times(other: kotlin.Long): KilogramSquareMeterPerCubicSecondAmpere = KilogramSquareMeterPerCubicSecondAmpere(this.value.times(other))
-    override operator fun div(other: kotlin.Long): KilogramSquareMeterPerCubicSecondAmpere = KilogramSquareMeterPerCubicSecondAmpere(this.value.div(other))
-    override operator fun rem(other: kotlin.Long): KilogramSquareMeterPerCubicSecondAmpere = KilogramSquareMeterPerCubicSecondAmpere(this.value.rem(other))
+    override operator fun times(other: Long): KilogramSquareMeterPerCubicSecondAmpere = KilogramSquareMeterPerCubicSecondAmpere(this.value.times(other))
+    override operator fun div(other: Long): KilogramSquareMeterPerCubicSecondAmpere = KilogramSquareMeterPerCubicSecondAmpere(this.value.div(other))
+    override operator fun rem(other: Long): KilogramSquareMeterPerCubicSecondAmpere = KilogramSquareMeterPerCubicSecondAmpere(this.value.rem(other))
 
-    constructor(value: kotlin.Float) : this(value.toMeasurementUnitValue())
+    constructor(value: Float) : this(value.toMeasurementUnitValue())
 
-    override operator fun times(other: kotlin.Float): KilogramSquareMeterPerCubicSecondAmpere = KilogramSquareMeterPerCubicSecondAmpere(this.value.times(other))
-    override operator fun div(other: kotlin.Float): KilogramSquareMeterPerCubicSecondAmpere = KilogramSquareMeterPerCubicSecondAmpere(this.value.div(other))
-    override operator fun rem(other: kotlin.Float): KilogramSquareMeterPerCubicSecondAmpere = KilogramSquareMeterPerCubicSecondAmpere(this.value.rem(other))
+    override operator fun times(other: Float): KilogramSquareMeterPerCubicSecondAmpere = KilogramSquareMeterPerCubicSecondAmpere(this.value.times(other))
+    override operator fun div(other: Float): KilogramSquareMeterPerCubicSecondAmpere = KilogramSquareMeterPerCubicSecondAmpere(this.value.div(other))
+    override operator fun rem(other: Float): KilogramSquareMeterPerCubicSecondAmpere = KilogramSquareMeterPerCubicSecondAmpere(this.value.rem(other))
 
 
-    override operator fun times(other: kotlin.Double): KilogramSquareMeterPerCubicSecondAmpere = KilogramSquareMeterPerCubicSecondAmpere(this.value.times(other))
-    override operator fun div(other: kotlin.Double): KilogramSquareMeterPerCubicSecondAmpere = KilogramSquareMeterPerCubicSecondAmpere(this.value.div(other))
-    override operator fun rem(other: kotlin.Double): KilogramSquareMeterPerCubicSecondAmpere = KilogramSquareMeterPerCubicSecondAmpere(this.value.rem(other))
+    override operator fun times(other: Double): KilogramSquareMeterPerCubicSecondAmpere = KilogramSquareMeterPerCubicSecondAmpere(this.value.times(other))
+    override operator fun div(other: Double): KilogramSquareMeterPerCubicSecondAmpere = KilogramSquareMeterPerCubicSecondAmpere(this.value.div(other))
+    override operator fun rem(other: Double): KilogramSquareMeterPerCubicSecondAmpere = KilogramSquareMeterPerCubicSecondAmpere(this.value.rem(other))
 
 
     override operator fun unaryMinus(): KilogramSquareMeterPerCubicSecondAmpere = KilogramSquareMeterPerCubicSecondAmpere(-value)
@@ -274,26 +273,26 @@ data class KilogramSquareMeterPerCubicSecondAmpere(override val value: Measureme
 
 }
 
-val kotlin.Byte.kilogramSquareMeterPerCubicSecondAmpere
+val Byte.kilogramSquareMeterPerCubicSecondAmpere
     get() = KilogramSquareMeterPerCubicSecondAmpere(this)
 
 
-val kotlin.Short.kilogramSquareMeterPerCubicSecondAmpere
+val Short.kilogramSquareMeterPerCubicSecondAmpere
     get() = KilogramSquareMeterPerCubicSecondAmpere(this)
 
 
-val kotlin.Int.kilogramSquareMeterPerCubicSecondAmpere
+val Int.kilogramSquareMeterPerCubicSecondAmpere
     get() = KilogramSquareMeterPerCubicSecondAmpere(this)
 
 
-val kotlin.Long.kilogramSquareMeterPerCubicSecondAmpere
+val Long.kilogramSquareMeterPerCubicSecondAmpere
     get() = KilogramSquareMeterPerCubicSecondAmpere(this)
 
 
-val kotlin.Float.kilogramSquareMeterPerCubicSecondAmpere
+val Float.kilogramSquareMeterPerCubicSecondAmpere
     get() = KilogramSquareMeterPerCubicSecondAmpere(this)
 
 
-val kotlin.Double.kilogramSquareMeterPerCubicSecondAmpere
+val Double.kilogramSquareMeterPerCubicSecondAmpere
     get() = KilogramSquareMeterPerCubicSecondAmpere(this)
                             

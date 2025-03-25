@@ -5,7 +5,6 @@ import info.leonenko.i18n.*
 val Language.Companion.es_US
     get() = languageEs_US
 private val languageEs_US = LanguageEs_US()
-
 class LanguageEs_US internal constructor() : LanguageEs() {
     override val code: String = "es_US"
     override val script: String? = null
@@ -334,20 +333,6 @@ class LanguageEs_US internal constructor() : LanguageEs() {
                     )
                 ),
             )
-        override val lengthAstronomicalUnit
-            get() = MultiLengthGenderedPattern(
-                base = super.lengthAstronomicalUnit,
-                narrow = GenderedPattern(
-                    cases = Cases(
-                        nominative = PluralPattern(
-                            Plurals(
-                                one = "{0}ua",
-                                other = "{0}ua",
-                            )
-                        ),
-                    )
-                ),
-            )
         override val lengthNauticalMile
             get() = MultiLengthGenderedPattern(
                 base = super.lengthNauticalMile,
@@ -438,6 +423,7 @@ class LanguageEs_US internal constructor() : LanguageEs() {
             get() = MultiLengthGenderedPattern(
                 base = super.speedBeaufort,
                 long = GenderedPattern(
+                    gender = Gender.Feminine,
                     cases = Cases(
                         nominative = PluralPattern(
                             Plurals(
@@ -453,6 +439,40 @@ class LanguageEs_US internal constructor() : LanguageEs() {
                             Plurals(
                                 one = "Beaufort {0}",
                                 other = "Beaufort {0}",
+                            )
+                        ),
+                    )
+                ),
+            )
+        override val speedLightSpeed
+            get() = MultiLengthGenderedPattern(
+                base = super.speedLightSpeed,
+                long = GenderedPattern(
+                    cases = Cases(
+                        nominative = PluralPattern(
+                            Plurals(
+                                one = "{0} luz",
+                                other = "{0} luces",
+                            )
+                        ),
+                    )
+                ),
+                short = GenderedPattern(
+                    cases = Cases(
+                        nominative = PluralPattern(
+                            Plurals(
+                                one = "{0} luz",
+                                other = "{0} de luces",
+                            )
+                        ),
+                    )
+                ),
+                narrow = GenderedPattern(
+                    cases = Cases(
+                        nominative = PluralPattern(
+                            Plurals(
+                                one = "{0}luz",
+                                other = "{0}luces",
                             )
                         ),
                     )

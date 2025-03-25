@@ -27,40 +27,40 @@ data class PoundForceFoot(override val value: MeasurementUnitValue) : Energy {
     operator fun plus(other: PoundForceFoot): PoundForceFoot = PoundForceFoot(this.value + other.value)
     operator fun minus(other: PoundForceFoot): PoundForceFoot = PoundForceFoot(this.value - other.value)
 
-    constructor(value: kotlin.Byte) : this(value.toMeasurementUnitValue())
+    constructor(value: Byte) : this(value.toMeasurementUnitValue())
 
-    override operator fun times(other: kotlin.Byte): PoundForceFoot = PoundForceFoot(this.value.times(other))
-    override operator fun div(other: kotlin.Byte): PoundForceFoot = PoundForceFoot(this.value.div(other))
-    override operator fun rem(other: kotlin.Byte): PoundForceFoot = PoundForceFoot(this.value.rem(other))
+    override operator fun times(other: Byte): PoundForceFoot = PoundForceFoot(this.value.times(other))
+    override operator fun div(other: Byte): PoundForceFoot = PoundForceFoot(this.value.div(other))
+    override operator fun rem(other: Byte): PoundForceFoot = PoundForceFoot(this.value.rem(other))
 
-    constructor(value: kotlin.Short) : this(value.toMeasurementUnitValue())
+    constructor(value: Short) : this(value.toMeasurementUnitValue())
 
-    override operator fun times(other: kotlin.Short): PoundForceFoot = PoundForceFoot(this.value.times(other))
-    override operator fun div(other: kotlin.Short): PoundForceFoot = PoundForceFoot(this.value.div(other))
-    override operator fun rem(other: kotlin.Short): PoundForceFoot = PoundForceFoot(this.value.rem(other))
+    override operator fun times(other: Short): PoundForceFoot = PoundForceFoot(this.value.times(other))
+    override operator fun div(other: Short): PoundForceFoot = PoundForceFoot(this.value.div(other))
+    override operator fun rem(other: Short): PoundForceFoot = PoundForceFoot(this.value.rem(other))
 
-    constructor(value: kotlin.Int) : this(value.toMeasurementUnitValue())
+    constructor(value: Int) : this(value.toMeasurementUnitValue())
 
-    override operator fun times(other: kotlin.Int): PoundForceFoot = PoundForceFoot(this.value.times(other))
-    override operator fun div(other: kotlin.Int): PoundForceFoot = PoundForceFoot(this.value.div(other))
-    override operator fun rem(other: kotlin.Int): PoundForceFoot = PoundForceFoot(this.value.rem(other))
+    override operator fun times(other: Int): PoundForceFoot = PoundForceFoot(this.value.times(other))
+    override operator fun div(other: Int): PoundForceFoot = PoundForceFoot(this.value.div(other))
+    override operator fun rem(other: Int): PoundForceFoot = PoundForceFoot(this.value.rem(other))
 
-    constructor(value: kotlin.Long) : this(value.toMeasurementUnitValue())
+    constructor(value: Long) : this(value.toMeasurementUnitValue())
 
-    override operator fun times(other: kotlin.Long): PoundForceFoot = PoundForceFoot(this.value.times(other))
-    override operator fun div(other: kotlin.Long): PoundForceFoot = PoundForceFoot(this.value.div(other))
-    override operator fun rem(other: kotlin.Long): PoundForceFoot = PoundForceFoot(this.value.rem(other))
+    override operator fun times(other: Long): PoundForceFoot = PoundForceFoot(this.value.times(other))
+    override operator fun div(other: Long): PoundForceFoot = PoundForceFoot(this.value.div(other))
+    override operator fun rem(other: Long): PoundForceFoot = PoundForceFoot(this.value.rem(other))
 
-    constructor(value: kotlin.Float) : this(value.toMeasurementUnitValue())
+    constructor(value: Float) : this(value.toMeasurementUnitValue())
 
-    override operator fun times(other: kotlin.Float): PoundForceFoot = PoundForceFoot(this.value.times(other))
-    override operator fun div(other: kotlin.Float): PoundForceFoot = PoundForceFoot(this.value.div(other))
-    override operator fun rem(other: kotlin.Float): PoundForceFoot = PoundForceFoot(this.value.rem(other))
+    override operator fun times(other: Float): PoundForceFoot = PoundForceFoot(this.value.times(other))
+    override operator fun div(other: Float): PoundForceFoot = PoundForceFoot(this.value.div(other))
+    override operator fun rem(other: Float): PoundForceFoot = PoundForceFoot(this.value.rem(other))
 
 
-    override operator fun times(other: kotlin.Double): PoundForceFoot = PoundForceFoot(this.value.times(other))
-    override operator fun div(other: kotlin.Double): PoundForceFoot = PoundForceFoot(this.value.div(other))
-    override operator fun rem(other: kotlin.Double): PoundForceFoot = PoundForceFoot(this.value.rem(other))
+    override operator fun times(other: Double): PoundForceFoot = PoundForceFoot(this.value.times(other))
+    override operator fun div(other: Double): PoundForceFoot = PoundForceFoot(this.value.div(other))
+    override operator fun rem(other: Double): PoundForceFoot = PoundForceFoot(this.value.rem(other))
 
 
     override operator fun unaryMinus(): PoundForceFoot = PoundForceFoot(-value)
@@ -85,27 +85,27 @@ data class PoundForceFoot(override val value: MeasurementUnitValue) : Energy {
 
 }
 
-val kotlin.Byte.poundForceFoot
+val Byte.poundForceFoot
     get() = PoundForceFoot(this)
 
 
-val kotlin.Short.poundForceFoot
+val Short.poundForceFoot
     get() = PoundForceFoot(this)
 
 
-val kotlin.Int.poundForceFoot
+val Int.poundForceFoot
     get() = PoundForceFoot(this)
 
 
-val kotlin.Long.poundForceFoot
+val Long.poundForceFoot
     get() = PoundForceFoot(this)
 
 
-val kotlin.Float.poundForceFoot
+val Float.poundForceFoot
     get() = PoundForceFoot(this)
 
 
-val kotlin.Double.poundForceFoot
+val Double.poundForceFoot
     get() = PoundForceFoot(this)
 
 
@@ -125,40 +125,40 @@ data class NewtonMeter(override val value: MeasurementUnitValue) : Energy {
     operator fun plus(other: NewtonMeter): NewtonMeter = NewtonMeter(this.value + other.value)
     operator fun minus(other: NewtonMeter): NewtonMeter = NewtonMeter(this.value - other.value)
 
-    constructor(value: kotlin.Byte) : this(value.toMeasurementUnitValue())
+    constructor(value: Byte) : this(value.toMeasurementUnitValue())
 
-    override operator fun times(other: kotlin.Byte): NewtonMeter = NewtonMeter(this.value.times(other))
-    override operator fun div(other: kotlin.Byte): NewtonMeter = NewtonMeter(this.value.div(other))
-    override operator fun rem(other: kotlin.Byte): NewtonMeter = NewtonMeter(this.value.rem(other))
+    override operator fun times(other: Byte): NewtonMeter = NewtonMeter(this.value.times(other))
+    override operator fun div(other: Byte): NewtonMeter = NewtonMeter(this.value.div(other))
+    override operator fun rem(other: Byte): NewtonMeter = NewtonMeter(this.value.rem(other))
 
-    constructor(value: kotlin.Short) : this(value.toMeasurementUnitValue())
+    constructor(value: Short) : this(value.toMeasurementUnitValue())
 
-    override operator fun times(other: kotlin.Short): NewtonMeter = NewtonMeter(this.value.times(other))
-    override operator fun div(other: kotlin.Short): NewtonMeter = NewtonMeter(this.value.div(other))
-    override operator fun rem(other: kotlin.Short): NewtonMeter = NewtonMeter(this.value.rem(other))
+    override operator fun times(other: Short): NewtonMeter = NewtonMeter(this.value.times(other))
+    override operator fun div(other: Short): NewtonMeter = NewtonMeter(this.value.div(other))
+    override operator fun rem(other: Short): NewtonMeter = NewtonMeter(this.value.rem(other))
 
-    constructor(value: kotlin.Int) : this(value.toMeasurementUnitValue())
+    constructor(value: Int) : this(value.toMeasurementUnitValue())
 
-    override operator fun times(other: kotlin.Int): NewtonMeter = NewtonMeter(this.value.times(other))
-    override operator fun div(other: kotlin.Int): NewtonMeter = NewtonMeter(this.value.div(other))
-    override operator fun rem(other: kotlin.Int): NewtonMeter = NewtonMeter(this.value.rem(other))
+    override operator fun times(other: Int): NewtonMeter = NewtonMeter(this.value.times(other))
+    override operator fun div(other: Int): NewtonMeter = NewtonMeter(this.value.div(other))
+    override operator fun rem(other: Int): NewtonMeter = NewtonMeter(this.value.rem(other))
 
-    constructor(value: kotlin.Long) : this(value.toMeasurementUnitValue())
+    constructor(value: Long) : this(value.toMeasurementUnitValue())
 
-    override operator fun times(other: kotlin.Long): NewtonMeter = NewtonMeter(this.value.times(other))
-    override operator fun div(other: kotlin.Long): NewtonMeter = NewtonMeter(this.value.div(other))
-    override operator fun rem(other: kotlin.Long): NewtonMeter = NewtonMeter(this.value.rem(other))
+    override operator fun times(other: Long): NewtonMeter = NewtonMeter(this.value.times(other))
+    override operator fun div(other: Long): NewtonMeter = NewtonMeter(this.value.div(other))
+    override operator fun rem(other: Long): NewtonMeter = NewtonMeter(this.value.rem(other))
 
-    constructor(value: kotlin.Float) : this(value.toMeasurementUnitValue())
+    constructor(value: Float) : this(value.toMeasurementUnitValue())
 
-    override operator fun times(other: kotlin.Float): NewtonMeter = NewtonMeter(this.value.times(other))
-    override operator fun div(other: kotlin.Float): NewtonMeter = NewtonMeter(this.value.div(other))
-    override operator fun rem(other: kotlin.Float): NewtonMeter = NewtonMeter(this.value.rem(other))
+    override operator fun times(other: Float): NewtonMeter = NewtonMeter(this.value.times(other))
+    override operator fun div(other: Float): NewtonMeter = NewtonMeter(this.value.div(other))
+    override operator fun rem(other: Float): NewtonMeter = NewtonMeter(this.value.rem(other))
 
 
-    override operator fun times(other: kotlin.Double): NewtonMeter = NewtonMeter(this.value.times(other))
-    override operator fun div(other: kotlin.Double): NewtonMeter = NewtonMeter(this.value.div(other))
-    override operator fun rem(other: kotlin.Double): NewtonMeter = NewtonMeter(this.value.rem(other))
+    override operator fun times(other: Double): NewtonMeter = NewtonMeter(this.value.times(other))
+    override operator fun div(other: Double): NewtonMeter = NewtonMeter(this.value.div(other))
+    override operator fun rem(other: Double): NewtonMeter = NewtonMeter(this.value.rem(other))
 
 
     override operator fun unaryMinus(): NewtonMeter = NewtonMeter(-value)
@@ -183,26 +183,26 @@ data class NewtonMeter(override val value: MeasurementUnitValue) : Energy {
 
 }
 
-val kotlin.Byte.newtonMeter
+val Byte.newtonMeter
     get() = NewtonMeter(this)
 
 
-val kotlin.Short.newtonMeter
+val Short.newtonMeter
     get() = NewtonMeter(this)
 
 
-val kotlin.Int.newtonMeter
+val Int.newtonMeter
     get() = NewtonMeter(this)
 
 
-val kotlin.Long.newtonMeter
+val Long.newtonMeter
     get() = NewtonMeter(this)
 
 
-val kotlin.Float.newtonMeter
+val Float.newtonMeter
     get() = NewtonMeter(this)
 
 
-val kotlin.Double.newtonMeter
+val Double.newtonMeter
     get() = NewtonMeter(this)
                             

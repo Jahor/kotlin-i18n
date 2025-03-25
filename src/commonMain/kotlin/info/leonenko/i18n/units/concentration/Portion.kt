@@ -1,5 +1,4 @@
 package info.leonenko.i18n.units.concentration
-
 import info.leonenko.i18n.units.MeasurementUnit
 import info.leonenko.i18n.units.MeasurementUnitLanguage
 import info.leonenko.i18n.units.MeasurementUnitValue
@@ -22,7 +21,6 @@ interface Portion : MeasurementUnit, Comparable<Portion> {
     class Serializer : CustomSerializer()
     open class CustomSerializer(val decoders: Map<String, (MeasurementUnitValue) -> Portion> = emptyMap()) : KSerializer<Portion> {
         private val delegateSerializer = MapSerializer(String.serializer(), MeasurementUnitValue.serializer())
-
         @OptIn(ExperimentalSerializationApi::class)
         override val descriptor: SerialDescriptor = SerialDescriptor("Portion", delegateSerializer.descriptor)
         override fun deserialize(decoder: Decoder): Portion {
@@ -91,34 +89,34 @@ interface Portion : MeasurementUnit, Comparable<Portion> {
     fun abs(): Portion
 
 
-    operator fun times(other: kotlin.Byte): Portion
-    operator fun div(other: kotlin.Byte): Portion
-    operator fun rem(other: kotlin.Byte): Portion
+    operator fun times(other: Byte): Portion
+    operator fun div(other: Byte): Portion
+    operator fun rem(other: Byte): Portion
 
 
-    operator fun times(other: kotlin.Short): Portion
-    operator fun div(other: kotlin.Short): Portion
-    operator fun rem(other: kotlin.Short): Portion
+    operator fun times(other: Short): Portion
+    operator fun div(other: Short): Portion
+    operator fun rem(other: Short): Portion
 
 
-    operator fun times(other: kotlin.Int): Portion
-    operator fun div(other: kotlin.Int): Portion
-    operator fun rem(other: kotlin.Int): Portion
+    operator fun times(other: Int): Portion
+    operator fun div(other: Int): Portion
+    operator fun rem(other: Int): Portion
 
 
-    operator fun times(other: kotlin.Long): Portion
-    operator fun div(other: kotlin.Long): Portion
-    operator fun rem(other: kotlin.Long): Portion
+    operator fun times(other: Long): Portion
+    operator fun div(other: Long): Portion
+    operator fun rem(other: Long): Portion
 
 
-    operator fun times(other: kotlin.Float): Portion
-    operator fun div(other: kotlin.Float): Portion
-    operator fun rem(other: kotlin.Float): Portion
+    operator fun times(other: Float): Portion
+    operator fun div(other: Float): Portion
+    operator fun rem(other: Float): Portion
 
 
-    operator fun times(other: kotlin.Double): Portion
-    operator fun div(other: kotlin.Double): Portion
-    operator fun rem(other: kotlin.Double): Portion
+    operator fun times(other: Double): Portion
+    operator fun div(other: Double): Portion
+    operator fun rem(other: Double): Portion
 
 }
 
@@ -138,40 +136,40 @@ data class Karat(override val value: MeasurementUnitValue) : Portion {
     operator fun plus(other: Karat): Karat = Karat(this.value + other.value)
     operator fun minus(other: Karat): Karat = Karat(this.value - other.value)
 
-    constructor(value: kotlin.Byte) : this(value.toMeasurementUnitValue())
+    constructor(value: Byte) : this(value.toMeasurementUnitValue())
 
-    override operator fun times(other: kotlin.Byte): Karat = Karat(this.value.times(other))
-    override operator fun div(other: kotlin.Byte): Karat = Karat(this.value.div(other))
-    override operator fun rem(other: kotlin.Byte): Karat = Karat(this.value.rem(other))
+    override operator fun times(other: Byte): Karat = Karat(this.value.times(other))
+    override operator fun div(other: Byte): Karat = Karat(this.value.div(other))
+    override operator fun rem(other: Byte): Karat = Karat(this.value.rem(other))
 
-    constructor(value: kotlin.Short) : this(value.toMeasurementUnitValue())
+    constructor(value: Short) : this(value.toMeasurementUnitValue())
 
-    override operator fun times(other: kotlin.Short): Karat = Karat(this.value.times(other))
-    override operator fun div(other: kotlin.Short): Karat = Karat(this.value.div(other))
-    override operator fun rem(other: kotlin.Short): Karat = Karat(this.value.rem(other))
+    override operator fun times(other: Short): Karat = Karat(this.value.times(other))
+    override operator fun div(other: Short): Karat = Karat(this.value.div(other))
+    override operator fun rem(other: Short): Karat = Karat(this.value.rem(other))
 
-    constructor(value: kotlin.Int) : this(value.toMeasurementUnitValue())
+    constructor(value: Int) : this(value.toMeasurementUnitValue())
 
-    override operator fun times(other: kotlin.Int): Karat = Karat(this.value.times(other))
-    override operator fun div(other: kotlin.Int): Karat = Karat(this.value.div(other))
-    override operator fun rem(other: kotlin.Int): Karat = Karat(this.value.rem(other))
+    override operator fun times(other: Int): Karat = Karat(this.value.times(other))
+    override operator fun div(other: Int): Karat = Karat(this.value.div(other))
+    override operator fun rem(other: Int): Karat = Karat(this.value.rem(other))
 
-    constructor(value: kotlin.Long) : this(value.toMeasurementUnitValue())
+    constructor(value: Long) : this(value.toMeasurementUnitValue())
 
-    override operator fun times(other: kotlin.Long): Karat = Karat(this.value.times(other))
-    override operator fun div(other: kotlin.Long): Karat = Karat(this.value.div(other))
-    override operator fun rem(other: kotlin.Long): Karat = Karat(this.value.rem(other))
+    override operator fun times(other: Long): Karat = Karat(this.value.times(other))
+    override operator fun div(other: Long): Karat = Karat(this.value.div(other))
+    override operator fun rem(other: Long): Karat = Karat(this.value.rem(other))
 
-    constructor(value: kotlin.Float) : this(value.toMeasurementUnitValue())
+    constructor(value: Float) : this(value.toMeasurementUnitValue())
 
-    override operator fun times(other: kotlin.Float): Karat = Karat(this.value.times(other))
-    override operator fun div(other: kotlin.Float): Karat = Karat(this.value.div(other))
-    override operator fun rem(other: kotlin.Float): Karat = Karat(this.value.rem(other))
+    override operator fun times(other: Float): Karat = Karat(this.value.times(other))
+    override operator fun div(other: Float): Karat = Karat(this.value.div(other))
+    override operator fun rem(other: Float): Karat = Karat(this.value.rem(other))
 
 
-    override operator fun times(other: kotlin.Double): Karat = Karat(this.value.times(other))
-    override operator fun div(other: kotlin.Double): Karat = Karat(this.value.div(other))
-    override operator fun rem(other: kotlin.Double): Karat = Karat(this.value.rem(other))
+    override operator fun times(other: Double): Karat = Karat(this.value.times(other))
+    override operator fun div(other: Double): Karat = Karat(this.value.div(other))
+    override operator fun rem(other: Double): Karat = Karat(this.value.rem(other))
 
 
     override operator fun unaryMinus(): Karat = Karat(-value)
@@ -196,27 +194,27 @@ data class Karat(override val value: MeasurementUnitValue) : Portion {
 
 }
 
-val kotlin.Byte.karat
+val Byte.karat
     get() = Karat(this)
 
 
-val kotlin.Short.karat
+val Short.karat
     get() = Karat(this)
 
 
-val kotlin.Int.karat
+val Int.karat
     get() = Karat(this)
 
 
-val kotlin.Long.karat
+val Long.karat
     get() = Karat(this)
 
 
-val kotlin.Float.karat
+val Float.karat
     get() = Karat(this)
 
 
-val kotlin.Double.karat
+val Double.karat
     get() = Karat(this)
 
 
@@ -236,40 +234,40 @@ data class Permillion(override val value: MeasurementUnitValue) : Portion {
     operator fun plus(other: Permillion): Permillion = Permillion(this.value + other.value)
     operator fun minus(other: Permillion): Permillion = Permillion(this.value - other.value)
 
-    constructor(value: kotlin.Byte) : this(value.toMeasurementUnitValue())
+    constructor(value: Byte) : this(value.toMeasurementUnitValue())
 
-    override operator fun times(other: kotlin.Byte): Permillion = Permillion(this.value.times(other))
-    override operator fun div(other: kotlin.Byte): Permillion = Permillion(this.value.div(other))
-    override operator fun rem(other: kotlin.Byte): Permillion = Permillion(this.value.rem(other))
+    override operator fun times(other: Byte): Permillion = Permillion(this.value.times(other))
+    override operator fun div(other: Byte): Permillion = Permillion(this.value.div(other))
+    override operator fun rem(other: Byte): Permillion = Permillion(this.value.rem(other))
 
-    constructor(value: kotlin.Short) : this(value.toMeasurementUnitValue())
+    constructor(value: Short) : this(value.toMeasurementUnitValue())
 
-    override operator fun times(other: kotlin.Short): Permillion = Permillion(this.value.times(other))
-    override operator fun div(other: kotlin.Short): Permillion = Permillion(this.value.div(other))
-    override operator fun rem(other: kotlin.Short): Permillion = Permillion(this.value.rem(other))
+    override operator fun times(other: Short): Permillion = Permillion(this.value.times(other))
+    override operator fun div(other: Short): Permillion = Permillion(this.value.div(other))
+    override operator fun rem(other: Short): Permillion = Permillion(this.value.rem(other))
 
-    constructor(value: kotlin.Int) : this(value.toMeasurementUnitValue())
+    constructor(value: Int) : this(value.toMeasurementUnitValue())
 
-    override operator fun times(other: kotlin.Int): Permillion = Permillion(this.value.times(other))
-    override operator fun div(other: kotlin.Int): Permillion = Permillion(this.value.div(other))
-    override operator fun rem(other: kotlin.Int): Permillion = Permillion(this.value.rem(other))
+    override operator fun times(other: Int): Permillion = Permillion(this.value.times(other))
+    override operator fun div(other: Int): Permillion = Permillion(this.value.div(other))
+    override operator fun rem(other: Int): Permillion = Permillion(this.value.rem(other))
 
-    constructor(value: kotlin.Long) : this(value.toMeasurementUnitValue())
+    constructor(value: Long) : this(value.toMeasurementUnitValue())
 
-    override operator fun times(other: kotlin.Long): Permillion = Permillion(this.value.times(other))
-    override operator fun div(other: kotlin.Long): Permillion = Permillion(this.value.div(other))
-    override operator fun rem(other: kotlin.Long): Permillion = Permillion(this.value.rem(other))
+    override operator fun times(other: Long): Permillion = Permillion(this.value.times(other))
+    override operator fun div(other: Long): Permillion = Permillion(this.value.div(other))
+    override operator fun rem(other: Long): Permillion = Permillion(this.value.rem(other))
 
-    constructor(value: kotlin.Float) : this(value.toMeasurementUnitValue())
+    constructor(value: Float) : this(value.toMeasurementUnitValue())
 
-    override operator fun times(other: kotlin.Float): Permillion = Permillion(this.value.times(other))
-    override operator fun div(other: kotlin.Float): Permillion = Permillion(this.value.div(other))
-    override operator fun rem(other: kotlin.Float): Permillion = Permillion(this.value.rem(other))
+    override operator fun times(other: Float): Permillion = Permillion(this.value.times(other))
+    override operator fun div(other: Float): Permillion = Permillion(this.value.div(other))
+    override operator fun rem(other: Float): Permillion = Permillion(this.value.rem(other))
 
 
-    override operator fun times(other: kotlin.Double): Permillion = Permillion(this.value.times(other))
-    override operator fun div(other: kotlin.Double): Permillion = Permillion(this.value.div(other))
-    override operator fun rem(other: kotlin.Double): Permillion = Permillion(this.value.rem(other))
+    override operator fun times(other: Double): Permillion = Permillion(this.value.times(other))
+    override operator fun div(other: Double): Permillion = Permillion(this.value.div(other))
+    override operator fun rem(other: Double): Permillion = Permillion(this.value.rem(other))
 
 
     override operator fun unaryMinus(): Permillion = Permillion(-value)
@@ -294,27 +292,27 @@ data class Permillion(override val value: MeasurementUnitValue) : Portion {
 
 }
 
-val kotlin.Byte.permillion
+val Byte.permillion
     get() = Permillion(this)
 
 
-val kotlin.Short.permillion
+val Short.permillion
     get() = Permillion(this)
 
 
-val kotlin.Int.permillion
+val Int.permillion
     get() = Permillion(this)
 
 
-val kotlin.Long.permillion
+val Long.permillion
     get() = Permillion(this)
 
 
-val kotlin.Float.permillion
+val Float.permillion
     get() = Permillion(this)
 
 
-val kotlin.Double.permillion
+val Double.permillion
     get() = Permillion(this)
 
 
@@ -334,40 +332,40 @@ data class Percent(override val value: MeasurementUnitValue) : Portion {
     operator fun plus(other: Percent): Percent = Percent(this.value + other.value)
     operator fun minus(other: Percent): Percent = Percent(this.value - other.value)
 
-    constructor(value: kotlin.Byte) : this(value.toMeasurementUnitValue())
+    constructor(value: Byte) : this(value.toMeasurementUnitValue())
 
-    override operator fun times(other: kotlin.Byte): Percent = Percent(this.value.times(other))
-    override operator fun div(other: kotlin.Byte): Percent = Percent(this.value.div(other))
-    override operator fun rem(other: kotlin.Byte): Percent = Percent(this.value.rem(other))
+    override operator fun times(other: Byte): Percent = Percent(this.value.times(other))
+    override operator fun div(other: Byte): Percent = Percent(this.value.div(other))
+    override operator fun rem(other: Byte): Percent = Percent(this.value.rem(other))
 
-    constructor(value: kotlin.Short) : this(value.toMeasurementUnitValue())
+    constructor(value: Short) : this(value.toMeasurementUnitValue())
 
-    override operator fun times(other: kotlin.Short): Percent = Percent(this.value.times(other))
-    override operator fun div(other: kotlin.Short): Percent = Percent(this.value.div(other))
-    override operator fun rem(other: kotlin.Short): Percent = Percent(this.value.rem(other))
+    override operator fun times(other: Short): Percent = Percent(this.value.times(other))
+    override operator fun div(other: Short): Percent = Percent(this.value.div(other))
+    override operator fun rem(other: Short): Percent = Percent(this.value.rem(other))
 
-    constructor(value: kotlin.Int) : this(value.toMeasurementUnitValue())
+    constructor(value: Int) : this(value.toMeasurementUnitValue())
 
-    override operator fun times(other: kotlin.Int): Percent = Percent(this.value.times(other))
-    override operator fun div(other: kotlin.Int): Percent = Percent(this.value.div(other))
-    override operator fun rem(other: kotlin.Int): Percent = Percent(this.value.rem(other))
+    override operator fun times(other: Int): Percent = Percent(this.value.times(other))
+    override operator fun div(other: Int): Percent = Percent(this.value.div(other))
+    override operator fun rem(other: Int): Percent = Percent(this.value.rem(other))
 
-    constructor(value: kotlin.Long) : this(value.toMeasurementUnitValue())
+    constructor(value: Long) : this(value.toMeasurementUnitValue())
 
-    override operator fun times(other: kotlin.Long): Percent = Percent(this.value.times(other))
-    override operator fun div(other: kotlin.Long): Percent = Percent(this.value.div(other))
-    override operator fun rem(other: kotlin.Long): Percent = Percent(this.value.rem(other))
+    override operator fun times(other: Long): Percent = Percent(this.value.times(other))
+    override operator fun div(other: Long): Percent = Percent(this.value.div(other))
+    override operator fun rem(other: Long): Percent = Percent(this.value.rem(other))
 
-    constructor(value: kotlin.Float) : this(value.toMeasurementUnitValue())
+    constructor(value: Float) : this(value.toMeasurementUnitValue())
 
-    override operator fun times(other: kotlin.Float): Percent = Percent(this.value.times(other))
-    override operator fun div(other: kotlin.Float): Percent = Percent(this.value.div(other))
-    override operator fun rem(other: kotlin.Float): Percent = Percent(this.value.rem(other))
+    override operator fun times(other: Float): Percent = Percent(this.value.times(other))
+    override operator fun div(other: Float): Percent = Percent(this.value.div(other))
+    override operator fun rem(other: Float): Percent = Percent(this.value.rem(other))
 
 
-    override operator fun times(other: kotlin.Double): Percent = Percent(this.value.times(other))
-    override operator fun div(other: kotlin.Double): Percent = Percent(this.value.div(other))
-    override operator fun rem(other: kotlin.Double): Percent = Percent(this.value.rem(other))
+    override operator fun times(other: Double): Percent = Percent(this.value.times(other))
+    override operator fun div(other: Double): Percent = Percent(this.value.div(other))
+    override operator fun rem(other: Double): Percent = Percent(this.value.rem(other))
 
 
     override operator fun unaryMinus(): Percent = Percent(-value)
@@ -392,27 +390,27 @@ data class Percent(override val value: MeasurementUnitValue) : Portion {
 
 }
 
-val kotlin.Byte.percent
+val Byte.percent
     get() = Percent(this)
 
 
-val kotlin.Short.percent
+val Short.percent
     get() = Percent(this)
 
 
-val kotlin.Int.percent
+val Int.percent
     get() = Percent(this)
 
 
-val kotlin.Long.percent
+val Long.percent
     get() = Percent(this)
 
 
-val kotlin.Float.percent
+val Float.percent
     get() = Percent(this)
 
 
-val kotlin.Double.percent
+val Double.percent
     get() = Percent(this)
 
 
@@ -432,40 +430,40 @@ data class Permille(override val value: MeasurementUnitValue) : Portion {
     operator fun plus(other: Permille): Permille = Permille(this.value + other.value)
     operator fun minus(other: Permille): Permille = Permille(this.value - other.value)
 
-    constructor(value: kotlin.Byte) : this(value.toMeasurementUnitValue())
+    constructor(value: Byte) : this(value.toMeasurementUnitValue())
 
-    override operator fun times(other: kotlin.Byte): Permille = Permille(this.value.times(other))
-    override operator fun div(other: kotlin.Byte): Permille = Permille(this.value.div(other))
-    override operator fun rem(other: kotlin.Byte): Permille = Permille(this.value.rem(other))
+    override operator fun times(other: Byte): Permille = Permille(this.value.times(other))
+    override operator fun div(other: Byte): Permille = Permille(this.value.div(other))
+    override operator fun rem(other: Byte): Permille = Permille(this.value.rem(other))
 
-    constructor(value: kotlin.Short) : this(value.toMeasurementUnitValue())
+    constructor(value: Short) : this(value.toMeasurementUnitValue())
 
-    override operator fun times(other: kotlin.Short): Permille = Permille(this.value.times(other))
-    override operator fun div(other: kotlin.Short): Permille = Permille(this.value.div(other))
-    override operator fun rem(other: kotlin.Short): Permille = Permille(this.value.rem(other))
+    override operator fun times(other: Short): Permille = Permille(this.value.times(other))
+    override operator fun div(other: Short): Permille = Permille(this.value.div(other))
+    override operator fun rem(other: Short): Permille = Permille(this.value.rem(other))
 
-    constructor(value: kotlin.Int) : this(value.toMeasurementUnitValue())
+    constructor(value: Int) : this(value.toMeasurementUnitValue())
 
-    override operator fun times(other: kotlin.Int): Permille = Permille(this.value.times(other))
-    override operator fun div(other: kotlin.Int): Permille = Permille(this.value.div(other))
-    override operator fun rem(other: kotlin.Int): Permille = Permille(this.value.rem(other))
+    override operator fun times(other: Int): Permille = Permille(this.value.times(other))
+    override operator fun div(other: Int): Permille = Permille(this.value.div(other))
+    override operator fun rem(other: Int): Permille = Permille(this.value.rem(other))
 
-    constructor(value: kotlin.Long) : this(value.toMeasurementUnitValue())
+    constructor(value: Long) : this(value.toMeasurementUnitValue())
 
-    override operator fun times(other: kotlin.Long): Permille = Permille(this.value.times(other))
-    override operator fun div(other: kotlin.Long): Permille = Permille(this.value.div(other))
-    override operator fun rem(other: kotlin.Long): Permille = Permille(this.value.rem(other))
+    override operator fun times(other: Long): Permille = Permille(this.value.times(other))
+    override operator fun div(other: Long): Permille = Permille(this.value.div(other))
+    override operator fun rem(other: Long): Permille = Permille(this.value.rem(other))
 
-    constructor(value: kotlin.Float) : this(value.toMeasurementUnitValue())
+    constructor(value: Float) : this(value.toMeasurementUnitValue())
 
-    override operator fun times(other: kotlin.Float): Permille = Permille(this.value.times(other))
-    override operator fun div(other: kotlin.Float): Permille = Permille(this.value.div(other))
-    override operator fun rem(other: kotlin.Float): Permille = Permille(this.value.rem(other))
+    override operator fun times(other: Float): Permille = Permille(this.value.times(other))
+    override operator fun div(other: Float): Permille = Permille(this.value.div(other))
+    override operator fun rem(other: Float): Permille = Permille(this.value.rem(other))
 
 
-    override operator fun times(other: kotlin.Double): Permille = Permille(this.value.times(other))
-    override operator fun div(other: kotlin.Double): Permille = Permille(this.value.div(other))
-    override operator fun rem(other: kotlin.Double): Permille = Permille(this.value.rem(other))
+    override operator fun times(other: Double): Permille = Permille(this.value.times(other))
+    override operator fun div(other: Double): Permille = Permille(this.value.div(other))
+    override operator fun rem(other: Double): Permille = Permille(this.value.rem(other))
 
 
     override operator fun unaryMinus(): Permille = Permille(-value)
@@ -490,27 +488,27 @@ data class Permille(override val value: MeasurementUnitValue) : Portion {
 
 }
 
-val kotlin.Byte.permille
+val Byte.permille
     get() = Permille(this)
 
 
-val kotlin.Short.permille
+val Short.permille
     get() = Permille(this)
 
 
-val kotlin.Int.permille
+val Int.permille
     get() = Permille(this)
 
 
-val kotlin.Long.permille
+val Long.permille
     get() = Permille(this)
 
 
-val kotlin.Float.permille
+val Float.permille
     get() = Permille(this)
 
 
-val kotlin.Double.permille
+val Double.permille
     get() = Permille(this)
 
 
@@ -530,40 +528,40 @@ data class Permyriad(override val value: MeasurementUnitValue) : Portion {
     operator fun plus(other: Permyriad): Permyriad = Permyriad(this.value + other.value)
     operator fun minus(other: Permyriad): Permyriad = Permyriad(this.value - other.value)
 
-    constructor(value: kotlin.Byte) : this(value.toMeasurementUnitValue())
+    constructor(value: Byte) : this(value.toMeasurementUnitValue())
 
-    override operator fun times(other: kotlin.Byte): Permyriad = Permyriad(this.value.times(other))
-    override operator fun div(other: kotlin.Byte): Permyriad = Permyriad(this.value.div(other))
-    override operator fun rem(other: kotlin.Byte): Permyriad = Permyriad(this.value.rem(other))
+    override operator fun times(other: Byte): Permyriad = Permyriad(this.value.times(other))
+    override operator fun div(other: Byte): Permyriad = Permyriad(this.value.div(other))
+    override operator fun rem(other: Byte): Permyriad = Permyriad(this.value.rem(other))
 
-    constructor(value: kotlin.Short) : this(value.toMeasurementUnitValue())
+    constructor(value: Short) : this(value.toMeasurementUnitValue())
 
-    override operator fun times(other: kotlin.Short): Permyriad = Permyriad(this.value.times(other))
-    override operator fun div(other: kotlin.Short): Permyriad = Permyriad(this.value.div(other))
-    override operator fun rem(other: kotlin.Short): Permyriad = Permyriad(this.value.rem(other))
+    override operator fun times(other: Short): Permyriad = Permyriad(this.value.times(other))
+    override operator fun div(other: Short): Permyriad = Permyriad(this.value.div(other))
+    override operator fun rem(other: Short): Permyriad = Permyriad(this.value.rem(other))
 
-    constructor(value: kotlin.Int) : this(value.toMeasurementUnitValue())
+    constructor(value: Int) : this(value.toMeasurementUnitValue())
 
-    override operator fun times(other: kotlin.Int): Permyriad = Permyriad(this.value.times(other))
-    override operator fun div(other: kotlin.Int): Permyriad = Permyriad(this.value.div(other))
-    override operator fun rem(other: kotlin.Int): Permyriad = Permyriad(this.value.rem(other))
+    override operator fun times(other: Int): Permyriad = Permyriad(this.value.times(other))
+    override operator fun div(other: Int): Permyriad = Permyriad(this.value.div(other))
+    override operator fun rem(other: Int): Permyriad = Permyriad(this.value.rem(other))
 
-    constructor(value: kotlin.Long) : this(value.toMeasurementUnitValue())
+    constructor(value: Long) : this(value.toMeasurementUnitValue())
 
-    override operator fun times(other: kotlin.Long): Permyriad = Permyriad(this.value.times(other))
-    override operator fun div(other: kotlin.Long): Permyriad = Permyriad(this.value.div(other))
-    override operator fun rem(other: kotlin.Long): Permyriad = Permyriad(this.value.rem(other))
+    override operator fun times(other: Long): Permyriad = Permyriad(this.value.times(other))
+    override operator fun div(other: Long): Permyriad = Permyriad(this.value.div(other))
+    override operator fun rem(other: Long): Permyriad = Permyriad(this.value.rem(other))
 
-    constructor(value: kotlin.Float) : this(value.toMeasurementUnitValue())
+    constructor(value: Float) : this(value.toMeasurementUnitValue())
 
-    override operator fun times(other: kotlin.Float): Permyriad = Permyriad(this.value.times(other))
-    override operator fun div(other: kotlin.Float): Permyriad = Permyriad(this.value.div(other))
-    override operator fun rem(other: kotlin.Float): Permyriad = Permyriad(this.value.rem(other))
+    override operator fun times(other: Float): Permyriad = Permyriad(this.value.times(other))
+    override operator fun div(other: Float): Permyriad = Permyriad(this.value.div(other))
+    override operator fun rem(other: Float): Permyriad = Permyriad(this.value.rem(other))
 
 
-    override operator fun times(other: kotlin.Double): Permyriad = Permyriad(this.value.times(other))
-    override operator fun div(other: kotlin.Double): Permyriad = Permyriad(this.value.div(other))
-    override operator fun rem(other: kotlin.Double): Permyriad = Permyriad(this.value.rem(other))
+    override operator fun times(other: Double): Permyriad = Permyriad(this.value.times(other))
+    override operator fun div(other: Double): Permyriad = Permyriad(this.value.div(other))
+    override operator fun rem(other: Double): Permyriad = Permyriad(this.value.rem(other))
 
 
     override operator fun unaryMinus(): Permyriad = Permyriad(-value)
@@ -588,27 +586,27 @@ data class Permyriad(override val value: MeasurementUnitValue) : Portion {
 
 }
 
-val kotlin.Byte.permyriad
+val Byte.permyriad
     get() = Permyriad(this)
 
 
-val kotlin.Short.permyriad
+val Short.permyriad
     get() = Permyriad(this)
 
 
-val kotlin.Int.permyriad
+val Int.permyriad
     get() = Permyriad(this)
 
 
-val kotlin.Long.permyriad
+val Long.permyriad
     get() = Permyriad(this)
 
 
-val kotlin.Float.permyriad
+val Float.permyriad
     get() = Permyriad(this)
 
 
-val kotlin.Double.permyriad
+val Double.permyriad
     get() = Permyriad(this)
 
 
@@ -628,40 +626,40 @@ data class APortion(override val value: MeasurementUnitValue) : Portion {
     operator fun plus(other: APortion): APortion = APortion(this.value + other.value)
     operator fun minus(other: APortion): APortion = APortion(this.value - other.value)
 
-    constructor(value: kotlin.Byte) : this(value.toMeasurementUnitValue())
+    constructor(value: Byte) : this(value.toMeasurementUnitValue())
 
-    override operator fun times(other: kotlin.Byte): APortion = APortion(this.value.times(other))
-    override operator fun div(other: kotlin.Byte): APortion = APortion(this.value.div(other))
-    override operator fun rem(other: kotlin.Byte): APortion = APortion(this.value.rem(other))
+    override operator fun times(other: Byte): APortion = APortion(this.value.times(other))
+    override operator fun div(other: Byte): APortion = APortion(this.value.div(other))
+    override operator fun rem(other: Byte): APortion = APortion(this.value.rem(other))
 
-    constructor(value: kotlin.Short) : this(value.toMeasurementUnitValue())
+    constructor(value: Short) : this(value.toMeasurementUnitValue())
 
-    override operator fun times(other: kotlin.Short): APortion = APortion(this.value.times(other))
-    override operator fun div(other: kotlin.Short): APortion = APortion(this.value.div(other))
-    override operator fun rem(other: kotlin.Short): APortion = APortion(this.value.rem(other))
+    override operator fun times(other: Short): APortion = APortion(this.value.times(other))
+    override operator fun div(other: Short): APortion = APortion(this.value.div(other))
+    override operator fun rem(other: Short): APortion = APortion(this.value.rem(other))
 
-    constructor(value: kotlin.Int) : this(value.toMeasurementUnitValue())
+    constructor(value: Int) : this(value.toMeasurementUnitValue())
 
-    override operator fun times(other: kotlin.Int): APortion = APortion(this.value.times(other))
-    override operator fun div(other: kotlin.Int): APortion = APortion(this.value.div(other))
-    override operator fun rem(other: kotlin.Int): APortion = APortion(this.value.rem(other))
+    override operator fun times(other: Int): APortion = APortion(this.value.times(other))
+    override operator fun div(other: Int): APortion = APortion(this.value.div(other))
+    override operator fun rem(other: Int): APortion = APortion(this.value.rem(other))
 
-    constructor(value: kotlin.Long) : this(value.toMeasurementUnitValue())
+    constructor(value: Long) : this(value.toMeasurementUnitValue())
 
-    override operator fun times(other: kotlin.Long): APortion = APortion(this.value.times(other))
-    override operator fun div(other: kotlin.Long): APortion = APortion(this.value.div(other))
-    override operator fun rem(other: kotlin.Long): APortion = APortion(this.value.rem(other))
+    override operator fun times(other: Long): APortion = APortion(this.value.times(other))
+    override operator fun div(other: Long): APortion = APortion(this.value.div(other))
+    override operator fun rem(other: Long): APortion = APortion(this.value.rem(other))
 
-    constructor(value: kotlin.Float) : this(value.toMeasurementUnitValue())
+    constructor(value: Float) : this(value.toMeasurementUnitValue())
 
-    override operator fun times(other: kotlin.Float): APortion = APortion(this.value.times(other))
-    override operator fun div(other: kotlin.Float): APortion = APortion(this.value.div(other))
-    override operator fun rem(other: kotlin.Float): APortion = APortion(this.value.rem(other))
+    override operator fun times(other: Float): APortion = APortion(this.value.times(other))
+    override operator fun div(other: Float): APortion = APortion(this.value.div(other))
+    override operator fun rem(other: Float): APortion = APortion(this.value.rem(other))
 
 
-    override operator fun times(other: kotlin.Double): APortion = APortion(this.value.times(other))
-    override operator fun div(other: kotlin.Double): APortion = APortion(this.value.div(other))
-    override operator fun rem(other: kotlin.Double): APortion = APortion(this.value.rem(other))
+    override operator fun times(other: Double): APortion = APortion(this.value.times(other))
+    override operator fun div(other: Double): APortion = APortion(this.value.div(other))
+    override operator fun rem(other: Double): APortion = APortion(this.value.rem(other))
 
 
     override operator fun unaryMinus(): APortion = APortion(-value)
@@ -686,26 +684,26 @@ data class APortion(override val value: MeasurementUnitValue) : Portion {
 
 }
 
-val kotlin.Byte.aPortion
+val Byte.aPortion
     get() = APortion(this)
 
 
-val kotlin.Short.aPortion
+val Short.aPortion
     get() = APortion(this)
 
 
-val kotlin.Int.aPortion
+val Int.aPortion
     get() = APortion(this)
 
 
-val kotlin.Long.aPortion
+val Long.aPortion
     get() = APortion(this)
 
 
-val kotlin.Float.aPortion
+val Float.aPortion
     get() = APortion(this)
 
 
-val kotlin.Double.aPortion
+val Double.aPortion
     get() = APortion(this)
                             

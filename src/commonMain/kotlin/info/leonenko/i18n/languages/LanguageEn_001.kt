@@ -5,7 +5,6 @@ import info.leonenko.i18n.*
 val Language.Companion.en_001
     get() = languageEn_001
 private val languageEn_001 = LanguageEn_001()
-
 class LanguageEn_001 internal constructor() : LanguageEn() {
     override val code: String = "en_001"
     override val script: String? = null
@@ -30,6 +29,19 @@ class LanguageEn_001 internal constructor() : LanguageEn() {
         get() = ListLanguage(ellipsis)
 
     class MeasurementUnitLanguage internal constructor() : LanguageEn.MeasurementUnitLanguage() {
+        override val accelerationGForce
+            get() = MultiLengthGenderedPattern(
+                base = super.accelerationGForce,
+                narrow = GenderedPattern(
+                    cases = Cases(
+                        nominative = PluralPattern(
+                            Plurals(
+                                other = "{0}G",
+                            )
+                        ),
+                    )
+                ),
+            )
         override val accelerationMeterPerSquareSecond
             get() = MultiLengthGenderedPattern(
                 base = super.accelerationMeterPerSquareSecond,
@@ -683,16 +695,12 @@ class LanguageEn_001 internal constructor() : LanguageEn() {
                         ),
                     )
                 ),
-            )
-        override val massGrain
-            get() = MultiLengthGenderedPattern(
-                base = super.massGrain,
-                short = GenderedPattern(
+                narrow = GenderedPattern(
                     cases = Cases(
                         nominative = PluralPattern(
                             Plurals(
-                                one = "{0} grains",
-                                other = "{0} grains",
+                                one = "{0}ct",
+                                other = "{0}ct",
                             )
                         ),
                     )
@@ -735,20 +743,6 @@ class LanguageEn_001 internal constructor() : LanguageEn() {
                             Plurals(
                                 one = "{0} metre per second",
                                 other = "{0} metres per second",
-                            )
-                        ),
-                    )
-                ),
-            )
-        override val temperatureCelsius
-            get() = MultiLengthGenderedPattern(
-                base = super.temperatureCelsius,
-                narrow = GenderedPattern(
-                    cases = Cases(
-                        nominative = PluralPattern(
-                            Plurals(
-                                one = "{0}°",
-                                other = "{0}°",
                             )
                         ),
                     )
@@ -1069,8 +1063,8 @@ class LanguageEn_001 internal constructor() : LanguageEn() {
                     cases = Cases(
                         nominative = PluralPattern(
                             Plurals(
-                                one = "{0}galUS",
-                                other = "{0}galUS",
+                                one = "{0}USgal",
+                                other = "{0}USgal",
                             )
                         ),
                     )
@@ -1129,6 +1123,16 @@ class LanguageEn_001 internal constructor() : LanguageEn() {
                             Plurals(
                                 one = "{0} US qt",
                                 other = "{0} US qt",
+                            )
+                        ),
+                    )
+                ),
+                narrow = GenderedPattern(
+                    cases = Cases(
+                        nominative = PluralPattern(
+                            Plurals(
+                                one = "{0}USqt",
+                                other = "{0}USqt",
                             )
                         ),
                     )
@@ -1277,7 +1281,7 @@ class LanguageEn_001 internal constructor() : LanguageEn() {
                     cases = Cases(
                         nominative = PluralPattern(
                             Plurals(
-                                one = "{0} drops",
+                                one = "{0} drop",
                                 other = "{0} drops",
                             )
                         ),
@@ -1304,7 +1308,7 @@ class LanguageEn_001 internal constructor() : LanguageEn() {
                     cases = Cases(
                         nominative = PluralPattern(
                             Plurals(
-                                one = "{0} pinches",
+                                one = "{0} pinch",
                                 other = "{0} pinches",
                             )
                         ),

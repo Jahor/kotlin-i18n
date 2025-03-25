@@ -5,7 +5,6 @@ import info.leonenko.i18n.*
 val Language.Companion.zh_MO_HANS
     get() = languageZh_MO_HANS
 private val languageZh_MO_HANS = LanguageZh_MO_HANS()
-
 class LanguageZh_MO_HANS internal constructor() : LanguageZh_HANS() {
     override val code: String = "zh_MO_#Hans"
     override val script: String = "Hans"

@@ -27,40 +27,40 @@ data class SolarLuminosity(override val value: MeasurementUnitValue) : Power {
     operator fun plus(other: SolarLuminosity): SolarLuminosity = SolarLuminosity(this.value + other.value)
     operator fun minus(other: SolarLuminosity): SolarLuminosity = SolarLuminosity(this.value - other.value)
 
-    constructor(value: kotlin.Byte) : this(value.toMeasurementUnitValue())
+    constructor(value: Byte) : this(value.toMeasurementUnitValue())
 
-    override operator fun times(other: kotlin.Byte): SolarLuminosity = SolarLuminosity(this.value.times(other))
-    override operator fun div(other: kotlin.Byte): SolarLuminosity = SolarLuminosity(this.value.div(other))
-    override operator fun rem(other: kotlin.Byte): SolarLuminosity = SolarLuminosity(this.value.rem(other))
+    override operator fun times(other: Byte): SolarLuminosity = SolarLuminosity(this.value.times(other))
+    override operator fun div(other: Byte): SolarLuminosity = SolarLuminosity(this.value.div(other))
+    override operator fun rem(other: Byte): SolarLuminosity = SolarLuminosity(this.value.rem(other))
 
-    constructor(value: kotlin.Short) : this(value.toMeasurementUnitValue())
+    constructor(value: Short) : this(value.toMeasurementUnitValue())
 
-    override operator fun times(other: kotlin.Short): SolarLuminosity = SolarLuminosity(this.value.times(other))
-    override operator fun div(other: kotlin.Short): SolarLuminosity = SolarLuminosity(this.value.div(other))
-    override operator fun rem(other: kotlin.Short): SolarLuminosity = SolarLuminosity(this.value.rem(other))
+    override operator fun times(other: Short): SolarLuminosity = SolarLuminosity(this.value.times(other))
+    override operator fun div(other: Short): SolarLuminosity = SolarLuminosity(this.value.div(other))
+    override operator fun rem(other: Short): SolarLuminosity = SolarLuminosity(this.value.rem(other))
 
-    constructor(value: kotlin.Int) : this(value.toMeasurementUnitValue())
+    constructor(value: Int) : this(value.toMeasurementUnitValue())
 
-    override operator fun times(other: kotlin.Int): SolarLuminosity = SolarLuminosity(this.value.times(other))
-    override operator fun div(other: kotlin.Int): SolarLuminosity = SolarLuminosity(this.value.div(other))
-    override operator fun rem(other: kotlin.Int): SolarLuminosity = SolarLuminosity(this.value.rem(other))
+    override operator fun times(other: Int): SolarLuminosity = SolarLuminosity(this.value.times(other))
+    override operator fun div(other: Int): SolarLuminosity = SolarLuminosity(this.value.div(other))
+    override operator fun rem(other: Int): SolarLuminosity = SolarLuminosity(this.value.rem(other))
 
-    constructor(value: kotlin.Long) : this(value.toMeasurementUnitValue())
+    constructor(value: Long) : this(value.toMeasurementUnitValue())
 
-    override operator fun times(other: kotlin.Long): SolarLuminosity = SolarLuminosity(this.value.times(other))
-    override operator fun div(other: kotlin.Long): SolarLuminosity = SolarLuminosity(this.value.div(other))
-    override operator fun rem(other: kotlin.Long): SolarLuminosity = SolarLuminosity(this.value.rem(other))
+    override operator fun times(other: Long): SolarLuminosity = SolarLuminosity(this.value.times(other))
+    override operator fun div(other: Long): SolarLuminosity = SolarLuminosity(this.value.div(other))
+    override operator fun rem(other: Long): SolarLuminosity = SolarLuminosity(this.value.rem(other))
 
-    constructor(value: kotlin.Float) : this(value.toMeasurementUnitValue())
+    constructor(value: Float) : this(value.toMeasurementUnitValue())
 
-    override operator fun times(other: kotlin.Float): SolarLuminosity = SolarLuminosity(this.value.times(other))
-    override operator fun div(other: kotlin.Float): SolarLuminosity = SolarLuminosity(this.value.div(other))
-    override operator fun rem(other: kotlin.Float): SolarLuminosity = SolarLuminosity(this.value.rem(other))
+    override operator fun times(other: Float): SolarLuminosity = SolarLuminosity(this.value.times(other))
+    override operator fun div(other: Float): SolarLuminosity = SolarLuminosity(this.value.div(other))
+    override operator fun rem(other: Float): SolarLuminosity = SolarLuminosity(this.value.rem(other))
 
 
-    override operator fun times(other: kotlin.Double): SolarLuminosity = SolarLuminosity(this.value.times(other))
-    override operator fun div(other: kotlin.Double): SolarLuminosity = SolarLuminosity(this.value.div(other))
-    override operator fun rem(other: kotlin.Double): SolarLuminosity = SolarLuminosity(this.value.rem(other))
+    override operator fun times(other: Double): SolarLuminosity = SolarLuminosity(this.value.times(other))
+    override operator fun div(other: Double): SolarLuminosity = SolarLuminosity(this.value.div(other))
+    override operator fun rem(other: Double): SolarLuminosity = SolarLuminosity(this.value.rem(other))
 
 
     override operator fun unaryMinus(): SolarLuminosity = SolarLuminosity(-value)
@@ -85,26 +85,26 @@ data class SolarLuminosity(override val value: MeasurementUnitValue) : Power {
 
 }
 
-val kotlin.Byte.solarLuminosity
+val Byte.solarLuminosity
     get() = SolarLuminosity(this)
 
 
-val kotlin.Short.solarLuminosity
+val Short.solarLuminosity
     get() = SolarLuminosity(this)
 
 
-val kotlin.Int.solarLuminosity
+val Int.solarLuminosity
     get() = SolarLuminosity(this)
 
 
-val kotlin.Long.solarLuminosity
+val Long.solarLuminosity
     get() = SolarLuminosity(this)
 
 
-val kotlin.Float.solarLuminosity
+val Float.solarLuminosity
     get() = SolarLuminosity(this)
 
 
-val kotlin.Double.solarLuminosity
+val Double.solarLuminosity
     get() = SolarLuminosity(this)
                             

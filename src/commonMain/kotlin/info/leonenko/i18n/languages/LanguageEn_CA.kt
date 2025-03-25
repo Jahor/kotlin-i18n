@@ -5,7 +5,6 @@ import info.leonenko.i18n.*
 val Language.Companion.en_CA
     get() = languageEn_CA
 private val languageEn_CA = LanguageEn_CA()
-
 class LanguageEn_CA internal constructor() : LanguageEn() {
     override val code: String = "en_CA"
     override val script: String? = null
@@ -290,9 +289,9 @@ class LanguageEn_CA internal constructor() : LanguageEn() {
                     )
                 ),
             )
-        override val digitalByte
+        override val digitalByteUnit
             get() = MultiLengthGenderedPattern(
-                base = super.digitalByte,
+                base = super.digitalByteUnit,
                 short = GenderedPattern(
                     cases = Cases(
                         nominative = PluralPattern(
@@ -1283,26 +1282,6 @@ class LanguageEn_CA internal constructor() : LanguageEn() {
                             Plurals(
                                 one = "{0} US dessertspoon",
                                 other = "{0} US dessertspoons",
-                            )
-                        ),
-                    )
-                ),
-                short = GenderedPattern(
-                    cases = Cases(
-                        nominative = PluralPattern(
-                            Plurals(
-                                one = "{0} US dssp",
-                                other = "{0} US dssp",
-                            )
-                        ),
-                    )
-                ),
-                narrow = GenderedPattern(
-                    cases = Cases(
-                        nominative = PluralPattern(
-                            Plurals(
-                                one = "{0}USdsp",
-                                other = "{0}USdsp",
                             )
                         ),
                     )

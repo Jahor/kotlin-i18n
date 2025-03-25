@@ -22,7 +22,6 @@ interface Area : MeasurementUnit, Comparable<Area> {
     class Serializer : CustomSerializer()
     open class CustomSerializer(val decoders: Map<String, (MeasurementUnitValue) -> Area> = emptyMap()) : KSerializer<Area> {
         private val delegateSerializer = MapSerializer(String.serializer(), MeasurementUnitValue.serializer())
-
         @OptIn(ExperimentalSerializationApi::class)
         override val descriptor: SerialDescriptor = SerialDescriptor("Area", delegateSerializer.descriptor)
         override fun deserialize(decoder: Decoder): Area {
@@ -110,34 +109,34 @@ interface Area : MeasurementUnit, Comparable<Area> {
     fun abs(): Area
 
 
-    operator fun times(other: kotlin.Byte): Area
-    operator fun div(other: kotlin.Byte): Area
-    operator fun rem(other: kotlin.Byte): Area
+    operator fun times(other: Byte): Area
+    operator fun div(other: Byte): Area
+    operator fun rem(other: Byte): Area
 
 
-    operator fun times(other: kotlin.Short): Area
-    operator fun div(other: kotlin.Short): Area
-    operator fun rem(other: kotlin.Short): Area
+    operator fun times(other: Short): Area
+    operator fun div(other: Short): Area
+    operator fun rem(other: Short): Area
 
 
-    operator fun times(other: kotlin.Int): Area
-    operator fun div(other: kotlin.Int): Area
-    operator fun rem(other: kotlin.Int): Area
+    operator fun times(other: Int): Area
+    operator fun div(other: Int): Area
+    operator fun rem(other: Int): Area
 
 
-    operator fun times(other: kotlin.Long): Area
-    operator fun div(other: kotlin.Long): Area
-    operator fun rem(other: kotlin.Long): Area
+    operator fun times(other: Long): Area
+    operator fun div(other: Long): Area
+    operator fun rem(other: Long): Area
 
 
-    operator fun times(other: kotlin.Float): Area
-    operator fun div(other: kotlin.Float): Area
-    operator fun rem(other: kotlin.Float): Area
+    operator fun times(other: Float): Area
+    operator fun div(other: Float): Area
+    operator fun rem(other: Float): Area
 
 
-    operator fun times(other: kotlin.Double): Area
-    operator fun div(other: kotlin.Double): Area
-    operator fun rem(other: kotlin.Double): Area
+    operator fun times(other: Double): Area
+    operator fun div(other: Double): Area
+    operator fun rem(other: Double): Area
 
 }
 
@@ -157,40 +156,40 @@ data class SquareKilometer(override val value: MeasurementUnitValue) : Area {
     operator fun plus(other: SquareKilometer): SquareKilometer = SquareKilometer(this.value + other.value)
     operator fun minus(other: SquareKilometer): SquareKilometer = SquareKilometer(this.value - other.value)
 
-    constructor(value: kotlin.Byte) : this(value.toMeasurementUnitValue())
+    constructor(value: Byte) : this(value.toMeasurementUnitValue())
 
-    override operator fun times(other: kotlin.Byte): SquareKilometer = SquareKilometer(this.value.times(other))
-    override operator fun div(other: kotlin.Byte): SquareKilometer = SquareKilometer(this.value.div(other))
-    override operator fun rem(other: kotlin.Byte): SquareKilometer = SquareKilometer(this.value.rem(other))
+    override operator fun times(other: Byte): SquareKilometer = SquareKilometer(this.value.times(other))
+    override operator fun div(other: Byte): SquareKilometer = SquareKilometer(this.value.div(other))
+    override operator fun rem(other: Byte): SquareKilometer = SquareKilometer(this.value.rem(other))
 
-    constructor(value: kotlin.Short) : this(value.toMeasurementUnitValue())
+    constructor(value: Short) : this(value.toMeasurementUnitValue())
 
-    override operator fun times(other: kotlin.Short): SquareKilometer = SquareKilometer(this.value.times(other))
-    override operator fun div(other: kotlin.Short): SquareKilometer = SquareKilometer(this.value.div(other))
-    override operator fun rem(other: kotlin.Short): SquareKilometer = SquareKilometer(this.value.rem(other))
+    override operator fun times(other: Short): SquareKilometer = SquareKilometer(this.value.times(other))
+    override operator fun div(other: Short): SquareKilometer = SquareKilometer(this.value.div(other))
+    override operator fun rem(other: Short): SquareKilometer = SquareKilometer(this.value.rem(other))
 
-    constructor(value: kotlin.Int) : this(value.toMeasurementUnitValue())
+    constructor(value: Int) : this(value.toMeasurementUnitValue())
 
-    override operator fun times(other: kotlin.Int): SquareKilometer = SquareKilometer(this.value.times(other))
-    override operator fun div(other: kotlin.Int): SquareKilometer = SquareKilometer(this.value.div(other))
-    override operator fun rem(other: kotlin.Int): SquareKilometer = SquareKilometer(this.value.rem(other))
+    override operator fun times(other: Int): SquareKilometer = SquareKilometer(this.value.times(other))
+    override operator fun div(other: Int): SquareKilometer = SquareKilometer(this.value.div(other))
+    override operator fun rem(other: Int): SquareKilometer = SquareKilometer(this.value.rem(other))
 
-    constructor(value: kotlin.Long) : this(value.toMeasurementUnitValue())
+    constructor(value: Long) : this(value.toMeasurementUnitValue())
 
-    override operator fun times(other: kotlin.Long): SquareKilometer = SquareKilometer(this.value.times(other))
-    override operator fun div(other: kotlin.Long): SquareKilometer = SquareKilometer(this.value.div(other))
-    override operator fun rem(other: kotlin.Long): SquareKilometer = SquareKilometer(this.value.rem(other))
+    override operator fun times(other: Long): SquareKilometer = SquareKilometer(this.value.times(other))
+    override operator fun div(other: Long): SquareKilometer = SquareKilometer(this.value.div(other))
+    override operator fun rem(other: Long): SquareKilometer = SquareKilometer(this.value.rem(other))
 
-    constructor(value: kotlin.Float) : this(value.toMeasurementUnitValue())
+    constructor(value: Float) : this(value.toMeasurementUnitValue())
 
-    override operator fun times(other: kotlin.Float): SquareKilometer = SquareKilometer(this.value.times(other))
-    override operator fun div(other: kotlin.Float): SquareKilometer = SquareKilometer(this.value.div(other))
-    override operator fun rem(other: kotlin.Float): SquareKilometer = SquareKilometer(this.value.rem(other))
+    override operator fun times(other: Float): SquareKilometer = SquareKilometer(this.value.times(other))
+    override operator fun div(other: Float): SquareKilometer = SquareKilometer(this.value.div(other))
+    override operator fun rem(other: Float): SquareKilometer = SquareKilometer(this.value.rem(other))
 
 
-    override operator fun times(other: kotlin.Double): SquareKilometer = SquareKilometer(this.value.times(other))
-    override operator fun div(other: kotlin.Double): SquareKilometer = SquareKilometer(this.value.div(other))
-    override operator fun rem(other: kotlin.Double): SquareKilometer = SquareKilometer(this.value.rem(other))
+    override operator fun times(other: Double): SquareKilometer = SquareKilometer(this.value.times(other))
+    override operator fun div(other: Double): SquareKilometer = SquareKilometer(this.value.div(other))
+    override operator fun rem(other: Double): SquareKilometer = SquareKilometer(this.value.rem(other))
 
 
     override operator fun unaryMinus(): SquareKilometer = SquareKilometer(-value)
@@ -215,27 +214,27 @@ data class SquareKilometer(override val value: MeasurementUnitValue) : Area {
 
 }
 
-val kotlin.Byte.squareKilometer
+val Byte.squareKilometer
     get() = SquareKilometer(this)
 
 
-val kotlin.Short.squareKilometer
+val Short.squareKilometer
     get() = SquareKilometer(this)
 
 
-val kotlin.Int.squareKilometer
+val Int.squareKilometer
     get() = SquareKilometer(this)
 
 
-val kotlin.Long.squareKilometer
+val Long.squareKilometer
     get() = SquareKilometer(this)
 
 
-val kotlin.Float.squareKilometer
+val Float.squareKilometer
     get() = SquareKilometer(this)
 
 
-val kotlin.Double.squareKilometer
+val Double.squareKilometer
     get() = SquareKilometer(this)
 
 
@@ -255,40 +254,40 @@ data class Hectare(override val value: MeasurementUnitValue) : Area {
     operator fun plus(other: Hectare): Hectare = Hectare(this.value + other.value)
     operator fun minus(other: Hectare): Hectare = Hectare(this.value - other.value)
 
-    constructor(value: kotlin.Byte) : this(value.toMeasurementUnitValue())
+    constructor(value: Byte) : this(value.toMeasurementUnitValue())
 
-    override operator fun times(other: kotlin.Byte): Hectare = Hectare(this.value.times(other))
-    override operator fun div(other: kotlin.Byte): Hectare = Hectare(this.value.div(other))
-    override operator fun rem(other: kotlin.Byte): Hectare = Hectare(this.value.rem(other))
+    override operator fun times(other: Byte): Hectare = Hectare(this.value.times(other))
+    override operator fun div(other: Byte): Hectare = Hectare(this.value.div(other))
+    override operator fun rem(other: Byte): Hectare = Hectare(this.value.rem(other))
 
-    constructor(value: kotlin.Short) : this(value.toMeasurementUnitValue())
+    constructor(value: Short) : this(value.toMeasurementUnitValue())
 
-    override operator fun times(other: kotlin.Short): Hectare = Hectare(this.value.times(other))
-    override operator fun div(other: kotlin.Short): Hectare = Hectare(this.value.div(other))
-    override operator fun rem(other: kotlin.Short): Hectare = Hectare(this.value.rem(other))
+    override operator fun times(other: Short): Hectare = Hectare(this.value.times(other))
+    override operator fun div(other: Short): Hectare = Hectare(this.value.div(other))
+    override operator fun rem(other: Short): Hectare = Hectare(this.value.rem(other))
 
-    constructor(value: kotlin.Int) : this(value.toMeasurementUnitValue())
+    constructor(value: Int) : this(value.toMeasurementUnitValue())
 
-    override operator fun times(other: kotlin.Int): Hectare = Hectare(this.value.times(other))
-    override operator fun div(other: kotlin.Int): Hectare = Hectare(this.value.div(other))
-    override operator fun rem(other: kotlin.Int): Hectare = Hectare(this.value.rem(other))
+    override operator fun times(other: Int): Hectare = Hectare(this.value.times(other))
+    override operator fun div(other: Int): Hectare = Hectare(this.value.div(other))
+    override operator fun rem(other: Int): Hectare = Hectare(this.value.rem(other))
 
-    constructor(value: kotlin.Long) : this(value.toMeasurementUnitValue())
+    constructor(value: Long) : this(value.toMeasurementUnitValue())
 
-    override operator fun times(other: kotlin.Long): Hectare = Hectare(this.value.times(other))
-    override operator fun div(other: kotlin.Long): Hectare = Hectare(this.value.div(other))
-    override operator fun rem(other: kotlin.Long): Hectare = Hectare(this.value.rem(other))
+    override operator fun times(other: Long): Hectare = Hectare(this.value.times(other))
+    override operator fun div(other: Long): Hectare = Hectare(this.value.div(other))
+    override operator fun rem(other: Long): Hectare = Hectare(this.value.rem(other))
 
-    constructor(value: kotlin.Float) : this(value.toMeasurementUnitValue())
+    constructor(value: Float) : this(value.toMeasurementUnitValue())
 
-    override operator fun times(other: kotlin.Float): Hectare = Hectare(this.value.times(other))
-    override operator fun div(other: kotlin.Float): Hectare = Hectare(this.value.div(other))
-    override operator fun rem(other: kotlin.Float): Hectare = Hectare(this.value.rem(other))
+    override operator fun times(other: Float): Hectare = Hectare(this.value.times(other))
+    override operator fun div(other: Float): Hectare = Hectare(this.value.div(other))
+    override operator fun rem(other: Float): Hectare = Hectare(this.value.rem(other))
 
 
-    override operator fun times(other: kotlin.Double): Hectare = Hectare(this.value.times(other))
-    override operator fun div(other: kotlin.Double): Hectare = Hectare(this.value.div(other))
-    override operator fun rem(other: kotlin.Double): Hectare = Hectare(this.value.rem(other))
+    override operator fun times(other: Double): Hectare = Hectare(this.value.times(other))
+    override operator fun div(other: Double): Hectare = Hectare(this.value.div(other))
+    override operator fun rem(other: Double): Hectare = Hectare(this.value.rem(other))
 
 
     override operator fun unaryMinus(): Hectare = Hectare(-value)
@@ -313,27 +312,27 @@ data class Hectare(override val value: MeasurementUnitValue) : Area {
 
 }
 
-val kotlin.Byte.hectare
+val Byte.hectare
     get() = Hectare(this)
 
 
-val kotlin.Short.hectare
+val Short.hectare
     get() = Hectare(this)
 
 
-val kotlin.Int.hectare
+val Int.hectare
     get() = Hectare(this)
 
 
-val kotlin.Long.hectare
+val Long.hectare
     get() = Hectare(this)
 
 
-val kotlin.Float.hectare
+val Float.hectare
     get() = Hectare(this)
 
 
-val kotlin.Double.hectare
+val Double.hectare
     get() = Hectare(this)
 
 
@@ -353,40 +352,40 @@ data class SquareMeter(override val value: MeasurementUnitValue) : Area {
     operator fun plus(other: SquareMeter): SquareMeter = SquareMeter(this.value + other.value)
     operator fun minus(other: SquareMeter): SquareMeter = SquareMeter(this.value - other.value)
 
-    constructor(value: kotlin.Byte) : this(value.toMeasurementUnitValue())
+    constructor(value: Byte) : this(value.toMeasurementUnitValue())
 
-    override operator fun times(other: kotlin.Byte): SquareMeter = SquareMeter(this.value.times(other))
-    override operator fun div(other: kotlin.Byte): SquareMeter = SquareMeter(this.value.div(other))
-    override operator fun rem(other: kotlin.Byte): SquareMeter = SquareMeter(this.value.rem(other))
+    override operator fun times(other: Byte): SquareMeter = SquareMeter(this.value.times(other))
+    override operator fun div(other: Byte): SquareMeter = SquareMeter(this.value.div(other))
+    override operator fun rem(other: Byte): SquareMeter = SquareMeter(this.value.rem(other))
 
-    constructor(value: kotlin.Short) : this(value.toMeasurementUnitValue())
+    constructor(value: Short) : this(value.toMeasurementUnitValue())
 
-    override operator fun times(other: kotlin.Short): SquareMeter = SquareMeter(this.value.times(other))
-    override operator fun div(other: kotlin.Short): SquareMeter = SquareMeter(this.value.div(other))
-    override operator fun rem(other: kotlin.Short): SquareMeter = SquareMeter(this.value.rem(other))
+    override operator fun times(other: Short): SquareMeter = SquareMeter(this.value.times(other))
+    override operator fun div(other: Short): SquareMeter = SquareMeter(this.value.div(other))
+    override operator fun rem(other: Short): SquareMeter = SquareMeter(this.value.rem(other))
 
-    constructor(value: kotlin.Int) : this(value.toMeasurementUnitValue())
+    constructor(value: Int) : this(value.toMeasurementUnitValue())
 
-    override operator fun times(other: kotlin.Int): SquareMeter = SquareMeter(this.value.times(other))
-    override operator fun div(other: kotlin.Int): SquareMeter = SquareMeter(this.value.div(other))
-    override operator fun rem(other: kotlin.Int): SquareMeter = SquareMeter(this.value.rem(other))
+    override operator fun times(other: Int): SquareMeter = SquareMeter(this.value.times(other))
+    override operator fun div(other: Int): SquareMeter = SquareMeter(this.value.div(other))
+    override operator fun rem(other: Int): SquareMeter = SquareMeter(this.value.rem(other))
 
-    constructor(value: kotlin.Long) : this(value.toMeasurementUnitValue())
+    constructor(value: Long) : this(value.toMeasurementUnitValue())
 
-    override operator fun times(other: kotlin.Long): SquareMeter = SquareMeter(this.value.times(other))
-    override operator fun div(other: kotlin.Long): SquareMeter = SquareMeter(this.value.div(other))
-    override operator fun rem(other: kotlin.Long): SquareMeter = SquareMeter(this.value.rem(other))
+    override operator fun times(other: Long): SquareMeter = SquareMeter(this.value.times(other))
+    override operator fun div(other: Long): SquareMeter = SquareMeter(this.value.div(other))
+    override operator fun rem(other: Long): SquareMeter = SquareMeter(this.value.rem(other))
 
-    constructor(value: kotlin.Float) : this(value.toMeasurementUnitValue())
+    constructor(value: Float) : this(value.toMeasurementUnitValue())
 
-    override operator fun times(other: kotlin.Float): SquareMeter = SquareMeter(this.value.times(other))
-    override operator fun div(other: kotlin.Float): SquareMeter = SquareMeter(this.value.div(other))
-    override operator fun rem(other: kotlin.Float): SquareMeter = SquareMeter(this.value.rem(other))
+    override operator fun times(other: Float): SquareMeter = SquareMeter(this.value.times(other))
+    override operator fun div(other: Float): SquareMeter = SquareMeter(this.value.div(other))
+    override operator fun rem(other: Float): SquareMeter = SquareMeter(this.value.rem(other))
 
 
-    override operator fun times(other: kotlin.Double): SquareMeter = SquareMeter(this.value.times(other))
-    override operator fun div(other: kotlin.Double): SquareMeter = SquareMeter(this.value.div(other))
-    override operator fun rem(other: kotlin.Double): SquareMeter = SquareMeter(this.value.rem(other))
+    override operator fun times(other: Double): SquareMeter = SquareMeter(this.value.times(other))
+    override operator fun div(other: Double): SquareMeter = SquareMeter(this.value.div(other))
+    override operator fun rem(other: Double): SquareMeter = SquareMeter(this.value.rem(other))
 
 
     override operator fun unaryMinus(): SquareMeter = SquareMeter(-value)
@@ -411,27 +410,27 @@ data class SquareMeter(override val value: MeasurementUnitValue) : Area {
 
 }
 
-val kotlin.Byte.squareMeter
+val Byte.squareMeter
     get() = SquareMeter(this)
 
 
-val kotlin.Short.squareMeter
+val Short.squareMeter
     get() = SquareMeter(this)
 
 
-val kotlin.Int.squareMeter
+val Int.squareMeter
     get() = SquareMeter(this)
 
 
-val kotlin.Long.squareMeter
+val Long.squareMeter
     get() = SquareMeter(this)
 
 
-val kotlin.Float.squareMeter
+val Float.squareMeter
     get() = SquareMeter(this)
 
 
-val kotlin.Double.squareMeter
+val Double.squareMeter
     get() = SquareMeter(this)
 
 
@@ -451,40 +450,40 @@ data class SquareCentimeter(override val value: MeasurementUnitValue) : Area {
     operator fun plus(other: SquareCentimeter): SquareCentimeter = SquareCentimeter(this.value + other.value)
     operator fun minus(other: SquareCentimeter): SquareCentimeter = SquareCentimeter(this.value - other.value)
 
-    constructor(value: kotlin.Byte) : this(value.toMeasurementUnitValue())
+    constructor(value: Byte) : this(value.toMeasurementUnitValue())
 
-    override operator fun times(other: kotlin.Byte): SquareCentimeter = SquareCentimeter(this.value.times(other))
-    override operator fun div(other: kotlin.Byte): SquareCentimeter = SquareCentimeter(this.value.div(other))
-    override operator fun rem(other: kotlin.Byte): SquareCentimeter = SquareCentimeter(this.value.rem(other))
+    override operator fun times(other: Byte): SquareCentimeter = SquareCentimeter(this.value.times(other))
+    override operator fun div(other: Byte): SquareCentimeter = SquareCentimeter(this.value.div(other))
+    override operator fun rem(other: Byte): SquareCentimeter = SquareCentimeter(this.value.rem(other))
 
-    constructor(value: kotlin.Short) : this(value.toMeasurementUnitValue())
+    constructor(value: Short) : this(value.toMeasurementUnitValue())
 
-    override operator fun times(other: kotlin.Short): SquareCentimeter = SquareCentimeter(this.value.times(other))
-    override operator fun div(other: kotlin.Short): SquareCentimeter = SquareCentimeter(this.value.div(other))
-    override operator fun rem(other: kotlin.Short): SquareCentimeter = SquareCentimeter(this.value.rem(other))
+    override operator fun times(other: Short): SquareCentimeter = SquareCentimeter(this.value.times(other))
+    override operator fun div(other: Short): SquareCentimeter = SquareCentimeter(this.value.div(other))
+    override operator fun rem(other: Short): SquareCentimeter = SquareCentimeter(this.value.rem(other))
 
-    constructor(value: kotlin.Int) : this(value.toMeasurementUnitValue())
+    constructor(value: Int) : this(value.toMeasurementUnitValue())
 
-    override operator fun times(other: kotlin.Int): SquareCentimeter = SquareCentimeter(this.value.times(other))
-    override operator fun div(other: kotlin.Int): SquareCentimeter = SquareCentimeter(this.value.div(other))
-    override operator fun rem(other: kotlin.Int): SquareCentimeter = SquareCentimeter(this.value.rem(other))
+    override operator fun times(other: Int): SquareCentimeter = SquareCentimeter(this.value.times(other))
+    override operator fun div(other: Int): SquareCentimeter = SquareCentimeter(this.value.div(other))
+    override operator fun rem(other: Int): SquareCentimeter = SquareCentimeter(this.value.rem(other))
 
-    constructor(value: kotlin.Long) : this(value.toMeasurementUnitValue())
+    constructor(value: Long) : this(value.toMeasurementUnitValue())
 
-    override operator fun times(other: kotlin.Long): SquareCentimeter = SquareCentimeter(this.value.times(other))
-    override operator fun div(other: kotlin.Long): SquareCentimeter = SquareCentimeter(this.value.div(other))
-    override operator fun rem(other: kotlin.Long): SquareCentimeter = SquareCentimeter(this.value.rem(other))
+    override operator fun times(other: Long): SquareCentimeter = SquareCentimeter(this.value.times(other))
+    override operator fun div(other: Long): SquareCentimeter = SquareCentimeter(this.value.div(other))
+    override operator fun rem(other: Long): SquareCentimeter = SquareCentimeter(this.value.rem(other))
 
-    constructor(value: kotlin.Float) : this(value.toMeasurementUnitValue())
+    constructor(value: Float) : this(value.toMeasurementUnitValue())
 
-    override operator fun times(other: kotlin.Float): SquareCentimeter = SquareCentimeter(this.value.times(other))
-    override operator fun div(other: kotlin.Float): SquareCentimeter = SquareCentimeter(this.value.div(other))
-    override operator fun rem(other: kotlin.Float): SquareCentimeter = SquareCentimeter(this.value.rem(other))
+    override operator fun times(other: Float): SquareCentimeter = SquareCentimeter(this.value.times(other))
+    override operator fun div(other: Float): SquareCentimeter = SquareCentimeter(this.value.div(other))
+    override operator fun rem(other: Float): SquareCentimeter = SquareCentimeter(this.value.rem(other))
 
 
-    override operator fun times(other: kotlin.Double): SquareCentimeter = SquareCentimeter(this.value.times(other))
-    override operator fun div(other: kotlin.Double): SquareCentimeter = SquareCentimeter(this.value.div(other))
-    override operator fun rem(other: kotlin.Double): SquareCentimeter = SquareCentimeter(this.value.rem(other))
+    override operator fun times(other: Double): SquareCentimeter = SquareCentimeter(this.value.times(other))
+    override operator fun div(other: Double): SquareCentimeter = SquareCentimeter(this.value.div(other))
+    override operator fun rem(other: Double): SquareCentimeter = SquareCentimeter(this.value.rem(other))
 
 
     override operator fun unaryMinus(): SquareCentimeter = SquareCentimeter(-value)
@@ -509,27 +508,27 @@ data class SquareCentimeter(override val value: MeasurementUnitValue) : Area {
 
 }
 
-val kotlin.Byte.squareCentimeter
+val Byte.squareCentimeter
     get() = SquareCentimeter(this)
 
 
-val kotlin.Short.squareCentimeter
+val Short.squareCentimeter
     get() = SquareCentimeter(this)
 
 
-val kotlin.Int.squareCentimeter
+val Int.squareCentimeter
     get() = SquareCentimeter(this)
 
 
-val kotlin.Long.squareCentimeter
+val Long.squareCentimeter
     get() = SquareCentimeter(this)
 
 
-val kotlin.Float.squareCentimeter
+val Float.squareCentimeter
     get() = SquareCentimeter(this)
 
 
-val kotlin.Double.squareCentimeter
+val Double.squareCentimeter
     get() = SquareCentimeter(this)
 
 
@@ -549,40 +548,40 @@ data class SquareMile(override val value: MeasurementUnitValue) : Area {
     operator fun plus(other: SquareMile): SquareMile = SquareMile(this.value + other.value)
     operator fun minus(other: SquareMile): SquareMile = SquareMile(this.value - other.value)
 
-    constructor(value: kotlin.Byte) : this(value.toMeasurementUnitValue())
+    constructor(value: Byte) : this(value.toMeasurementUnitValue())
 
-    override operator fun times(other: kotlin.Byte): SquareMile = SquareMile(this.value.times(other))
-    override operator fun div(other: kotlin.Byte): SquareMile = SquareMile(this.value.div(other))
-    override operator fun rem(other: kotlin.Byte): SquareMile = SquareMile(this.value.rem(other))
+    override operator fun times(other: Byte): SquareMile = SquareMile(this.value.times(other))
+    override operator fun div(other: Byte): SquareMile = SquareMile(this.value.div(other))
+    override operator fun rem(other: Byte): SquareMile = SquareMile(this.value.rem(other))
 
-    constructor(value: kotlin.Short) : this(value.toMeasurementUnitValue())
+    constructor(value: Short) : this(value.toMeasurementUnitValue())
 
-    override operator fun times(other: kotlin.Short): SquareMile = SquareMile(this.value.times(other))
-    override operator fun div(other: kotlin.Short): SquareMile = SquareMile(this.value.div(other))
-    override operator fun rem(other: kotlin.Short): SquareMile = SquareMile(this.value.rem(other))
+    override operator fun times(other: Short): SquareMile = SquareMile(this.value.times(other))
+    override operator fun div(other: Short): SquareMile = SquareMile(this.value.div(other))
+    override operator fun rem(other: Short): SquareMile = SquareMile(this.value.rem(other))
 
-    constructor(value: kotlin.Int) : this(value.toMeasurementUnitValue())
+    constructor(value: Int) : this(value.toMeasurementUnitValue())
 
-    override operator fun times(other: kotlin.Int): SquareMile = SquareMile(this.value.times(other))
-    override operator fun div(other: kotlin.Int): SquareMile = SquareMile(this.value.div(other))
-    override operator fun rem(other: kotlin.Int): SquareMile = SquareMile(this.value.rem(other))
+    override operator fun times(other: Int): SquareMile = SquareMile(this.value.times(other))
+    override operator fun div(other: Int): SquareMile = SquareMile(this.value.div(other))
+    override operator fun rem(other: Int): SquareMile = SquareMile(this.value.rem(other))
 
-    constructor(value: kotlin.Long) : this(value.toMeasurementUnitValue())
+    constructor(value: Long) : this(value.toMeasurementUnitValue())
 
-    override operator fun times(other: kotlin.Long): SquareMile = SquareMile(this.value.times(other))
-    override operator fun div(other: kotlin.Long): SquareMile = SquareMile(this.value.div(other))
-    override operator fun rem(other: kotlin.Long): SquareMile = SquareMile(this.value.rem(other))
+    override operator fun times(other: Long): SquareMile = SquareMile(this.value.times(other))
+    override operator fun div(other: Long): SquareMile = SquareMile(this.value.div(other))
+    override operator fun rem(other: Long): SquareMile = SquareMile(this.value.rem(other))
 
-    constructor(value: kotlin.Float) : this(value.toMeasurementUnitValue())
+    constructor(value: Float) : this(value.toMeasurementUnitValue())
 
-    override operator fun times(other: kotlin.Float): SquareMile = SquareMile(this.value.times(other))
-    override operator fun div(other: kotlin.Float): SquareMile = SquareMile(this.value.div(other))
-    override operator fun rem(other: kotlin.Float): SquareMile = SquareMile(this.value.rem(other))
+    override operator fun times(other: Float): SquareMile = SquareMile(this.value.times(other))
+    override operator fun div(other: Float): SquareMile = SquareMile(this.value.div(other))
+    override operator fun rem(other: Float): SquareMile = SquareMile(this.value.rem(other))
 
 
-    override operator fun times(other: kotlin.Double): SquareMile = SquareMile(this.value.times(other))
-    override operator fun div(other: kotlin.Double): SquareMile = SquareMile(this.value.div(other))
-    override operator fun rem(other: kotlin.Double): SquareMile = SquareMile(this.value.rem(other))
+    override operator fun times(other: Double): SquareMile = SquareMile(this.value.times(other))
+    override operator fun div(other: Double): SquareMile = SquareMile(this.value.div(other))
+    override operator fun rem(other: Double): SquareMile = SquareMile(this.value.rem(other))
 
 
     override operator fun unaryMinus(): SquareMile = SquareMile(-value)
@@ -607,27 +606,27 @@ data class SquareMile(override val value: MeasurementUnitValue) : Area {
 
 }
 
-val kotlin.Byte.squareMile
+val Byte.squareMile
     get() = SquareMile(this)
 
 
-val kotlin.Short.squareMile
+val Short.squareMile
     get() = SquareMile(this)
 
 
-val kotlin.Int.squareMile
+val Int.squareMile
     get() = SquareMile(this)
 
 
-val kotlin.Long.squareMile
+val Long.squareMile
     get() = SquareMile(this)
 
 
-val kotlin.Float.squareMile
+val Float.squareMile
     get() = SquareMile(this)
 
 
-val kotlin.Double.squareMile
+val Double.squareMile
     get() = SquareMile(this)
 
 
@@ -647,40 +646,40 @@ data class Acre(override val value: MeasurementUnitValue) : Area {
     operator fun plus(other: Acre): Acre = Acre(this.value + other.value)
     operator fun minus(other: Acre): Acre = Acre(this.value - other.value)
 
-    constructor(value: kotlin.Byte) : this(value.toMeasurementUnitValue())
+    constructor(value: Byte) : this(value.toMeasurementUnitValue())
 
-    override operator fun times(other: kotlin.Byte): Acre = Acre(this.value.times(other))
-    override operator fun div(other: kotlin.Byte): Acre = Acre(this.value.div(other))
-    override operator fun rem(other: kotlin.Byte): Acre = Acre(this.value.rem(other))
+    override operator fun times(other: Byte): Acre = Acre(this.value.times(other))
+    override operator fun div(other: Byte): Acre = Acre(this.value.div(other))
+    override operator fun rem(other: Byte): Acre = Acre(this.value.rem(other))
 
-    constructor(value: kotlin.Short) : this(value.toMeasurementUnitValue())
+    constructor(value: Short) : this(value.toMeasurementUnitValue())
 
-    override operator fun times(other: kotlin.Short): Acre = Acre(this.value.times(other))
-    override operator fun div(other: kotlin.Short): Acre = Acre(this.value.div(other))
-    override operator fun rem(other: kotlin.Short): Acre = Acre(this.value.rem(other))
+    override operator fun times(other: Short): Acre = Acre(this.value.times(other))
+    override operator fun div(other: Short): Acre = Acre(this.value.div(other))
+    override operator fun rem(other: Short): Acre = Acre(this.value.rem(other))
 
-    constructor(value: kotlin.Int) : this(value.toMeasurementUnitValue())
+    constructor(value: Int) : this(value.toMeasurementUnitValue())
 
-    override operator fun times(other: kotlin.Int): Acre = Acre(this.value.times(other))
-    override operator fun div(other: kotlin.Int): Acre = Acre(this.value.div(other))
-    override operator fun rem(other: kotlin.Int): Acre = Acre(this.value.rem(other))
+    override operator fun times(other: Int): Acre = Acre(this.value.times(other))
+    override operator fun div(other: Int): Acre = Acre(this.value.div(other))
+    override operator fun rem(other: Int): Acre = Acre(this.value.rem(other))
 
-    constructor(value: kotlin.Long) : this(value.toMeasurementUnitValue())
+    constructor(value: Long) : this(value.toMeasurementUnitValue())
 
-    override operator fun times(other: kotlin.Long): Acre = Acre(this.value.times(other))
-    override operator fun div(other: kotlin.Long): Acre = Acre(this.value.div(other))
-    override operator fun rem(other: kotlin.Long): Acre = Acre(this.value.rem(other))
+    override operator fun times(other: Long): Acre = Acre(this.value.times(other))
+    override operator fun div(other: Long): Acre = Acre(this.value.div(other))
+    override operator fun rem(other: Long): Acre = Acre(this.value.rem(other))
 
-    constructor(value: kotlin.Float) : this(value.toMeasurementUnitValue())
+    constructor(value: Float) : this(value.toMeasurementUnitValue())
 
-    override operator fun times(other: kotlin.Float): Acre = Acre(this.value.times(other))
-    override operator fun div(other: kotlin.Float): Acre = Acre(this.value.div(other))
-    override operator fun rem(other: kotlin.Float): Acre = Acre(this.value.rem(other))
+    override operator fun times(other: Float): Acre = Acre(this.value.times(other))
+    override operator fun div(other: Float): Acre = Acre(this.value.div(other))
+    override operator fun rem(other: Float): Acre = Acre(this.value.rem(other))
 
 
-    override operator fun times(other: kotlin.Double): Acre = Acre(this.value.times(other))
-    override operator fun div(other: kotlin.Double): Acre = Acre(this.value.div(other))
-    override operator fun rem(other: kotlin.Double): Acre = Acre(this.value.rem(other))
+    override operator fun times(other: Double): Acre = Acre(this.value.times(other))
+    override operator fun div(other: Double): Acre = Acre(this.value.div(other))
+    override operator fun rem(other: Double): Acre = Acre(this.value.rem(other))
 
 
     override operator fun unaryMinus(): Acre = Acre(-value)
@@ -705,27 +704,27 @@ data class Acre(override val value: MeasurementUnitValue) : Area {
 
 }
 
-val kotlin.Byte.acre
+val Byte.acre
     get() = Acre(this)
 
 
-val kotlin.Short.acre
+val Short.acre
     get() = Acre(this)
 
 
-val kotlin.Int.acre
+val Int.acre
     get() = Acre(this)
 
 
-val kotlin.Long.acre
+val Long.acre
     get() = Acre(this)
 
 
-val kotlin.Float.acre
+val Float.acre
     get() = Acre(this)
 
 
-val kotlin.Double.acre
+val Double.acre
     get() = Acre(this)
 
 
@@ -745,40 +744,40 @@ data class SquareYard(override val value: MeasurementUnitValue) : Area {
     operator fun plus(other: SquareYard): SquareYard = SquareYard(this.value + other.value)
     operator fun minus(other: SquareYard): SquareYard = SquareYard(this.value - other.value)
 
-    constructor(value: kotlin.Byte) : this(value.toMeasurementUnitValue())
+    constructor(value: Byte) : this(value.toMeasurementUnitValue())
 
-    override operator fun times(other: kotlin.Byte): SquareYard = SquareYard(this.value.times(other))
-    override operator fun div(other: kotlin.Byte): SquareYard = SquareYard(this.value.div(other))
-    override operator fun rem(other: kotlin.Byte): SquareYard = SquareYard(this.value.rem(other))
+    override operator fun times(other: Byte): SquareYard = SquareYard(this.value.times(other))
+    override operator fun div(other: Byte): SquareYard = SquareYard(this.value.div(other))
+    override operator fun rem(other: Byte): SquareYard = SquareYard(this.value.rem(other))
 
-    constructor(value: kotlin.Short) : this(value.toMeasurementUnitValue())
+    constructor(value: Short) : this(value.toMeasurementUnitValue())
 
-    override operator fun times(other: kotlin.Short): SquareYard = SquareYard(this.value.times(other))
-    override operator fun div(other: kotlin.Short): SquareYard = SquareYard(this.value.div(other))
-    override operator fun rem(other: kotlin.Short): SquareYard = SquareYard(this.value.rem(other))
+    override operator fun times(other: Short): SquareYard = SquareYard(this.value.times(other))
+    override operator fun div(other: Short): SquareYard = SquareYard(this.value.div(other))
+    override operator fun rem(other: Short): SquareYard = SquareYard(this.value.rem(other))
 
-    constructor(value: kotlin.Int) : this(value.toMeasurementUnitValue())
+    constructor(value: Int) : this(value.toMeasurementUnitValue())
 
-    override operator fun times(other: kotlin.Int): SquareYard = SquareYard(this.value.times(other))
-    override operator fun div(other: kotlin.Int): SquareYard = SquareYard(this.value.div(other))
-    override operator fun rem(other: kotlin.Int): SquareYard = SquareYard(this.value.rem(other))
+    override operator fun times(other: Int): SquareYard = SquareYard(this.value.times(other))
+    override operator fun div(other: Int): SquareYard = SquareYard(this.value.div(other))
+    override operator fun rem(other: Int): SquareYard = SquareYard(this.value.rem(other))
 
-    constructor(value: kotlin.Long) : this(value.toMeasurementUnitValue())
+    constructor(value: Long) : this(value.toMeasurementUnitValue())
 
-    override operator fun times(other: kotlin.Long): SquareYard = SquareYard(this.value.times(other))
-    override operator fun div(other: kotlin.Long): SquareYard = SquareYard(this.value.div(other))
-    override operator fun rem(other: kotlin.Long): SquareYard = SquareYard(this.value.rem(other))
+    override operator fun times(other: Long): SquareYard = SquareYard(this.value.times(other))
+    override operator fun div(other: Long): SquareYard = SquareYard(this.value.div(other))
+    override operator fun rem(other: Long): SquareYard = SquareYard(this.value.rem(other))
 
-    constructor(value: kotlin.Float) : this(value.toMeasurementUnitValue())
+    constructor(value: Float) : this(value.toMeasurementUnitValue())
 
-    override operator fun times(other: kotlin.Float): SquareYard = SquareYard(this.value.times(other))
-    override operator fun div(other: kotlin.Float): SquareYard = SquareYard(this.value.div(other))
-    override operator fun rem(other: kotlin.Float): SquareYard = SquareYard(this.value.rem(other))
+    override operator fun times(other: Float): SquareYard = SquareYard(this.value.times(other))
+    override operator fun div(other: Float): SquareYard = SquareYard(this.value.div(other))
+    override operator fun rem(other: Float): SquareYard = SquareYard(this.value.rem(other))
 
 
-    override operator fun times(other: kotlin.Double): SquareYard = SquareYard(this.value.times(other))
-    override operator fun div(other: kotlin.Double): SquareYard = SquareYard(this.value.div(other))
-    override operator fun rem(other: kotlin.Double): SquareYard = SquareYard(this.value.rem(other))
+    override operator fun times(other: Double): SquareYard = SquareYard(this.value.times(other))
+    override operator fun div(other: Double): SquareYard = SquareYard(this.value.div(other))
+    override operator fun rem(other: Double): SquareYard = SquareYard(this.value.rem(other))
 
 
     override operator fun unaryMinus(): SquareYard = SquareYard(-value)
@@ -803,27 +802,27 @@ data class SquareYard(override val value: MeasurementUnitValue) : Area {
 
 }
 
-val kotlin.Byte.squareYard
+val Byte.squareYard
     get() = SquareYard(this)
 
 
-val kotlin.Short.squareYard
+val Short.squareYard
     get() = SquareYard(this)
 
 
-val kotlin.Int.squareYard
+val Int.squareYard
     get() = SquareYard(this)
 
 
-val kotlin.Long.squareYard
+val Long.squareYard
     get() = SquareYard(this)
 
 
-val kotlin.Float.squareYard
+val Float.squareYard
     get() = SquareYard(this)
 
 
-val kotlin.Double.squareYard
+val Double.squareYard
     get() = SquareYard(this)
 
 
@@ -843,40 +842,40 @@ data class SquareFoot(override val value: MeasurementUnitValue) : Area {
     operator fun plus(other: SquareFoot): SquareFoot = SquareFoot(this.value + other.value)
     operator fun minus(other: SquareFoot): SquareFoot = SquareFoot(this.value - other.value)
 
-    constructor(value: kotlin.Byte) : this(value.toMeasurementUnitValue())
+    constructor(value: Byte) : this(value.toMeasurementUnitValue())
 
-    override operator fun times(other: kotlin.Byte): SquareFoot = SquareFoot(this.value.times(other))
-    override operator fun div(other: kotlin.Byte): SquareFoot = SquareFoot(this.value.div(other))
-    override operator fun rem(other: kotlin.Byte): SquareFoot = SquareFoot(this.value.rem(other))
+    override operator fun times(other: Byte): SquareFoot = SquareFoot(this.value.times(other))
+    override operator fun div(other: Byte): SquareFoot = SquareFoot(this.value.div(other))
+    override operator fun rem(other: Byte): SquareFoot = SquareFoot(this.value.rem(other))
 
-    constructor(value: kotlin.Short) : this(value.toMeasurementUnitValue())
+    constructor(value: Short) : this(value.toMeasurementUnitValue())
 
-    override operator fun times(other: kotlin.Short): SquareFoot = SquareFoot(this.value.times(other))
-    override operator fun div(other: kotlin.Short): SquareFoot = SquareFoot(this.value.div(other))
-    override operator fun rem(other: kotlin.Short): SquareFoot = SquareFoot(this.value.rem(other))
+    override operator fun times(other: Short): SquareFoot = SquareFoot(this.value.times(other))
+    override operator fun div(other: Short): SquareFoot = SquareFoot(this.value.div(other))
+    override operator fun rem(other: Short): SquareFoot = SquareFoot(this.value.rem(other))
 
-    constructor(value: kotlin.Int) : this(value.toMeasurementUnitValue())
+    constructor(value: Int) : this(value.toMeasurementUnitValue())
 
-    override operator fun times(other: kotlin.Int): SquareFoot = SquareFoot(this.value.times(other))
-    override operator fun div(other: kotlin.Int): SquareFoot = SquareFoot(this.value.div(other))
-    override operator fun rem(other: kotlin.Int): SquareFoot = SquareFoot(this.value.rem(other))
+    override operator fun times(other: Int): SquareFoot = SquareFoot(this.value.times(other))
+    override operator fun div(other: Int): SquareFoot = SquareFoot(this.value.div(other))
+    override operator fun rem(other: Int): SquareFoot = SquareFoot(this.value.rem(other))
 
-    constructor(value: kotlin.Long) : this(value.toMeasurementUnitValue())
+    constructor(value: Long) : this(value.toMeasurementUnitValue())
 
-    override operator fun times(other: kotlin.Long): SquareFoot = SquareFoot(this.value.times(other))
-    override operator fun div(other: kotlin.Long): SquareFoot = SquareFoot(this.value.div(other))
-    override operator fun rem(other: kotlin.Long): SquareFoot = SquareFoot(this.value.rem(other))
+    override operator fun times(other: Long): SquareFoot = SquareFoot(this.value.times(other))
+    override operator fun div(other: Long): SquareFoot = SquareFoot(this.value.div(other))
+    override operator fun rem(other: Long): SquareFoot = SquareFoot(this.value.rem(other))
 
-    constructor(value: kotlin.Float) : this(value.toMeasurementUnitValue())
+    constructor(value: Float) : this(value.toMeasurementUnitValue())
 
-    override operator fun times(other: kotlin.Float): SquareFoot = SquareFoot(this.value.times(other))
-    override operator fun div(other: kotlin.Float): SquareFoot = SquareFoot(this.value.div(other))
-    override operator fun rem(other: kotlin.Float): SquareFoot = SquareFoot(this.value.rem(other))
+    override operator fun times(other: Float): SquareFoot = SquareFoot(this.value.times(other))
+    override operator fun div(other: Float): SquareFoot = SquareFoot(this.value.div(other))
+    override operator fun rem(other: Float): SquareFoot = SquareFoot(this.value.rem(other))
 
 
-    override operator fun times(other: kotlin.Double): SquareFoot = SquareFoot(this.value.times(other))
-    override operator fun div(other: kotlin.Double): SquareFoot = SquareFoot(this.value.div(other))
-    override operator fun rem(other: kotlin.Double): SquareFoot = SquareFoot(this.value.rem(other))
+    override operator fun times(other: Double): SquareFoot = SquareFoot(this.value.times(other))
+    override operator fun div(other: Double): SquareFoot = SquareFoot(this.value.div(other))
+    override operator fun rem(other: Double): SquareFoot = SquareFoot(this.value.rem(other))
 
 
     override operator fun unaryMinus(): SquareFoot = SquareFoot(-value)
@@ -901,27 +900,27 @@ data class SquareFoot(override val value: MeasurementUnitValue) : Area {
 
 }
 
-val kotlin.Byte.squareFoot
+val Byte.squareFoot
     get() = SquareFoot(this)
 
 
-val kotlin.Short.squareFoot
+val Short.squareFoot
     get() = SquareFoot(this)
 
 
-val kotlin.Int.squareFoot
+val Int.squareFoot
     get() = SquareFoot(this)
 
 
-val kotlin.Long.squareFoot
+val Long.squareFoot
     get() = SquareFoot(this)
 
 
-val kotlin.Float.squareFoot
+val Float.squareFoot
     get() = SquareFoot(this)
 
 
-val kotlin.Double.squareFoot
+val Double.squareFoot
     get() = SquareFoot(this)
 
 
@@ -941,40 +940,40 @@ data class SquareInch(override val value: MeasurementUnitValue) : Area {
     operator fun plus(other: SquareInch): SquareInch = SquareInch(this.value + other.value)
     operator fun minus(other: SquareInch): SquareInch = SquareInch(this.value - other.value)
 
-    constructor(value: kotlin.Byte) : this(value.toMeasurementUnitValue())
+    constructor(value: Byte) : this(value.toMeasurementUnitValue())
 
-    override operator fun times(other: kotlin.Byte): SquareInch = SquareInch(this.value.times(other))
-    override operator fun div(other: kotlin.Byte): SquareInch = SquareInch(this.value.div(other))
-    override operator fun rem(other: kotlin.Byte): SquareInch = SquareInch(this.value.rem(other))
+    override operator fun times(other: Byte): SquareInch = SquareInch(this.value.times(other))
+    override operator fun div(other: Byte): SquareInch = SquareInch(this.value.div(other))
+    override operator fun rem(other: Byte): SquareInch = SquareInch(this.value.rem(other))
 
-    constructor(value: kotlin.Short) : this(value.toMeasurementUnitValue())
+    constructor(value: Short) : this(value.toMeasurementUnitValue())
 
-    override operator fun times(other: kotlin.Short): SquareInch = SquareInch(this.value.times(other))
-    override operator fun div(other: kotlin.Short): SquareInch = SquareInch(this.value.div(other))
-    override operator fun rem(other: kotlin.Short): SquareInch = SquareInch(this.value.rem(other))
+    override operator fun times(other: Short): SquareInch = SquareInch(this.value.times(other))
+    override operator fun div(other: Short): SquareInch = SquareInch(this.value.div(other))
+    override operator fun rem(other: Short): SquareInch = SquareInch(this.value.rem(other))
 
-    constructor(value: kotlin.Int) : this(value.toMeasurementUnitValue())
+    constructor(value: Int) : this(value.toMeasurementUnitValue())
 
-    override operator fun times(other: kotlin.Int): SquareInch = SquareInch(this.value.times(other))
-    override operator fun div(other: kotlin.Int): SquareInch = SquareInch(this.value.div(other))
-    override operator fun rem(other: kotlin.Int): SquareInch = SquareInch(this.value.rem(other))
+    override operator fun times(other: Int): SquareInch = SquareInch(this.value.times(other))
+    override operator fun div(other: Int): SquareInch = SquareInch(this.value.div(other))
+    override operator fun rem(other: Int): SquareInch = SquareInch(this.value.rem(other))
 
-    constructor(value: kotlin.Long) : this(value.toMeasurementUnitValue())
+    constructor(value: Long) : this(value.toMeasurementUnitValue())
 
-    override operator fun times(other: kotlin.Long): SquareInch = SquareInch(this.value.times(other))
-    override operator fun div(other: kotlin.Long): SquareInch = SquareInch(this.value.div(other))
-    override operator fun rem(other: kotlin.Long): SquareInch = SquareInch(this.value.rem(other))
+    override operator fun times(other: Long): SquareInch = SquareInch(this.value.times(other))
+    override operator fun div(other: Long): SquareInch = SquareInch(this.value.div(other))
+    override operator fun rem(other: Long): SquareInch = SquareInch(this.value.rem(other))
 
-    constructor(value: kotlin.Float) : this(value.toMeasurementUnitValue())
+    constructor(value: Float) : this(value.toMeasurementUnitValue())
 
-    override operator fun times(other: kotlin.Float): SquareInch = SquareInch(this.value.times(other))
-    override operator fun div(other: kotlin.Float): SquareInch = SquareInch(this.value.div(other))
-    override operator fun rem(other: kotlin.Float): SquareInch = SquareInch(this.value.rem(other))
+    override operator fun times(other: Float): SquareInch = SquareInch(this.value.times(other))
+    override operator fun div(other: Float): SquareInch = SquareInch(this.value.div(other))
+    override operator fun rem(other: Float): SquareInch = SquareInch(this.value.rem(other))
 
 
-    override operator fun times(other: kotlin.Double): SquareInch = SquareInch(this.value.times(other))
-    override operator fun div(other: kotlin.Double): SquareInch = SquareInch(this.value.div(other))
-    override operator fun rem(other: kotlin.Double): SquareInch = SquareInch(this.value.rem(other))
+    override operator fun times(other: Double): SquareInch = SquareInch(this.value.times(other))
+    override operator fun div(other: Double): SquareInch = SquareInch(this.value.div(other))
+    override operator fun rem(other: Double): SquareInch = SquareInch(this.value.rem(other))
 
 
     override operator fun unaryMinus(): SquareInch = SquareInch(-value)
@@ -999,27 +998,27 @@ data class SquareInch(override val value: MeasurementUnitValue) : Area {
 
 }
 
-val kotlin.Byte.squareInch
+val Byte.squareInch
     get() = SquareInch(this)
 
 
-val kotlin.Short.squareInch
+val Short.squareInch
     get() = SquareInch(this)
 
 
-val kotlin.Int.squareInch
+val Int.squareInch
     get() = SquareInch(this)
 
 
-val kotlin.Long.squareInch
+val Long.squareInch
     get() = SquareInch(this)
 
 
-val kotlin.Float.squareInch
+val Float.squareInch
     get() = SquareInch(this)
 
 
-val kotlin.Double.squareInch
+val Double.squareInch
     get() = SquareInch(this)
 
 
@@ -1039,40 +1038,40 @@ data class Dunam(override val value: MeasurementUnitValue) : Area {
     operator fun plus(other: Dunam): Dunam = Dunam(this.value + other.value)
     operator fun minus(other: Dunam): Dunam = Dunam(this.value - other.value)
 
-    constructor(value: kotlin.Byte) : this(value.toMeasurementUnitValue())
+    constructor(value: Byte) : this(value.toMeasurementUnitValue())
 
-    override operator fun times(other: kotlin.Byte): Dunam = Dunam(this.value.times(other))
-    override operator fun div(other: kotlin.Byte): Dunam = Dunam(this.value.div(other))
-    override operator fun rem(other: kotlin.Byte): Dunam = Dunam(this.value.rem(other))
+    override operator fun times(other: Byte): Dunam = Dunam(this.value.times(other))
+    override operator fun div(other: Byte): Dunam = Dunam(this.value.div(other))
+    override operator fun rem(other: Byte): Dunam = Dunam(this.value.rem(other))
 
-    constructor(value: kotlin.Short) : this(value.toMeasurementUnitValue())
+    constructor(value: Short) : this(value.toMeasurementUnitValue())
 
-    override operator fun times(other: kotlin.Short): Dunam = Dunam(this.value.times(other))
-    override operator fun div(other: kotlin.Short): Dunam = Dunam(this.value.div(other))
-    override operator fun rem(other: kotlin.Short): Dunam = Dunam(this.value.rem(other))
+    override operator fun times(other: Short): Dunam = Dunam(this.value.times(other))
+    override operator fun div(other: Short): Dunam = Dunam(this.value.div(other))
+    override operator fun rem(other: Short): Dunam = Dunam(this.value.rem(other))
 
-    constructor(value: kotlin.Int) : this(value.toMeasurementUnitValue())
+    constructor(value: Int) : this(value.toMeasurementUnitValue())
 
-    override operator fun times(other: kotlin.Int): Dunam = Dunam(this.value.times(other))
-    override operator fun div(other: kotlin.Int): Dunam = Dunam(this.value.div(other))
-    override operator fun rem(other: kotlin.Int): Dunam = Dunam(this.value.rem(other))
+    override operator fun times(other: Int): Dunam = Dunam(this.value.times(other))
+    override operator fun div(other: Int): Dunam = Dunam(this.value.div(other))
+    override operator fun rem(other: Int): Dunam = Dunam(this.value.rem(other))
 
-    constructor(value: kotlin.Long) : this(value.toMeasurementUnitValue())
+    constructor(value: Long) : this(value.toMeasurementUnitValue())
 
-    override operator fun times(other: kotlin.Long): Dunam = Dunam(this.value.times(other))
-    override operator fun div(other: kotlin.Long): Dunam = Dunam(this.value.div(other))
-    override operator fun rem(other: kotlin.Long): Dunam = Dunam(this.value.rem(other))
+    override operator fun times(other: Long): Dunam = Dunam(this.value.times(other))
+    override operator fun div(other: Long): Dunam = Dunam(this.value.div(other))
+    override operator fun rem(other: Long): Dunam = Dunam(this.value.rem(other))
 
-    constructor(value: kotlin.Float) : this(value.toMeasurementUnitValue())
+    constructor(value: Float) : this(value.toMeasurementUnitValue())
 
-    override operator fun times(other: kotlin.Float): Dunam = Dunam(this.value.times(other))
-    override operator fun div(other: kotlin.Float): Dunam = Dunam(this.value.div(other))
-    override operator fun rem(other: kotlin.Float): Dunam = Dunam(this.value.rem(other))
+    override operator fun times(other: Float): Dunam = Dunam(this.value.times(other))
+    override operator fun div(other: Float): Dunam = Dunam(this.value.div(other))
+    override operator fun rem(other: Float): Dunam = Dunam(this.value.rem(other))
 
 
-    override operator fun times(other: kotlin.Double): Dunam = Dunam(this.value.times(other))
-    override operator fun div(other: kotlin.Double): Dunam = Dunam(this.value.div(other))
-    override operator fun rem(other: kotlin.Double): Dunam = Dunam(this.value.rem(other))
+    override operator fun times(other: Double): Dunam = Dunam(this.value.times(other))
+    override operator fun div(other: Double): Dunam = Dunam(this.value.div(other))
+    override operator fun rem(other: Double): Dunam = Dunam(this.value.rem(other))
 
 
     override operator fun unaryMinus(): Dunam = Dunam(-value)
@@ -1097,26 +1096,26 @@ data class Dunam(override val value: MeasurementUnitValue) : Area {
 
 }
 
-val kotlin.Byte.dunam
+val Byte.dunam
     get() = Dunam(this)
 
 
-val kotlin.Short.dunam
+val Short.dunam
     get() = Dunam(this)
 
 
-val kotlin.Int.dunam
+val Int.dunam
     get() = Dunam(this)
 
 
-val kotlin.Long.dunam
+val Long.dunam
     get() = Dunam(this)
 
 
-val kotlin.Float.dunam
+val Float.dunam
     get() = Dunam(this)
 
 
-val kotlin.Double.dunam
+val Double.dunam
     get() = Dunam(this)
                             

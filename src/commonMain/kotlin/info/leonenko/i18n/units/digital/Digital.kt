@@ -22,7 +22,6 @@ interface Digital : MeasurementUnit, Comparable<Digital> {
     class Serializer : CustomSerializer()
     open class CustomSerializer(val decoders: Map<String, (MeasurementUnitValue) -> Digital> = emptyMap()) : KSerializer<Digital> {
         private val delegateSerializer = MapSerializer(String.serializer(), MeasurementUnitValue.serializer())
-
         @OptIn(ExperimentalSerializationApi::class)
         override val descriptor: SerialDescriptor = SerialDescriptor("Digital", delegateSerializer.descriptor)
         override fun deserialize(decoder: Decoder): Digital {
@@ -39,7 +38,7 @@ interface Digital : MeasurementUnit, Comparable<Digital> {
                 "megabit" -> Megabit(value)
                 "kilobyte" -> Kilobyte(value)
                 "kilobit" -> Kilobit(value)
-                "byte" -> Byte(value)
+                "byte-unit" -> ByteUnit(value)
                 "bit" -> Bit(value)
                 else -> decoders[key]?.let { it(value) } ?: throw SerializationException("Unknown Digital unit $key")
             }
@@ -87,10 +86,7 @@ interface Digital : MeasurementUnit, Comparable<Digital> {
         return Kilobit.fromBit(toBit())
     }
 
-    fun toByte(): Byte {
-        return Byte.fromBit(toBit())
-    }
-
+    fun toByteUnit(): ByteUnit = ByteUnit(value)
     fun toBit(): Bit
     override fun getBaseUnitValue() = toBit().value
 
@@ -116,34 +112,34 @@ interface Digital : MeasurementUnit, Comparable<Digital> {
     fun abs(): Digital
 
 
-    operator fun times(other: kotlin.Byte): Digital
-    operator fun div(other: kotlin.Byte): Digital
-    operator fun rem(other: kotlin.Byte): Digital
+    operator fun times(other: Byte): Digital
+    operator fun div(other: Byte): Digital
+    operator fun rem(other: Byte): Digital
 
 
-    operator fun times(other: kotlin.Short): Digital
-    operator fun div(other: kotlin.Short): Digital
-    operator fun rem(other: kotlin.Short): Digital
+    operator fun times(other: Short): Digital
+    operator fun div(other: Short): Digital
+    operator fun rem(other: Short): Digital
 
 
-    operator fun times(other: kotlin.Int): Digital
-    operator fun div(other: kotlin.Int): Digital
-    operator fun rem(other: kotlin.Int): Digital
+    operator fun times(other: Int): Digital
+    operator fun div(other: Int): Digital
+    operator fun rem(other: Int): Digital
 
 
-    operator fun times(other: kotlin.Long): Digital
-    operator fun div(other: kotlin.Long): Digital
-    operator fun rem(other: kotlin.Long): Digital
+    operator fun times(other: Long): Digital
+    operator fun div(other: Long): Digital
+    operator fun rem(other: Long): Digital
 
 
-    operator fun times(other: kotlin.Float): Digital
-    operator fun div(other: kotlin.Float): Digital
-    operator fun rem(other: kotlin.Float): Digital
+    operator fun times(other: Float): Digital
+    operator fun div(other: Float): Digital
+    operator fun rem(other: Float): Digital
 
 
-    operator fun times(other: kotlin.Double): Digital
-    operator fun div(other: kotlin.Double): Digital
-    operator fun rem(other: kotlin.Double): Digital
+    operator fun times(other: Double): Digital
+    operator fun div(other: Double): Digital
+    operator fun rem(other: Double): Digital
 
 }
 
@@ -163,40 +159,40 @@ data class Petabyte(override val value: MeasurementUnitValue) : Digital {
     operator fun plus(other: Petabyte): Petabyte = Petabyte(this.value + other.value)
     operator fun minus(other: Petabyte): Petabyte = Petabyte(this.value - other.value)
 
-    constructor(value: kotlin.Byte) : this(value.toMeasurementUnitValue())
+    constructor(value: Byte) : this(value.toMeasurementUnitValue())
 
-    override operator fun times(other: kotlin.Byte): Petabyte = Petabyte(this.value.times(other))
-    override operator fun div(other: kotlin.Byte): Petabyte = Petabyte(this.value.div(other))
-    override operator fun rem(other: kotlin.Byte): Petabyte = Petabyte(this.value.rem(other))
+    override operator fun times(other: Byte): Petabyte = Petabyte(this.value.times(other))
+    override operator fun div(other: Byte): Petabyte = Petabyte(this.value.div(other))
+    override operator fun rem(other: Byte): Petabyte = Petabyte(this.value.rem(other))
 
-    constructor(value: kotlin.Short) : this(value.toMeasurementUnitValue())
+    constructor(value: Short) : this(value.toMeasurementUnitValue())
 
-    override operator fun times(other: kotlin.Short): Petabyte = Petabyte(this.value.times(other))
-    override operator fun div(other: kotlin.Short): Petabyte = Petabyte(this.value.div(other))
-    override operator fun rem(other: kotlin.Short): Petabyte = Petabyte(this.value.rem(other))
+    override operator fun times(other: Short): Petabyte = Petabyte(this.value.times(other))
+    override operator fun div(other: Short): Petabyte = Petabyte(this.value.div(other))
+    override operator fun rem(other: Short): Petabyte = Petabyte(this.value.rem(other))
 
-    constructor(value: kotlin.Int) : this(value.toMeasurementUnitValue())
+    constructor(value: Int) : this(value.toMeasurementUnitValue())
 
-    override operator fun times(other: kotlin.Int): Petabyte = Petabyte(this.value.times(other))
-    override operator fun div(other: kotlin.Int): Petabyte = Petabyte(this.value.div(other))
-    override operator fun rem(other: kotlin.Int): Petabyte = Petabyte(this.value.rem(other))
+    override operator fun times(other: Int): Petabyte = Petabyte(this.value.times(other))
+    override operator fun div(other: Int): Petabyte = Petabyte(this.value.div(other))
+    override operator fun rem(other: Int): Petabyte = Petabyte(this.value.rem(other))
 
-    constructor(value: kotlin.Long) : this(value.toMeasurementUnitValue())
+    constructor(value: Long) : this(value.toMeasurementUnitValue())
 
-    override operator fun times(other: kotlin.Long): Petabyte = Petabyte(this.value.times(other))
-    override operator fun div(other: kotlin.Long): Petabyte = Petabyte(this.value.div(other))
-    override operator fun rem(other: kotlin.Long): Petabyte = Petabyte(this.value.rem(other))
+    override operator fun times(other: Long): Petabyte = Petabyte(this.value.times(other))
+    override operator fun div(other: Long): Petabyte = Petabyte(this.value.div(other))
+    override operator fun rem(other: Long): Petabyte = Petabyte(this.value.rem(other))
 
-    constructor(value: kotlin.Float) : this(value.toMeasurementUnitValue())
+    constructor(value: Float) : this(value.toMeasurementUnitValue())
 
-    override operator fun times(other: kotlin.Float): Petabyte = Petabyte(this.value.times(other))
-    override operator fun div(other: kotlin.Float): Petabyte = Petabyte(this.value.div(other))
-    override operator fun rem(other: kotlin.Float): Petabyte = Petabyte(this.value.rem(other))
+    override operator fun times(other: Float): Petabyte = Petabyte(this.value.times(other))
+    override operator fun div(other: Float): Petabyte = Petabyte(this.value.div(other))
+    override operator fun rem(other: Float): Petabyte = Petabyte(this.value.rem(other))
 
 
-    override operator fun times(other: kotlin.Double): Petabyte = Petabyte(this.value.times(other))
-    override operator fun div(other: kotlin.Double): Petabyte = Petabyte(this.value.div(other))
-    override operator fun rem(other: kotlin.Double): Petabyte = Petabyte(this.value.rem(other))
+    override operator fun times(other: Double): Petabyte = Petabyte(this.value.times(other))
+    override operator fun div(other: Double): Petabyte = Petabyte(this.value.div(other))
+    override operator fun rem(other: Double): Petabyte = Petabyte(this.value.rem(other))
 
 
     override operator fun unaryMinus(): Petabyte = Petabyte(-value)
@@ -221,27 +217,27 @@ data class Petabyte(override val value: MeasurementUnitValue) : Digital {
 
 }
 
-val kotlin.Byte.petabyte
+val Byte.petabyte
     get() = Petabyte(this)
 
 
-val kotlin.Short.petabyte
+val Short.petabyte
     get() = Petabyte(this)
 
 
-val kotlin.Int.petabyte
+val Int.petabyte
     get() = Petabyte(this)
 
 
-val kotlin.Long.petabyte
+val Long.petabyte
     get() = Petabyte(this)
 
 
-val kotlin.Float.petabyte
+val Float.petabyte
     get() = Petabyte(this)
 
 
-val kotlin.Double.petabyte
+val Double.petabyte
     get() = Petabyte(this)
 
 
@@ -261,40 +257,40 @@ data class Terabyte(override val value: MeasurementUnitValue) : Digital {
     operator fun plus(other: Terabyte): Terabyte = Terabyte(this.value + other.value)
     operator fun minus(other: Terabyte): Terabyte = Terabyte(this.value - other.value)
 
-    constructor(value: kotlin.Byte) : this(value.toMeasurementUnitValue())
+    constructor(value: Byte) : this(value.toMeasurementUnitValue())
 
-    override operator fun times(other: kotlin.Byte): Terabyte = Terabyte(this.value.times(other))
-    override operator fun div(other: kotlin.Byte): Terabyte = Terabyte(this.value.div(other))
-    override operator fun rem(other: kotlin.Byte): Terabyte = Terabyte(this.value.rem(other))
+    override operator fun times(other: Byte): Terabyte = Terabyte(this.value.times(other))
+    override operator fun div(other: Byte): Terabyte = Terabyte(this.value.div(other))
+    override operator fun rem(other: Byte): Terabyte = Terabyte(this.value.rem(other))
 
-    constructor(value: kotlin.Short) : this(value.toMeasurementUnitValue())
+    constructor(value: Short) : this(value.toMeasurementUnitValue())
 
-    override operator fun times(other: kotlin.Short): Terabyte = Terabyte(this.value.times(other))
-    override operator fun div(other: kotlin.Short): Terabyte = Terabyte(this.value.div(other))
-    override operator fun rem(other: kotlin.Short): Terabyte = Terabyte(this.value.rem(other))
+    override operator fun times(other: Short): Terabyte = Terabyte(this.value.times(other))
+    override operator fun div(other: Short): Terabyte = Terabyte(this.value.div(other))
+    override operator fun rem(other: Short): Terabyte = Terabyte(this.value.rem(other))
 
-    constructor(value: kotlin.Int) : this(value.toMeasurementUnitValue())
+    constructor(value: Int) : this(value.toMeasurementUnitValue())
 
-    override operator fun times(other: kotlin.Int): Terabyte = Terabyte(this.value.times(other))
-    override operator fun div(other: kotlin.Int): Terabyte = Terabyte(this.value.div(other))
-    override operator fun rem(other: kotlin.Int): Terabyte = Terabyte(this.value.rem(other))
+    override operator fun times(other: Int): Terabyte = Terabyte(this.value.times(other))
+    override operator fun div(other: Int): Terabyte = Terabyte(this.value.div(other))
+    override operator fun rem(other: Int): Terabyte = Terabyte(this.value.rem(other))
 
-    constructor(value: kotlin.Long) : this(value.toMeasurementUnitValue())
+    constructor(value: Long) : this(value.toMeasurementUnitValue())
 
-    override operator fun times(other: kotlin.Long): Terabyte = Terabyte(this.value.times(other))
-    override operator fun div(other: kotlin.Long): Terabyte = Terabyte(this.value.div(other))
-    override operator fun rem(other: kotlin.Long): Terabyte = Terabyte(this.value.rem(other))
+    override operator fun times(other: Long): Terabyte = Terabyte(this.value.times(other))
+    override operator fun div(other: Long): Terabyte = Terabyte(this.value.div(other))
+    override operator fun rem(other: Long): Terabyte = Terabyte(this.value.rem(other))
 
-    constructor(value: kotlin.Float) : this(value.toMeasurementUnitValue())
+    constructor(value: Float) : this(value.toMeasurementUnitValue())
 
-    override operator fun times(other: kotlin.Float): Terabyte = Terabyte(this.value.times(other))
-    override operator fun div(other: kotlin.Float): Terabyte = Terabyte(this.value.div(other))
-    override operator fun rem(other: kotlin.Float): Terabyte = Terabyte(this.value.rem(other))
+    override operator fun times(other: Float): Terabyte = Terabyte(this.value.times(other))
+    override operator fun div(other: Float): Terabyte = Terabyte(this.value.div(other))
+    override operator fun rem(other: Float): Terabyte = Terabyte(this.value.rem(other))
 
 
-    override operator fun times(other: kotlin.Double): Terabyte = Terabyte(this.value.times(other))
-    override operator fun div(other: kotlin.Double): Terabyte = Terabyte(this.value.div(other))
-    override operator fun rem(other: kotlin.Double): Terabyte = Terabyte(this.value.rem(other))
+    override operator fun times(other: Double): Terabyte = Terabyte(this.value.times(other))
+    override operator fun div(other: Double): Terabyte = Terabyte(this.value.div(other))
+    override operator fun rem(other: Double): Terabyte = Terabyte(this.value.rem(other))
 
 
     override operator fun unaryMinus(): Terabyte = Terabyte(-value)
@@ -319,27 +315,27 @@ data class Terabyte(override val value: MeasurementUnitValue) : Digital {
 
 }
 
-val kotlin.Byte.terabyte
+val Byte.terabyte
     get() = Terabyte(this)
 
 
-val kotlin.Short.terabyte
+val Short.terabyte
     get() = Terabyte(this)
 
 
-val kotlin.Int.terabyte
+val Int.terabyte
     get() = Terabyte(this)
 
 
-val kotlin.Long.terabyte
+val Long.terabyte
     get() = Terabyte(this)
 
 
-val kotlin.Float.terabyte
+val Float.terabyte
     get() = Terabyte(this)
 
 
-val kotlin.Double.terabyte
+val Double.terabyte
     get() = Terabyte(this)
 
 
@@ -359,40 +355,40 @@ data class Terabit(override val value: MeasurementUnitValue) : Digital {
     operator fun plus(other: Terabit): Terabit = Terabit(this.value + other.value)
     operator fun minus(other: Terabit): Terabit = Terabit(this.value - other.value)
 
-    constructor(value: kotlin.Byte) : this(value.toMeasurementUnitValue())
+    constructor(value: Byte) : this(value.toMeasurementUnitValue())
 
-    override operator fun times(other: kotlin.Byte): Terabit = Terabit(this.value.times(other))
-    override operator fun div(other: kotlin.Byte): Terabit = Terabit(this.value.div(other))
-    override operator fun rem(other: kotlin.Byte): Terabit = Terabit(this.value.rem(other))
+    override operator fun times(other: Byte): Terabit = Terabit(this.value.times(other))
+    override operator fun div(other: Byte): Terabit = Terabit(this.value.div(other))
+    override operator fun rem(other: Byte): Terabit = Terabit(this.value.rem(other))
 
-    constructor(value: kotlin.Short) : this(value.toMeasurementUnitValue())
+    constructor(value: Short) : this(value.toMeasurementUnitValue())
 
-    override operator fun times(other: kotlin.Short): Terabit = Terabit(this.value.times(other))
-    override operator fun div(other: kotlin.Short): Terabit = Terabit(this.value.div(other))
-    override operator fun rem(other: kotlin.Short): Terabit = Terabit(this.value.rem(other))
+    override operator fun times(other: Short): Terabit = Terabit(this.value.times(other))
+    override operator fun div(other: Short): Terabit = Terabit(this.value.div(other))
+    override operator fun rem(other: Short): Terabit = Terabit(this.value.rem(other))
 
-    constructor(value: kotlin.Int) : this(value.toMeasurementUnitValue())
+    constructor(value: Int) : this(value.toMeasurementUnitValue())
 
-    override operator fun times(other: kotlin.Int): Terabit = Terabit(this.value.times(other))
-    override operator fun div(other: kotlin.Int): Terabit = Terabit(this.value.div(other))
-    override operator fun rem(other: kotlin.Int): Terabit = Terabit(this.value.rem(other))
+    override operator fun times(other: Int): Terabit = Terabit(this.value.times(other))
+    override operator fun div(other: Int): Terabit = Terabit(this.value.div(other))
+    override operator fun rem(other: Int): Terabit = Terabit(this.value.rem(other))
 
-    constructor(value: kotlin.Long) : this(value.toMeasurementUnitValue())
+    constructor(value: Long) : this(value.toMeasurementUnitValue())
 
-    override operator fun times(other: kotlin.Long): Terabit = Terabit(this.value.times(other))
-    override operator fun div(other: kotlin.Long): Terabit = Terabit(this.value.div(other))
-    override operator fun rem(other: kotlin.Long): Terabit = Terabit(this.value.rem(other))
+    override operator fun times(other: Long): Terabit = Terabit(this.value.times(other))
+    override operator fun div(other: Long): Terabit = Terabit(this.value.div(other))
+    override operator fun rem(other: Long): Terabit = Terabit(this.value.rem(other))
 
-    constructor(value: kotlin.Float) : this(value.toMeasurementUnitValue())
+    constructor(value: Float) : this(value.toMeasurementUnitValue())
 
-    override operator fun times(other: kotlin.Float): Terabit = Terabit(this.value.times(other))
-    override operator fun div(other: kotlin.Float): Terabit = Terabit(this.value.div(other))
-    override operator fun rem(other: kotlin.Float): Terabit = Terabit(this.value.rem(other))
+    override operator fun times(other: Float): Terabit = Terabit(this.value.times(other))
+    override operator fun div(other: Float): Terabit = Terabit(this.value.div(other))
+    override operator fun rem(other: Float): Terabit = Terabit(this.value.rem(other))
 
 
-    override operator fun times(other: kotlin.Double): Terabit = Terabit(this.value.times(other))
-    override operator fun div(other: kotlin.Double): Terabit = Terabit(this.value.div(other))
-    override operator fun rem(other: kotlin.Double): Terabit = Terabit(this.value.rem(other))
+    override operator fun times(other: Double): Terabit = Terabit(this.value.times(other))
+    override operator fun div(other: Double): Terabit = Terabit(this.value.div(other))
+    override operator fun rem(other: Double): Terabit = Terabit(this.value.rem(other))
 
 
     override operator fun unaryMinus(): Terabit = Terabit(-value)
@@ -417,27 +413,27 @@ data class Terabit(override val value: MeasurementUnitValue) : Digital {
 
 }
 
-val kotlin.Byte.terabit
+val Byte.terabit
     get() = Terabit(this)
 
 
-val kotlin.Short.terabit
+val Short.terabit
     get() = Terabit(this)
 
 
-val kotlin.Int.terabit
+val Int.terabit
     get() = Terabit(this)
 
 
-val kotlin.Long.terabit
+val Long.terabit
     get() = Terabit(this)
 
 
-val kotlin.Float.terabit
+val Float.terabit
     get() = Terabit(this)
 
 
-val kotlin.Double.terabit
+val Double.terabit
     get() = Terabit(this)
 
 
@@ -457,40 +453,40 @@ data class Gigabyte(override val value: MeasurementUnitValue) : Digital {
     operator fun plus(other: Gigabyte): Gigabyte = Gigabyte(this.value + other.value)
     operator fun minus(other: Gigabyte): Gigabyte = Gigabyte(this.value - other.value)
 
-    constructor(value: kotlin.Byte) : this(value.toMeasurementUnitValue())
+    constructor(value: Byte) : this(value.toMeasurementUnitValue())
 
-    override operator fun times(other: kotlin.Byte): Gigabyte = Gigabyte(this.value.times(other))
-    override operator fun div(other: kotlin.Byte): Gigabyte = Gigabyte(this.value.div(other))
-    override operator fun rem(other: kotlin.Byte): Gigabyte = Gigabyte(this.value.rem(other))
+    override operator fun times(other: Byte): Gigabyte = Gigabyte(this.value.times(other))
+    override operator fun div(other: Byte): Gigabyte = Gigabyte(this.value.div(other))
+    override operator fun rem(other: Byte): Gigabyte = Gigabyte(this.value.rem(other))
 
-    constructor(value: kotlin.Short) : this(value.toMeasurementUnitValue())
+    constructor(value: Short) : this(value.toMeasurementUnitValue())
 
-    override operator fun times(other: kotlin.Short): Gigabyte = Gigabyte(this.value.times(other))
-    override operator fun div(other: kotlin.Short): Gigabyte = Gigabyte(this.value.div(other))
-    override operator fun rem(other: kotlin.Short): Gigabyte = Gigabyte(this.value.rem(other))
+    override operator fun times(other: Short): Gigabyte = Gigabyte(this.value.times(other))
+    override operator fun div(other: Short): Gigabyte = Gigabyte(this.value.div(other))
+    override operator fun rem(other: Short): Gigabyte = Gigabyte(this.value.rem(other))
 
-    constructor(value: kotlin.Int) : this(value.toMeasurementUnitValue())
+    constructor(value: Int) : this(value.toMeasurementUnitValue())
 
-    override operator fun times(other: kotlin.Int): Gigabyte = Gigabyte(this.value.times(other))
-    override operator fun div(other: kotlin.Int): Gigabyte = Gigabyte(this.value.div(other))
-    override operator fun rem(other: kotlin.Int): Gigabyte = Gigabyte(this.value.rem(other))
+    override operator fun times(other: Int): Gigabyte = Gigabyte(this.value.times(other))
+    override operator fun div(other: Int): Gigabyte = Gigabyte(this.value.div(other))
+    override operator fun rem(other: Int): Gigabyte = Gigabyte(this.value.rem(other))
 
-    constructor(value: kotlin.Long) : this(value.toMeasurementUnitValue())
+    constructor(value: Long) : this(value.toMeasurementUnitValue())
 
-    override operator fun times(other: kotlin.Long): Gigabyte = Gigabyte(this.value.times(other))
-    override operator fun div(other: kotlin.Long): Gigabyte = Gigabyte(this.value.div(other))
-    override operator fun rem(other: kotlin.Long): Gigabyte = Gigabyte(this.value.rem(other))
+    override operator fun times(other: Long): Gigabyte = Gigabyte(this.value.times(other))
+    override operator fun div(other: Long): Gigabyte = Gigabyte(this.value.div(other))
+    override operator fun rem(other: Long): Gigabyte = Gigabyte(this.value.rem(other))
 
-    constructor(value: kotlin.Float) : this(value.toMeasurementUnitValue())
+    constructor(value: Float) : this(value.toMeasurementUnitValue())
 
-    override operator fun times(other: kotlin.Float): Gigabyte = Gigabyte(this.value.times(other))
-    override operator fun div(other: kotlin.Float): Gigabyte = Gigabyte(this.value.div(other))
-    override operator fun rem(other: kotlin.Float): Gigabyte = Gigabyte(this.value.rem(other))
+    override operator fun times(other: Float): Gigabyte = Gigabyte(this.value.times(other))
+    override operator fun div(other: Float): Gigabyte = Gigabyte(this.value.div(other))
+    override operator fun rem(other: Float): Gigabyte = Gigabyte(this.value.rem(other))
 
 
-    override operator fun times(other: kotlin.Double): Gigabyte = Gigabyte(this.value.times(other))
-    override operator fun div(other: kotlin.Double): Gigabyte = Gigabyte(this.value.div(other))
-    override operator fun rem(other: kotlin.Double): Gigabyte = Gigabyte(this.value.rem(other))
+    override operator fun times(other: Double): Gigabyte = Gigabyte(this.value.times(other))
+    override operator fun div(other: Double): Gigabyte = Gigabyte(this.value.div(other))
+    override operator fun rem(other: Double): Gigabyte = Gigabyte(this.value.rem(other))
 
 
     override operator fun unaryMinus(): Gigabyte = Gigabyte(-value)
@@ -515,27 +511,27 @@ data class Gigabyte(override val value: MeasurementUnitValue) : Digital {
 
 }
 
-val kotlin.Byte.gigabyte
+val Byte.gigabyte
     get() = Gigabyte(this)
 
 
-val kotlin.Short.gigabyte
+val Short.gigabyte
     get() = Gigabyte(this)
 
 
-val kotlin.Int.gigabyte
+val Int.gigabyte
     get() = Gigabyte(this)
 
 
-val kotlin.Long.gigabyte
+val Long.gigabyte
     get() = Gigabyte(this)
 
 
-val kotlin.Float.gigabyte
+val Float.gigabyte
     get() = Gigabyte(this)
 
 
-val kotlin.Double.gigabyte
+val Double.gigabyte
     get() = Gigabyte(this)
 
 
@@ -555,40 +551,40 @@ data class Gigabit(override val value: MeasurementUnitValue) : Digital {
     operator fun plus(other: Gigabit): Gigabit = Gigabit(this.value + other.value)
     operator fun minus(other: Gigabit): Gigabit = Gigabit(this.value - other.value)
 
-    constructor(value: kotlin.Byte) : this(value.toMeasurementUnitValue())
+    constructor(value: Byte) : this(value.toMeasurementUnitValue())
 
-    override operator fun times(other: kotlin.Byte): Gigabit = Gigabit(this.value.times(other))
-    override operator fun div(other: kotlin.Byte): Gigabit = Gigabit(this.value.div(other))
-    override operator fun rem(other: kotlin.Byte): Gigabit = Gigabit(this.value.rem(other))
+    override operator fun times(other: Byte): Gigabit = Gigabit(this.value.times(other))
+    override operator fun div(other: Byte): Gigabit = Gigabit(this.value.div(other))
+    override operator fun rem(other: Byte): Gigabit = Gigabit(this.value.rem(other))
 
-    constructor(value: kotlin.Short) : this(value.toMeasurementUnitValue())
+    constructor(value: Short) : this(value.toMeasurementUnitValue())
 
-    override operator fun times(other: kotlin.Short): Gigabit = Gigabit(this.value.times(other))
-    override operator fun div(other: kotlin.Short): Gigabit = Gigabit(this.value.div(other))
-    override operator fun rem(other: kotlin.Short): Gigabit = Gigabit(this.value.rem(other))
+    override operator fun times(other: Short): Gigabit = Gigabit(this.value.times(other))
+    override operator fun div(other: Short): Gigabit = Gigabit(this.value.div(other))
+    override operator fun rem(other: Short): Gigabit = Gigabit(this.value.rem(other))
 
-    constructor(value: kotlin.Int) : this(value.toMeasurementUnitValue())
+    constructor(value: Int) : this(value.toMeasurementUnitValue())
 
-    override operator fun times(other: kotlin.Int): Gigabit = Gigabit(this.value.times(other))
-    override operator fun div(other: kotlin.Int): Gigabit = Gigabit(this.value.div(other))
-    override operator fun rem(other: kotlin.Int): Gigabit = Gigabit(this.value.rem(other))
+    override operator fun times(other: Int): Gigabit = Gigabit(this.value.times(other))
+    override operator fun div(other: Int): Gigabit = Gigabit(this.value.div(other))
+    override operator fun rem(other: Int): Gigabit = Gigabit(this.value.rem(other))
 
-    constructor(value: kotlin.Long) : this(value.toMeasurementUnitValue())
+    constructor(value: Long) : this(value.toMeasurementUnitValue())
 
-    override operator fun times(other: kotlin.Long): Gigabit = Gigabit(this.value.times(other))
-    override operator fun div(other: kotlin.Long): Gigabit = Gigabit(this.value.div(other))
-    override operator fun rem(other: kotlin.Long): Gigabit = Gigabit(this.value.rem(other))
+    override operator fun times(other: Long): Gigabit = Gigabit(this.value.times(other))
+    override operator fun div(other: Long): Gigabit = Gigabit(this.value.div(other))
+    override operator fun rem(other: Long): Gigabit = Gigabit(this.value.rem(other))
 
-    constructor(value: kotlin.Float) : this(value.toMeasurementUnitValue())
+    constructor(value: Float) : this(value.toMeasurementUnitValue())
 
-    override operator fun times(other: kotlin.Float): Gigabit = Gigabit(this.value.times(other))
-    override operator fun div(other: kotlin.Float): Gigabit = Gigabit(this.value.div(other))
-    override operator fun rem(other: kotlin.Float): Gigabit = Gigabit(this.value.rem(other))
+    override operator fun times(other: Float): Gigabit = Gigabit(this.value.times(other))
+    override operator fun div(other: Float): Gigabit = Gigabit(this.value.div(other))
+    override operator fun rem(other: Float): Gigabit = Gigabit(this.value.rem(other))
 
 
-    override operator fun times(other: kotlin.Double): Gigabit = Gigabit(this.value.times(other))
-    override operator fun div(other: kotlin.Double): Gigabit = Gigabit(this.value.div(other))
-    override operator fun rem(other: kotlin.Double): Gigabit = Gigabit(this.value.rem(other))
+    override operator fun times(other: Double): Gigabit = Gigabit(this.value.times(other))
+    override operator fun div(other: Double): Gigabit = Gigabit(this.value.div(other))
+    override operator fun rem(other: Double): Gigabit = Gigabit(this.value.rem(other))
 
 
     override operator fun unaryMinus(): Gigabit = Gigabit(-value)
@@ -613,27 +609,27 @@ data class Gigabit(override val value: MeasurementUnitValue) : Digital {
 
 }
 
-val kotlin.Byte.gigabit
+val Byte.gigabit
     get() = Gigabit(this)
 
 
-val kotlin.Short.gigabit
+val Short.gigabit
     get() = Gigabit(this)
 
 
-val kotlin.Int.gigabit
+val Int.gigabit
     get() = Gigabit(this)
 
 
-val kotlin.Long.gigabit
+val Long.gigabit
     get() = Gigabit(this)
 
 
-val kotlin.Float.gigabit
+val Float.gigabit
     get() = Gigabit(this)
 
 
-val kotlin.Double.gigabit
+val Double.gigabit
     get() = Gigabit(this)
 
 
@@ -653,40 +649,40 @@ data class Megabyte(override val value: MeasurementUnitValue) : Digital {
     operator fun plus(other: Megabyte): Megabyte = Megabyte(this.value + other.value)
     operator fun minus(other: Megabyte): Megabyte = Megabyte(this.value - other.value)
 
-    constructor(value: kotlin.Byte) : this(value.toMeasurementUnitValue())
+    constructor(value: Byte) : this(value.toMeasurementUnitValue())
 
-    override operator fun times(other: kotlin.Byte): Megabyte = Megabyte(this.value.times(other))
-    override operator fun div(other: kotlin.Byte): Megabyte = Megabyte(this.value.div(other))
-    override operator fun rem(other: kotlin.Byte): Megabyte = Megabyte(this.value.rem(other))
+    override operator fun times(other: Byte): Megabyte = Megabyte(this.value.times(other))
+    override operator fun div(other: Byte): Megabyte = Megabyte(this.value.div(other))
+    override operator fun rem(other: Byte): Megabyte = Megabyte(this.value.rem(other))
 
-    constructor(value: kotlin.Short) : this(value.toMeasurementUnitValue())
+    constructor(value: Short) : this(value.toMeasurementUnitValue())
 
-    override operator fun times(other: kotlin.Short): Megabyte = Megabyte(this.value.times(other))
-    override operator fun div(other: kotlin.Short): Megabyte = Megabyte(this.value.div(other))
-    override operator fun rem(other: kotlin.Short): Megabyte = Megabyte(this.value.rem(other))
+    override operator fun times(other: Short): Megabyte = Megabyte(this.value.times(other))
+    override operator fun div(other: Short): Megabyte = Megabyte(this.value.div(other))
+    override operator fun rem(other: Short): Megabyte = Megabyte(this.value.rem(other))
 
-    constructor(value: kotlin.Int) : this(value.toMeasurementUnitValue())
+    constructor(value: Int) : this(value.toMeasurementUnitValue())
 
-    override operator fun times(other: kotlin.Int): Megabyte = Megabyte(this.value.times(other))
-    override operator fun div(other: kotlin.Int): Megabyte = Megabyte(this.value.div(other))
-    override operator fun rem(other: kotlin.Int): Megabyte = Megabyte(this.value.rem(other))
+    override operator fun times(other: Int): Megabyte = Megabyte(this.value.times(other))
+    override operator fun div(other: Int): Megabyte = Megabyte(this.value.div(other))
+    override operator fun rem(other: Int): Megabyte = Megabyte(this.value.rem(other))
 
-    constructor(value: kotlin.Long) : this(value.toMeasurementUnitValue())
+    constructor(value: Long) : this(value.toMeasurementUnitValue())
 
-    override operator fun times(other: kotlin.Long): Megabyte = Megabyte(this.value.times(other))
-    override operator fun div(other: kotlin.Long): Megabyte = Megabyte(this.value.div(other))
-    override operator fun rem(other: kotlin.Long): Megabyte = Megabyte(this.value.rem(other))
+    override operator fun times(other: Long): Megabyte = Megabyte(this.value.times(other))
+    override operator fun div(other: Long): Megabyte = Megabyte(this.value.div(other))
+    override operator fun rem(other: Long): Megabyte = Megabyte(this.value.rem(other))
 
-    constructor(value: kotlin.Float) : this(value.toMeasurementUnitValue())
+    constructor(value: Float) : this(value.toMeasurementUnitValue())
 
-    override operator fun times(other: kotlin.Float): Megabyte = Megabyte(this.value.times(other))
-    override operator fun div(other: kotlin.Float): Megabyte = Megabyte(this.value.div(other))
-    override operator fun rem(other: kotlin.Float): Megabyte = Megabyte(this.value.rem(other))
+    override operator fun times(other: Float): Megabyte = Megabyte(this.value.times(other))
+    override operator fun div(other: Float): Megabyte = Megabyte(this.value.div(other))
+    override operator fun rem(other: Float): Megabyte = Megabyte(this.value.rem(other))
 
 
-    override operator fun times(other: kotlin.Double): Megabyte = Megabyte(this.value.times(other))
-    override operator fun div(other: kotlin.Double): Megabyte = Megabyte(this.value.div(other))
-    override operator fun rem(other: kotlin.Double): Megabyte = Megabyte(this.value.rem(other))
+    override operator fun times(other: Double): Megabyte = Megabyte(this.value.times(other))
+    override operator fun div(other: Double): Megabyte = Megabyte(this.value.div(other))
+    override operator fun rem(other: Double): Megabyte = Megabyte(this.value.rem(other))
 
 
     override operator fun unaryMinus(): Megabyte = Megabyte(-value)
@@ -711,27 +707,27 @@ data class Megabyte(override val value: MeasurementUnitValue) : Digital {
 
 }
 
-val kotlin.Byte.megabyte
+val Byte.megabyte
     get() = Megabyte(this)
 
 
-val kotlin.Short.megabyte
+val Short.megabyte
     get() = Megabyte(this)
 
 
-val kotlin.Int.megabyte
+val Int.megabyte
     get() = Megabyte(this)
 
 
-val kotlin.Long.megabyte
+val Long.megabyte
     get() = Megabyte(this)
 
 
-val kotlin.Float.megabyte
+val Float.megabyte
     get() = Megabyte(this)
 
 
-val kotlin.Double.megabyte
+val Double.megabyte
     get() = Megabyte(this)
 
 
@@ -751,40 +747,40 @@ data class Megabit(override val value: MeasurementUnitValue) : Digital {
     operator fun plus(other: Megabit): Megabit = Megabit(this.value + other.value)
     operator fun minus(other: Megabit): Megabit = Megabit(this.value - other.value)
 
-    constructor(value: kotlin.Byte) : this(value.toMeasurementUnitValue())
+    constructor(value: Byte) : this(value.toMeasurementUnitValue())
 
-    override operator fun times(other: kotlin.Byte): Megabit = Megabit(this.value.times(other))
-    override operator fun div(other: kotlin.Byte): Megabit = Megabit(this.value.div(other))
-    override operator fun rem(other: kotlin.Byte): Megabit = Megabit(this.value.rem(other))
+    override operator fun times(other: Byte): Megabit = Megabit(this.value.times(other))
+    override operator fun div(other: Byte): Megabit = Megabit(this.value.div(other))
+    override operator fun rem(other: Byte): Megabit = Megabit(this.value.rem(other))
 
-    constructor(value: kotlin.Short) : this(value.toMeasurementUnitValue())
+    constructor(value: Short) : this(value.toMeasurementUnitValue())
 
-    override operator fun times(other: kotlin.Short): Megabit = Megabit(this.value.times(other))
-    override operator fun div(other: kotlin.Short): Megabit = Megabit(this.value.div(other))
-    override operator fun rem(other: kotlin.Short): Megabit = Megabit(this.value.rem(other))
+    override operator fun times(other: Short): Megabit = Megabit(this.value.times(other))
+    override operator fun div(other: Short): Megabit = Megabit(this.value.div(other))
+    override operator fun rem(other: Short): Megabit = Megabit(this.value.rem(other))
 
-    constructor(value: kotlin.Int) : this(value.toMeasurementUnitValue())
+    constructor(value: Int) : this(value.toMeasurementUnitValue())
 
-    override operator fun times(other: kotlin.Int): Megabit = Megabit(this.value.times(other))
-    override operator fun div(other: kotlin.Int): Megabit = Megabit(this.value.div(other))
-    override operator fun rem(other: kotlin.Int): Megabit = Megabit(this.value.rem(other))
+    override operator fun times(other: Int): Megabit = Megabit(this.value.times(other))
+    override operator fun div(other: Int): Megabit = Megabit(this.value.div(other))
+    override operator fun rem(other: Int): Megabit = Megabit(this.value.rem(other))
 
-    constructor(value: kotlin.Long) : this(value.toMeasurementUnitValue())
+    constructor(value: Long) : this(value.toMeasurementUnitValue())
 
-    override operator fun times(other: kotlin.Long): Megabit = Megabit(this.value.times(other))
-    override operator fun div(other: kotlin.Long): Megabit = Megabit(this.value.div(other))
-    override operator fun rem(other: kotlin.Long): Megabit = Megabit(this.value.rem(other))
+    override operator fun times(other: Long): Megabit = Megabit(this.value.times(other))
+    override operator fun div(other: Long): Megabit = Megabit(this.value.div(other))
+    override operator fun rem(other: Long): Megabit = Megabit(this.value.rem(other))
 
-    constructor(value: kotlin.Float) : this(value.toMeasurementUnitValue())
+    constructor(value: Float) : this(value.toMeasurementUnitValue())
 
-    override operator fun times(other: kotlin.Float): Megabit = Megabit(this.value.times(other))
-    override operator fun div(other: kotlin.Float): Megabit = Megabit(this.value.div(other))
-    override operator fun rem(other: kotlin.Float): Megabit = Megabit(this.value.rem(other))
+    override operator fun times(other: Float): Megabit = Megabit(this.value.times(other))
+    override operator fun div(other: Float): Megabit = Megabit(this.value.div(other))
+    override operator fun rem(other: Float): Megabit = Megabit(this.value.rem(other))
 
 
-    override operator fun times(other: kotlin.Double): Megabit = Megabit(this.value.times(other))
-    override operator fun div(other: kotlin.Double): Megabit = Megabit(this.value.div(other))
-    override operator fun rem(other: kotlin.Double): Megabit = Megabit(this.value.rem(other))
+    override operator fun times(other: Double): Megabit = Megabit(this.value.times(other))
+    override operator fun div(other: Double): Megabit = Megabit(this.value.div(other))
+    override operator fun rem(other: Double): Megabit = Megabit(this.value.rem(other))
 
 
     override operator fun unaryMinus(): Megabit = Megabit(-value)
@@ -809,27 +805,27 @@ data class Megabit(override val value: MeasurementUnitValue) : Digital {
 
 }
 
-val kotlin.Byte.megabit
+val Byte.megabit
     get() = Megabit(this)
 
 
-val kotlin.Short.megabit
+val Short.megabit
     get() = Megabit(this)
 
 
-val kotlin.Int.megabit
+val Int.megabit
     get() = Megabit(this)
 
 
-val kotlin.Long.megabit
+val Long.megabit
     get() = Megabit(this)
 
 
-val kotlin.Float.megabit
+val Float.megabit
     get() = Megabit(this)
 
 
-val kotlin.Double.megabit
+val Double.megabit
     get() = Megabit(this)
 
 
@@ -849,40 +845,40 @@ data class Kilobyte(override val value: MeasurementUnitValue) : Digital {
     operator fun plus(other: Kilobyte): Kilobyte = Kilobyte(this.value + other.value)
     operator fun minus(other: Kilobyte): Kilobyte = Kilobyte(this.value - other.value)
 
-    constructor(value: kotlin.Byte) : this(value.toMeasurementUnitValue())
+    constructor(value: Byte) : this(value.toMeasurementUnitValue())
 
-    override operator fun times(other: kotlin.Byte): Kilobyte = Kilobyte(this.value.times(other))
-    override operator fun div(other: kotlin.Byte): Kilobyte = Kilobyte(this.value.div(other))
-    override operator fun rem(other: kotlin.Byte): Kilobyte = Kilobyte(this.value.rem(other))
+    override operator fun times(other: Byte): Kilobyte = Kilobyte(this.value.times(other))
+    override operator fun div(other: Byte): Kilobyte = Kilobyte(this.value.div(other))
+    override operator fun rem(other: Byte): Kilobyte = Kilobyte(this.value.rem(other))
 
-    constructor(value: kotlin.Short) : this(value.toMeasurementUnitValue())
+    constructor(value: Short) : this(value.toMeasurementUnitValue())
 
-    override operator fun times(other: kotlin.Short): Kilobyte = Kilobyte(this.value.times(other))
-    override operator fun div(other: kotlin.Short): Kilobyte = Kilobyte(this.value.div(other))
-    override operator fun rem(other: kotlin.Short): Kilobyte = Kilobyte(this.value.rem(other))
+    override operator fun times(other: Short): Kilobyte = Kilobyte(this.value.times(other))
+    override operator fun div(other: Short): Kilobyte = Kilobyte(this.value.div(other))
+    override operator fun rem(other: Short): Kilobyte = Kilobyte(this.value.rem(other))
 
-    constructor(value: kotlin.Int) : this(value.toMeasurementUnitValue())
+    constructor(value: Int) : this(value.toMeasurementUnitValue())
 
-    override operator fun times(other: kotlin.Int): Kilobyte = Kilobyte(this.value.times(other))
-    override operator fun div(other: kotlin.Int): Kilobyte = Kilobyte(this.value.div(other))
-    override operator fun rem(other: kotlin.Int): Kilobyte = Kilobyte(this.value.rem(other))
+    override operator fun times(other: Int): Kilobyte = Kilobyte(this.value.times(other))
+    override operator fun div(other: Int): Kilobyte = Kilobyte(this.value.div(other))
+    override operator fun rem(other: Int): Kilobyte = Kilobyte(this.value.rem(other))
 
-    constructor(value: kotlin.Long) : this(value.toMeasurementUnitValue())
+    constructor(value: Long) : this(value.toMeasurementUnitValue())
 
-    override operator fun times(other: kotlin.Long): Kilobyte = Kilobyte(this.value.times(other))
-    override operator fun div(other: kotlin.Long): Kilobyte = Kilobyte(this.value.div(other))
-    override operator fun rem(other: kotlin.Long): Kilobyte = Kilobyte(this.value.rem(other))
+    override operator fun times(other: Long): Kilobyte = Kilobyte(this.value.times(other))
+    override operator fun div(other: Long): Kilobyte = Kilobyte(this.value.div(other))
+    override operator fun rem(other: Long): Kilobyte = Kilobyte(this.value.rem(other))
 
-    constructor(value: kotlin.Float) : this(value.toMeasurementUnitValue())
+    constructor(value: Float) : this(value.toMeasurementUnitValue())
 
-    override operator fun times(other: kotlin.Float): Kilobyte = Kilobyte(this.value.times(other))
-    override operator fun div(other: kotlin.Float): Kilobyte = Kilobyte(this.value.div(other))
-    override operator fun rem(other: kotlin.Float): Kilobyte = Kilobyte(this.value.rem(other))
+    override operator fun times(other: Float): Kilobyte = Kilobyte(this.value.times(other))
+    override operator fun div(other: Float): Kilobyte = Kilobyte(this.value.div(other))
+    override operator fun rem(other: Float): Kilobyte = Kilobyte(this.value.rem(other))
 
 
-    override operator fun times(other: kotlin.Double): Kilobyte = Kilobyte(this.value.times(other))
-    override operator fun div(other: kotlin.Double): Kilobyte = Kilobyte(this.value.div(other))
-    override operator fun rem(other: kotlin.Double): Kilobyte = Kilobyte(this.value.rem(other))
+    override operator fun times(other: Double): Kilobyte = Kilobyte(this.value.times(other))
+    override operator fun div(other: Double): Kilobyte = Kilobyte(this.value.div(other))
+    override operator fun rem(other: Double): Kilobyte = Kilobyte(this.value.rem(other))
 
 
     override operator fun unaryMinus(): Kilobyte = Kilobyte(-value)
@@ -907,27 +903,27 @@ data class Kilobyte(override val value: MeasurementUnitValue) : Digital {
 
 }
 
-val kotlin.Byte.kilobyte
+val Byte.kilobyte
     get() = Kilobyte(this)
 
 
-val kotlin.Short.kilobyte
+val Short.kilobyte
     get() = Kilobyte(this)
 
 
-val kotlin.Int.kilobyte
+val Int.kilobyte
     get() = Kilobyte(this)
 
 
-val kotlin.Long.kilobyte
+val Long.kilobyte
     get() = Kilobyte(this)
 
 
-val kotlin.Float.kilobyte
+val Float.kilobyte
     get() = Kilobyte(this)
 
 
-val kotlin.Double.kilobyte
+val Double.kilobyte
     get() = Kilobyte(this)
 
 
@@ -947,40 +943,40 @@ data class Kilobit(override val value: MeasurementUnitValue) : Digital {
     operator fun plus(other: Kilobit): Kilobit = Kilobit(this.value + other.value)
     operator fun minus(other: Kilobit): Kilobit = Kilobit(this.value - other.value)
 
-    constructor(value: kotlin.Byte) : this(value.toMeasurementUnitValue())
+    constructor(value: Byte) : this(value.toMeasurementUnitValue())
 
-    override operator fun times(other: kotlin.Byte): Kilobit = Kilobit(this.value.times(other))
-    override operator fun div(other: kotlin.Byte): Kilobit = Kilobit(this.value.div(other))
-    override operator fun rem(other: kotlin.Byte): Kilobit = Kilobit(this.value.rem(other))
+    override operator fun times(other: Byte): Kilobit = Kilobit(this.value.times(other))
+    override operator fun div(other: Byte): Kilobit = Kilobit(this.value.div(other))
+    override operator fun rem(other: Byte): Kilobit = Kilobit(this.value.rem(other))
 
-    constructor(value: kotlin.Short) : this(value.toMeasurementUnitValue())
+    constructor(value: Short) : this(value.toMeasurementUnitValue())
 
-    override operator fun times(other: kotlin.Short): Kilobit = Kilobit(this.value.times(other))
-    override operator fun div(other: kotlin.Short): Kilobit = Kilobit(this.value.div(other))
-    override operator fun rem(other: kotlin.Short): Kilobit = Kilobit(this.value.rem(other))
+    override operator fun times(other: Short): Kilobit = Kilobit(this.value.times(other))
+    override operator fun div(other: Short): Kilobit = Kilobit(this.value.div(other))
+    override operator fun rem(other: Short): Kilobit = Kilobit(this.value.rem(other))
 
-    constructor(value: kotlin.Int) : this(value.toMeasurementUnitValue())
+    constructor(value: Int) : this(value.toMeasurementUnitValue())
 
-    override operator fun times(other: kotlin.Int): Kilobit = Kilobit(this.value.times(other))
-    override operator fun div(other: kotlin.Int): Kilobit = Kilobit(this.value.div(other))
-    override operator fun rem(other: kotlin.Int): Kilobit = Kilobit(this.value.rem(other))
+    override operator fun times(other: Int): Kilobit = Kilobit(this.value.times(other))
+    override operator fun div(other: Int): Kilobit = Kilobit(this.value.div(other))
+    override operator fun rem(other: Int): Kilobit = Kilobit(this.value.rem(other))
 
-    constructor(value: kotlin.Long) : this(value.toMeasurementUnitValue())
+    constructor(value: Long) : this(value.toMeasurementUnitValue())
 
-    override operator fun times(other: kotlin.Long): Kilobit = Kilobit(this.value.times(other))
-    override operator fun div(other: kotlin.Long): Kilobit = Kilobit(this.value.div(other))
-    override operator fun rem(other: kotlin.Long): Kilobit = Kilobit(this.value.rem(other))
+    override operator fun times(other: Long): Kilobit = Kilobit(this.value.times(other))
+    override operator fun div(other: Long): Kilobit = Kilobit(this.value.div(other))
+    override operator fun rem(other: Long): Kilobit = Kilobit(this.value.rem(other))
 
-    constructor(value: kotlin.Float) : this(value.toMeasurementUnitValue())
+    constructor(value: Float) : this(value.toMeasurementUnitValue())
 
-    override operator fun times(other: kotlin.Float): Kilobit = Kilobit(this.value.times(other))
-    override operator fun div(other: kotlin.Float): Kilobit = Kilobit(this.value.div(other))
-    override operator fun rem(other: kotlin.Float): Kilobit = Kilobit(this.value.rem(other))
+    override operator fun times(other: Float): Kilobit = Kilobit(this.value.times(other))
+    override operator fun div(other: Float): Kilobit = Kilobit(this.value.div(other))
+    override operator fun rem(other: Float): Kilobit = Kilobit(this.value.rem(other))
 
 
-    override operator fun times(other: kotlin.Double): Kilobit = Kilobit(this.value.times(other))
-    override operator fun div(other: kotlin.Double): Kilobit = Kilobit(this.value.div(other))
-    override operator fun rem(other: kotlin.Double): Kilobit = Kilobit(this.value.rem(other))
+    override operator fun times(other: Double): Kilobit = Kilobit(this.value.times(other))
+    override operator fun div(other: Double): Kilobit = Kilobit(this.value.div(other))
+    override operator fun rem(other: Double): Kilobit = Kilobit(this.value.rem(other))
 
 
     override operator fun unaryMinus(): Kilobit = Kilobit(-value)
@@ -1005,95 +1001,95 @@ data class Kilobit(override val value: MeasurementUnitValue) : Digital {
 
 }
 
-val kotlin.Byte.kilobit
+val Byte.kilobit
     get() = Kilobit(this)
 
 
-val kotlin.Short.kilobit
+val Short.kilobit
     get() = Kilobit(this)
 
 
-val kotlin.Int.kilobit
+val Int.kilobit
     get() = Kilobit(this)
 
 
-val kotlin.Long.kilobit
+val Long.kilobit
     get() = Kilobit(this)
 
 
-val kotlin.Float.kilobit
+val Float.kilobit
     get() = Kilobit(this)
 
 
-val kotlin.Double.kilobit
+val Double.kilobit
     get() = Kilobit(this)
 
 
-data class Byte(override val value: MeasurementUnitValue) : Digital {
+data class ByteUnit(override val value: MeasurementUnitValue) : Digital {
 
-    override val unitName: String = "byte"
+    override val unitName: String = "byte-unit"
 
-    override fun formatters(language: MeasurementUnitLanguage) = language.digitalByte
-    override fun toBit() = Bit(value * (8) + 0)
+    override fun formatters(language: MeasurementUnitLanguage) = language.digitalByteUnit
+    override fun toBit(): Bit = TODO("Conversion of ByteUnit to Bit is not supported")
     override fun toString(): String = toDebugString()
 
     companion object {
-        val ZERO = Byte(0.0)
-        fun fromBit(value: Bit) = Byte((value.value - 0) / (8))
+        val ZERO = ByteUnit(0.0)
+        fun fromBit(value: Bit): ByteUnit = TODO("Conversion of Bit to ByteUnit is not supported")
     }
 
-    operator fun plus(other: Byte): Byte = Byte(this.value + other.value)
-    operator fun minus(other: Byte): Byte = Byte(this.value - other.value)
+    operator fun plus(other: ByteUnit): ByteUnit = ByteUnit(this.value + other.value)
+    operator fun minus(other: ByteUnit): ByteUnit = ByteUnit(this.value - other.value)
 
-    constructor(value: kotlin.Byte) : this(value.toMeasurementUnitValue())
+    constructor(value: Byte) : this(value.toMeasurementUnitValue())
 
-    override operator fun times(other: kotlin.Byte): Byte = Byte(this.value.times(other))
-    override operator fun div(other: kotlin.Byte): Byte = Byte(this.value.div(other))
-    override operator fun rem(other: kotlin.Byte): Byte = Byte(this.value.rem(other))
+    override operator fun times(other: Byte): ByteUnit = ByteUnit(this.value.times(other))
+    override operator fun div(other: Byte): ByteUnit = ByteUnit(this.value.div(other))
+    override operator fun rem(other: Byte): ByteUnit = ByteUnit(this.value.rem(other))
 
-    constructor(value: kotlin.Short) : this(value.toMeasurementUnitValue())
+    constructor(value: Short) : this(value.toMeasurementUnitValue())
 
-    override operator fun times(other: kotlin.Short): Byte = Byte(this.value.times(other))
-    override operator fun div(other: kotlin.Short): Byte = Byte(this.value.div(other))
-    override operator fun rem(other: kotlin.Short): Byte = Byte(this.value.rem(other))
+    override operator fun times(other: Short): ByteUnit = ByteUnit(this.value.times(other))
+    override operator fun div(other: Short): ByteUnit = ByteUnit(this.value.div(other))
+    override operator fun rem(other: Short): ByteUnit = ByteUnit(this.value.rem(other))
 
-    constructor(value: kotlin.Int) : this(value.toMeasurementUnitValue())
+    constructor(value: Int) : this(value.toMeasurementUnitValue())
 
-    override operator fun times(other: kotlin.Int): Byte = Byte(this.value.times(other))
-    override operator fun div(other: kotlin.Int): Byte = Byte(this.value.div(other))
-    override operator fun rem(other: kotlin.Int): Byte = Byte(this.value.rem(other))
+    override operator fun times(other: Int): ByteUnit = ByteUnit(this.value.times(other))
+    override operator fun div(other: Int): ByteUnit = ByteUnit(this.value.div(other))
+    override operator fun rem(other: Int): ByteUnit = ByteUnit(this.value.rem(other))
 
-    constructor(value: kotlin.Long) : this(value.toMeasurementUnitValue())
+    constructor(value: Long) : this(value.toMeasurementUnitValue())
 
-    override operator fun times(other: kotlin.Long): Byte = Byte(this.value.times(other))
-    override operator fun div(other: kotlin.Long): Byte = Byte(this.value.div(other))
-    override operator fun rem(other: kotlin.Long): Byte = Byte(this.value.rem(other))
+    override operator fun times(other: Long): ByteUnit = ByteUnit(this.value.times(other))
+    override operator fun div(other: Long): ByteUnit = ByteUnit(this.value.div(other))
+    override operator fun rem(other: Long): ByteUnit = ByteUnit(this.value.rem(other))
 
-    constructor(value: kotlin.Float) : this(value.toMeasurementUnitValue())
+    constructor(value: Float) : this(value.toMeasurementUnitValue())
 
-    override operator fun times(other: kotlin.Float): Byte = Byte(this.value.times(other))
-    override operator fun div(other: kotlin.Float): Byte = Byte(this.value.div(other))
-    override operator fun rem(other: kotlin.Float): Byte = Byte(this.value.rem(other))
-
-
-    override operator fun times(other: kotlin.Double): Byte = Byte(this.value.times(other))
-    override operator fun div(other: kotlin.Double): Byte = Byte(this.value.div(other))
-    override operator fun rem(other: kotlin.Double): Byte = Byte(this.value.rem(other))
+    override operator fun times(other: Float): ByteUnit = ByteUnit(this.value.times(other))
+    override operator fun div(other: Float): ByteUnit = ByteUnit(this.value.div(other))
+    override operator fun rem(other: Float): ByteUnit = ByteUnit(this.value.rem(other))
 
 
-    override operator fun unaryMinus(): Byte = Byte(-value)
-    override operator fun unaryPlus(): Byte = this
-    override operator fun inc(): Byte = Byte(this.value + 1)
-    override operator fun dec(): Byte = Byte(this.value - 1)
+    override operator fun times(other: Double): ByteUnit = ByteUnit(this.value.times(other))
+    override operator fun div(other: Double): ByteUnit = ByteUnit(this.value.div(other))
+    override operator fun rem(other: Double): ByteUnit = ByteUnit(this.value.rem(other))
 
-    override fun round(): Byte = Byte(round(this.value))
-    override fun truncate(): Byte = Byte(truncate(this.value))
-    override fun floor(): Byte = Byte(floor(this.value))
-    override fun ceil(): Byte = Byte(ceil(this.value))
-    override fun abs(): Byte = Byte(abs(this.value))
+
+    override operator fun unaryMinus(): ByteUnit = ByteUnit(-value)
+    override operator fun unaryPlus(): ByteUnit = this
+    override operator fun inc(): ByteUnit = ByteUnit(this.value + 1)
+    override operator fun dec(): ByteUnit = ByteUnit(this.value - 1)
+
+    override fun round(): ByteUnit = ByteUnit(round(this.value))
+    override fun truncate(): ByteUnit = ByteUnit(truncate(this.value))
+    override fun floor(): ByteUnit = ByteUnit(floor(this.value))
+    override fun ceil(): ByteUnit = ByteUnit(ceil(this.value))
+    override fun abs(): ByteUnit = ByteUnit(abs(this.value))
 
     override fun equals(other: Any?): Boolean = when (other) {
-        is Byte -> this.value == other.value
+        is ByteUnit -> this.value == other.value
         is Digital -> this.toBit().value == other.toBit().value
         else -> false
     }
@@ -1103,28 +1099,28 @@ data class Byte(override val value: MeasurementUnitValue) : Digital {
 
 }
 
-val kotlin.Byte.byte
-    get() = Byte(this)
+val Byte.byteUnit
+    get() = ByteUnit(this)
 
 
-val kotlin.Short.byte
-    get() = Byte(this)
+val Short.byteUnit
+    get() = ByteUnit(this)
 
 
-val kotlin.Int.byte
-    get() = Byte(this)
+val Int.byteUnit
+    get() = ByteUnit(this)
 
 
-val kotlin.Long.byte
-    get() = Byte(this)
+val Long.byteUnit
+    get() = ByteUnit(this)
 
 
-val kotlin.Float.byte
-    get() = Byte(this)
+val Float.byteUnit
+    get() = ByteUnit(this)
 
 
-val kotlin.Double.byte
-    get() = Byte(this)
+val Double.byteUnit
+    get() = ByteUnit(this)
 
 
 data class Bit(override val value: MeasurementUnitValue) : Digital {
@@ -1143,40 +1139,40 @@ data class Bit(override val value: MeasurementUnitValue) : Digital {
     operator fun plus(other: Bit): Bit = Bit(this.value + other.value)
     operator fun minus(other: Bit): Bit = Bit(this.value - other.value)
 
-    constructor(value: kotlin.Byte) : this(value.toMeasurementUnitValue())
+    constructor(value: Byte) : this(value.toMeasurementUnitValue())
 
-    override operator fun times(other: kotlin.Byte): Bit = Bit(this.value.times(other))
-    override operator fun div(other: kotlin.Byte): Bit = Bit(this.value.div(other))
-    override operator fun rem(other: kotlin.Byte): Bit = Bit(this.value.rem(other))
+    override operator fun times(other: Byte): Bit = Bit(this.value.times(other))
+    override operator fun div(other: Byte): Bit = Bit(this.value.div(other))
+    override operator fun rem(other: Byte): Bit = Bit(this.value.rem(other))
 
-    constructor(value: kotlin.Short) : this(value.toMeasurementUnitValue())
+    constructor(value: Short) : this(value.toMeasurementUnitValue())
 
-    override operator fun times(other: kotlin.Short): Bit = Bit(this.value.times(other))
-    override operator fun div(other: kotlin.Short): Bit = Bit(this.value.div(other))
-    override operator fun rem(other: kotlin.Short): Bit = Bit(this.value.rem(other))
+    override operator fun times(other: Short): Bit = Bit(this.value.times(other))
+    override operator fun div(other: Short): Bit = Bit(this.value.div(other))
+    override operator fun rem(other: Short): Bit = Bit(this.value.rem(other))
 
-    constructor(value: kotlin.Int) : this(value.toMeasurementUnitValue())
+    constructor(value: Int) : this(value.toMeasurementUnitValue())
 
-    override operator fun times(other: kotlin.Int): Bit = Bit(this.value.times(other))
-    override operator fun div(other: kotlin.Int): Bit = Bit(this.value.div(other))
-    override operator fun rem(other: kotlin.Int): Bit = Bit(this.value.rem(other))
+    override operator fun times(other: Int): Bit = Bit(this.value.times(other))
+    override operator fun div(other: Int): Bit = Bit(this.value.div(other))
+    override operator fun rem(other: Int): Bit = Bit(this.value.rem(other))
 
-    constructor(value: kotlin.Long) : this(value.toMeasurementUnitValue())
+    constructor(value: Long) : this(value.toMeasurementUnitValue())
 
-    override operator fun times(other: kotlin.Long): Bit = Bit(this.value.times(other))
-    override operator fun div(other: kotlin.Long): Bit = Bit(this.value.div(other))
-    override operator fun rem(other: kotlin.Long): Bit = Bit(this.value.rem(other))
+    override operator fun times(other: Long): Bit = Bit(this.value.times(other))
+    override operator fun div(other: Long): Bit = Bit(this.value.div(other))
+    override operator fun rem(other: Long): Bit = Bit(this.value.rem(other))
 
-    constructor(value: kotlin.Float) : this(value.toMeasurementUnitValue())
+    constructor(value: Float) : this(value.toMeasurementUnitValue())
 
-    override operator fun times(other: kotlin.Float): Bit = Bit(this.value.times(other))
-    override operator fun div(other: kotlin.Float): Bit = Bit(this.value.div(other))
-    override operator fun rem(other: kotlin.Float): Bit = Bit(this.value.rem(other))
+    override operator fun times(other: Float): Bit = Bit(this.value.times(other))
+    override operator fun div(other: Float): Bit = Bit(this.value.div(other))
+    override operator fun rem(other: Float): Bit = Bit(this.value.rem(other))
 
 
-    override operator fun times(other: kotlin.Double): Bit = Bit(this.value.times(other))
-    override operator fun div(other: kotlin.Double): Bit = Bit(this.value.div(other))
-    override operator fun rem(other: kotlin.Double): Bit = Bit(this.value.rem(other))
+    override operator fun times(other: Double): Bit = Bit(this.value.times(other))
+    override operator fun div(other: Double): Bit = Bit(this.value.div(other))
+    override operator fun rem(other: Double): Bit = Bit(this.value.rem(other))
 
 
     override operator fun unaryMinus(): Bit = Bit(-value)
@@ -1201,26 +1197,26 @@ data class Bit(override val value: MeasurementUnitValue) : Digital {
 
 }
 
-val kotlin.Byte.bit
+val Byte.bit
     get() = Bit(this)
 
 
-val kotlin.Short.bit
+val Short.bit
     get() = Bit(this)
 
 
-val kotlin.Int.bit
+val Int.bit
     get() = Bit(this)
 
 
-val kotlin.Long.bit
+val Long.bit
     get() = Bit(this)
 
 
-val kotlin.Float.bit
+val Float.bit
     get() = Bit(this)
 
 
-val kotlin.Double.bit
+val Double.bit
     get() = Bit(this)
                             

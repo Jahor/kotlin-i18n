@@ -22,7 +22,6 @@ interface LuminousIntensity : MeasurementUnit, Comparable<LuminousIntensity> {
     class Serializer : CustomSerializer()
     open class CustomSerializer(val decoders: Map<String, (MeasurementUnitValue) -> LuminousIntensity> = emptyMap()) : KSerializer<LuminousIntensity> {
         private val delegateSerializer = MapSerializer(String.serializer(), MeasurementUnitValue.serializer())
-
         @OptIn(ExperimentalSerializationApi::class)
         override val descriptor: SerialDescriptor = SerialDescriptor("LuminousIntensity", delegateSerializer.descriptor)
         override fun deserialize(decoder: Decoder): LuminousIntensity {
@@ -66,34 +65,34 @@ interface LuminousIntensity : MeasurementUnit, Comparable<LuminousIntensity> {
     fun abs(): LuminousIntensity
 
 
-    operator fun times(other: kotlin.Byte): LuminousIntensity
-    operator fun div(other: kotlin.Byte): LuminousIntensity
-    operator fun rem(other: kotlin.Byte): LuminousIntensity
+    operator fun times(other: Byte): LuminousIntensity
+    operator fun div(other: Byte): LuminousIntensity
+    operator fun rem(other: Byte): LuminousIntensity
 
 
-    operator fun times(other: kotlin.Short): LuminousIntensity
-    operator fun div(other: kotlin.Short): LuminousIntensity
-    operator fun rem(other: kotlin.Short): LuminousIntensity
+    operator fun times(other: Short): LuminousIntensity
+    operator fun div(other: Short): LuminousIntensity
+    operator fun rem(other: Short): LuminousIntensity
 
 
-    operator fun times(other: kotlin.Int): LuminousIntensity
-    operator fun div(other: kotlin.Int): LuminousIntensity
-    operator fun rem(other: kotlin.Int): LuminousIntensity
+    operator fun times(other: Int): LuminousIntensity
+    operator fun div(other: Int): LuminousIntensity
+    operator fun rem(other: Int): LuminousIntensity
 
 
-    operator fun times(other: kotlin.Long): LuminousIntensity
-    operator fun div(other: kotlin.Long): LuminousIntensity
-    operator fun rem(other: kotlin.Long): LuminousIntensity
+    operator fun times(other: Long): LuminousIntensity
+    operator fun div(other: Long): LuminousIntensity
+    operator fun rem(other: Long): LuminousIntensity
 
 
-    operator fun times(other: kotlin.Float): LuminousIntensity
-    operator fun div(other: kotlin.Float): LuminousIntensity
-    operator fun rem(other: kotlin.Float): LuminousIntensity
+    operator fun times(other: Float): LuminousIntensity
+    operator fun div(other: Float): LuminousIntensity
+    operator fun rem(other: Float): LuminousIntensity
 
 
-    operator fun times(other: kotlin.Double): LuminousIntensity
-    operator fun div(other: kotlin.Double): LuminousIntensity
-    operator fun rem(other: kotlin.Double): LuminousIntensity
+    operator fun times(other: Double): LuminousIntensity
+    operator fun div(other: Double): LuminousIntensity
+    operator fun rem(other: Double): LuminousIntensity
 
 }
 
@@ -113,40 +112,40 @@ data class Candela(override val value: MeasurementUnitValue) : LuminousIntensity
     operator fun plus(other: Candela): Candela = Candela(this.value + other.value)
     operator fun minus(other: Candela): Candela = Candela(this.value - other.value)
 
-    constructor(value: kotlin.Byte) : this(value.toMeasurementUnitValue())
+    constructor(value: Byte) : this(value.toMeasurementUnitValue())
 
-    override operator fun times(other: kotlin.Byte): Candela = Candela(this.value.times(other))
-    override operator fun div(other: kotlin.Byte): Candela = Candela(this.value.div(other))
-    override operator fun rem(other: kotlin.Byte): Candela = Candela(this.value.rem(other))
+    override operator fun times(other: Byte): Candela = Candela(this.value.times(other))
+    override operator fun div(other: Byte): Candela = Candela(this.value.div(other))
+    override operator fun rem(other: Byte): Candela = Candela(this.value.rem(other))
 
-    constructor(value: kotlin.Short) : this(value.toMeasurementUnitValue())
+    constructor(value: Short) : this(value.toMeasurementUnitValue())
 
-    override operator fun times(other: kotlin.Short): Candela = Candela(this.value.times(other))
-    override operator fun div(other: kotlin.Short): Candela = Candela(this.value.div(other))
-    override operator fun rem(other: kotlin.Short): Candela = Candela(this.value.rem(other))
+    override operator fun times(other: Short): Candela = Candela(this.value.times(other))
+    override operator fun div(other: Short): Candela = Candela(this.value.div(other))
+    override operator fun rem(other: Short): Candela = Candela(this.value.rem(other))
 
-    constructor(value: kotlin.Int) : this(value.toMeasurementUnitValue())
+    constructor(value: Int) : this(value.toMeasurementUnitValue())
 
-    override operator fun times(other: kotlin.Int): Candela = Candela(this.value.times(other))
-    override operator fun div(other: kotlin.Int): Candela = Candela(this.value.div(other))
-    override operator fun rem(other: kotlin.Int): Candela = Candela(this.value.rem(other))
+    override operator fun times(other: Int): Candela = Candela(this.value.times(other))
+    override operator fun div(other: Int): Candela = Candela(this.value.div(other))
+    override operator fun rem(other: Int): Candela = Candela(this.value.rem(other))
 
-    constructor(value: kotlin.Long) : this(value.toMeasurementUnitValue())
+    constructor(value: Long) : this(value.toMeasurementUnitValue())
 
-    override operator fun times(other: kotlin.Long): Candela = Candela(this.value.times(other))
-    override operator fun div(other: kotlin.Long): Candela = Candela(this.value.div(other))
-    override operator fun rem(other: kotlin.Long): Candela = Candela(this.value.rem(other))
+    override operator fun times(other: Long): Candela = Candela(this.value.times(other))
+    override operator fun div(other: Long): Candela = Candela(this.value.div(other))
+    override operator fun rem(other: Long): Candela = Candela(this.value.rem(other))
 
-    constructor(value: kotlin.Float) : this(value.toMeasurementUnitValue())
+    constructor(value: Float) : this(value.toMeasurementUnitValue())
 
-    override operator fun times(other: kotlin.Float): Candela = Candela(this.value.times(other))
-    override operator fun div(other: kotlin.Float): Candela = Candela(this.value.div(other))
-    override operator fun rem(other: kotlin.Float): Candela = Candela(this.value.rem(other))
+    override operator fun times(other: Float): Candela = Candela(this.value.times(other))
+    override operator fun div(other: Float): Candela = Candela(this.value.div(other))
+    override operator fun rem(other: Float): Candela = Candela(this.value.rem(other))
 
 
-    override operator fun times(other: kotlin.Double): Candela = Candela(this.value.times(other))
-    override operator fun div(other: kotlin.Double): Candela = Candela(this.value.div(other))
-    override operator fun rem(other: kotlin.Double): Candela = Candela(this.value.rem(other))
+    override operator fun times(other: Double): Candela = Candela(this.value.times(other))
+    override operator fun div(other: Double): Candela = Candela(this.value.div(other))
+    override operator fun rem(other: Double): Candela = Candela(this.value.rem(other))
 
 
     override operator fun unaryMinus(): Candela = Candela(-value)
@@ -171,26 +170,26 @@ data class Candela(override val value: MeasurementUnitValue) : LuminousIntensity
 
 }
 
-val kotlin.Byte.candela
+val Byte.candela
     get() = Candela(this)
 
 
-val kotlin.Short.candela
+val Short.candela
     get() = Candela(this)
 
 
-val kotlin.Int.candela
+val Int.candela
     get() = Candela(this)
 
 
-val kotlin.Long.candela
+val Long.candela
     get() = Candela(this)
 
 
-val kotlin.Float.candela
+val Float.candela
     get() = Candela(this)
 
 
-val kotlin.Double.candela
+val Double.candela
     get() = Candela(this)
                             

@@ -6,7 +6,6 @@ import info.leonenko.i18n.rbnf.RBNFHr
 val Language.Companion.hr
     get() = languageHr
 private val languageHr = LanguageHr()
-
 open class LanguageHr internal constructor() : Language {
     override val code: String = "hr"
     override val language: String = "hr"
@@ -761,10 +760,32 @@ open class LanguageHr internal constructor() : Language {
         override val concentrationMilligramOfglucosePerDeciliter
             get() = MultiLengthGenderedPattern(
                 long = GenderedPattern(
+                    gender = Gender.Inanimate,
                     cases = Cases(
                         nominative = PluralPattern(
                             Plurals(
                                 one = "{0} miligram po decilitru",
+                                few = "{0} miligrama po decilitru",
+                                other = "{0} miligrama po decilitru",
+                            )
+                        ),
+                        accusative = PluralPattern(
+                            Plurals(
+                                one = "{0} miligram po decilitru",
+                                few = "{0} miligrama po decilitru",
+                                other = "{0} miligrama po decilitru",
+                            )
+                        ),
+                        genitive = PluralPattern(
+                            Plurals(
+                                one = "{0} mligrama po decilitru",
+                                few = "{0} miligrama po decilitru",
+                                other = "{0} miligrama po decilitru",
+                            )
+                        ),
+                        instrumental = PluralPattern(
+                            Plurals(
+                                one = "{0} miligramom po decilitru",
                                 few = "{0} miligrama po decilitru",
                                 other = "{0} miligrama po decilitru",
                             )
@@ -830,8 +851,42 @@ open class LanguageHr internal constructor() : Language {
                     )
                 ),
             )
-        override val concentrationItemPerCubicMeter: MultiLengthGenderedPattern
-            get() = TODO("ItemPerCubicMeter formatter is not implemented yet for hr")
+        override val concentrationPortionPer1e9
+            get() = MultiLengthGenderedPattern(
+                long = GenderedPattern(
+                    gender = Gender.Inanimate,
+                    cases = Cases(
+                        nominative = PluralPattern(
+                            Plurals(
+                                one = "{0} dio na milijardu",
+                                few = "{0} dijela na milijardu",
+                                other = "{0} dijelova na milijardu",
+                            )
+                        ),
+                        accusative = PluralPattern(
+                            Plurals(
+                                one = "{0} dio na milijardu",
+                                few = "{0} dijela na milijardu",
+                                other = "{0} dijelova na milijardu",
+                            )
+                        ),
+                        genitive = PluralPattern(
+                            Plurals(
+                                one = "{0} dijela na milijardu",
+                                few = "{0} dijela na milijardu",
+                                other = "{0} dijelova na milijardu",
+                            )
+                        ),
+                        instrumental = PluralPattern(
+                            Plurals(
+                                one = "{0} dijelom na milijardu",
+                                few = "{0} dijela na milijardu",
+                                other = "{0} dijelova na milijardu",
+                            )
+                        ),
+                    )
+                ),
+            )
         override val concentrationItem
             get() = MultiLengthGenderedPattern(
                 long = GenderedPattern(
@@ -1416,7 +1471,7 @@ open class LanguageHr internal constructor() : Language {
                     )
                 ),
             )
-        override val digitalByte
+        override val digitalByteUnit
             get() = MultiLengthGenderedPattern(
                 long = GenderedPattern(
                     gender = Gender.Inanimate,
@@ -2077,6 +2132,64 @@ open class LanguageHr internal constructor() : Language {
                     )
                 ),
             )
+        override val durationNight
+            get() = MultiLengthGenderedPattern(
+                long = GenderedPattern(
+                    gender = Gender.Feminine,
+                    cases = Cases(
+                        nominative = PluralPattern(
+                            Plurals(
+                                one = "{0} noć",
+                                few = "{0} noći",
+                                other = "{0} noći",
+                            )
+                        ),
+                        accusative = PluralPattern(
+                            Plurals(
+                                one = "{0} noć",
+                                few = "{0} noći",
+                                other = "{0} noći",
+                            )
+                        ),
+                        genitive = PluralPattern(
+                            Plurals(
+                                one = "{0} noći",
+                                few = "{0} noći",
+                                other = "{0} noći",
+                            )
+                        ),
+                        instrumental = PluralPattern(
+                            Plurals(
+                                one = "{0} noći",
+                                few = "{0} noći",
+                                other = "{0} noći",
+                            )
+                        ),
+                    )
+                ),
+                short = GenderedPattern(
+                    cases = Cases(
+                        nominative = PluralPattern(
+                            Plurals(
+                                one = "{0} noć",
+                                few = "{0} noći",
+                                other = "{0} noći",
+                            )
+                        ),
+                    )
+                ),
+                narrow = GenderedPattern(
+                    cases = Cases(
+                        nominative = PluralPattern(
+                            Plurals(
+                                one = "{0} noć",
+                                few = "{0} noći",
+                                other = "{0} noći",
+                            )
+                        ),
+                    )
+                ),
+            )
         override val electricAmpere
             get() = MultiLengthGenderedPattern(
                 long = GenderedPattern(
@@ -2228,10 +2341,32 @@ open class LanguageHr internal constructor() : Language {
         override val energyKilocalorie
             get() = MultiLengthGenderedPattern(
                 long = GenderedPattern(
+                    gender = Gender.Feminine,
                     cases = Cases(
                         nominative = PluralPattern(
                             Plurals(
                                 one = "{0} kilokalorija",
+                                few = "{0} kilokalorije",
+                                other = "{0} kilokalorija",
+                            )
+                        ),
+                        accusative = PluralPattern(
+                            Plurals(
+                                one = "{0} kilokaloriju",
+                                few = "{0} kilokalorije",
+                                other = "{0} kilokalorija",
+                            )
+                        ),
+                        genitive = PluralPattern(
+                            Plurals(
+                                one = "{0} kilokalorije",
+                                few = "{0} kilokalorije",
+                                other = "{0} kilokalorija",
+                            )
+                        ),
+                        instrumental = PluralPattern(
+                            Plurals(
+                                one = "{0} kilokalorijom",
                                 few = "{0} kilokalorije",
                                 other = "{0} kilokalorija",
                             )
@@ -3457,10 +3592,32 @@ open class LanguageHr internal constructor() : Language {
         override val lengthPoint
             get() = MultiLengthGenderedPattern(
                 long = GenderedPattern(
+                    gender = Gender.Feminine,
                     cases = Cases(
                         nominative = PluralPattern(
                             Plurals(
                                 one = "{0} tipografska točka",
+                                few = "{0} tipografske točke",
+                                other = "{0} tipografskih točaka",
+                            )
+                        ),
+                        accusative = PluralPattern(
+                            Plurals(
+                                one = "{0} tipografsku točku",
+                                few = "{0} tipografske točke",
+                                other = "{0} tipografskih točaka",
+                            )
+                        ),
+                        genitive = PluralPattern(
+                            Plurals(
+                                one = "{0} tipografske točke",
+                                few = "{0} tipografske točke",
+                                other = "{0} tipografskih točaka",
+                            )
+                        ),
+                        instrumental = PluralPattern(
+                            Plurals(
+                                one = "{0} tipografskom točkom",
                                 few = "{0} tipografske točke",
                                 other = "{0} tipografskih točaka",
                             )
@@ -4182,8 +4339,30 @@ open class LanguageHr internal constructor() : Language {
         override val pressureMillimeterOfhg
             get() = MultiLengthGenderedPattern(
                 long = GenderedPattern(
+                    gender = Gender.Inanimate,
                     cases = Cases(
                         nominative = PluralPattern(
+                            Plurals(
+                                one = "{0} milimetar živina stupca",
+                                few = "{0} milimetra živina stupca",
+                                other = "{0} milimetara živina stupca",
+                            )
+                        ),
+                        accusative = PluralPattern(
+                            Plurals(
+                                one = "{0} milimetar živina stupca",
+                                few = "{0} milimetra živina stupca",
+                                other = "{0} milimetara živina stupca",
+                            )
+                        ),
+                        genitive = PluralPattern(
+                            Plurals(
+                                one = "{0} milimetar živina stupca",
+                                few = "{0} milimetra živina stupca",
+                                other = "{0} milimetara živina stupca",
+                            )
+                        ),
+                        instrumental = PluralPattern(
                             Plurals(
                                 one = "{0} milimetar živina stupca",
                                 few = "{0} milimetra živina stupca",
@@ -4612,6 +4791,64 @@ open class LanguageHr internal constructor() : Language {
             )
         override val speedBeaufort: MultiLengthGenderedPattern
             get() = TODO("Beaufort formatter is not implemented yet for hr")
+        override val speedLightSpeed
+            get() = MultiLengthGenderedPattern(
+                long = GenderedPattern(
+                    gender = Gender.Neuter,
+                    cases = Cases(
+                        nominative = PluralPattern(
+                            Plurals(
+                                one = "{0} svjetlo",
+                                few = "{0} svjetla",
+                                other = "{0} svjetala",
+                            )
+                        ),
+                        accusative = PluralPattern(
+                            Plurals(
+                                one = "{0} svjetlo",
+                                few = "{0} svjetla",
+                                other = "{0} svjetala",
+                            )
+                        ),
+                        genitive = PluralPattern(
+                            Plurals(
+                                one = "{0} svjetla",
+                                few = "{0} svjetla",
+                                other = "{0} svjetala",
+                            )
+                        ),
+                        instrumental = PluralPattern(
+                            Plurals(
+                                one = "{0} svjetlom",
+                                few = "{0} svjetla",
+                                other = "{0} svjetala",
+                            )
+                        ),
+                    )
+                ),
+                short = GenderedPattern(
+                    cases = Cases(
+                        nominative = PluralPattern(
+                            Plurals(
+                                one = "{0} svjetlo",
+                                few = "{0} svjetla",
+                                other = "{0} svjetala",
+                            )
+                        ),
+                    )
+                ),
+                narrow = GenderedPattern(
+                    cases = Cases(
+                        nominative = PluralPattern(
+                            Plurals(
+                                one = "{0} svjetlo",
+                                few = "{0} svjetla",
+                                other = "{0} svjetala",
+                            )
+                        ),
+                    )
+                ),
+            )
         override val temperatureGeneric: MultiLengthGenderedPattern
             get() = TODO("Generic formatter is not implemented yet for hr")
         override val temperatureCelsius

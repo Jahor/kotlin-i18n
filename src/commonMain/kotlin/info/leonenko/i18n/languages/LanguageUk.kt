@@ -6,7 +6,6 @@ import info.leonenko.i18n.rbnf.RBNFUk
 val Language.Companion.uk
     get() = languageUk
 private val languageUk = LanguageUk()
-
 open class LanguageUk internal constructor() : Language {
     override val code: String = "uk"
     override val language: String = "uk"
@@ -1130,10 +1129,10 @@ open class LanguageUk internal constructor() : Language {
                     cases = Cases(
                         nominative = PluralPattern(
                             Plurals(
-                                one = "{0}кар.",
-                                few = "{0}кар.",
-                                many = "{0}кар.",
-                                other = "{0}кар.",
+                                one = "{0}кар",
+                                few = "{0}кар",
+                                many = "{0}кар",
+                                other = "{0}кар",
                             )
                         ),
                     )
@@ -1274,6 +1273,18 @@ open class LanguageUk internal constructor() : Language {
                         ),
                     )
                 ),
+                short = GenderedPattern(
+                    cases = Cases(
+                        nominative = PluralPattern(
+                            Plurals(
+                                one = "{0} %",
+                                few = "{0} %",
+                                many = "{0} %",
+                                other = "{0} %",
+                            )
+                        ),
+                    )
+                ),
             )
         override val concentrationPermille
             get() = MultiLengthGenderedPattern(
@@ -1326,6 +1337,18 @@ open class LanguageUk internal constructor() : Language {
                                 few = "{0} проміле",
                                 many = "{0} проміле",
                                 other = "{0} проміле",
+                            )
+                        ),
+                    )
+                ),
+                short = GenderedPattern(
+                    cases = Cases(
+                        nominative = PluralPattern(
+                            Plurals(
+                                one = "{0} ‰",
+                                few = "{0} ‰",
+                                many = "{0} ‰",
+                                other = "{0} ‰",
                             )
                         ),
                     )
@@ -1386,18 +1409,71 @@ open class LanguageUk internal constructor() : Language {
                         ),
                     )
                 ),
+                short = GenderedPattern(
+                    cases = Cases(
+                        nominative = PluralPattern(
+                            Plurals(
+                                one = "{0} ‱",
+                                few = "{0} ‱",
+                                many = "{0} ‱",
+                                other = "{0} ‱",
+                            )
+                        ),
+                    )
+                ),
             )
         override val concentrationAPortion: MultiLengthGenderedPattern
             get() = TODO("APortion formatter is not implemented yet for uk")
         override val concentrationMilligramOfglucosePerDeciliter
             get() = MultiLengthGenderedPattern(
                 long = GenderedPattern(
+                    gender = Gender.Masculine,
                     cases = Cases(
                         nominative = PluralPattern(
                             Plurals(
                                 one = "{0} міліграм на децилітр",
                                 few = "{0} міліграми на децилітр",
                                 many = "{0} міліграмів на децилітр",
+                                other = "{0} міліграма на децилітр",
+                            )
+                        ),
+                        accusative = PluralPattern(
+                            Plurals(
+                                one = "{0} міліграм на децилітр",
+                                few = "{0} міліграми на децилітр",
+                                many = "{0} міліграмів на децилітр",
+                                other = "{0} міліграма на децилітр",
+                            )
+                        ),
+                        dative = PluralPattern(
+                            Plurals(
+                                one = "{0} міліграму на децилітр",
+                                few = "{0} міліграмам на децилітр",
+                                many = "{0} міліграмам на децилітр",
+                                other = "{0} міліграма на децилітр",
+                            )
+                        ),
+                        genitive = PluralPattern(
+                            Plurals(
+                                one = "{0} міліграма на децилітр",
+                                few = "{0} міліграмів на децилітр",
+                                many = "{0} міліграмів на децилітр",
+                                other = "{0} міліграма на децилітр",
+                            )
+                        ),
+                        instrumental = PluralPattern(
+                            Plurals(
+                                one = "{0} міліграмом на децилітр",
+                                few = "{0} міліграмами на децилітр",
+                                many = "{0} міліграмами на децилітр",
+                                other = "{0} міліграма на децилітр",
+                            )
+                        ),
+                        locative = PluralPattern(
+                            Plurals(
+                                one = "{0} міліграмі на децилітр",
+                                few = "{0} міліграмах на децилітр",
+                                many = "{0} міліграмах на децилітр",
                                 other = "{0} міліграма на децилітр",
                             )
                         ),
@@ -1508,8 +1584,86 @@ open class LanguageUk internal constructor() : Language {
                     )
                 ),
             )
-        override val concentrationItemPerCubicMeter: MultiLengthGenderedPattern
-            get() = TODO("ItemPerCubicMeter formatter is not implemented yet for uk")
+        override val concentrationPortionPer1e9
+            get() = MultiLengthGenderedPattern(
+                long = GenderedPattern(
+                    gender = Gender.Feminine,
+                    cases = Cases(
+                        nominative = PluralPattern(
+                            Plurals(
+                                one = "{0} частина на мільярд",
+                                few = "{0} частини на мільярд",
+                                many = "{0} частин на мільярд",
+                                other = "{0} частини на мільярд",
+                            )
+                        ),
+                        accusative = PluralPattern(
+                            Plurals(
+                                one = "{0} частину на мільярд",
+                                few = "{0} частини на мільярд",
+                                many = "{0} частин на мільярд",
+                                other = "{0} частини на мільярд",
+                            )
+                        ),
+                        dative = PluralPattern(
+                            Plurals(
+                                one = "{0} частині на мільярд",
+                                few = "{0} частинам на мільярд",
+                                many = "{0} частинам на мільярд",
+                                other = "{0} частини на мільярд",
+                            )
+                        ),
+                        genitive = PluralPattern(
+                            Plurals(
+                                one = "{0} частини на мільярд",
+                                few = "{0} частин на мільярд",
+                                many = "{0} частин на мільярд",
+                                other = "{0} частини на мільярд",
+                            )
+                        ),
+                        instrumental = PluralPattern(
+                            Plurals(
+                                one = "{0} частиною на мільярд",
+                                few = "{0} частинами на мільярд",
+                                many = "{0} частинами на мільярд",
+                                other = "{0} частини на мільярд",
+                            )
+                        ),
+                        locative = PluralPattern(
+                            Plurals(
+                                one = "{0} частині на мільярд",
+                                few = "{0} частинах на мільярд",
+                                many = "{0} частинах на мільярд",
+                                other = "{0} частини на мільярд",
+                            )
+                        ),
+                    )
+                ),
+                short = GenderedPattern(
+                    cases = Cases(
+                        nominative = PluralPattern(
+                            Plurals(
+                                one = "{0} част/млрд",
+                                few = "{0} част/млрд",
+                                many = "{0} част/млрд",
+                                other = "{0} част/млрд",
+                            )
+                        ),
+                    )
+                ),
+                narrow = GenderedPattern(
+                    cases = Cases(
+                        nominative = PluralPattern(
+                            Plurals(
+                                one = "{0} ч/млрд",
+                                few = "{0} ч/млрд",
+                                many = "{0} ч/млрд",
+                                other = "{0} ч/млрд",
+                            )
+                        ),
+                    )
+                ),
+            )
         override val concentrationItem
             get() = MultiLengthGenderedPattern(
                 long = GenderedPattern(
@@ -1848,10 +2002,10 @@ open class LanguageUk internal constructor() : Language {
                     cases = Cases(
                         nominative = PluralPattern(
                             Plurals(
-                                one = "{0} миля/гал.",
-                                few = "{0} милі/гал.",
-                                many = "{0} миль/гал.",
-                                other = "{0} милі/гал.",
+                                one = "{0} миля/гал",
+                                few = "{0} милі/гал",
+                                many = "{0} миль/гал",
+                                other = "{0} милі/гал",
                             )
                         ),
                     )
@@ -1887,10 +2041,10 @@ open class LanguageUk internal constructor() : Language {
                     cases = Cases(
                         nominative = PluralPattern(
                             Plurals(
-                                one = "{0} миля/англ. гал.",
-                                few = "{0} милі/англ. гал.",
-                                many = "{0} миль/англ. гал.",
-                                other = "{0} милі/англ. гал.",
+                                one = "{0} миля/англ. гал",
+                                few = "{0} милі/англ. гал",
+                                many = "{0} миль/англ. гал",
+                                other = "{0} милі/англ. гал",
                             )
                         ),
                     )
@@ -1899,10 +2053,10 @@ open class LanguageUk internal constructor() : Language {
                     cases = Cases(
                         nominative = PluralPattern(
                             Plurals(
-                                one = "{0}мл/англ.гал.",
-                                few = "{0}мл/англ.гал.",
-                                many = "{0}мл/англ.гал.",
-                                other = "{0}мл/англ.гал.",
+                                one = "{0}мл/англ.гал",
+                                few = "{0}мл/англ.гал",
+                                many = "{0}мл/англ.гал",
+                                other = "{0}мл/англ.гал",
                             )
                         ),
                     )
@@ -2628,7 +2782,7 @@ open class LanguageUk internal constructor() : Language {
                     )
                 ),
             )
-        override val digitalByte
+        override val digitalByteUnit
             get() = MultiLengthGenderedPattern(
                 long = GenderedPattern(
                     gender = Gender.Masculine,
@@ -2875,50 +3029,50 @@ open class LanguageUk internal constructor() : Language {
                     cases = Cases(
                         nominative = PluralPattern(
                             Plurals(
-                                one = "{0} десятиріччя",
-                                few = "{0} десятиріччя",
-                                many = "{0} десятиріч",
-                                other = "{0} десятиріччя",
+                                one = "{0} десятиліття",
+                                few = "{0} десятиліття",
+                                many = "{0} десятиліть",
+                                other = "{0} десятиліття",
                             )
                         ),
                         accusative = PluralPattern(
                             Plurals(
-                                one = "{0} десятиріччя",
-                                few = "{0} десятиріччя",
-                                many = "{0} десятиріч",
-                                other = "{0} десятиріччя",
+                                one = "{0} десятиліття",
+                                few = "{0} десятиліття",
+                                many = "{0} десятиліть",
+                                other = "{0} десятиліття",
                             )
                         ),
                         dative = PluralPattern(
                             Plurals(
-                                one = "{0} десятиріччю",
-                                few = "{0} десятиріччям",
-                                many = "{0} десятиріччям",
-                                other = "{0} десятиріччя",
+                                one = "{0} десятиліттю",
+                                few = "{0} десятиліттям",
+                                many = "{0} десятиліттям",
+                                other = "{0} десятиліття",
                             )
                         ),
                         genitive = PluralPattern(
                             Plurals(
-                                one = "{0} десятиріччя",
-                                few = "{0} десятиріч",
-                                many = "{0} десятиріч",
-                                other = "{0} десятиріччя",
+                                one = "{0} десятиліття",
+                                few = "{0} десятиліть",
+                                many = "{0} десятиліть",
+                                other = "{0} десятиліття",
                             )
                         ),
                         instrumental = PluralPattern(
                             Plurals(
-                                one = "{0} десятиріччям",
-                                few = "{0} десятиріччями",
-                                many = "{0} десятиріччями",
-                                other = "{0} десятиріччя",
+                                one = "{0} десятиліттям",
+                                few = "{0} десятиліттями",
+                                many = "{0} десятиліттями",
+                                other = "{0} десятиліття",
                             )
                         ),
                         locative = PluralPattern(
                             Plurals(
-                                one = "{0} десятиріччі",
-                                few = "{0} десятиріччях",
-                                many = "{0} десятиріччях",
-                                other = "{0} десятиріччя",
+                                one = "{0} десятилітті",
+                                few = "{0} десятиліттях",
+                                many = "{0} десятиліттях",
+                                other = "{0} десятиліття",
                             )
                         ),
                     )
@@ -2927,10 +3081,22 @@ open class LanguageUk internal constructor() : Language {
                     cases = Cases(
                         nominative = PluralPattern(
                             Plurals(
-                                one = "{0} 10-річчя",
-                                few = "{0} 10-річчя",
-                                many = "{0} 10-річ",
-                                other = "{0} 10-річ",
+                                one = "{0} 10-ліття",
+                                few = "{0} 10-ліття",
+                                many = "{0} 10-літь",
+                                other = "{0} 10-ліття",
+                            )
+                        ),
+                    )
+                ),
+                narrow = GenderedPattern(
+                    cases = Cases(
+                        nominative = PluralPattern(
+                            Plurals(
+                                one = "{0} 10-літ.",
+                                few = "{0} 10-літ.",
+                                many = "{0} 10-літ.",
+                                other = "{0} 10-літ.",
                             )
                         ),
                     )
@@ -3816,6 +3982,86 @@ open class LanguageUk internal constructor() : Language {
                     )
                 ),
             )
+        override val durationNight
+            get() = MultiLengthGenderedPattern(
+                long = GenderedPattern(
+                    gender = Gender.Feminine,
+                    cases = Cases(
+                        nominative = PluralPattern(
+                            Plurals(
+                                one = "{0} ніч",
+                                few = "{0} ночі",
+                                many = "{0} ночей",
+                                other = "{0} ночі",
+                            )
+                        ),
+                        accusative = PluralPattern(
+                            Plurals(
+                                one = "{0} ніч",
+                                few = "{0} ночі",
+                                many = "{0} ночей",
+                                other = "{0} ночі",
+                            )
+                        ),
+                        dative = PluralPattern(
+                            Plurals(
+                                one = "{0} ночі",
+                                few = "{0} ночам",
+                                many = "{0} ночам",
+                                other = "{0} ночі",
+                            )
+                        ),
+                        genitive = PluralPattern(
+                            Plurals(
+                                one = "{0} ночі",
+                                few = "{0} ночей",
+                                many = "{0} ночей",
+                                other = "{0} ночі",
+                            )
+                        ),
+                        instrumental = PluralPattern(
+                            Plurals(
+                                one = "{0} ніччю",
+                                few = "{0} ночами",
+                                many = "{0} ночами",
+                                other = "{0} ночі",
+                            )
+                        ),
+                        locative = PluralPattern(
+                            Plurals(
+                                one = "{0} ночі",
+                                few = "{0} ночах",
+                                many = "{0} ночах",
+                                other = "{0} ночі",
+                            )
+                        ),
+                    )
+                ),
+                short = GenderedPattern(
+                    cases = Cases(
+                        nominative = PluralPattern(
+                            Plurals(
+                                one = "{0} нч.",
+                                few = "{0} нч.",
+                                many = "{0} нч.",
+                                other = "{0} нч.",
+                            )
+                        ),
+                    )
+                ),
+                narrow = GenderedPattern(
+                    cases = Cases(
+                        nominative = PluralPattern(
+                            Plurals(
+                                one = "{0}нч",
+                                few = "{0}нч",
+                                many = "{0}нч",
+                                other = "{0}нч",
+                            )
+                        ),
+                    )
+                ),
+            )
         override val electricAmpere
             get() = MultiLengthGenderedPattern(
                 long = GenderedPattern(
@@ -4143,12 +4389,53 @@ open class LanguageUk internal constructor() : Language {
         override val energyKilocalorie
             get() = MultiLengthGenderedPattern(
                 long = GenderedPattern(
+                    gender = Gender.Feminine,
                     cases = Cases(
                         nominative = PluralPattern(
                             Plurals(
                                 one = "{0} кілокалорія",
                                 few = "{0} кілокалорії",
                                 many = "{0} кілокалорій",
+                                other = "{0} кілокалорії",
+                            )
+                        ),
+                        accusative = PluralPattern(
+                            Plurals(
+                                one = "{0} кілокалорію",
+                                few = "{0} кілокалорії",
+                                many = "{0} кілокалорій",
+                                other = "{0} кілокалорії",
+                            )
+                        ),
+                        dative = PluralPattern(
+                            Plurals(
+                                one = "{0} кілокалорії",
+                                few = "{0} кілокалоріям",
+                                many = "{0} кілокалоріям",
+                                other = "{0} кілокалорії",
+                            )
+                        ),
+                        genitive = PluralPattern(
+                            Plurals(
+                                one = "{0} кілокалорії",
+                                few = "{0} кілокалорій",
+                                many = "{0} кілокалорій",
+                                other = "{0} кілокалорії",
+                            )
+                        ),
+                        instrumental = PluralPattern(
+                            Plurals(
+                                one = "{0} кілокалорією",
+                                few = "{0} кілокалоріями",
+                                many = "{0} кілокалоріями",
+                                other = "{0} кілокалорії",
+                            )
+                        ),
+                        locative = PluralPattern(
+                            Plurals(
+                                one = "{0} кілокалорії",
+                                few = "{0} кілокалоріях",
+                                many = "{0} кілокалоріях",
                                 other = "{0} кілокалорії",
                             )
                         ),
@@ -4318,7 +4605,7 @@ open class LanguageUk internal constructor() : Language {
                         genitive = PluralPattern(
                             Plurals(
                                 one = "{0} кілоджоуля",
-                                few = "{0} кілоджоулі",
+                                few = "{0} кілоджоулів",
                                 many = "{0} кілоджоулів",
                                 other = "{0} кілоджоуля",
                             )
@@ -6750,12 +7037,53 @@ open class LanguageUk internal constructor() : Language {
         override val lengthPoint
             get() = MultiLengthGenderedPattern(
                 long = GenderedPattern(
+                    gender = Gender.Masculine,
                     cases = Cases(
                         nominative = PluralPattern(
                             Plurals(
                                 one = "{0} пункт",
                                 few = "{0} пункти",
                                 many = "{0} пунктів",
+                                other = "{0} пункту",
+                            )
+                        ),
+                        accusative = PluralPattern(
+                            Plurals(
+                                one = "{0} пункт",
+                                few = "{0} пункти",
+                                many = "{0} пунктів",
+                                other = "{0} пункту",
+                            )
+                        ),
+                        dative = PluralPattern(
+                            Plurals(
+                                one = "{0} пункту",
+                                few = "{0} пунктам",
+                                many = "{0} пунктам",
+                                other = "{0} пункту",
+                            )
+                        ),
+                        genitive = PluralPattern(
+                            Plurals(
+                                one = "{0} пункту",
+                                few = "{0} пунктів",
+                                many = "{0} пунктів",
+                                other = "{0} пункту",
+                            )
+                        ),
+                        instrumental = PluralPattern(
+                            Plurals(
+                                one = "{0} пунктом",
+                                few = "{0} пунктами",
+                                many = "{0} пунктами",
+                                other = "{0} пункту",
+                            )
+                        ),
+                        locative = PluralPattern(
+                            Plurals(
+                                one = "{0} пункті",
+                                few = "{0} пунктах",
+                                many = "{0} пунктах",
                                 other = "{0} пункту",
                             )
                         ),
@@ -7738,10 +8066,10 @@ open class LanguageUk internal constructor() : Language {
                     cases = Cases(
                         nominative = PluralPattern(
                             Plurals(
-                                one = "{0} кар",
-                                few = "{0} кар",
-                                many = "{0} кар",
-                                other = "{0} кар",
+                                one = "{0} кар.",
+                                few = "{0} кар.",
+                                many = "{0} кар.",
+                                other = "{0} кар.",
                             )
                         ),
                     )
@@ -8323,12 +8651,53 @@ open class LanguageUk internal constructor() : Language {
         override val pressureMillimeterOfhg
             get() = MultiLengthGenderedPattern(
                 long = GenderedPattern(
+                    gender = Gender.Masculine,
                     cases = Cases(
                         nominative = PluralPattern(
                             Plurals(
                                 one = "{0} міліметр ртутного стовпа",
                                 few = "{0} міліметри ртутного стовпа",
                                 many = "{0} міліметрів ртутного стовпа",
+                                other = "{0} міліметра ртутного стовпа",
+                            )
+                        ),
+                        accusative = PluralPattern(
+                            Plurals(
+                                one = "{0} міліметр ртутного стовпа",
+                                few = "{0} міліметри ртутного стовпа",
+                                many = "{0} міліметрів ртутного стовпа",
+                                other = "{0} міліметра ртутного стовпа",
+                            )
+                        ),
+                        dative = PluralPattern(
+                            Plurals(
+                                one = "{0} міліметру ртутного стовпа",
+                                few = "{0} міліметрам ртутного стовпа",
+                                many = "{0} міліметрам ртутного стовпа",
+                                other = "{0} міліметра ртутного стовпа",
+                            )
+                        ),
+                        genitive = PluralPattern(
+                            Plurals(
+                                one = "{0} міліметра ртутного стовпа",
+                                few = "{0} міліметрів ртутного стовпа",
+                                many = "{0} міліметрів ртутного стовпа",
+                                other = "{0} міліметра ртутного стовпа",
+                            )
+                        ),
+                        instrumental = PluralPattern(
+                            Plurals(
+                                one = "{0} міліметром ртутного стовпа",
+                                few = "{0} міліметрами ртутного стовпа",
+                                many = "{0} міліметрами ртутного стовпа",
+                                other = "{0} міліметра ртутного стовпа",
+                            )
+                        ),
+                        locative = PluralPattern(
+                            Plurals(
+                                one = "{0} міліметрі ртутного стовпа",
+                                few = "{0} міліметрах ртутного стовпа",
+                                many = "{0} міліметрах ртутного стовпа",
                                 other = "{0} міліметра ртутного стовпа",
                             )
                         ),
@@ -8577,9 +8946,9 @@ open class LanguageUk internal constructor() : Language {
                         nominative = PluralPattern(
                             Plurals(
                                 one = "{0} мбар",
-                                few = "{0} мбари",
-                                many = "{0} мбарів",
-                                other = "{0} мбара",
+                                few = "{0} мбар",
+                                many = "{0} мбар",
+                                other = "{0} мбар",
                             )
                         ),
                     )
@@ -9088,50 +9457,50 @@ open class LanguageUk internal constructor() : Language {
                     cases = Cases(
                         nominative = PluralPattern(
                             Plurals(
-                                one = "{0} метр на секунду",
-                                few = "{0} метри на секунду",
-                                many = "{0} метрів на секунду",
-                                other = "{0} метра на секунду",
+                                one = "{0} метр за секунду",
+                                few = "{0} метри за секунду",
+                                many = "{0} метрів за секунду",
+                                other = "{0} метра за секунду",
                             )
                         ),
                         accusative = PluralPattern(
                             Plurals(
-                                one = "{0} метр на секунду",
-                                few = "{0} метри на секунду",
-                                many = "{0} метрів на секунду",
-                                other = "{0} метра на секунду",
+                                one = "{0} метр за секунду",
+                                few = "{0} метри за секунду",
+                                many = "{0} метрів за секунду",
+                                other = "{0} метра за секунду",
                             )
                         ),
                         dative = PluralPattern(
                             Plurals(
-                                one = "{0} метру на секунду",
-                                few = "{0} метрам на секунду",
-                                many = "{0} метрам на секунду",
-                                other = "{0} метра на секунду",
+                                one = "{0} метру за секунду",
+                                few = "{0} метрам за секунду",
+                                many = "{0} метрам за секунду",
+                                other = "{0} метра за секунду",
                             )
                         ),
                         genitive = PluralPattern(
                             Plurals(
-                                one = "{0} метра на секунду",
-                                few = "{0} метрів на секунду",
-                                many = "{0} метрів на секунду",
-                                other = "{0} метра на секунду",
+                                one = "{0} метра за секунду",
+                                few = "{0} метрів за секунду",
+                                many = "{0} метрів за секунду",
+                                other = "{0} метра за секунду",
                             )
                         ),
                         instrumental = PluralPattern(
                             Plurals(
-                                one = "{0} метром на секунду",
-                                few = "{0} метрами на секунду",
-                                many = "{0} метрами на секунду",
-                                other = "{0} метра на секунду",
+                                one = "{0} метром за секунду",
+                                few = "{0} метрами за секунду",
+                                many = "{0} метрами за секунду",
+                                other = "{0} метра за секунду",
                             )
                         ),
                         locative = PluralPattern(
                             Plurals(
-                                one = "{0} метрі на секунду",
-                                few = "{0} метрах на секунду",
-                                many = "{0} метрах на секунду",
-                                other = "{0} метра на секунду",
+                                one = "{0} метрі за секунду",
+                                few = "{0} метрах за секунду",
+                                many = "{0} метрах за секунду",
+                                other = "{0} метра за секунду",
                             )
                         ),
                     )
@@ -9167,10 +9536,10 @@ open class LanguageUk internal constructor() : Language {
                     cases = Cases(
                         nominative = PluralPattern(
                             Plurals(
-                                one = "{0} миля на годину",
-                                few = "{0} милі на годину",
-                                many = "{0} миль на годину",
-                                other = "{0} милі на годину",
+                                one = "{0} миля за годину",
+                                few = "{0} милі за годину",
+                                many = "{0} миль за годину",
+                                other = "{0} милі за годину",
                             )
                         ),
                     )
@@ -9278,6 +9647,8 @@ open class LanguageUk internal constructor() : Language {
                     )
                 ),
             )
+        override val speedLightSpeed: MultiLengthGenderedPattern
+            get() = TODO("LightSpeed formatter is not implemented yet for uk")
         override val temperatureGeneric: MultiLengthGenderedPattern
             get() = TODO("Generic formatter is not implemented yet for uk")
         override val temperatureCelsius
@@ -9935,9 +10306,9 @@ open class LanguageUk internal constructor() : Language {
                         nominative = PluralPattern(
                             Plurals(
                                 one = "{0} фут³",
-                                few = "{0} фт³",
-                                many = "{0} фт³",
-                                other = "{0} фт³",
+                                few = "{0} фути³",
+                                many = "{0} футів³",
+                                other = "{0} фута³",
                             )
                         ),
                     )
@@ -11279,10 +11650,10 @@ open class LanguageUk internal constructor() : Language {
                     cases = Cases(
                         nominative = PluralPattern(
                             Plurals(
-                                one = "{0} дрібка",
-                                few = "{0} дрібки",
-                                many = "{0} дрібок",
-                                other = "{0} дрібки",
+                                one = "{0} дріб.",
+                                few = "{0} дріб.",
+                                many = "{0} дріб.",
+                                other = "{0} дріб.",
                             )
                         ),
                     )
@@ -11330,10 +11701,10 @@ open class LanguageUk internal constructor() : Language {
                     cases = Cases(
                         nominative = PluralPattern(
                             Plurals(
-                                one = "{0} англ. квар.",
-                                few = "{0} англ. квар.",
-                                many = "{0} англ. квар.",
-                                other = "{0} англ. квар.",
+                                one = "{0}англ.квар.",
+                                few = "{0}англ.квар.",
+                                many = "{0}англ.квар.",
+                                other = "{0}англ.квар.",
                             )
                         ),
                     )

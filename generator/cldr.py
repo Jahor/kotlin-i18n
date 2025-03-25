@@ -14,7 +14,7 @@ PLURALS = ["one", 'few', 'many', 'other']
 REFERENCE_LANGUAGE = 'en'
 LANGUAGES = {'root', 'en', 'hu', 'ru', 'nl', 'es', 'fr', 'hr', 'pt', 'zh', 'id', 'tr', 'de', 'jp', 'be', 'uk', 'pl'}
 LANGUAGES_EXCLUDED = {'ml'}
-CLDR_VERSION = "45.0"
+CLDR_VERSION = "47.0"
 CLDR_PATH = f'/Users/egorleonenko/Downloads/cldr-common-{CLDR_VERSION}'
 BASE_PATH = f'{CLDR_PATH}/common/main/'
 UNITS_PATH = f'{CLDR_PATH}/common/supplemental/units.xml'
@@ -42,6 +42,8 @@ def cldr_units(cldr, plurals):
         for unit in unitLength.findall('unit'):
             # if unit.attrib['type'].startswith('duration-'):
             unit_section, unit_name = unit.attrib['type'].split('-', 1)
+            if unit_name in ('byte', ):
+                unit_name = 'byte-unit'
             unit_section = {'concentr': 'concentration'}.get(unit_section, unit_section)
 
             gender = unit.find('gender')
@@ -236,7 +238,6 @@ def generic_units(units_info, constants):
         for measurement, units in measurements.items():
             with open(os.path.join(TARGET_PATH, 'units', section, ucamel(measurement) + '.kt'), 'w') as uf:
                 print("package " + PACKAGE + ".units." + section, file=uf)
-                # print("import kotlin.jvm.JvmInline", file=uf)
                 print("import kotlin.math.truncate", file=uf)
                 print("import kotlin.math.round", file=uf)
                 print("import kotlin.math.ceil", file=uf)
@@ -350,9 +351,9 @@ def generic_units(units_info, constants):
 
                     for t in ["Byte", "Short", "Int", "Long", "Float", "Double"]:
                         print(f"""                               
-                               operator fun times(other: kotlin.{t}): {ucamel(measurement)}
-                               operator fun div(other: kotlin.{t}): {ucamel(measurement)}
-                               operator fun rem(other: kotlin.{t}): {ucamel(measurement)}
+                               operator fun times(other: {t}): {ucamel(measurement)}
+                               operator fun div(other: {t}): {ucamel(measurement)}
+                               operator fun rem(other: {t}): {ucamel(measurement)}
                             """, file=uf)
 
                     print("  }", file=uf)
@@ -393,11 +394,11 @@ def generic_units(units_info, constants):
                            """, file=uf)
                     for t in ["Byte", "Short", "Int", "Long", "Float", "Double"]:
                         if t != "Double":
-                            print(f"constructor(value: kotlin.{t}) : this(value.toMeasurementUnitValue())", file=uf)
+                            print(f"constructor(value: {t}) : this(value.toMeasurementUnitValue())", file=uf)
                         print(f"""                               
-                               override operator fun times(other: kotlin.{t}): {ucamel(unit)} = {ucamel(unit)}(this.value.times(other))
-                               override operator fun div(other: kotlin.{t}): {ucamel(unit)} = {ucamel(unit)}(this.value.div(other))
-                               override operator fun rem(other: kotlin.{t}): {ucamel(unit)} = {ucamel(unit)}(this.value.rem(other))
+                               override operator fun times(other: {t}): {ucamel(unit)} = {ucamel(unit)}(this.value.times(other))
+                               override operator fun div(other: {t}): {ucamel(unit)} = {ucamel(unit)}(this.value.div(other))
+                               override operator fun rem(other: {t}): {ucamel(unit)} = {ucamel(unit)}(this.value.rem(other))
                             """, file=uf)
                     print(f"""
                            override operator fun unaryMinus(): {ucamel(unit)} = {ucamel(unit)}(-value)
@@ -424,7 +425,7 @@ def generic_units(units_info, constants):
 
                     for t in ["Byte", "Short", "Int", "Long", "Float", "Double"]:
                         print(f"""
-                               val kotlin.{t}.{lcamel(unit)}
+                               val {t}.{lcamel(unit)}
                                    get() = {ucamel(unit)}(this)                               
                             """, file=uf)
 
@@ -659,17 +660,18 @@ def main():
         print(")", file=f)
 
         print("""val Language.Companion.scriptAliases  : Map<String, String>
-  get() = scriptAliases""", file=f)
+  get() = allScriptAliases""", file=f)
         print("private val allScriptAliases = mapOf(", file=f)
         for alias in script_aliases:
             print(f"  \"{alias.attrib['type']}\" to \"{alias.attrib['replacement']}\", ", file=f)
         print(")", file=f)
 
-        print("""val Language.Companion.territoryAliases  : Map<String, String>
+        print("""val Language.Companion.territoryAliases  : Map<String, List<String>>
   get() = allTerritoryAliases""", file=f)
         print("private val allTerritoryAliases = mapOf(", file=f)
         for alias in territory_aliases:
-            print(f"  \"{alias.attrib['type']}\" to \"{alias.attrib['replacement']}\", ", file=f)
+            aliases = ", ".join([f'"{a}"' for a in alias.attrib['replacement'].split(' ')])
+            print(f"  \"{alias.attrib['type']}\" to listOf({aliases}), ", file=f)
         print(")", file=f)
 
     sys.stdout = orig_stdout
@@ -839,10 +841,10 @@ def cldr_units2(cldr, all_units, compound_units):
     by_name = {}
     for unitLength in quantities.findall('unitQuantity'):
         quantity = unitLength.attrib['quantity']
-        baseUnit = unitLength.attrib['baseUnit']
-        by_measurement.setdefault(quantity, []).append(baseUnit)
-        by_base_unit[baseUnit] = quantity
-        by_name[baseUnit] = (quantity, None, 1, 0)
+        base_unit = unitLength.attrib['baseUnit']
+        by_measurement.setdefault(quantity, []).append(base_unit)
+        by_base_unit[base_unit] = quantity
+        by_name[base_unit] = (quantity, None, 1, 0)
 
     unitConstants = cldr.find('unitConstants')
     constants = {}
@@ -957,7 +959,7 @@ def cldr_units2(cldr, all_units, compound_units):
                 if unit_info[0] == unit:
                     units[unit] = (None, 1, 0)
                     base_unit_found = True
-                elif unit_info[0] is None:
+                elif unit_info[0] is None or unit_info[0] == 'nothing':
                     base_unit_found = True
                 else:
                     base_unit = unit_info[0]

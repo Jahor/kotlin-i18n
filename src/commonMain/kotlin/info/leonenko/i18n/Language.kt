@@ -362,4 +362,9 @@ interface RBNF {
     val spelloutNumbering: NumberFormatter
     val spelloutCardinal: NumberFormatter
     val spelloutOrdinal: NumberFormatter
+
+    fun spelloutNumberingFor(gender: Gender, case: Case): NumberFormatter
+    fun spelloutCardinalFor(gender: Gender, case: Case): NumberFormatter
+    fun spelloutOrdinalFor(gender: Gender, case: Case): NumberFormatter
+    fun spelloutNumberingYearFor(gender: Gender, case: Case): NumberFormatter
 }

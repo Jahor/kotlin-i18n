@@ -5163,12 +5163,21 @@ open class RBNFBe(val language: Language = Language.be) : RBNF {
         get() = spelloutRules.spelloutOrdinalFeminine
     open val spelloutOrdinalNeuter: NumberFormatter
         get() = spelloutRules.spelloutOrdinalNeuter
-    override val spelloutOrdinal: NumberFormatter
-        get() = TODO("spelloutOrdinal is not available for be")
     override val spelloutCardinal: NumberFormatter
         get() = TODO("spelloutCardinal is not available for be")
+    override val spelloutOrdinal: NumberFormatter
+        get() = TODO("spelloutOrdinal is not available for be")
 
-    fun spelloutCardinalFor(gender: Gender): NumberFormatter {
+    override fun spelloutNumberingFor(gender: Gender, case: Case): NumberFormatter {
+        return spelloutNumbering
+
+    }
+
+    fun spelloutNumberingFor(): NumberFormatter {
+        return spelloutNumberingFor(Gender.Neuter, Case.Nominative)
+    }
+
+    override fun spelloutCardinalFor(gender: Gender, case: Case): NumberFormatter {
         return when (gender) {
             Gender.Neuter -> spelloutCardinalNeuter
             Gender.Masculine -> spelloutCardinalMasculine
@@ -5178,13 +5187,25 @@ open class RBNFBe(val language: Language = Language.be) : RBNF {
 
     }
 
-    fun spelloutOrdinalFor(gender: Gender): NumberFormatter {
+    fun spelloutCardinalFor(gender: Gender): NumberFormatter {
+        return spelloutCardinalFor(gender, Case.Nominative)
+    }
+
+    override fun spelloutOrdinalFor(gender: Gender, case: Case): NumberFormatter {
         return when (gender) {
-            Gender.Neuter -> spelloutOrdinalNeuter
-            Gender.Masculine -> spelloutOrdinalMasculine
             Gender.Feminine -> spelloutOrdinalFeminine
+            Gender.Masculine -> spelloutOrdinalMasculine
+            Gender.Neuter -> spelloutOrdinalNeuter
             else -> TODO("be does not support $gender gender")
         }
 
+    }
+
+    fun spelloutOrdinalFor(gender: Gender): NumberFormatter {
+        return spelloutOrdinalFor(gender, Case.Nominative)
+    }
+
+    override fun spelloutNumberingYearFor(gender: Gender, case: Case): NumberFormatter {
+        TODO("spelloutNumberingYear is not available for be")
     }
 }

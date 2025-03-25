@@ -6,7 +6,6 @@ import info.leonenko.i18n.rbnf.RBNFId
 val Language.Companion.id
     get() = languageId
 private val languageId = LanguageId()
-
 open class LanguageId internal constructor() : Language {
     override val code: String = "id"
     override val language: String = "id"
@@ -374,8 +373,18 @@ open class LanguageId internal constructor() : Language {
                     )
                 ),
             )
-        override val concentrationItemPerCubicMeter: MultiLengthGenderedPattern
-            get() = TODO("ItemPerCubicMeter formatter is not implemented yet for id")
+        override val concentrationPortionPer1e9
+            get() = MultiLengthGenderedPattern(
+                long = GenderedPattern(
+                    cases = Cases(
+                        nominative = PluralPattern(
+                            Plurals(
+                                other = "{0} bagian per miliar",
+                            )
+                        ),
+                    )
+                ),
+            )
         override val concentrationItem: MultiLengthGenderedPattern
             get() = TODO("Item formatter is not implemented yet for id")
         override val concentrationMole: MultiLengthGenderedPattern
@@ -563,7 +572,7 @@ open class LanguageId internal constructor() : Language {
                     )
                 ),
             )
-        override val digitalByte
+        override val digitalByteUnit
             get() = MultiLengthGenderedPattern(
                 narrow = GenderedPattern(
                     cases = Cases(
@@ -845,6 +854,36 @@ open class LanguageId internal constructor() : Language {
                         nominative = PluralPattern(
                             Plurals(
                                 other = "{0} ndtk",
+                            )
+                        ),
+                    )
+                ),
+            )
+        override val durationNight
+            get() = MultiLengthGenderedPattern(
+                long = GenderedPattern(
+                    cases = Cases(
+                        nominative = PluralPattern(
+                            Plurals(
+                                other = "{0} malam",
+                            )
+                        ),
+                    )
+                ),
+                short = GenderedPattern(
+                    cases = Cases(
+                        nominative = PluralPattern(
+                            Plurals(
+                                other = "{0} malam",
+                            )
+                        ),
+                    )
+                ),
+                narrow = GenderedPattern(
+                    cases = Cases(
+                        nominative = PluralPattern(
+                            Plurals(
+                                other = "{0} malam",
                             )
                         ),
                     )
@@ -2107,6 +2146,36 @@ open class LanguageId internal constructor() : Language {
                         nominative = PluralPattern(
                             Plurals(
                                 other = "Beaufort {0}",
+                            )
+                        ),
+                    )
+                ),
+            )
+        override val speedLightSpeed
+            get() = MultiLengthGenderedPattern(
+                long = GenderedPattern(
+                    cases = Cases(
+                        nominative = PluralPattern(
+                            Plurals(
+                                other = "{0} cahaya",
+                            )
+                        ),
+                    )
+                ),
+                short = GenderedPattern(
+                    cases = Cases(
+                        nominative = PluralPattern(
+                            Plurals(
+                                other = "{0} cahaya",
+                            )
+                        ),
+                    )
+                ),
+                narrow = GenderedPattern(
+                    cases = Cases(
+                        nominative = PluralPattern(
+                            Plurals(
+                                other = "{0} cahaya",
                             )
                         ),
                     )

@@ -22,7 +22,7 @@ CASES = {'nominative', 'genitive', 'dative', 'accusative', 'instrumental', 'prep
 
 logging.basicConfig()
 logging.getLogger("urllib3").setLevel(logging.DEBUG)
-CLDR_PATH = '/Users/egorleonenko/Downloads/cldr-common-43.0'
+CLDR_PATH = '/Users/egorleonenko/Downloads/cldr-common-47.0'
 BASE_PATH = f"{CLDR_PATH}/common/rbnf"
 SOURCE_PATH = "/Volumes/Projects/My/SailingApps/kotlin-i18n/src/commonMain/kotlin/info/leonenko/i18n"
 TEST_SOURCE_PATH = "/Volumes/Projects/My/SailingApps/kotlin-i18n/src/commonTest/kotlin/info/leonenko/i18n"
@@ -1259,7 +1259,7 @@ import {PACKAGE}.contains
             return has_plurals
 
         if lang not in ('root',) and base_language is None:
-
+            missing_cases = set(STANDARD_SPELLERS)
             for t, kind_tree in tree.items():
                 for kind, variants_tree in kind_tree.items():
                     code_buf = StringIO()
@@ -1267,35 +1267,54 @@ import {PACKAGE}.contains
                     with_plurals = False
                     genders = set(variants_tree.keys()) & GENDERS
                     if len(genders) <= 1:
+                        vars.append(('gender', 'Gender', 'Gender.Neuter'))
                         cases = set(variants_tree.keys()) & CASES
                         if len(cases) <= 1:
-                            pass  # TODO?
+                            vars.append(('case', 'Case', 'Case.Nominative'))
+                            print(f"  return {_ruleset_code_name(f'{t}-{kind}')}", file=code_buf)
                         else:
-                            vars.append(('case', 'Case'))
+                            vars.append(('case', 'Case', None))
                             with_plurals |= cases_when("  return ", cases, variants_tree, code_buf)
                     else:
-                        vars.append(('gender', 'Gender'))
+                        vars.append(('gender', 'Gender', None))
                         print(f"  return when(gender) {{", file=code_buf)
                         for gender in genders:
                             gender_tree = variants_tree[gender]
                             cases = set(gender_tree) & CASES
                             if len(cases) <= 1:
+                                if ('case', 'Case', None) not in vars and ('case', 'Case', 'Case.Nominative') not in vars:
+                                    vars.append(('case', 'Case', 'Case.Nominative'))
                                 ruleset = gender_tree['']
                                 print(f"  Gender.{gender.capitalize()} -> {_ruleset_code_name(ruleset)}", file=code_buf)
                             else:
-                                if ('case', 'Case') not in vars:
-                                    vars.append(('case', 'Case'))
+                                if ('case', 'Case', None) not in vars:
+                                    vars.append(('case', 'Case', None))
                                 with_plurals |= cases_when(f"  Gender.{gender.capitalize()} -> ", cases, variants_tree[gender], code_buf)
                         print(f"  else -> TODO(\"{lang} does not support $gender gender\")", file=code_buf)
                         print(f"  }}", file=code_buf)
                     if with_plurals:
-                        vars.append(('plural', 'Boolean'))
+                        vars.append(('plural', 'Boolean', None))
                     code = code_buf.getvalue()
                     if len(code) > 0:
-                        vars_str = ','.join([f'{n}: {t}' for n, t in vars])
-                        print(f"fun {_ruleset_code_name(f'{t}-{kind}')}For({vars_str}) : NumberFormatter {{", file=f)
+                        vars_str = ','.join([f'{n}: {t}' for n, t, _ in vars])
+                        override = f'{t}-{kind}' in STANDARD_SPELLERS
+                        print(f"{'override ' if override else ''}fun {_ruleset_code_name(f'{t}-{kind}')}For({vars_str}) : NumberFormatter {{", file=f)
                         print(code, file=f)
                         print(f"}}", file=f)
+                        missing_cases.discard(f'{t}-{kind}')
+                        if any([d is not None for _, _, d in vars]):
+                            short_vars_str = ','.join([f'{n}: {t}' for n, t, d in vars if d is None])
+                            params_str = ','.join([d or n for n, _, d in vars])
+                            print(f"fun {_ruleset_code_name(f'{t}-{kind}')}For({short_vars_str}) : NumberFormatter {{", file=f)
+                            print(f"   return {_ruleset_code_name(f'{t}-{kind}')}For({params_str})", file=f)
+                            print(f"}}", file=f)
+            for ruleset in missing_cases:
+                print(f"override fun {_ruleset_code_name(ruleset)}For({vars_str}) : NumberFormatter {{", file=f)
+                print(f"TODO(\"{_ruleset_code_name(ruleset)} is not available for {lang}\")", file=f)
+                print(f"}}", file=f)
+
+
+
 
         print("}", file=f)
     return f"RBNF{ucamel(lang)}"

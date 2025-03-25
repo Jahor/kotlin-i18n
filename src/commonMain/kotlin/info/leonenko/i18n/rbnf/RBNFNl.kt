@@ -17,6 +17,8 @@ open class RBNFNl(val language: Language = Language.nl) : RBNF {
 
         val spelloutCardinal = SpelloutCardinal()
 
+        val spelloutCardinalStressed = SpelloutCardinalStressed()
+
         val ordSte = OrdSte()
 
         val spelloutOrdinal = SpelloutOrdinal()
@@ -303,6 +305,43 @@ open class RBNFNl(val language: Language = Language.nl) : RBNF {
             }
         }
 
+        private inner class SpelloutCardinalStressed : NumberFormatter {
+            override fun format(value: Double): String {
+                if (value < 0L) {
+                    return "min " + format(kotlin.math.abs(value))
+                }
+                return formatImproperFraction(value)
+            }
+
+            override fun format(value: Long): String {
+                if (value < 0L) {
+                    return "min " + format(kotlin.math.abs(value))
+                }
+                return when (value) {
+                    0L -> spelloutCardinal.format(value)
+                    1L -> "één"
+                    else -> {
+                        if (value >= 2L) spelloutCardinal.format(value) else {
+                            throw UnsupportedOperationException("spelloutCardinalStressed only supports numbers >= 0")
+                        }
+                    }
+                }
+            }
+
+            fun formatF(value: Double): String {
+                return when (listOf<Long>(0, 1, 2).bestDenominatorOrNull(value)!!) {
+                    0L -> spelloutCardinal.format(value)
+                    1L -> "één"
+                    2L -> spelloutCardinal.format(value)
+                    else -> throw IllegalStateException("It should not happen")
+                }
+            }
+
+            private fun formatImproperFraction(value: Double): String {
+                return spelloutCardinal.format(value)
+            }
+        }
+
         private inner class OrdSte : NumberFormatter {
             override fun format(value: Double): String {
                 return when (value.roundToLong()) {
@@ -480,8 +519,50 @@ open class RBNFNl(val language: Language = Language.nl) : RBNF {
         get() = spelloutRules.spelloutNumbering
     override val spelloutCardinal: NumberFormatter
         get() = spelloutRules.spelloutCardinal
+    open val spelloutCardinalStressed: NumberFormatter
+        get() = spelloutRules.spelloutCardinalStressed
     override val spelloutOrdinal: NumberFormatter
         get() = spelloutRules.spelloutOrdinal
     open val digitsOrdinal: NumberFormatter
         get() = ordinalRules.digitsOrdinal
+
+    override fun spelloutNumberingFor(gender: Gender, case: Case): NumberFormatter {
+        return spelloutNumbering
+
+    }
+
+    fun spelloutNumberingFor(): NumberFormatter {
+        return spelloutNumberingFor(Gender.Neuter, Case.Nominative)
+    }
+
+    override fun spelloutCardinalFor(gender: Gender, case: Case): NumberFormatter {
+        return spelloutCardinal
+
+    }
+
+    fun spelloutCardinalFor(): NumberFormatter {
+        return spelloutCardinalFor(Gender.Neuter, Case.Nominative)
+    }
+
+    override fun spelloutOrdinalFor(gender: Gender, case: Case): NumberFormatter {
+        return spelloutOrdinal
+
+    }
+
+    fun spelloutOrdinalFor(): NumberFormatter {
+        return spelloutOrdinalFor(Gender.Neuter, Case.Nominative)
+    }
+
+    fun digitsOrdinalFor(gender: Gender, case: Case): NumberFormatter {
+        return digitsOrdinal
+
+    }
+
+    fun digitsOrdinalFor(): NumberFormatter {
+        return digitsOrdinalFor(Gender.Neuter, Case.Nominative)
+    }
+
+    override fun spelloutNumberingYearFor(gender: Gender, case: Case): NumberFormatter {
+        TODO("spelloutNumberingYear is not available for nl")
+    }
 }

@@ -1,11 +1,9 @@
 package info.leonenko.i18n.languages
-
 import info.leonenko.i18n.Language
 
 val Language.Companion.uk_UA
     get() = languageUk_UA
 private val languageUk_UA = LanguageUk_UA()
-
 class LanguageUk_UA internal constructor() : LanguageUk() {
     override val code: String = "uk_UA"
     override val script: String? = null

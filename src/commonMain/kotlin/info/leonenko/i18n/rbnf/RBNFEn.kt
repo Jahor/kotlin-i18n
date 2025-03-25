@@ -87,63 +87,63 @@ open class RBNFEn(val language: Language = Language.en) : RBNF {
                     in 1010L..1099L -> if ((value) % 100 == 0L) {
                         spelloutNumbering.format(value)
                     } else
-                        format((value) / 100) + " " + _2dYear.format(value % 100)
+                    format((value) / 100) + " " + _2dYear.format(value % 100)
 
                     in 1100L..1999L -> format((value) / 100) + " " + _2dYear.format(value % 100)
                     in 2000L..2009L -> spelloutNumbering.format(value)
                     in 2010L..2099L -> if ((value) % 100 == 0L) {
                         spelloutNumbering.format(value)
                     } else
-                        format((value) / 100) + " " + _2dYear.format(value % 100)
+                    format((value) / 100) + " " + _2dYear.format(value % 100)
 
                     in 2100L..2999L -> format((value) / 100) + " " + _2dYear.format(value % 100)
                     in 3000L..3009L -> spelloutNumbering.format(value)
                     in 3010L..3099L -> if ((value) % 100 == 0L) {
                         spelloutNumbering.format(value)
                     } else
-                        format((value) / 100) + " " + _2dYear.format(value % 100)
+                    format((value) / 100) + " " + _2dYear.format(value % 100)
 
                     in 3100L..3999L -> format((value) / 100) + " " + _2dYear.format(value % 100)
                     in 4000L..4009L -> spelloutNumbering.format(value)
                     in 4010L..4099L -> if ((value) % 100 == 0L) {
                         spelloutNumbering.format(value)
                     } else
-                        format((value) / 100) + " " + _2dYear.format(value % 100)
+                    format((value) / 100) + " " + _2dYear.format(value % 100)
 
                     in 4100L..4999L -> format((value) / 100) + " " + _2dYear.format(value % 100)
                     in 5000L..5009L -> spelloutNumbering.format(value)
                     in 5010L..5099L -> if ((value) % 100 == 0L) {
                         spelloutNumbering.format(value)
                     } else
-                        format((value) / 100) + " " + _2dYear.format(value % 100)
+                    format((value) / 100) + " " + _2dYear.format(value % 100)
 
                     in 5100L..5999L -> format((value) / 100) + " " + _2dYear.format(value % 100)
                     in 6000L..6009L -> spelloutNumbering.format(value)
                     in 6010L..6099L -> if ((value) % 100 == 0L) {
                         spelloutNumbering.format(value)
                     } else
-                        format((value) / 100) + " " + _2dYear.format(value % 100)
+                    format((value) / 100) + " " + _2dYear.format(value % 100)
 
                     in 6100L..6999L -> format((value) / 100) + " " + _2dYear.format(value % 100)
                     in 7000L..7009L -> spelloutNumbering.format(value)
                     in 7010L..7099L -> if ((value) % 100 == 0L) {
                         spelloutNumbering.format(value)
                     } else
-                        format((value) / 100) + " " + _2dYear.format(value % 100)
+                    format((value) / 100) + " " + _2dYear.format(value % 100)
 
                     in 7100L..7999L -> format((value) / 100) + " " + _2dYear.format(value % 100)
                     in 8000L..8009L -> spelloutNumbering.format(value)
                     in 8010L..8099L -> if ((value) % 100 == 0L) {
                         spelloutNumbering.format(value)
                     } else
-                        format((value) / 100) + " " + _2dYear.format(value % 100)
+                    format((value) / 100) + " " + _2dYear.format(value % 100)
 
                     in 8100L..8999L -> format((value) / 100) + " " + _2dYear.format(value % 100)
                     in 9000L..9009L -> spelloutNumbering.format(value)
                     in 9010L..9099L -> if ((value) % 100 == 0L) {
                         spelloutNumbering.format(value)
                     } else
-                        format((value) / 100) + " " + _2dYear.format(value % 100)
+                    format((value) / 100) + " " + _2dYear.format(value % 100)
 
                     in 9100L..9999L -> format((value) / 100) + " " + _2dYear.format(value % 100)
                     else -> {
@@ -966,4 +966,44 @@ open class RBNFEn(val language: Language = Language.en) : RBNF {
         get() = spelloutRules.spelloutOrdinalVerbose
     open val digitsOrdinal: NumberFormatter
         get() = ordinalRules.digitsOrdinal
+
+    override fun spelloutNumberingFor(gender: Gender, case: Case): NumberFormatter {
+        return spelloutNumbering
+
+    }
+
+    fun spelloutNumberingFor(): NumberFormatter {
+        return spelloutNumberingFor(Gender.Neuter, Case.Nominative)
+    }
+
+    override fun spelloutCardinalFor(gender: Gender, case: Case): NumberFormatter {
+        return spelloutCardinal
+
+    }
+
+    fun spelloutCardinalFor(): NumberFormatter {
+        return spelloutCardinalFor(Gender.Neuter, Case.Nominative)
+    }
+
+    override fun spelloutOrdinalFor(gender: Gender, case: Case): NumberFormatter {
+        return spelloutOrdinal
+
+    }
+
+    fun spelloutOrdinalFor(): NumberFormatter {
+        return spelloutOrdinalFor(Gender.Neuter, Case.Nominative)
+    }
+
+    fun digitsOrdinalFor(gender: Gender, case: Case): NumberFormatter {
+        return digitsOrdinal
+
+    }
+
+    fun digitsOrdinalFor(): NumberFormatter {
+        return digitsOrdinalFor(Gender.Neuter, Case.Nominative)
+    }
+
+    override fun spelloutNumberingYearFor(gender: Gender, case: Case): NumberFormatter {
+        TODO("spelloutNumberingYear is not available for en")
+    }
 }

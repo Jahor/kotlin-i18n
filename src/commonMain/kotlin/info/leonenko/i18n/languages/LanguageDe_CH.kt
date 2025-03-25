@@ -6,7 +6,6 @@ import info.leonenko.i18n.rbnf.RBNFDe_ch
 val Language.Companion.de_CH
     get() = languageDe_CH
 private val languageDe_CH = LanguageDe_CH()
-
 class LanguageDe_CH internal constructor() : LanguageDe() {
     override val code: String = "de_CH"
     override val script: String? = null
@@ -144,7 +143,7 @@ class LanguageDe_CH internal constructor() : LanguageDe() {
                     cases = Cases(
                         nominative = PluralPattern(
                             Plurals(
-                                one = "Schuss",
+                                one = "{0} Schuss",
                                 other = "{0} Schuss",
                             )
                         ),

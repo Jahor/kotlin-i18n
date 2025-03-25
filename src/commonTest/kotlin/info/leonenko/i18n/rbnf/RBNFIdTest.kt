@@ -7,7 +7,7 @@ class RBNFIdTest {
     @Test
     fun spelloutOrdinal() {
         val fmt = RBNFId().spelloutOrdinal
-// nonsense assertEquals("negatif kesatu", fmt.format(-1), "-1")
+// nonsense assertEquals("negatif pertama", fmt.format(-1), "-1")
 // nonsense assertEquals("kenol", fmt.format(0), "0")
 // nonsense assertEquals("0,2", fmt.format(0.2), "0.2")
 // nonsense assertEquals("0,2", fmt.format(0.2345), "0.2345")
@@ -17,7 +17,7 @@ class RBNFIdTest {
 // nonsense assertEquals("12,1", fmt.format(12.051), "12.051")
 // nonsense assertEquals("13", fmt.format(13.0251), "13.0251")
 // nonsense assertEquals("14", fmt.format(14.02251), "14.02251")
-        assertEquals("kesatu", fmt.format(1), "1")
+        assertEquals("pertama", fmt.format(1), "1")
         assertEquals("kedua", fmt.format(2), "2")
         assertEquals("ketiga", fmt.format(3), "3")
         assertEquals("keempat", fmt.format(4), "4")

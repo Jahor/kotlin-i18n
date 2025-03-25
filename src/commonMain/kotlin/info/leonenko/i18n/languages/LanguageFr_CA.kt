@@ -5,7 +5,6 @@ import info.leonenko.i18n.*
 val Language.Companion.fr_CA
     get() = languageFr_CA
 private val languageFr_CA = LanguageFr_CA()
-
 class LanguageFr_CA internal constructor() : LanguageFr() {
     override val code: String = "fr_CA"
     override val script: String? = null
@@ -388,6 +387,40 @@ class LanguageFr_CA internal constructor() : LanguageFr() {
                     )
                 ),
             )
+        override val concentrationPortionPer1e9
+            get() = MultiLengthGenderedPattern(
+                base = super.concentrationPortionPer1e9,
+                long = GenderedPattern(
+                    cases = Cases(
+                        nominative = PluralPattern(
+                            Plurals(
+                                one = "{0} partie par milliard",
+                                other = "{0} parties par milliard",
+                            )
+                        ),
+                    )
+                ),
+                short = GenderedPattern(
+                    cases = Cases(
+                        nominative = PluralPattern(
+                            Plurals(
+                                one = "{0} p.p. 10⁹",
+                                other = "{0} p.p. 10⁹",
+                            )
+                        ),
+                    )
+                ),
+                narrow = GenderedPattern(
+                    cases = Cases(
+                        nominative = PluralPattern(
+                            Plurals(
+                                one = "{0}pp10⁹",
+                                other = "{0}pp10⁹",
+                            )
+                        ),
+                    )
+                ),
+            )
         override val concentrationItem
             get() = MultiLengthGenderedPattern(
                 base = super.concentrationItem,
@@ -686,9 +719,9 @@ class LanguageFr_CA internal constructor() : LanguageFr() {
                     )
                 ),
             )
-        override val digitalByte
+        override val digitalByteUnit
             get() = MultiLengthGenderedPattern(
-                base = super.digitalByte,
+                base = super.digitalByteUnit,
                 long = GenderedPattern(
                     cases = Cases(
                         nominative = PluralPattern(

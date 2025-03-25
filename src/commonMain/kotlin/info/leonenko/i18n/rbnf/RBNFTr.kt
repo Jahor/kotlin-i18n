@@ -586,4 +586,35 @@ open class RBNFTr(val language: Language = Language.tr) : RBNF {
         get() = spelloutRules.spelloutCardinal
     override val spelloutOrdinal: NumberFormatter
         get() = spelloutRules.spelloutOrdinal
+
+    override fun spelloutNumberingFor(gender: Gender, case: Case): NumberFormatter {
+        return spelloutNumbering
+
+    }
+
+    fun spelloutNumberingFor(): NumberFormatter {
+        return spelloutNumberingFor(Gender.Neuter, Case.Nominative)
+    }
+
+    override fun spelloutCardinalFor(gender: Gender, case: Case): NumberFormatter {
+        return spelloutCardinal
+
+    }
+
+    fun spelloutCardinalFor(): NumberFormatter {
+        return spelloutCardinalFor(Gender.Neuter, Case.Nominative)
+    }
+
+    override fun spelloutOrdinalFor(gender: Gender, case: Case): NumberFormatter {
+        return spelloutOrdinal
+
+    }
+
+    fun spelloutOrdinalFor(): NumberFormatter {
+        return spelloutOrdinalFor(Gender.Neuter, Case.Nominative)
+    }
+
+    override fun spelloutNumberingYearFor(gender: Gender, case: Case): NumberFormatter {
+        TODO("spelloutNumberingYear is not available for tr")
+    }
 }

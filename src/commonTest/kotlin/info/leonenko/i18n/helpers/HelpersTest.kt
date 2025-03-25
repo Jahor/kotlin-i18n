@@ -72,6 +72,7 @@ class HelpersTest {
     fun codeTest() {
         assertEquals(Language.en, Language.byCode("en"))
         assertEquals(Language.en_US, Language.byCode("en_US"))
+        assertEquals(Language.en_US, Language.byCode("en-US"))
         assertEquals(Language.zh_CN_HANS, Language.byCode("zh_CN"))
         assertEquals(Language.id_ID, Language.byCode("in_ID"))
         assertEquals(Language.id_ID, Language.byCode("id-ID"))
